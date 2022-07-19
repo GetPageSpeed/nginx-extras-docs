@@ -20,6 +20,7 @@ markdown_extensions:
   - pymdownx.tabbed
   - pymdownx.tasklist
   - attr_list
+  - pymdownx.highlight
   - pymdownx.snippets:
       check_paths: true
 nav:
