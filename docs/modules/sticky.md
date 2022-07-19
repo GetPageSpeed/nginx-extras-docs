@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_sticky_module.so;
 ```
 
 
-This document describes nginx-module-sticky [v1.2.9](https://github.com/dvershinin/nginx-sticky-module-ng/releases/tag/v1.2.9){target=_blank} 
-released on Aug 20 2019.
+This document describes nginx-module-sticky [v1.3.0](https://github.com/dvershinin/nginx-sticky-module-ng/releases/tag/v1.3.0){target=_blank} 
+released on Jun 27 2022.
 
 <hr />
 

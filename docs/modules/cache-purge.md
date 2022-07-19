@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_cache_purge_module.so;
 ```
 
 
-This document describes nginx-module-cache-purge [v2.5.1](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.1){target=_blank} 
-released on Jun 27 2020.
+This document describes nginx-module-cache-purge [v2.5.2](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.2){target=_blank} 
+released on Jun 01 2022.
 
 <hr />
 `ngx_cache_purge` is `nginx` module which adds ability to purge content from
@@ -267,6 +273,13 @@ You can test it by running:
 
 ## See also
 - [ngx_slowfs_cache](http://github.com/FRiCKLE/ngx_slowfs_cache).
+- http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#purger
+- http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_purge
+- https://github.com/wandenberg/nginx-selective-cache-purge-module
+- https://github.com/wandenberg/nginx-sorted-querystring-module
+- https://github.com/ledgetech/ledge
+- [Faking Surrogate Cache-Keys for Nginx Plus](https://www.innoq.com/en/blog/faking-surrogate-cache-keys-for-nginx-plus/) ([gist](https://gist.github.com/titpetric/2f142e89eaa0f36ba4e4383b16d61474))
+- [Delete NGINX cached md5 items with a PURGE with wildcard support](https://gist.github.com/nosun/0cfb58d3164f829e2f027fd37b338ede)
 
 ## GitHub
 

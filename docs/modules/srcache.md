@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_srcache_filter_module.so;
 ```
 
 
-This document describes nginx-module-srcache [v0.32](https://github.com/openresty/srcache-nginx-module/releases/tag/v0.32){target=_blank} 
-released on Jul 01 2020.
+This document describes nginx-module-srcache [v0.32](https://github.com/dvershinin/srcache-nginx-module/releases/tag/v0.32){target=_blank} 
+released on Jun 28 2022.
 
 <hr />
 
@@ -56,7 +62,7 @@ This module is production ready.
      set $key $uri$args;
      srcache_fetch GET /memc $key;
      srcache_store PUT /memc $key;
-     srcache_store_statuses 200 301 302;
+     srcache_store_statuses 200 301 302 307 308;
 
      # proxy_pass/fastcgi_pass/drizzle_pass/echo/etc...
      # or even static files on the disk
@@ -216,7 +222,112 @@ where we define a connection pool which holds up to 10 keep-alive connections (p
 
 Redis is an alternative key-value store with many additional features.
 
-Here is a working example by using Redis:
+Here is a working example using the lua-resty-redis module:
+
+```nginx
+  location ~ '\.php$|^/update.php' {
+    # cache setup
+    set $key $request_uri;
+    try_files $uri =404;
+
+    srcache_fetch_skip $skip_cache;
+    srcache_store_skip $skip_cache;
+
+    srcache_response_cache_control off;
+    srcache_store_statuses 200 201 301 302 307 308 404 503;
+
+    set_escape_uri $escaped_key $key;
+
+    srcache_fetch GET /redis-fetch $key;
+    srcache_store PUT /redis-store key=$escaped_key;
+
+    more_set_headers 'X-Cache-Fetch-Status $srcache_fetch_status';
+    more_set_headers 'X-Cache-Store-Status $srcache_store_status';
+
+    fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
+    # Security note: If you're running a version of PHP older than the
+    # latest 5.3, you should have "cgi.fix_pathinfo = 0;" in php.ini.
+    # See http://serverfault.com/q/627903/94922 for details.
+    include fastcgi_params;
+    # Block httproxy attacks. See https://httpoxy.org/.
+    fastcgi_param HTTP_PROXY "";
+    fastcgi_param SCRIPT_FILENAME /var/www/html/$fastcgi_script_name;
+    fastcgi_param PATH_INFO $fastcgi_path_info;
+    fastcgi_param QUERY_STRING $query_string;
+    fastcgi_intercept_errors on;
+
+    fastcgi_pass upstream-name;
+  }
+
+  location /redis-fetch {
+    internal;
+
+    resolver 8.8.8.8 valid=300s;
+    resolver_timeout 10s;
+
+    content_by_lua_block {
+      local key = assert(ngx.var.request_uri, "no key found")
+      local redis = require "resty.redis"
+      local red, err = redis:new()
+      if not red then
+        ngx.log(ngx.ERR, "Failed to create redis variable, error -> ", err)
+        ngx.exit(500)
+      end
+      assert(red:connect("redis-master.default.svc.cluster.local", 6379))
+      if not red then
+        ngx.log(ngx.ERR, "Failed to connect to redis, error -> ", err)
+        ngx.exit(500)
+      end
+      local res, err = red:auth("redispassword")
+      if not res then
+        ngx.say("failed to authenticate, ", err)
+        ngx.exit(500)
+      end
+      local data = assert(red:get(key))
+      assert(red:set_keepalive(10000, 100))
+      if res == ngx.null then
+        return ngx.exit(404)
+      end
+      ngx.print(data)
+    }
+  }
+
+  location /redis-store {
+    internal;
+
+    resolver 8.8.8.8 valid=300s;
+    resolver_timeout 10s;
+
+    content_by_lua_block {
+      local value = assert(ngx.req.get_body_data(), "no value found")
+      local key = assert(ngx.var.request_uri, "no key found")
+      local redis = require "resty.redis"
+      local red, err = redis:new()
+      if not red then
+        ngx.log(ngx.ERR, "Failed to create redis variable, error -> ", err)
+        ngx.exit(500)
+      end
+      assert(red:connect("redis-master.default.svc.cluster.local", 6379))
+      if not red then
+        ngx.log(ngx.ERR, "Failed to connect to redis, error -> ", err)
+        ngx.exit(500)
+      end
+      local res, err = red:auth("redispassword")
+      if not res then
+        ngx.say("failed to authenticate, ", err)
+        ngx.exit(500)
+      end
+      local data = assert(red:set(key, value))
+      assert(red:set_keepalive(10000, 100))
+      if res == ngx.null then
+        return ngx.exit(404)
+      end
+    }
+  }
+```
+
+
+Here is a working example by using the HTTPRedis (fetch) and Redis2 (store) modules:
 
 ```nginx
 
@@ -418,7 +529,7 @@ Since the `v0.12rc7` release, both the response status line, response headers, a
 
 You can use the [srcache_store_pass_header](#srcache_store_pass_header) and/or [srcache_store_hide_header](#srcache_store_hide_header) directives to control what headers to cache and what not.
 
-The original response's data chunks get emitted as soon as 
+The original response's data chunks get emitted as soon as
 they arrive. `srcache_store` just copies and collects the data in an output filter without postponing them from being sent downstream.
 
 But please note that even though all the response data will be sent immediately, the current Nginx request lifetime will not finish until the srcache_store subrequest completes. That means a delay in closing the TCP connection on the server side (when HTTP keepalive is disabled, but proper HTTP clients should close the connection actively on the client side, which adds no extra delay or other issues at all) or serving the next request sent on the same TCP connection (when HTTP keepalive is in action).
@@ -470,7 +581,7 @@ Here's an example using Lua to set $nocache to avoid storing URIs that contain t
 ## srcache_store_statuses
 **syntax:** *srcache_store_statuses &lt;status1&gt; &lt;status2&gt; ..*
 
-**default:** *srcache_store_statuses 200 301 302*
+**default:** *srcache_store_statuses 200 301 302 307 308*
 
 **context:** *http, server, location, location if*
 
@@ -478,13 +589,13 @@ Here's an example using Lua to set $nocache to avoid storing URIs that contain t
 
 This directive controls what responses to store to the cache according to their status code.
 
-By default, only `200`, `301`, and `302` responses will be stored to cache and any other responses will skip [srcache_store](#srcache_store).
+By default, only `200`, `301`, `302`, `307` and `308` responses will be stored to cache and any other responses will skip [srcache_store](#srcache_store).
 
 You can specify arbitrary positive numbers for the response status code that you'd like to cache, even including error code like `404` and `503`. For example:
 
 ```nginx
 
- srcache_store_statuses 200 201 301 302 404 503;
+ srcache_store_statuses 200 201 301 302 307 308 404 503;
 ```
 
 At least one argument should be given to this directive.
@@ -970,4 +1081,4 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 You may find additional configuration tips and documentation for this module in the [GitHub 
 repository for 
-nginx-module-srcache](https://github.com/openresty/srcache-nginx-module){target=_blank}.
+nginx-module-srcache](https://github.com/dvershinin/srcache-nginx-module){target=_blank}.

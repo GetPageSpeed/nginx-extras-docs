@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_secure_token_filter_module.so;
 ```
 
 
-This document describes nginx-module-secure-token [v1.4](https://github.com/kaltura/nginx-secure-token-module/releases/tag/1.4){target=_blank} 
-released on Jun 21 2020.
+This document describes nginx-module-secure-token [v1.5](https://github.com/kaltura/nginx-secure-token-module/releases/tag/1.5){target=_blank} 
+released on Jun 27 2022.
 
 <hr />
 
@@ -229,6 +235,67 @@ Sets the end time of the token (see `Time format` below)
 
 Sets the IP address that should be embedded in the token.
 The parameter value can contain variables, e.g. $remote_addr/32 can be used to limit the token to the specific IP of the client.
+
+### Broadpeak token parameters
+
+#### secure_token_broadpeak
+* **syntax**: `secure_token_broadpeak $variable { ... }`
+* **context**: `http`
+
+Creates a new variable whose value is a Broadpeak token, created according to the
+parameters specified within the block.
+
+The block supports the following parameters:
+
+#### key
+* **syntax**: `key key`
+* **default**: `N/A (mandatory)`
+
+Sets the secret key. The parameter value can contain variables.
+
+#### param_name
+* **syntax**: `param_name name`
+* **default**: `token`
+
+Sets the token parameter name (either the name of the cookie or the query string parameter)
+
+#### acl
+* **syntax**: `acl acl`
+* **default**: `$secure_token_baseuri_comma`
+
+Sets the signed part of the URL (ACL). The parameter value can contain variables.
+
+#### start
+* **syntax**: `start time`
+* **default**: `0`
+
+Sets the start time of the token (see `Time format` below)
+
+#### end
+* **syntax**: `end time`
+* **default**: `86400`
+
+Sets the end time of the token (see `Time format` below)
+
+#### session_start
+* **syntax**: `session_start time`
+* **default**: `N/A`
+
+Sets the start time of the session, required for catchup. The parameter value can contain variables.
+
+#### session_end
+* **syntax**: `session_end time`
+* **default**: `N/A`
+
+Sets the end time of the session, required for catchup. The parameter value can contain variables.
+
+#### additional_querylist
+* **syntax**: `additional_querylist expr`
+* **default**: `N/A`
+
+Sets the primary token value, the value needs to be a list of name=value pairs without any separator.
+For example, "ip=${arg_ip}account=${arg_account}device=${arg_device}".
+The parameter value can contain variables.
 
 ### URI encryption parameters
 
@@ -449,6 +516,8 @@ The module adds the following nginx variables:
 	the value is truncated up to the comma position.
 	For exmaple, if `$uri` is /a/b/c.htm then `$secure_token_baseuri_comma` will be /a/b/; 
 	if `$uri` is /a/b,c/d.htm then `$secure_token_baseuri_comma` will be /a/b.
+* `$secure_token_original_uri` - contains the original (encrypted) uri when using uri encryption.
+	Note that the built in `$uri` variable contains the modified (decrypted) uri in this case.
 
 ## Copyright & License
 

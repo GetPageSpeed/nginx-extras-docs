@@ -15,8 +15,8 @@ yum -y install lua-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v0.8.8](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.8){target=_blank} 
-released on Apr 14 2022.
+This document describes lua-resty-openssl [v0.8.10](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.10){target=_blank} 
+released on Jun 24 2022.
     
 <hr />
 
@@ -1884,13 +1884,18 @@ A shortcut of `x509:get_not_before` plus `x509:get_not_after`
 A shortcut of `x509:set_not_before`
 plus `x509:set_not_after`.
 
-### x509:get_signature_name, x509:get_signature_nid
+### x509:get_signature_name, x509:get_signature_nid, x509:get_signature_digest_name
 
 **syntax**: *sn, err = x509:get_signature_name()*
 
 **syntax**: *nid, err = x509:get_signature_nid()*
 
+**syntax**: *sn, err = x509:get_signature_digest_name()*
+
 Return the [NID] or the short name (SN) of the signature of the certificate.
+
+`x509:get_signature_digest_name` returns the short name of the digest algorithm
+used to sign the certificate.
 
 ### x509:get_extension
 
@@ -2084,13 +2089,18 @@ and thus used by [csr:get_extension](#csrget_extension) and [csr:set_extension](
 Same as [csr:set_subject_alt_name](#csrget_-csrset_), this function is deprecated to align
 with naming convension with other functions.
 
-### csr:get_signature_name, csr:get_signature_nid
+### csr:get_signature_name, csr:get_signature_nid, csr:get_signature_digest_name
 
 **syntax**: *sn, err = csr:get_signature_name()*
 
 **syntax**: *nid, err = csr:get_signature_nid()*
 
+**syntax**: *sn, err = csr:get_signature_digest_name()*
+
 Return the [NID] or the short name (SN) of the signature of the certificate request.
+
+`csr:get_signature_digest_name` returns the short name of the digest algorithm
+used to sign the certificate.
 
 ### csr:get_extension
 
@@ -2245,13 +2255,18 @@ getters/setters are not implemented. If the getter returned a type of `crl.*` in
 converted to a [extension](#restyopensslcrlextension) instance by [extension:from_data](#extensionfrom_data),
 and thus used by [crl:get_extension](#crlget_extension) and [crl:set_extension](#crlset_extension) 
 
-### crl:get_signature_name, crl:get_signature_nid
+### crl:get_signature_name, crl:get_signature_nid, crl:get_signature_digest_name
 
 **syntax**: *sn, err = crl:get_signature_name()*
 
 **syntax**: *nid, err = crl:get_signature_nid()*
 
+**syntax**: *sn, err = crl:get_signature_digest_name()*
+
 Return the [NID] or the short name (SN) of the signature of the CRL.
+
+`crl:get_signature_digest_name` returns the short name of the digest algorithm
+used to sign the certificate.
 
 ### crl:get_by_serial
 

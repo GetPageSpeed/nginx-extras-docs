@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_nchan_module.so;
 ```
 
 
-This document describes nginx-module-nchan [v1.2.15](https://github.com/slact/nchan/releases/tag/v1.2.15){target=_blank} 
-released on Dec 27 2021.
+This document describes nginx-module-nchan [v1.3.0](https://github.com/slact/nchan/releases/tag/v1.3.0){target=_blank} 
+released on May 26 2022.
 
 <hr />
 <img class="logo" alt="NCHAN" src="https://nchan.io/github-logo.png" />
@@ -45,7 +51,7 @@ In a web browser, you can use Websocket or EventSource natively, or the [NchanSu
 
 ## Status and History
 
-The latest Nchan release is 1.2.15 (December 27, 2021) ([changelog](https://nchan.io/changelog)).
+The latest Nchan release is 1.3.0 (May 26, 2022) ([changelog](https://nchan.io/changelog)).
 
 The first iteration of Nchan was written in 2009-2010 as the [Nginx HTTP Push Module](https://pushmodule.slact.net), and was vastly refactored into its present state in 2014-2016.
 
@@ -704,11 +710,14 @@ Redis Cluster connections are designed to be resilient and try to recover from e
 
 All Nchan servers sharing a Redis server or cluster should have their times synchronized (via ntpd or your favorite ntp daemon). Failure to do so may result in missed or duplicate messages.
 
+##### Failover Recovery
+Starting with version 1.3.0, Nchan will attempt to recover from cluster node failures, keyslot errors, and cluster epoch changes without disconnecting from the entire cluster. It will attempt to do this until [`nchan_redis_cluster_max_failing_time`](#nchan_redis_cluster_max_failing_time) is exceeded. Additionally, [recovery attempt delays](#nchan_redis_cluster_recovery_delay) have configurable [jitter](#nchan_redis_cluster_recovery_delay_jitter), [exponential backoff](#nchan_redis_cluster_recovery_delay_backoff), and [maximum](#nchan_redis_cluster_recovery_delay_max) values.
+
 #### Using Redis securely
 
-Redis servers can be connected to via TLS by using the [nchan_redis_ssl](#nchan_redis_ssl) config setting in an `upstream` block, or by using the `rediss://`  schema for the server URLs.
+Redis servers can be connected to via TLS by using the [`nchan_redis_ssl`](#nchan_redis_ssl) config setting in an `upstream` block, or by using the `rediss://`  schema for the server URLs.
 
-A password and optional username for the `AUTH` command can be set by the [nchan_redis_username](#nchan_redis_username) and [nchan_redis_password](#nchan_redis_password) config settings in an `upstream` block, or by using the `redis://<username>:<password>@hostname` server URL schema.
+A password and optional username for the `AUTH` command can be set by the [`nchan_redis_username`](#nchan_redis_username) and [`nchan_redis_password`](#nchan_redis_password) config settings in an `upstream` block, or by using the `redis://<username>:<password>@hostname` server URL schema.
 
 Note that autodiscovered Redis nodes inherit their parent's SSL, username, and password settings.
 
@@ -1355,15 +1364,75 @@ Additionally, `nchan_stub_status` data is also exposed as variables. These are a
   legacy name: push_message_timeout  
   > Publisher configuration setting the length of time a message may be queued before it is considered expired. If you do not want messages to expire, set this to 0. Note that messages always expire from oldest to newest, so an older message may prevent a newer one with a shorter timeout from expiring. An Nginx variable can also be used to set the timeout dynamically.    
 
-- **nchan_redis_cluster_check_interval**  
+- **nchan_redis_cluster_check_interval_backoff** `<floating point> >= 0, ratio of current delay`  
+  arguments: 1  
+  default: `2 (increase delay by 200% each try)`  
+  context: upstream  
+  > Add an exponentially increasing delay to the Redis cluster check interval. `Delay[n] = (Delay[n-1] + jitter) * (nchan_redis_cluster_check_interval_backoff + 1)`.    
+
+- **nchan_redis_cluster_check_interval_jitter** `<floating point> >= 0, (0 to disable)`  
+  arguments: 1  
+  default: `0.2 (20% of inverval value)`  
+  context: upstream  
+  > Introduce random jitter to Redis cluster chck interval, where the range is `±(cluster_check_interval * nchan_redis_cluster_check_interval_jitter) / 2`.    
+
+- **nchan_redis_cluster_check_interval_max** `<time> (0 to disable)`  
+  arguments: 1  
+  default: `30s`  
+  context: upstream  
+  > Maximum Redis cluster check interval after backoff and jitter.    
+
+- **nchan_redis_cluster_check_interval_min** `<time>`  
+  arguments: 1  
+  default: `1s (0 to disable)`  
+  context: upstream  
+  > When connected to a cluster, periodically check the cluster state and layout via a random master node.    
+
+- **nchan_redis_cluster_connect_timeout**  
+  arguments: 1  
+  default: `15s`  
+  context: upstream  
+  > Redis cluster connection timeout.    
+
+- **nchan_redis_cluster_max_failing_time**  
+  arguments: 1  
+  default: `30s`  
+  context: upstream  
+  > Maximum time a Redis cluster can be in a failing state before Nchan disconnects from it. During this time, Nchan will try to recover from a cluster or node failure without disconnecting the entire cluster.    
+
+- **nchan_redis_cluster_recovery_delay** `<time>`  
+  arguments: 1  
+  default: `100ms`  
+  context: upstream  
+  > After a cluster recovery failure, wait this long to try again.    
+
+- **nchan_redis_cluster_recovery_delay_backoff** `<floating point> >= 0, ratio of current delay`  
+  arguments: 1  
+  default: `0.5 (increase delay by 50% each try)`  
+  context: upstream  
+  > Add an exponentially increasing delay to Redis cluster recovery retries. `Delay[n] = (Delay[n-1] + jitter) * (nchan_redis_cluster_recovery_delay_backoff + 1)`.    
+
+- **nchan_redis_cluster_recovery_delay_jitter** `<floating point> >= 0, (0 to disable)`  
+  arguments: 1  
+  default: `0.5 (50% of delay value)`  
+  context: upstream  
+  > Introduce random jitter to Redis cluster recovery retry time, where the range is `±(recovery_delay * nchan_redis_cluster_recovery_delay_jitter) / 2`.    
+
+- **nchan_redis_cluster_recovery_delay_max** `<time> (0 to disable)`  
+  arguments: 1  
+  default: `2s`  
+  context: upstream  
+  > Maximum Redis cluster recovery delay after backoff and jitter.    
+
+- **nchan_redis_command_timeout** `<time> (0 to leave unlimited)`  
   arguments: 1  
   default: `5s`  
-  context: http, server, upstream, location  
-  > Send a CLUSTER INFO command to each connected Redis node to see if the cluster config epoch has changed. Sent only when in Cluster mode and if any other command that may result in a MOVE error has not been sent in the configured time.    
+  context: upstream  
+  > If a Redis server exceeds this time to produce a command reply, it is considered unhealthy and is disconnected.    
 
 - **nchan_redis_connect_timeout**  
   arguments: 1  
-  default: `600ms`  
+  default: `10s`  
   context: upstream  
   > Redis server connection timeout.    
 
@@ -1412,6 +1481,42 @@ Additionally, `nchan_stub_status` data is also exposed as variables. These are a
   default: `4m`  
   context: http, server, upstream, location  
   > Send a keepalive command to redis to keep the Nchan redis clients from disconnecting. Set to 0 to disable.    
+
+- **nchan_redis_reconnect_delay** `<time>`  
+  arguments: 1  
+  default: `500ms`  
+  context: upstream  
+  > After a connection failure, wait this long before trying to reconnect to Redis.    
+
+- **nchan_redis_reconnect_delay_backoff** `<floating point> >= 0 (0 to disable)`  
+  arguments: 1  
+  default: `0.5 (increase delay by 50% each try)`  
+  context: upstream  
+  > Add an exponentially increasing delay to Redis connection retries. `Delay[n] = (Delay[n-1] + jitter) * (nchan_redis_reconnect_delay_backoff + 1)`.    
+
+- **nchan_redis_reconnect_delay_jitter** `<floating point> >= 0 (0 to disable)`  
+  arguments: 1  
+  default: `0.1 (10% of delay value)`  
+  context: upstream  
+  > Introduce random jitter to Redis reconnection time, where the range is `±(reconnect_delay * nchan_redis_reconnect_delay_jitter) / 2`.    
+
+- **nchan_redis_reconnect_delay_max** `<time> (0 to disable)`  
+  arguments: 1  
+  default: `10s`  
+  context: upstream  
+  > Maximum Redis reconnection delay after backoff and jitter.    
+
+- **nchan_redis_retry_commands**  
+  arguments: 1  
+  default: `on`  
+  context: upstream  
+  > Allow Nchan to retry some Redis commands on keyslot errors and cluster unavailability. Queuing up a lot of commands while the cluster is unavailable may lead to excessive memory use, but it can also defer commands during transient failures.    
+
+- **nchan_redis_retry_commands_max_wait** `<time> (0 to leave unlimited)`  
+  arguments: 1  
+  default: `500ms`  
+  context: upstream  
+  > When `nchan_redis_retry_commands` is on, the maximum time a command will stayed queued to be retried.    
 
 - **nchan_redis_server** `<redis-url>`  
   arguments: 1  

@@ -15,12 +15,12 @@ yum -y install lua-resty-etcd
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-etcd [v1.6.1](https://github.com/api7/lua-resty-etcd/releases/tag/v1.6.1){target=_blank} 
-released on Apr 18 2022.
+This document describes lua-resty-etcd [v1.8.2](https://github.com/api7/lua-resty-etcd/releases/tag/v1.8.2){target=_blank} 
+released on Jul 18 2022.
     
 <hr />
 
-[resty-etcd](https://github.com/iresty/lua-resty-etcd) Nonblocking Lua etcd driver library for OpenResty, this module supports etcd API v2 and v3.
+[resty-etcd](https://github.com/iresty/lua-resty-etcd) Nonblocking Lua etcd driver library for OpenResty, this module supports etcd API v3.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/iresty/lua-resty-etcd/blob/master/LICENSE)
 

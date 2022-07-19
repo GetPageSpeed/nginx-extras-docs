@@ -15,10 +15,15 @@ yum -y install lua-resty-healthcheck
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-healthcheck [v1.5.1](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.5.1){target=_blank} 
-released on Mar 23 2022.
+This document describes lua-resty-healthcheck [v1.6.0](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.6.0){target=_blank} 
+released on Jun 27 2022.
     
 <hr />
+
+![legacy version](https://img.shields.io/luarocks/v/kong/lua-resty-healthcheck/1.5.1-1?style=flat-square)
+![Release 1.5.x](https://github.com/Kong/lua-resty-healthcheck/actions/workflows/latest_os.yml/badge.svg?branch=release/1.5.x)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square)
+![Twitter Follow](https://img.shields.io/twitter/follow/thekonginc?style=social)
 
 A health check library for OpenResty.
 
@@ -106,6 +111,18 @@ for the complete API.
 
 Versioning is strictly based on [Semantic Versioning](https://semver.org/)
 
+### 1.6.0 (27-Jun-2022)
+
+* Introduce support to [lua-resty-events](https://github.com/Kong/lua-resty-events)
+  module in addition to [lua-resty-worker-events](https://github.com/Kong/lua-resty-worker-events)
+  support. With this addition, the lua-resty-healthcheck luarocks package does
+  not require a specific event-sharing module anymore, but you are still
+  required to provide either lua-resty-worker-events or lua-resty-events.
+  [#105](https://github.com/Kong/lua-resty-healthcheck/pull/105)
+* If available, lua-resty-healthcheck now uses `string.buffer`, the new LuaJIT's
+  serialization API. If it is unavailable, lua-resty-healthcheck fallbacks to
+  cjson.  [#109](https://github.com/Kong/lua-resty-healthcheck/pull/109)
+
 ### 1.5.1 (23-Mar-2022)
 
 * Fix: avoid breaking active health checks when adding or removing targets.
@@ -119,6 +136,11 @@ Versioning is strictly based on [Semantic Versioning](https://semver.org/)
   This function may be used when an address is being removed but may be added again
   before the interval expires, keeping its health status.
   [#88](https://github.com/Kong/lua-resty-healthcheck/pull/88)
+
+### 1.4.3 (31-Mar-2022)
+
+* Fix: avoid breaking active health checks when adding or removing targets.
+  [#100](https://github.com/Kong/lua-resty-healthcheck/pull/100)
 
 ### 1.4.2 (29-Jun-2021)
 
@@ -227,7 +249,7 @@ Versioning is strictly based on [Semantic Versioning](https://semver.org/)
 ## Copyright and License
 
 ```
-Copyright 2017-2021 Kong Inc.
+Copyright 2017-2022 Kong Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

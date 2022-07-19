@@ -24,8 +24,8 @@ load_module modules/ngx_http_modsecurity_module.so;
 ```
 
 
-This document describes nginx-module-security [v1.0.2](https://github.com/SpiderLabs/ModSecurity-nginx/releases/tag/v1.0.2){target=_blank} 
-released on Jun 07 2021.
+This document describes nginx-module-security [v1.0.3](https://github.com/SpiderLabs/ModSecurity-nginx/releases/tag/v1.0.3){target=_blank} 
+released on May 20 2022.
 
 <hr />
 

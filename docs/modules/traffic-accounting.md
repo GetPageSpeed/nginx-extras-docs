@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,20 +23,19 @@ load_module modules/ngx_http_accounting_module.so;
 ```
 
 
-This document describes nginx-module-traffic-accounting [v2.0](https://github.com/Lax/traffic-accounting-nginx-module/releases/tag/v2.0){target=_blank} 
-released on May 28 2019.
+This document describes nginx-module-traffic-accounting [v2.0.4](https://github.com/dvershinin/traffic-accounting-nginx-module/releases/tag/v2.0.4){target=_blank} 
+released on May 16 2022.
 
 <hr />
 
 Monitor the incoming and outgoing traffic metrics in realtime for `NGINX`.
-
-**Now accounting module supports both HTTP and STREAM subsystems**
 
 A realtime traffic and status code monitor solution for NGINX,
 which needs less memory and cpu than other realtime log analyzing solutions.
 Useful for traffic accounting based on NGINX config logic (by location / server / user-defined-variables).
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FLax%2Ftraffic-accounting-nginx-module.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FLax%2Ftraffic-accounting-nginx-module?ref=badge_shield)
+[![Financial Contributors on Open Collective](https://opencollective.com/traffic-acctiong-nginx-module/all/badge.svg?label=financial+contributors)](https://opencollective.com/traffic-acctiong-nginx-module) 
 
 ## Why?
 
@@ -52,23 +57,6 @@ For each time period (defined by `interval`), a timer event is triggered, those
 
 ---
 
-## Quickstart
-
-Download pre-build binaries from [Releases](https://github.com/Lax/traffic-accounting-nginx-module/releases),
-place them into `./modules` sub-directory of `nginx`.
-
-Add following lines at the beginning of `nginx.conf`:
-
-```
-load_module modules/ngx_http_accounting_module.so;
-```
-
-Reload nginx config with `nginx -s reload`. *Done!*
-
-*Alternatively, you can install this module manually with the Nginx source, see the [installation instructions](#Installation)*
-
----
-
 ## Dashboard
 
 **Dashboard - Visualize with Grafana**
@@ -83,7 +71,7 @@ Edit your nginx.conf.
 Example:
 
 ```nginx
-http{
+http {
     # turn on accounting function
     accounting  on;
     accounting_log  logs/http-accounting.log;
@@ -120,14 +108,14 @@ http{
 
 **default:** *accounting off*
 
-**context:** *http, stream*
+**context:** *http*
 
 ## accounting_log
 **syntax:** *accounting_log \</path/to/log/file> \[level]*
 
 **default:** *-*
 
-**context:** *http, stream*
+**context:** *http*
 
 Configures logging.
 
@@ -142,7 +130,7 @@ If not specified, accounting log will be written to `/dev/log`.
 
 **default:** *accounting_id default*
 
-**context:** *http, stream, server, location, if in location*
+**context:** *http, server, location, if in location*
 
 Sets the `accounting_id` string by user defined variable.
 
@@ -153,7 +141,7 @@ This string is used to determine which `metrics` a request/session should be agg
 
 **default:** *accounting_interval 60*
 
-**context:** *http, stream*
+**context:** *http*
 
 Specifies the reporting interval.  Defaults to 60 seconds.
 
@@ -162,7 +150,7 @@ Specifies the reporting interval.  Defaults to 60 seconds.
 
 **default:** *accounting_perturb off*
 
-**context:** *http, stream*
+**context:** *http*
 
 Randomly staggers the reporting interval by 20% from the usual time.
 
@@ -194,7 +182,7 @@ Version: 5.6+
 Min time interval: 1m
 ```
 
-Then import accounting dashboard from  `[samples/accounting-dashboard-grafana.json](samples/accounting-dashboard-grafana.json)`.
+Then import accounting dashboard from  [`samples/accounting-dashboard-grafana.json`](samples/accounting-dashboard-grafana.json).
 
 
 ## Metrics log format
@@ -226,39 +214,9 @@ which contains a list of key-values.
 
 
 ---
-## grab nginx source code from nginx.org, then cd to /path/to/nginx-src/
-git clone https://github.com/Lax/traffic-accounting-nginx-module.git
-
-## to build as `static` module
-./configure --prefix=/opt/nginx --with-stream --add-module=traffic-accounting-nginx-module
-make && make install
 
 
-## to build as `dynamic` module
-## both HTTP and STREAM module, target module file name is ngx_http_accounting_module.so
-./configure --prefix=/opt/nginx --with-stream --add-dynamic-module=traffic-accounting-nginx-module
-
-## only HTTP module, target module file name is ngx_http_accounting_module.so
-#./configure --prefix=/opt/nginx --add-dynamic-module=traffic-accounting-nginx-module
-
-## only STREAM module, target module file name is ngx_stream_accounting_module.so
-#./configure --prefix=/opt/nginx --without-http --add-dynamic-module=traffic-accounting-nginx-module
-
-make modules
-```
-
-### Step 2 (dynamic module only)
-
-Add the following lines at the beginning of `nginx.conf`:
-
-```
-load_module modules/ngx_http_accounting_module.so;
-
-## for STREAM only build
-#load_module modules/ngx_stream_accounting_module.so;
-```
-
-### Step 3
+### Configuration example
 
 ```nginx
 http {
@@ -281,7 +239,7 @@ stream {
 ## Visualization
 
 Visualization with `Kibana` or `Grafana` is easy.
-See [samples/elk/](samples/elk/) for examples.
+See [samples/](samples/) for examples.
 
 ---
 
@@ -306,6 +264,36 @@ Liu Lantao [Github@Lax](https://github.com/Lax)
 
 [Contributors](https://github.com/Lax/traffic-accounting-nginx-module/graphs/contributors)
 
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/Lax/traffic-accounting-nginx-module/graphs/contributors"><img src="https://opencollective.com/traffic-acctiong-nginx-module/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/traffic-acctiong-nginx-module/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/traffic-acctiong-nginx-module"><img src="https://opencollective.com/traffic-acctiong-nginx-module/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/traffic-acctiong-nginx-module/contribute)]
+
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/0/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/1/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/2/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/3/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/4/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/5/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/6/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/7/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/8/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/9/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/9/avatar.svg"></a>
+
 ## License
 
 [BSD-2-Clause](LICENSE)
@@ -317,4 +305,4 @@ Liu Lantao [Github@Lax](https://github.com/Lax)
 
 You may find additional configuration tips and documentation for this module in the [GitHub 
 repository for 
-nginx-module-traffic-accounting](https://github.com/Lax/traffic-accounting-nginx-module){target=_blank}.
+nginx-module-traffic-accounting](https://github.com/dvershinin/traffic-accounting-nginx-module){target=_blank}.

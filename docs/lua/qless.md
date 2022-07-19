@@ -15,8 +15,8 @@ yum -y install lua-resty-qless
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-qless [v0.11](https://github.com/ledgetech/lua-resty-qless/releases/tag/v0.11){target=_blank} 
-released on Aug 16 2017.
+This document describes lua-resty-qless [v0.12](https://github.com/ledgetech/lua-resty-qless/releases/tag/v0.12){target=_blank} 
+released on Jul 08 2022.
     
 <hr />
 
@@ -70,8 +70,7 @@ otherwise, that worker should just drop it and let the system reclaim it.
 1. __Retry logic__ Every job has a number of retries associated with it, which are
   renewed when it is put into a new queue or completed. If a job is repeatedly
   dropped, then it is presumed to be problematic, and is automatically failed.
-1. __Web App__ The [Ruby binding](https://github.com/seomoz/qless) has a Sinatra-based web
-  app that gives you control over certain operational issues
+1. __Web App__ [lua-resty-qless-web](https://github.com/hamishforbes/lua-resty-qless-web) gives you visibility and control over certain operational issues
 1. __Scheduled Work__ Until a job waits for a specified delay (defaults to 0),
   jobs cannot be popped by workers
 1. __Recurring Jobs__ Scheduling's all well and good, but we also support

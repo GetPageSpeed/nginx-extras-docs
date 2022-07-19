@@ -15,8 +15,8 @@ yum -y install lua-resty-memcached
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-memcached [v0.16](https://github.com/openresty/lua-resty-memcached/releases/tag/v0.16){target=_blank} 
-released on Apr 30 2021.
+This document describes lua-resty-memcached [v0.17](https://github.com/openresty/lua-resty-memcached/releases/tag/v0.17){target=_blank} 
+released on Jun 17 2022.
     
 <hr />
 
@@ -139,6 +139,14 @@ Attempts to connect to the remote host and port that the memcached server is lis
 
 Before actually resolving the host name and connecting to the remote backend, this method will always look up the connection pool for matched idle connections created by previous calls of this method.
 
+## sslhandshake
+
+**syntax:** *session, err = memc:sslhandshake(reused_session?, server_name?, ssl_verify?, send_status_req?)*
+
+Does SSL/TLS handshake on the currently established connection. See the
+[tcpsock.sslhandshake](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake)
+API from OpenResty for more details.
+
 set
 ---
 `syntax: ok, err = memc:set(key, value, exptime, flags)`
@@ -186,7 +194,7 @@ You can specify the max idle timeout (in ms) when the connection is in the pool 
 
 In case of success, returns `1`. In case of errors, returns `nil` with a string describing the error.
 
-Only call this method in the place you would have called the `close` method instead. Calling this method will immediately turn the current memcached object into the `closed` state. Any subsequent operations other than `connect()` on the current objet will return the `closed` error.
+Only call this method in the place you would have called the `close` method instead. Calling this method will immediately turn the current memcached object into the `closed` state. Any subsequent operations other than `connect()` on the current object will return the `closed` error.
 
 ## get_reused_times
 `syntax: times, err = memc:get_reused_times()`
@@ -408,6 +416,27 @@ Generally you can just directly call the `close` method to achieve the same effe
 Sets the verbosity level used by the memcached server. The `level` argument should be given integers only.
 
 Returns `1` in case of success and `nil` other wise. In case of failures, another string value will also be returned to describe the error.
+
+## init_pipeline
+`syntax: err = memc:init_pipeline(n?)`
+
+Enable the Memcache pipelining mode. All subsequent calls to Memcache command methods will automatically get buffer and will send to the server in one run when the commit_pipeline method is called or get cancelled by calling the cancel_pipeline method.
+
+The optional params `n` is buffer tables size. default value 4
+
+## commit_pipeline
+`syntax: results, err = memc:commit_pipeline()`
+
+Quits the pipelining mode by committing all the cached Memcache queries to the remote server in a single run. All the replies for these queries will be collected automatically and are returned as if a big multi-bulk reply at the highest level.
+
+This method success return a lua table. failed return a lua string describing the error upon failures.
+
+## cancel_pipeline
+`syntax: memc:cancel_pipeline()`
+
+Quits the pipelining mode by discarding all existing buffer Memcache commands since the last call to the init_pipeline method.
+
+the method no return. always succeeds.
 
 ## Automatic Error Logging
 

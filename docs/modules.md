@@ -29,7 +29,7 @@
 | [nginx-module-geoip2](modules/geoip2.md)                         | NGINX GeoIP2 module                                                           |
 | [nginx-module-geoip](modules/geoip.md)                           | NGINX GeoIP dynamic modules                                                   |
 | [nginx-module-google](modules/google.md)                         | NGINX Module for Google Mirror creation                                       |
-| [nginx-module-graphite](modules/graphite.md)                     | An nginx module for collecting stats into Graphite                            |
+| [nginx-module-graphite](modules/graphite.md)                     | An NGINX module for collecting stats into Graphite                            |
 | [nginx-module-headers-more](modules/headers-more.md)             | NGINX Headers More dynamic module                                             |
 | [nginx-module-hmac-secure-link](modules/hmac-secure-link.md)     | Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes     |
 | [nginx-module-html-sanitize](modules/html-sanitize.md)           | NGINX module to sanitize HTML 5 with whitelisted elements, attributes and CSS |

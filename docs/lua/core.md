@@ -15,8 +15,8 @@ yum -y install lua-resty-core
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-core [v0.1.22](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.22){target=_blank} 
-released on May 07 2021.
+This document describes lua-resty-core [v0.1.23](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.23){target=_blank} 
+released on Nov 14 2021.
     
 <hr />
 
@@ -79,8 +79,8 @@ of this library in the particular OpenResty release you are using. Otherwise you
 into serious compatibility issues.
 
 * LuaJIT 2.1 (for now, it is the v2.1 git branch in the official luajit-2.0 git repository: http://luajit.org/download.html )
-* [ngx_http_lua_module](https://github.com/openresty/lua-nginx-module) v0.10.20.
-* [ngx_stream_lua_module](https://github.com/openresty/stream-lua-nginx-module) v0.0.10.
+* [ngx_http_lua_module](https://github.com/openresty/lua-nginx-module) v0.10.21.
+* [ngx_stream_lua_module](https://github.com/openresty/stream-lua-nginx-module) v0.0.11.
 * [lua-resty-lrucache](https://github.com/openresty/lua-resty-lrucache)
 
 ## API Implemented

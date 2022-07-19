@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_cookie_limit_req_module.so;
 ```
 
 
-This document describes nginx-module-cookie-limit [v1.1](https://github.com/limithit/ngx_cookie_limit_req_module/releases/tag/1.1){target=_blank} 
-released on Feb 25 2020.
+This document describes nginx-module-cookie-limit [v1.2](https://github.com/limithit/ngx_cookie_limit_req_module/releases/tag/1.2){target=_blank} 
+released on Jun 23 2022.
 
 <hr />
  

@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_immutable_module.so;
 ```
 
 
-This document describes nginx-module-immutable [v0.0.1](https://github.com/GetPageSpeed/ngx_immutable/releases/tag/v0.0.1){target=_blank} 
-released on Feb 24 2020.
+This document describes nginx-module-immutable [v0.0.3](https://github.com/GetPageSpeed/ngx_immutable/releases/tag/v0.0.3){target=_blank} 
+released on Jun 27 2022.
 
 <hr />
 
@@ -53,7 +59,7 @@ How it's different to `expires max;`:
 * Sends `Expires` only when it's really necessary, e.g. when a client is requesting resources over `HTTP/1.0`
 * Sets `public` attribute to ensure the assets can be cached by public caches, which is typically a desired thing.
 
-Thus in most cases, `immutable on;` can be used as as a better alternative to `expires max;`.
+Thus, in most cases, `immutable on;` can be used as a better alternative to `expires max;`.
 
 ## Example: Magento 2 production configuration
 

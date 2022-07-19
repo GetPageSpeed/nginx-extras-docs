@@ -3,7 +3,13 @@
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -17,8 +23,8 @@ load_module modules/ngx_http_flv_live_module.so;
 ```
 
 
-This document describes nginx-module-flv [v1.2.8](https://github.com/dvershinin/nginx-http-flv-module/releases/tag/v1.2.8){target=_blank} 
-released on Feb 18 2021.
+This document describes nginx-module-flv [v1.2.10](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.10){target=_blank} 
+released on Feb 20 2022.
 
 <hr />
 
@@ -31,7 +37,7 @@ Donate if you like this module. Many thanks to you!
 
 <a href="https://www.buymeacoffee.com/winshining" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-### Appreciation
+### Credits
 
 * Igor Sysoev, the creator of [NGINX](http://nginx.org).
 
@@ -396,4 +402,4 @@ If [NGINX](http://nginx.org) is running in muti-processes mode and socket option
 
 You may find additional configuration tips and documentation for this module in the [GitHub 
 repository for 
-nginx-module-flv](https://github.com/dvershinin/nginx-http-flv-module){target=_blank}.
+nginx-module-flv](https://github.com/winshining/nginx-http-flv-module){target=_blank}.

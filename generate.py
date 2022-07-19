@@ -54,7 +54,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
             intro += f"*   [Amazon Linux 2]({module_config['ref']['amzn2']})\n"
 
         intro += f"""
-### Other supported operating systems        
+### Other supported operating systems
+        
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install nginx-module-{handle}
@@ -68,7 +69,13 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 ## Installation
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+You can install this module in any RHEL-based distribution, including, but not limited to:
+
+* RedHat Enterprise Linux 6, 7, 8, 9
+* CentOS 6, 7, 8, 9
+* AlmaLinux 8, 9
+* Rocky Linux 8, 9
+* Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -146,7 +153,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
             intro += f"*   [Amazon Linux 2]({module_config['ref']['amzn2']})\n"
 
         intro += f"""
-### Other supported operating systems        
+### Other supported operating systems
+        
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install lua-resty-{handle}

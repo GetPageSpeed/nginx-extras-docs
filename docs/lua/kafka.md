@@ -15,8 +15,8 @@ yum -y install lua-resty-kafka
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-kafka [v0.10](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.10){target=_blank} 
-released on Oct 14 2021.
+This document describes lua-resty-kafka [v0.20](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.20){target=_blank} 
+released on May 06 2022.
     
 <hr />
 
@@ -50,7 +50,17 @@ Note for `ssl` connections at least [ngx_lua 0.9.11](https://github.com/openrest
                 local producer = require "resty.kafka.producer"
 
                 local broker_list = {
-                    { host = "127.0.0.1", port = 9092 },
+                    {
+                        host = "127.0.0.1",
+                        port = 9092,
+
+                        -- optional auth
+                        sasl_config = {
+                            mechanism = "PLAIN",
+                            user = "USERNAME",
+                            password = "PASSWORD",
+                        },
+                    },
                 }
 
                 local key = "key"
@@ -114,7 +124,14 @@ The `broker_list` is a list of broker, like the below
 [
     {
         "host": "127.0.0.1",
-        "port": 9092
+        "port": 9092,
+
+        // optional auth
+        "sasl_config": {
+            "mechanism": "PLAIN",
+            "user": "USERNAME",
+            "password": "PASSWORD"
+        }
     }
 ]
 ```
@@ -147,6 +164,10 @@ client config
 
     Specifies if client should perform SSL verification. Defaults to false. See: https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake
 
+* `resolver`
+
+    Specifies a function to host resolving, which returns a string of IP or `nil`, to override system default host resolver. Default `nil`, no resolving performed. Example `function(host) if host == "some_host" then return "10.11.12.13" end end`
+
 #### fetch_metadata
 `syntax: brokers, partitions = c:fetch_metadata(topic)`
 
@@ -160,6 +181,17 @@ In case of errors, returns `nil` with a string describing the error.
 This will refresh the metadata of all topics which have been fetched by `fetch_metadata`.
 In case of success, return all brokers and all partitions of all topics.
 In case of errors, returns `nil` with a string describing the error.
+
+
+#### choose_api_version
+
+`syntax: api_version = c:choose_api_version(api_key, min_version, max_version)`
+
+This helps the client to select the correct version of the `api_key` corresponding to the API.
+
+When `min_version` and `max_version` are provided, it will act as a limit and the selected versions in the return value will not exceed their limits no matter how high or low the broker supports the API version. When they are not provided, it will follow the range of versions supported by the broker.
+
+Tip: The version selection strategy is to choose the maximum version within the allowed range.
 
 
 ## resty.kafka.producer
@@ -292,6 +324,137 @@ The third optional `cluster_name` specifies the name of the cluster, default `1`
 `syntax: ok = p:flush()`
 
 Always return `true`.
+
+
+
+## resty.kafka.basic-consumer
+
+To load this module, just do this
+
+```lua
+    local bconsumer = require "resty.kafka.basic-consumer"
+```
+
+This module is a minimalist implementation of a consumer, providing the `list_offset` API for querying by time or getting the start and end offset and the `fetch` API for getting messages in a topic.
+
+In a single call, only the information of a single partition in a single topic can be fetched, and batch fetching is not supported for now. The basic consumer does not support the consumer group related API, so you need to fetch the message after getting the offset through the `list_offset` API, or your service can manage the offset itself.
+
+### Methods
+
+#### new
+
+`syntax: c = bconsumer:new(broker_list, client_config)`
+
+The `broker_list` is a list of broker, like the below
+
+```json
+[
+    {
+        "host": "127.0.0.1",
+        "port": 9092,
+
+        // optional auth
+        "sasl_config": {
+            "mechanism": "PLAIN",
+            "user": "USERNAME",
+            "password": "PASSWORD"
+        }
+    }
+]
+```
+
+An optional `client_config` table can be specified. The following options are as follows:
+
+client config
+
+* `socket_timeout`
+
+    Specifies the network timeout threshold in milliseconds. *SHOULD* lagrer than the `request_timeout`.
+
+* `keepalive_timeout`
+
+    Specifies the maximal idle timeout (in milliseconds) for the keepalive connection.
+
+* `keepalive_size`
+
+    Specifies the maximal number of connections allowed in the connection pool for per Nginx worker.
+
+* `refresh_interval`
+
+    Specifies the time to auto refresh the metadata in milliseconds. Then metadata will not auto refresh if is nil.
+
+* `ssl`
+
+    Specifies if client should use ssl connection. Defaults to false. See: https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake
+
+* `ssl_verify`
+
+    Specifies if client should perform SSL verification. Defaults to false. See: https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake
+
+* `isolation_level`
+	This setting controls the visibility of transactional records. See: https://kafka.apache.org/protocol.html
+
+* `client_rack`
+
+    Rack ID of the consumer making this request. See: https://kafka.apache.org/protocol.html
+
+#### list_offset
+`syntax: offset, err = c:list_offset(topic, partition, timestamp)`
+
+The parameter timestamp can be a UNIX timestamp or a constant defined in `resty.kafka.protocol.consumer`, `LIST_OFFSET_TIMESTAMP_LAST`, `LIST_OFFSET_TIMESTAMP_FIRST`, `LIST_OFFSET_TIMESTAMP_MAX`, used to get the initial and latest offsets, etc., semantics with the ListOffsets API in Apache Kafka. See: https://kafka.apache.org/protocol.html#The_Messages_ListOffsets
+
+In case of success, return the offset of the specified case.
+In case of errors, returns `nil` with a string describing the error.
+
+#### fetch
+
+`syntax: result, err = c:fetch(topic, partition, offset)`
+
+In case of success, return the following `result` of the specified case.
+In case of errors, returns `nil` with a string describing the error.
+
+The `result` will contain more information such as the messages:
+
+* `records`
+
+    The table containing the content of the message.
+
+* `errcode`
+
+    The error code of Fetch API. See: https://kafka.apache.org/protocol.html#protocol_error_codes
+
+* `high_watermark`
+
+    The high watermark of Fetch API. See: https://kafka.apache.org/protocol.html#The_Messages_Fetch
+
+* `last_stable_offset`
+
+    The last stable offset of Fetch API. Content depends on the API version, maybe nil. See: https://kafka.apache.org/protocol.html#The_Messages_Fetch that response API version above v4
+
+* `log_start_offset`
+
+    The log start offset of Fetch API. Content depends on the API version, maybe nil. See: https://kafka.apache.org/protocol.html#The_Messages_Fetch that response API version above v5
+
+* `aborted_transactions`
+
+    The aborted transactions of Fetch API. Content depends on the API version, maybe nil. See: https://kafka.apache.org/protocol.html#The_Messages_Fetch that response API version above v4
+
+* `preferred_read_replica`
+
+    The preferred read replica of Fetch API. Content depends on the API version, maybe nil. See: https://kafka.apache.org/protocol.html#The_Messages_Fetch that response API version above v11
+
+
+
+## Errors
+
+When you call the modules provided in this library, you may get some errors.
+Depending on the source, they can be divided into the following categories.
+
+* Network errors: such as connection rejected, connection timeout, etc. You need to check the connection status of each service in your environment.
+
+* Metadata-related errors: such as Metadata or ApiVersion data cannot be retrieved properly; the specified topic or partition does not exist, etc. You need to check the Kafka Broker and client configuration.
+
+* Error returned by Kafka: sometimes Kafka will include err_code data in the response data, When this problem occurs, the `err` in the return value looks like this `OFFSET_OUT_OF_RANGE`, all uppercase characters, and separated by underscores, and in the current library we provide [a error list of mappings](lib/resty/kafka/errors.lua) corresponding to the textual descriptions. To learn more about these errors, see the descriptions in the [Kafka documentation](https://kafka.apache.org/protocol.html#protocol_error_codes).
 
 
 ## TODO
