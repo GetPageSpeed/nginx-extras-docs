@@ -316,9 +316,14 @@ def normalize_to_md(readme_contents, file_name):
     elif file_name.endswith('.textile'):
         doc.textile = readme_contents.encode('utf-8')
     else:
-        # doc.gfm = readme_contents.encode('utf-8')
         return normalize_md_headings(readme_contents)
-    return doc.gfm.decode("utf-8")
+
+    try:
+        # this is available in pandoc for RHEL 8+ 
+        return doc.gfm.decode("utf-8")
+    except AttributeError:
+        # available everywhere, less accurate
+        return doc.markdown_github.decode("utf-8")
 
 
 def get_readme_contents_from_github(handle, module_config):

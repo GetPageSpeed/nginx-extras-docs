@@ -1,5 +1,5 @@
 .PHONY: all
-all:clean
+all:
 	virtualenv-3 ./venv
 	./venv/bin/pip install -r requirements.txt
 	./venv/bin/python ./generate.py
