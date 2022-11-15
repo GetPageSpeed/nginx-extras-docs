@@ -23,8 +23,8 @@ load_module modules/ngx_http_zip_module.so;
 ```
 
 
-This document describes nginx-module-zip [v1.2.0](https://github.com/evanmiller/mod_zip/releases/tag/1.2.0){target=_blank} 
-released on Oct 24 2020.
+This document describes nginx-module-zip [v1.2.1](https://github.com/dvershinin/mod_zip/releases/tag/1.2.1){target=_blank} 
+released on Jul 20 2022.
 
 <hr />
 
@@ -62,4 +62,4 @@ Questions/patches may be directed to Evan Miller, emmiller@gmail.com.
 
 You may find additional configuration tips and documentation for this module in the [GitHub 
 repository for 
-nginx-module-zip](https://github.com/evanmiller/mod_zip){target=_blank}.
+nginx-module-zip](https://github.com/dvershinin/mod_zip){target=_blank}.

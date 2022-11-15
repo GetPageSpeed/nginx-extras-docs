@@ -15,8 +15,8 @@ yum -y install lua-resty-etcd
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-etcd [v1.8.2](https://github.com/api7/lua-resty-etcd/releases/tag/v1.8.2){target=_blank} 
-released on Jul 18 2022.
+This document describes lua-resty-etcd [v1.9.0](https://github.com/api7/lua-resty-etcd/releases/tag/v1.9.0){target=_blank} 
+released on Sep 22 2022.
     
 <hr />
 

@@ -502,7 +502,7 @@ for l in all_libs:
 
 # write nav:
 with open("mkdocs.yml") as mkdocs_f:
-    mkdocs_config = yaml.load(mkdocs_f, Loader=yaml.FullLoader)
+    mkdocs_config = yaml.load(mkdocs_f, Loader=yaml.Loader)
     nav = [
         {'Overview': 'index.md'},
         {'Modules': final_all_modules},

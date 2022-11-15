@@ -15,10 +15,12 @@ yum -y install lua-resty-mlcache
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-mlcache [v2.5.0](https://github.com/thibaultcha/lua-resty-mlcache/releases/tag/2.5.0){target=_blank} 
-released on Dec 15 2021.
+This document describes lua-resty-mlcache [v2.6.0](https://github.com/thibaultcha/lua-resty-mlcache/releases/tag/2.6.0){target=_blank} 
+released on Aug 22 2022.
     
 <hr />
+
+[![CI](https://github.com/thibaultcha/lua-resty-mlcache/actions/workflows/ci.yml/badge.svg)](https://github.com/thibaultcha/lua-resty-mlcache/actions/workflows/ci.yml)
 
 Fast and automated layered caching for OpenResty.
 
@@ -111,7 +113,7 @@ http {
 
         end
 
-        -- we put our instance in the global table for brivety in
+        -- we put our instance in the global table for brevity in
         -- this example, but prefer an upvalue to one of your modules
         -- as recommended by ngx_lua
         _G.cache = cache
@@ -132,9 +134,9 @@ http {
                 -- this call will try L1 and L2 before running the callback (L3)
                 -- the returned value will then be stored in L2 and L1
                 -- for the next request.
-                local user, err = cache:get("my_key", nil, callback, "John Doe")
+                local user, err = cache:get("my_key", nil, callback, "jdoe")
 
-                ngx.say(user.username) -- "John Doe"
+                ngx.say(user.name) -- "John Doe"
             }
         }
     }
@@ -184,7 +186,7 @@ holding the desired options for this instance. The possible options are:
   specified, mlcache will not instantiate an LRU. One can use this value to use
   the `resty.lrucache.pureffi` implementation of lua-resty-lrucache if desired.
 - `shm_set_tries`: the number of tries for the lua_shared_dict `set()`
-  operation. When the lua_shared_dict is full, it attempts to free up to 30
+  operation. When the `lua_shared_dict` is full, it attempts to free up to 30
   items from its queue. When the value being set is much larger than the freed
   space, this option allows mlcache to retry the operation (and free more slots)
   until the maximum number of tries is reached or enough memory was freed for
@@ -192,9 +194,9 @@ holding the desired options for this instance. The possible options are:
   **Default**: `3`.
 - `shm_miss`: _optional_ string. The name of a `lua_shared_dict`. When
   specified, misses (callbacks returning `nil`) will be cached in this separate
-  lua_shared_dict. This is useful to ensure that a large number of cache misses
-  (e.g. triggered by malicious clients) does not evict too many cached items
-  (hits) from the lua_shared_dict specified in `shm`.
+  `lua_shared_dict`. This is useful to ensure that a large number of cache
+  misses (e.g. triggered by malicious clients) does not evict too many cached
+  items (hits) from the `lua_shared_dict` specified in `shm`.
 - `shm_locks`: _optional_ string. The name of a `lua_shared_dict`. When
   specified, lua-resty-lock will use this shared dict to store its locks. This
   option can help reducing cache churning: when the L2 cache (shm) is full,
@@ -337,7 +339,7 @@ options:
   indefinitely.
   **Default:** inherited from the instance.
 - `shm_set_tries`: the number of tries for the lua_shared_dict `set()`
-  operation. When the lua_shared_dict is full, it attempts to free up to 30
+  operation. When the `lua_shared_dict` is full, it attempts to free up to 30
   items from its queue. When the value being set is much larger than the freed
   space, this option allows mlcache to retry the operation (and free more slots)
   until the maximum number of tries is reached or enough memory was freed for
@@ -939,10 +941,6 @@ Work licensed under the MIT License.
 [lua-resty-lock]: https://github.com/openresty/lua-resty-lock
 [lua-resty-lrucache]: https://github.com/openresty/lua-resty-lrucache
 [lua_shared_dict]: https://github.com/openresty/lua-nginx-module#lua_shared_dict
-
-[badge-travis-url]: https://travis-ci.org/thibaultcha/lua-resty-mlcache
-[badge-travis-image]: https://travis-ci.org/thibaultcha/lua-resty-mlcache.svg?branch=master
-
 [talk]: https://www.slideshare.net/ThibaultCharbonnier/layered-caching-in-openresty-openresty-con-2018
 
 ## GitHub

@@ -23,14 +23,19 @@ load_module modules/ngx_http_vhost_traffic_status_module.so;
 ```
 
 
-This document describes nginx-module-vts [v0.1.18](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.1.18){target=_blank} 
-released on Jun 22 2018.
+This document describes nginx-module-vts [v0.2.1](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.1){target=_blank} 
+released on Sep 16 2022.
 
 <hr />
 
+[![CI](https://github.com/vozlt/nginx-module-vts/actions/workflows/ci.yml/badge.svg)](https://github.com/vozlt/nginx-module-vts/actions/workflows/ci.yml)
 [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg)](https://github.com/vozlt/nginx-module-vts/blob/master/LICENSE)
 
 Nginx virtual host traffic status module
+
+## Test
+Run `sudo prove -r t` after you have installed this module. The `sudo` is required because
+the test requires Nginx to listen on port 80.
 
 ## Screenshots
 ![screenshot-vts-0](https://cloud.githubusercontent.com/assets/3648408/23890539/a4c0de18-08d5-11e7-9a8b-448662454854.png "screenshot with default")
@@ -83,6 +88,7 @@ JSON document contains as follows:
 ```Json
 {
     "hostName": ...,
+    "moduleVersion": ...,
     "nginxVersion": ...,
     "loadMsec": ...,
     "nowMsec": ...,
@@ -378,7 +384,7 @@ This is similar to the `status/format/json` except that it can get each zones.
 * cacheZones
   * /status/control?cmd=status&group=cache&zone=*
 
-The **mainZones** values are default status values including `hostName`, `nginxVersion`, `loadMsec`, `nowMsec`, `connections`.
+The **mainZones** values are default status values including `hostName`, `moduleVersion`, `nginxVersion`, `loadMsec`, `nowMsec`, `connections`.
 
 #### To get each zones
 * single zone in serverZones
@@ -513,6 +519,8 @@ The following status information is provided in the JSON format:
 
 * hostName
   * Host name.
+* moduleVersion
+  * Version of the module in *`{version}(|.dev.{commit})`* format.
 * nginxVersion
   * Version of the provided.
 * loadMsec
@@ -637,9 +645,9 @@ The following status information is provided in the JSON format:
     * Current `down` setting of the server. Basically, this is just a mark the [ngx_http_upstream_module](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server)'s server down(eg. `server backend3.example.com down`), not actual upstream server state. It will changed to actual state if you enabled the upstream zone directive.
 * cacheZones
   * maxSize
-    * The limit on the maximum size of the cache specified in the configuration.
+    * The limit on the maximum size of the cache specified in the configuration. If `max_size` in `proxy_cache_path` directive is not specified, the system dependent value `NGX_MAX_OFF_T_VALUE` is assigned by default. In other words, this value is from nginx, not what I specified.
   * usedSize
-    * The current size of the cache.
+    * The current size of the cache. This value is taken from nginx like the above `maxSize` value. 
   * inBytes
     * The total number of bytes received from the cache.
   * outBytes
@@ -1101,6 +1109,8 @@ Please see the [vhost_traffic_status_dump](#vhost_traffic_status_dump) directive
 
 ## Directives
 
+![draw_io_vts_diagram](https://user-images.githubusercontent.com/3648408/42613122-279cdb70-85da-11e8-940e-e348bd8ea861.png "The order of nginx-module-vts module directives")
+
 ### vhost_traffic_status
 
 | -   | - |
@@ -1357,7 +1367,7 @@ http {
     # vhost_traffic_status_filter_max_node 16
 
     # The `/^uris.*/` and `/^client::ports.*/` group string patterns are limited to a total of 64 nodes.
-    vhost_traffic_status_filter_max_node 16 uris client::ports
+    vhost_traffic_status_filter_max_node 16 uris client::ports;
 
     ...
 
@@ -1618,7 +1628,7 @@ For examples:
 `Description:` Sets the method which is a formula that calculate the average of response processing times.
 The *period* is an effective time of the values used for the average calculation.(Default: 60s)
 If *period* set to 0, effective time is ignored.
-In this case, the last average value is displayed even if there is no reqeusts and after the elapse of time.
+In this case, the last average value is displayed even if there is no requests and after the elapse of time.
 The corresponding values are `requestMsec` and `responseMsec` in JSON.
 
 * **AMM**
@@ -1644,7 +1654,7 @@ For examples:
 * **vhost_traffic_status_histogram_buckets** `0.005` `0.01` `0.05` `0.1` `0.5` `1` `5` `10`
   * The observe buckets are [5ms 10ms 50ms 1s 5s 10s].
 * **vhost_traffic_status_histogram_buckets** `0.005` `0.01` `0.05` `0.1`
-  * The observe buckets are [5ms 10ms 50ms 1s].
+  * The observe buckets are [5ms 10ms 50ms 100ms].
 
 `Caveats:` By default, if you do not set this directive, the histogram statistics does not work.
 The restored histograms by `vhost_traffic_status_dump` directive have no affected by changes to the buckets
@@ -1716,6 +1726,20 @@ http {
 }
 ```
 
+## Releases
+
+To cut a release, create a changelog entry PR with [git-chglog](https://github.com/git-chglog/git-chglog)
+
+    version="v0.2.0"
+    git checkout -b "cut-${version}"
+    git-chglog -o CHANGELOG.md --next-tag "${version}"
+    git add CHANGELOG.md
+    sed -i "s/NGX_HTTP_VTS_MODULE_VERSION \".*/NGX_HTTP_VTS_MODULE_VERSION \"${version}\"/" src/ngx_http_vhost_traffic_status_module.h
+    git add src/ngx_http_vhost_traffic_status_module.h
+    git-chglog -t .chglog/RELNOTES.tmpl --next-tag "${version}" "${version}" | git commit -F-
+    
+After the PR is merged, create the new tag and release on the [GitHub Releases](https://github.com/vozlt/nginx-module-vts/releases).
+
 ## See Also
 * Stream traffic status
   * [nginx-module-sts](https://github.com/vozlt/nginx-module-sts)
@@ -1728,9 +1752,7 @@ http {
   * [nginx-module-sysguard](https://github.com/vozlt/nginx-module-sysguard)
 
 ## TODO
-
-## Donation
-[![License](http://img.shields.io/badge/PAYPAL-DONATE-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PWWSYKQ9VKH38&lc=KR&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+* Add an implementation that periodically updates computed statistic in each worker processes to shared memory to reduce the contention due to locks when using ngx_shmtx_lock().
 
 ## Author
 YoungJoo.Kim(김영주) [<vozltx@gmail.com>]

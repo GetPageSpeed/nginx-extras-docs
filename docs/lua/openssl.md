@@ -15,8 +15,8 @@ yum -y install lua-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v0.8.10](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.10){target=_blank} 
-released on Jun 24 2022.
+This document describes lua-resty-openssl [v0.8.15](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.15){target=_blank} 
+released on Oct 28 2022.
     
 <hr />
 
@@ -1119,7 +1119,7 @@ To view a list of cipher algorithms implemented, use
 [openssl.list_cipher_algorithms](#openssllist_cipher_algorithms)
 or `openssl list -cipher-algorithms`
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### cipher.istype
@@ -1309,7 +1309,7 @@ To view a list of digest algorithms implemented, use
 If `digest_name` is omitted, it's default to `sha1`. Specially, the digest_name `"null"`
 represents a "null" message digest that does nothing: i.e. the hash it returns is of zero length.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### digest.istype
@@ -1513,7 +1513,7 @@ Derive a key from given material. Various KDFs are supported based on OpenSSL ve
 | pass    | string | Initial key material to derive from | (empty string) |
 | salt    | string | Add some salt | (empty string) |
 | md    | string | Message digest method name to use, not effective for `scrypt` type | `"sha1"` |
-| properties | string | Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+| properties | string | Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms. | |
 | pbkdf2_iter     | number | PBKDF2 iteration count. RFC 2898 suggests an iteration count of at least 1000. Any value less than 1 is treated as a single iteration.  | `1` |
 | hkdf_key     | string | HKDF key  | **required** |
@@ -1559,7 +1559,9 @@ To view a list of kdf algorithms implemented, use
 [openssl.list_kdf_algorithms](#openssllist_kdf_algorithms) or
 `openssl list -kdf-algorithms`.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+This function is available since OpenSSL 3.0.
+
+This function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### kdf.istype
@@ -1567,6 +1569,8 @@ to explictly select provider to fetch algorithms.
 **syntax**: *ok = kdf.istype(table)*
 
 Returns `true` if table is an instance of `kdf`. Returns `false` otherwise.
+
+This function is available since OpenSSL 3.0.
 
 ### kdf:get_provider_name
 
@@ -1580,6 +1584,8 @@ This function is available since OpenSSL 3.0.
 
 Query settable or gettable params and set or get params.
 See [Generic EVP parameter getter/setter](#generic-evp-parameter-gettersetter).
+
+This function is available since OpenSSL 3.0.
 
 ### kdf:derive
 
@@ -1629,6 +1635,8 @@ key = assert(k:derive(16, {
     -- mode = "EXPAND_ONLY"
 }))
 ```
+
+This function is available since OpenSSL 3.0.
 
 ### kdf:reset
 
@@ -1693,7 +1701,7 @@ Encode data in `data` to a PKCS#12 text.
 
 `passphrase` is the string for encryption. If omitted, an empty string will be used.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 Note in OpenSSL 3.0 `RC2` has been moved to **legacy** provider. In order to encode p12 data with RC2
@@ -1745,7 +1753,7 @@ Creates a `x509` instance. `txt` can be **PEM** or **DER** formatted text;
 
 When `txt` is omitted, `new()` creates an empty `x509` instance.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### x509.dup
@@ -1773,7 +1781,7 @@ To view a list of digest algorithms implemented, use
 
 If `digest_name` is omitted, it's default to `sha1`.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### x509:pubkey_digest
@@ -1789,7 +1797,7 @@ To view a list of digest algorithms implemented, use
 
 If `digest_name` is omitted, it's default to `sha1`.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### x509:check_private_key
@@ -2023,7 +2031,7 @@ Create an empty `csr` instance. `txt` can be **PEM** or **DER** formatted text;
 
 When `txt` is omitted, `new()` creates an empty `csr` instance.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### csr.istype
@@ -2198,7 +2206,7 @@ Creates a `crl` instance. `txt` can be **PEM** or **DER** formatted text;
 
 When `txt` is omitted, `new()` creates an empty `crl` instance.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### crl.dup
@@ -2560,6 +2568,8 @@ Adds a name to altname stack, first argument is case-insensitive and can be one 
     URI
     DNSName
     DNS
+    IP
+    IPAddress
 
 This function can be called multiple times in a chained fashion.
 
@@ -2603,7 +2613,10 @@ Only the following types are decoded, other types are decoded as `"TYPE:<unsuppo
 
 ## resty.openssl.x509.extension
 
-Module to interact with X.509 extensions.
+Module to interact with every X.509 extensions.
+
+This module is particular useful to create extensions not supported by
+`x509.*` modules or custom extensions.
 
 ### extension.new
 
@@ -2994,7 +3007,7 @@ Module to interact with X.509 certificate store (X509_STORE).
 
 Creates a new `store` instance.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### store.istype
@@ -3012,7 +3025,7 @@ Loads certificates into the X509_STORE from the hardcoded default paths.
 Note that to load "default" CAs correctly, usually you need to install a CA
 certificates bundle. For example, the package in Debian/Ubuntu is called `ca-certificates`.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### store:add
@@ -3029,7 +3042,7 @@ The argument must be a [resty.openssl.x509](#restyopensslx509) instance or a
 
 Loads a X.509 certificate on file system into store.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### store:load_directory
@@ -3040,7 +3053,7 @@ Loads a directory of X.509 certificates on file system into store. The certifica
 must be in hashed form, as documented in
 [X509_LOOKUP_hash_dir(3)](https://www.openssl.org/docs/manmaster/man3/X509_LOOKUP_hash_dir.html).
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 ### store:set_purpose
@@ -3071,6 +3084,51 @@ is not included in the default verify methods.
 
 Set the verify depth.
 
+### store:set_flags
+
+**syntax**: *ok, err = store:set_flags(flag1, flag2, ...)*
+
+Set the verify flags, available via `store.verify_flags` table:
+
+```
+    X509_V_FLAG_CB_ISSUER_CHECK              = 0x0,   -- Deprecated
+    X509_V_FLAG_USE_CHECK_TIME               = 0x2,
+    X509_V_FLAG_CRL_CHECK                    = 0x4,
+    X509_V_FLAG_CRL_CHECK_ALL                = 0x8,
+    X509_V_FLAG_IGNORE_CRITICAL              = 0x10,
+    X509_V_FLAG_X509_STRICT                  = 0x20,
+    X509_V_FLAG_ALLOW_PROXY_CERTS            = 0x40,
+    X509_V_FLAG_POLICY_CHECK                 = 0x80,
+    X509_V_FLAG_EXPLICIT_POLICY              = 0x100,
+    X509_V_FLAG_INHIBIT_ANY                  = 0x200,
+    X509_V_FLAG_INHIBIT_MAP                  = 0x400,
+    X509_V_FLAG_NOTIFY_POLICY                = 0x800,
+    X509_V_FLAG_EXTENDED_CRL_SUPPORT         = 0x1000,
+    X509_V_FLAG_USE_DELTAS                   = 0x2000,
+    X509_V_FLAG_CHECK_SS_SIGNATURE           = 0x4000,
+    X509_V_FLAG_TRUSTED_FIRST                = 0x8000,
+    X509_V_FLAG_SUITEB_128_LOS_ONLY          = 0x10000,
+    X509_V_FLAG_SUITEB_192_LOS               = 0x20000,
+    X509_V_FLAG_SUITEB_128_LOS               = 0x30000,
+    X509_V_FLAG_PARTIAL_CHAIN                = 0x80000,
+    X509_V_FLAG_NO_ALT_CHAINS                = 0x100000,
+    X509_V_FLAG_NO_CHECK_TIME                = 0x200000,
+```
+
+
+```lua
+store:set_flags(store.verify_flags.X509_V_FLAG_PARTIAL_CHAIN)
+
+store:set_flags(store.verify_flags.X509_V_FLAG_PARTIAL_CHAIN,
+                store.verify_flags.X509_V_FLAG_NO_CHECK_TIME)
+
+store:set_flags(store.verify_flags.X509_V_FLAG_PARTIAL_CHAIN +
+                store.verify_flags.X509_V_FLAG_NO_CHECK_TIME)
+```
+
+See [X509_VERIFY_PARAM_set_flags(3)](https://www.openssl.org/docs/manmaster/man3/X509_VERIFY_PARAM_set_flags.html)
+for explanation of each flag.
+
 ### store:verify
 
 **syntax**: *chain, err = store:verify(x509, chain?, return_chain?, properties?, verify_method?)*
@@ -3083,7 +3141,7 @@ If verification succeed, and `return_chain` is set to true, returns the proof of
 [resty.openssl.x509.chain](#restyopensslx509chain); otherwise
 returns `true` only. If verification failed, returns `nil` and error explaining the reason.
 
-Staring from OpenSSL 3.0, this functions accepts an optional `properties` parameter
+Staring from OpenSSL 3.0, this function accepts an optional `properties` parameter
 to explictly select provider to fetch algorithms.
 
 `verify_method` can be set to use predefined verify parameters such as `"default"`, `"pkcs7"`,

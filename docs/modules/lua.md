@@ -23,16 +23,10 @@ load_module modules/ngx_http_lua_module.so;
 ```
 
 
-This document describes nginx-module-lua [v0.10.21](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.21){target=_blank} 
-released on Mar 02 2022.
+This document describes nginx-module-lua [v0.10.22](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.22){target=_blank} 
+released on Sep 15 2022.
 
 <hr />
-<!---
-Don't edit this file manually! Instead you should generate it by using:
-    wiki2markdown.pl doc/HttpLuaModule.wiki
--->
-
-## Name
 
 ngx_http_lua_module - Embed the power of Lua into Nginx HTTP Servers.
 
@@ -8789,42 +8783,18 @@ Example1: do md5 calculation.
      default_type 'text/plain';
 
      content_by_lua_block {
-         local ok, ret, md5_or_err = ngx.run_worker_thread("testpool", "calc_md5", "md5", ngx.var.arg_str)
-         if not ok then
-             ngx.say(ret)
-             return
-         end
-         if not ret then
-             ngx.say(md5_or_err)
-             return
-         end
-         ngx.say(md5_or_err)
+         local ok, md5_or_err = ngx.run_worker_thread("testpool", "md5", "md5")
+         ngx.say(ok, " : ", md5_or_err)
      }
  }
 ```
 
-`calc_md5.lua`
+`md5.lua`
 
 ```lua
-
- local resty_md5 = require "resty.md5"
- local resty_str = require "resty.string"
-
- local function md5(str)
-     local md5 = resty_md5:new()
-     if not md5 then
-         return false, "md5 new error"
-     end
-
-     local ok = md5:update(str)
-     if not ok then
-         return false, "md5 update error"
-     end
-
-     local digest = md5:final()
-     return true, resty_str.to_hex(digest)
- end
- return {md5=md5}
+local function md5()
+    return ngx.md5("hello")
+end
 ```
 
 Example2: write logs into the log file.

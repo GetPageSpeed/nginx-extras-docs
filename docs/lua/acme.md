@@ -15,8 +15,8 @@ yum -y install lua-resty-acme
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-acme [v0.8.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.8.0){target=_blank} 
-released on Apr 08 2022.
+This document describes lua-resty-acme [v0.9.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.9.0){target=_blank} 
+released on Oct 27 2022.
     
 <hr />
 
@@ -588,6 +588,9 @@ storage_config = {
     database = 0,
     -- Redis authentication key
     auth = nil,
+    ssl = false,
+    ssl_verify = false,
+    ssl_server_name = nil,
 }
 ```
 
@@ -624,6 +627,8 @@ storage_config = {
     auth_role = nil,
     -- The path to the JWT
     jwt_path = "/var/run/secrets/kubernetes.io/serviceaccount/token",
+    -- Vault namespace
+    namespace = nil,
 }
 ```
 

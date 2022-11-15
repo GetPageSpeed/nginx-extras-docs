@@ -23,8 +23,8 @@ load_module modules/ngx_http_testcookie_access_module.so;
 ```
 
 
-This document describes nginx-module-testcookie [v1.25](https://github.com/dvershinin/testcookie-nginx-module/releases/tag/v1.25){target=_blank} 
-released on Jul 28 2019.
+This document describes nginx-module-testcookie [v1.28](https://github.com/dvershinin/testcookie-nginx-module/releases/tag/v1.28){target=_blank} 
+released on Jul 19 2022.
 
 <hr />
 
@@ -91,6 +91,17 @@ Sets cookie expiration value.
 **context:** *http, server, location*
 
 Sets cookie path, useful if you plan to use different keys for locations.
+
+## testcookie_samesite
+**syntax:** *testcookie_samesite &lt;string&gt;*
+
+**default:** *None*
+
+**context:** *http, server, location*
+
+Sets cookie attribute, allows you to declare if your cookie should be restricted to a first-party or same-site context.
+Default is None (Cookies will be sent in all contexts, i.e sending cross-origin is allowed.)
+Accepts values: Lax, Strict, None.
 
 ## testcookie_secret
 **syntax:** *testcookie_secret &lt;string&gt;*
@@ -303,12 +314,12 @@ Enable HttpOnly flag for cookie.
 ## testcookie_secure_flag
 **syntax:** *testcookie_secure_flag (on|off|$variable);*
 
-**default:** *off*
+**default:** *on*
 
 **context:** *http, server, location*
 
 Enable Secure flag for cookie.
-Any variable value except "off" interpreted as True.
+Any variable value except "on" interpreted as False.
 
 ## testcookie_port_in_redirect
 **syntax:** *testcookie_port_in_redirect (on|off);*

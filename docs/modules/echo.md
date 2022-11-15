@@ -23,8 +23,8 @@ load_module modules/ngx_http_echo_module.so;
 ```
 
 
-This document describes nginx-module-echo [v0.62](https://github.com/openresty/echo-nginx-module/releases/tag/v0.62){target=_blank} 
-released on Jul 01 2020.
+This document describes nginx-module-echo [v0.63](https://github.com/openresty/echo-nginx-module/releases/tag/v0.63){target=_blank} 
+released on Jul 31 2022.
 
 <hr />
 

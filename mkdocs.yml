@@ -3,28 +3,28 @@ extra:
     property: UA-51252096-1
     provider: google
 extra_css:
-  - stylesheets/extra.css
+- stylesheets/extra.css
 markdown_extensions:
-  - abbr
-  - admonition
-  - markdown_include.include
-  - meta
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-      options:
-        custom_icons:
-          - overrides/.icons
-  - pymdownx.magiclink
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - pymdownx.tasklist
-  - attr_list
-  - pymdownx.highlight
-  - pymdownx.snippets:
-      check_paths: true
+- abbr
+- admonition
+- markdown_include.include
+- meta
+- pymdownx.emoji:
+    emoji_generator: !!python/name:materialx.emoji.to_svg ''
+    emoji_index: !!python/name:materialx.emoji.twemoji ''
+    options:
+      custom_icons:
+      - overrides/.icons
+- pymdownx.magiclink
+- pymdownx.superfences
+- pymdownx.tabbed
+- pymdownx.tasklist
+- attr_list
+- pymdownx.highlight
+- pymdownx.snippets:
+    check_paths: true
 nav:
-- 'Overview': index.md
+- Overview: index.md
 - Modules:
   - accept-language: modules/accept-language.md
   - ajp: modules/ajp.md
@@ -106,6 +106,7 @@ nav:
   - upload: modules/upload.md
   - upstream-fair: modules/upstream-fair.md
   - upsync: modules/upsync.md
+  - vod: modules/vod.md
   - vts: modules/vts.md
   - webp: modules/webp.md
   - xslt: modules/xslt.md
@@ -131,26 +132,22 @@ site_description: Automatic documentation from sources, for NGINX Extras.
 site_name: NGINX Extras Documentation
 site_url: https://nginx-extras.getpagespeed.com/
 theme:
-  #icon:
-  #  logo: bootstrap/box2-fill
   custom_dir: overrides
   features:
-    - navigation.expand
-    - navigation.top
-    - navigation.tabs
-    - search.suggest
+  - navigation.expand
+  - navigation.top
+  - navigation.tabs
+  - search.suggest
   logo: assets/nginx-logo.png
   name: material
   palette:
-    - media: "(prefers-color-scheme: light)"
-      # accent: purple
-      # primary: teal
-      scheme: getpagespeed
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+  - media: '(prefers-color-scheme: light)'
+    scheme: getpagespeed
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode

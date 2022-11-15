@@ -23,8 +23,8 @@ load_module modules/ngx_curity_http_phantom_token_module.so;
 ```
 
 
-This document describes nginx-module-phantom-token [v1.2.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.2.0){target=_blank} 
-released on Oct 21 2021.
+This document describes nginx-module-phantom-token [v1.3.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.3.0){target=_blank} 
+released on Aug 12 2022.
 
 <hr />
 
@@ -272,7 +272,7 @@ To build this module, simply do the following:
 make && make install
 ```
 
-This will download the NGINX source code if it is not already local. If it is, the location may be provided when prompted. By default, version 1.21.3 will be downloaded; a different version can be fetched by setting `NGINX_VERSION` before running the `configure` script. Any [additional parameters](http://nginx.org/en/docs/configure.html) (e.g., `--prefix`) that NGINX's `configure` script supports can also be provided. When this module's `configure` script is run, it will pass along `--with-compat` to NGINX's script. It asks if a dynamic module should be created (thus passing along `--add-dynamic-module`) or if the module should be compiled into the NGINX binary (thus passing `--add-module`); by default, it created a dynamically-linked module. It will also ask if debug flags should be enabled; if so, `--with-debug` and certain GCC flags will be passed on to NGINX's `configure` script to make debugging easier. After the script is run, just execute `make && make install`. These too will delegate to NGINX's `Makefile`. After this, the module will be usable and can be configured as described above.
+This will download the NGINX source code if it is not already local. If it is, the location may be provided when prompted. By default, version 1.21.6 will be downloaded; a different version can be fetched by setting `NGINX_VERSION` before running the `configure` script. Any [additional parameters](http://nginx.org/en/docs/configure.html) (e.g., `--prefix`) that NGINX's `configure` script supports can also be provided. When this module's `configure` script is run, it will pass along `--with-compat` to NGINX's script. It asks if a dynamic module should be created (thus passing along `--add-dynamic-module`) or if the module should be compiled into the NGINX binary (thus passing `--add-module`); by default, it created a dynamically-linked module. It will also ask if debug flags should be enabled; if so, `--with-debug` and certain GCC flags will be passed on to NGINX's `configure` script to make debugging easier. After the script is run, just execute `make && make install`. These too will delegate to NGINX's `Makefile`. After this, the module will be usable and can be configured as described above.
 
 > *WARNING* If `--without-pcre`, `--without-http_gzip_module` and potentially other flags are provided to the `configure` script and a module is created, it will _not_ be compatible with NGINX Plus or the pre-compiled open source NGINX binaries; if you include such flags (when building the module), you will only be able to load it into a custom build of NGINX that also excludes the same functionality. If the `configure` script exits with an error about a missing dependency, like [PCRE](https://www.pcre.org/) and [zlib](http://zlib.net/), install those instead of excluding them if compatibility with pre-build NGINX binaries is desired.</p>
 
@@ -315,7 +315,7 @@ To run the tests do the following:
 
 * run `./configure`, make sure you select _No_ for Dynamic module 
 * run `make`
-* Setup an `ADMIN_PASSWORD` and the `LICENSE_KEY` for the Curity Identity server that is used in tests*
+* Edit the resources/test/run.sh script and set the `ADMIN_PASSWORD` and `LICENSE_FILE_PATH` values for the Curity Identity server*
 * run `make test`
 
 This, will run `prove` passing in the test or test directory (`t`). 

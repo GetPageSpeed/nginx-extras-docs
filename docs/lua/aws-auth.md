@@ -15,7 +15,7 @@ yum -y install lua-resty-aws-auth
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-aws-auth [v0.12.post0](https://github.com/paragasu/lua-resty-aws-auth/releases/tag/v0.12-0){target=_blank} 
+This document describes lua-resty-aws-auth [v0.12.0](https://github.com/paragasu/lua-resty-aws-auth/releases/tag/v0.12-0){target=_blank} 
 released on Jan 13 2017.
     
 <hr />

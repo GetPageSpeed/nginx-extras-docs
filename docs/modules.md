@@ -80,6 +80,7 @@
 | [nginx-module-upload](modules/upload.md)                         | NGINX module for handling file uploads                                        |
 | [nginx-module-upstream-fair](modules/upstream-fair.md)           | The fair load balancer module for NGINX                                       |
 | [nginx-module-upsync](modules/upsync.md)                         | NGINX module for syncing upstreams from consul or etcd                        |
+| [nginx-module-vod](modules/vod.md)                               | NGINX-based VOD Packager                                                      |
 | [nginx-module-vts](modules/vts.md)                               | NGINX virtual host traffic status module                                      |
 | [nginx-module-webp](modules/webp.md)                             | NGINX WebP module                                                             |
 | [nginx-module-xslt](modules/xslt.md)                             | NGINX XSLT dynamic module                                                     |

@@ -23,15 +23,16 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.0.3](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.0.3){target=_blank} 
-released on Apr 22 2021.
+This document describes nginx-module-jwt [v3.2.0](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.2.0){target=_blank} 
+released on Nov 01 2022.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
-[docker-url]: https://hub.docker.com/r/maxxt/nginx-jwt-module/
+[action-docker-url]: https://github.com/max-lt/nginx-jwt-module/actions/workflows/docker.yml
+[github-container-url]: https://github.com/max-lt/nginx-jwt-module/pkgs/container/nginx-jwt-module
 
 ## Nginx jwt auth module
-[![Docker pulls](https://img.shields.io/docker/pulls/maxxt/nginx-jwt-module.svg)][docker-url]
+[![License](https://img.shields.io/github/license/maxx-t/nginx-jwt-module.svg)][github-license-url]
 
 This is an NGINX module to check for a valid JWT.
 
@@ -39,10 +40,16 @@ Inspired by [TeslaGov](https://github.com/TeslaGov/ngx-http-auth-jwt-module), [c
  - Docker image based on the [official nginx Dockerfile](https://github.com/nginxinc/docker-nginx) (alpine).
  - Light image (~16MB).
 
-## Module:
+### Module:
 
-### Example Configuration:
+#### Example Configuration:
 ```nginx
+## nginx.conf
+load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
+```
+
+```nginx
+## server.conf
 server {
     auth_jwt_key "0123456789abcdef" hex; # Your key as hex string
     auth_jwt     off;
@@ -77,7 +84,9 @@ server {
     Default: auth_jwt off;
     Context: http, server, location
 
-Enables validation of JWT.<hr>
+Enables validation of JWT.
+
+<hr>
 
     Syntax:	 auth_jwt_key value [encoding];
     Default: ——
@@ -95,30 +104,88 @@ The `file` option requires the *value* to be a valid file path (pointing to a PE
 
 Specifies which algorithm the server expects to receive in the JWT.
 
+<hr>
+
+    Syntax:	 auth_jwt_require $value ... [error=401 | 403];
+    Default: ——
+    Context: http, server, location
+
+Specifies additional checks for JWT validation. The authentication will succeed only if all the values are not empty and are not equal to “0”.
+
+These directives are inherited from the previous configuration level if and only if there are no auth_jwt_require directives defined on the current level.
+
+If any of the checks fails, the 401 error code is returned. The optional error parameter allows redefining the error code to 403.
+
+Example:
+```nginx
+## server.conf
+
+map $jwt_claim_role $jwt_has_admin_role {
+    \"admin\"  1;
+}
+
+map $jwt_claim_scope $jwt_has_restricted_scope {
+    \"restricted\"  1;
+}
+
+server {
+  # ...
+
+  location /auth-require {
+    auth_jwt_require $jwt_has_admin_role error=403;
+    # ...
+  }
+
+  location /auth-compound-require {
+    auth_jwt_require $jwt_has_admin_role $jwt_has_restricted_scope error=403;
+    # ...
+  }
+}
+```
+
+> Note that as `$jwt_claim_` returns a JSON-encoded value, we check form `\"value\"` (and not  `value`)
+
+### Embedded Variables:
+The ngx_http_auth_jwt_module module supports embedded variables:
+- $jwt_header_*name* returns the specified header value
+- $jwt_claim_*name* returns the specified claim value
+- $jwt_headers returns headers
+- $jwt_payload returns payload
+
+> Note that as all returned values are JSON-encoded, so string will be surrounded by `"` character
+
+### Image:
+Image is generated with Github Actions (see [nginx-jwt-module:latest][github-container-url])
+
+```
+docker pull ghcr.io/max-lt/nginx-jwt-module:latest
+```
+
+#### Simply create your image from Github's generated one
+```dockerfile
+FROM ghcr.io/max-lt/nginx-jwt-module:latest
+
+## Copy you nginx conf
+## Don't forget to include this module in your configuration
+## load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
+COPY my-nginx-conf /etc/nginx
+
+EXPOSE 8000
+
+STOPSIGNAL SIGTERM
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+## or
+docker build -f Dockerfile -t jwt-nginx .
+```
+
 ### Test:
+
 #### Default usage:
 ```bash
-./test.sh # Will create a "jwt-nginx-test" image (from test-image/Dockerfile) based on the "jwt-nginx" one.
-```
-#### Set image name:
-```bash
-./test.sh your-image-to-test
-```
-example:
-```bash
-./test.sh jwt-nginx-s1 # tests the development image
-```
-#### Use current container:
-```bash
-./test.sh --current my-container
-```
-example:
-```bash
-## In a first terminal:
-docker run --rm --name my-test-container -p 8000:8000 jwt-nginx-test
-
-## In a second one:
-./test.sh --current my-test-container
+make test # Will build a test image & run test suite
 ```
 
 ## GitHub

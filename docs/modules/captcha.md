@@ -12,7 +12,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
 *   [CentOS/RHEL 8](https://bit.ly/nginx-captcha-el)
 *   [Amazon Linux 2](https://bit.ly/nginx-captcha-el)
 
-### Other supported operating systems        
+### Other supported operating systems
+        
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install nginx-module-captcha

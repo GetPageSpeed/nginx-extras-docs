@@ -16,7 +16,7 @@ yum -y install lua-resty-reqargs
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-reqargs [v1.4](https://github.com/bungle/lua-resty-reqargs/releases/tag/v1.4){target=_blank} 
-released on Jan 17 2017.
+released on Jan 07 2017.
     
 <hr />
 

@@ -11,7 +11,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
 *   [CentOS/RHEL 7](https://bit.ly/ngx-security-el7)
 *   [CentOS/RHEL 8](https://bit.ly/ngx-security-el8)
 
-### Other supported operating systems        
+### Other supported operating systems
+        
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install nginx-module-security

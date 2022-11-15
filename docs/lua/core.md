@@ -15,8 +15,8 @@ yum -y install lua-resty-core
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-core [v0.1.23](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.23){target=_blank} 
-released on Nov 14 2021.
+This document describes lua-resty-core [v0.1.24](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.24){target=_blank} 
+released on Sep 15 2022.
     
 <hr />
 
