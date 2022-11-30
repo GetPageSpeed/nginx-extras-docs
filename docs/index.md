@@ -8,7 +8,7 @@ hide:
 The NGINX Extras is the largest [_commercial_](https://www.getpagespeed.com/repo-subscribe){target=_blank} collection of prebuilt dynamic NGINX modules on the Internet.
 Each module can be installed as a separate package.
 
-The major benefit of packaged installs is of course security, maintainability, and reproducibility.
+The major benefit of packaged installations is of course security, maintainability, and reproducibility.
 No longer you have to manually compile anything when you need to update NGINX or modules.
 An update is just a `yum update` that takes seconds and no downtime whatsoever.
 
@@ -40,6 +40,11 @@ For example, to install NGINX and the PageSpeed module for it, run:
 
     sudo yum -y install nginx nginx-module-pagespeed
 
+Enable the module by adding the `load_module ...` directive that is shown after installation.
+
+In case you missed it, refer to [the documentation of respective module](https://nginx-extras.getpagespeed.com/modules/) and look for `load_module` directive
+required to enable it.
+
 To list available modules for installation, run:
 
     sudo yum list available | grep nginx-module
@@ -49,6 +54,20 @@ To install the recommended group of modules for performance and security, you ma
     sudo yum -y groupinstall "nginx extras recommended"
 
 This installs NGINX, and modules: PageSpeed, Brotli, Dynamic ETag, Immutable (performance); ModSecurity, Security Headers (security).
+
+## Upgrading modules
+
+New NGINX releases require upgrading its modules. Thanks to the repository, you don't need to worry about recompiling anything.
+We ship updated NGINX and module packages, and you can simply run `yum upgrade` to get to the latest NGINX and module packages.
+
+After updating a module package, to actually apply it at runtime, you have to run the binary upgrade routine.
+This can be done like this:
+
+```bash
+service nginx upgrade
+```
+
+This ensures that NGINX loads the updated module.
 
 ## How to use this documentation
 
