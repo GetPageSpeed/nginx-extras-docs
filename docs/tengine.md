@@ -16,7 +16,7 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
     sudo yum -y install tengine
     ``` 
  
-=== "CentOS/RHEL 8"
+=== "CentOS/RHEL 8+, Fedora Linux"
 
     ```bash
     sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm dnf-plugins-core
@@ -34,15 +34,15 @@ Commercial subscription for GetPageSpeed repository is required only to install 
 You must provide the Tengine compatible NGINX version when installing modules, like so:
 
 ```bash
-yum -y install 'nginx-module-pagespeed-1.18.0.*'
+yum -y install 'nginx-module-pagespeed-1.22.1.*'
 ```
 
-Here we specified to install `nginx-module-pagespeed` for NGINX 1.18.0, which is matching the current
+Here we specified to install `nginx-module-pagespeed` for NGINX 1.22.1, which is matching the current
 Tengine to NGINX binary compatibility.
  
 ## Tengine Features
 
-* All features of nginx-1.18.0 are inherited, i.e., it is 100% compatible with nginx.
+* All features of nginx 1.22.1 are inherited, i.e., it is 100% compatible with nginx.
 * Support the CONNECT HTTP method for forward proxy.
 * Support asynchronous OpenSSL, using hardware such as QAT for HTTPS acceleration.
 * Enhanced operations monitoring, such as asynchronous log & rollback, DNS caching, memory usage, etc.
@@ -63,4 +63,3 @@ Tengine to NGINX binary compatibility.
 * Expiration times can be specified for certain MIME types.
 * Error pages can be reset to 'default'.
 * ...
-
