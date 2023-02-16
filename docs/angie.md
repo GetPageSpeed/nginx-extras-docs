@@ -27,7 +27,7 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
 
 ## Compatibility notes
 
-Angie is based on mainline NGINX branch, but does not guarantee 100% compatibility with NGINX ABI.
+Angie is based on mainline NGINX branch, but [does not have 100% compatibility with NGINX ABI](https://github.com/webserver-llc/angie/issues/13#issuecomment-1406843151).
 In fact, it has runtime checks when loading a module compiled for NGINX to prevent the loading,
 to avoid unexpected problems.
 
