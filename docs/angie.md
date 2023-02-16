@@ -27,19 +27,13 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
 
 ## Compatibility notes
 
-Commercial subscription for GetPageSpeed repository is required to install NGINX modules for Angie.
-
 Angie is based on mainline NGINX branch, but does not guarantee 100% compatibility with NGINX ABI.
-That said, you can attempt (compatibility not guaranteed!) to use numerous module packages from NGINX Extras 
-to empower your Angie furthermore, e.g. to add the 
-[PageSpeed module](modules/pagespeed.md):
+In fact, it has runtime checks when loading a module compiled for NGINX to prevent the loading,
+to avoid unexpected problems.
 
-```bash
-sudo dnf config-manager --enable getpagespeed-extras-mainline
-sudo dnf -y install nginx-module-pagespeed
-```
+So for the time being, you can't use numerous module packages from NGINX Extras with Angie.
 
 ## Angie Features
 
-Currently, Angie does not provide a feature documentation page.
-See https://github.com/webserver-llc/angie/issues/14 for reference.
+Angie is a superset to standard NGINX distribution and includes a number of features not available elsewhere.
+You can consult the [CHANGES](https://angie.software/en/changes/) document to find the features unique to Angie.
