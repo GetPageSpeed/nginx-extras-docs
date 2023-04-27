@@ -15,8 +15,8 @@ yum -y install lua-resty-upload
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-upload [v0.10](https://github.com/openresty/lua-resty-upload/releases/tag/v0.10){target=_blank} 
-released on Nov 04 2016.
+This document describes lua-resty-upload [v0.11](https://github.com/openresty/lua-resty-upload/releases/tag/v0.11){target=_blank} 
+released on Jan 19 2023.
     
 <hr />
 
@@ -162,15 +162,27 @@ Instead of writing the data chunk into files (as shown in the example above),
 you can also write the data chunks to upstream cosocket connections if you do
 not want to save the data on local file systems.
 
+## Usage
+
+```lua
+local upload = require "resty.upload"
+local form, err = upload:new(self, chunk_size, max_line_size, preserve_body)
+```
+`chunk_size` defaults to 4096. It is the size used to read data from the socket.
+
+`max_line_size` defaults to 512. It is the size limit to read the chunked body header.
+
+By Default, `lua-resty-upload` will consume the request body. For proxy mode this means upstream will not see the body. When `preserve_body` is set to true, the request body will be preserved. Note that this option is not free. When enabled, it will double the memory usage of `resty.upload`.
+
 ## Author
 
-Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
+Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, OpenResty Inc.
 
 ## Copyright and License
 
 This module is licensed under the BSD license.
 
-Copyright (C) 2012-2016, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
+Copyright (C) 2012-2017, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, OpenResty Inc.
 
 All rights reserved.
 

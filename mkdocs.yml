@@ -29,6 +29,7 @@ nav:
   - accept-language: modules/accept-language.md
   - ajp: modules/ajp.md
   - array-var: modules/array-var.md
+  - auth-digest: modules/auth-digest.md
   - auth-ldap: modules/auth-ldap.md
   - auth-pam: modules/auth-pam.md
   - aws-auth: modules/aws-auth.md
@@ -41,6 +42,7 @@ nav:
   - cookie-flag: modules/cookie-flag.md
   - cookie-limit: modules/cookie-limit.md
   - coolkit: modules/coolkit.md
+  - dav-ext: modules/dav-ext.md
   - doh: modules/doh.md
   - dynamic-etag: modules/dynamic-etag.md
   - dynamic-limit-req: modules/dynamic-limit-req.md
@@ -68,8 +70,10 @@ nav:
   - json-var: modules/json-var.md
   - jwt: modules/jwt.md
   - length-hiding: modules/length-hiding.md
+  - let: modules/let.md
   - log-zmq: modules/log-zmq.md
   - lua: modules/lua.md
+  - markdown: modules/markdown.md
   - memc: modules/memc.md
   - naxsi: modules/naxsi.md
   - nchan: modules/nchan.md
@@ -92,11 +96,14 @@ nav:
   - shibboleth: modules/shibboleth.md
   - slowfs: modules/slowfs.md
   - small-light: modules/small-light.md
+  - spnego-http-auth: modules/spnego-http-auth.md
   - srcache: modules/srcache.md
   - statsd: modules/statsd.md
   - sticky: modules/sticky.md
   - stream-lua: modules/stream-lua.md
+  - stream-sts: modules/stream-sts.md
   - stream-upsync: modules/stream-upsync.md
+  - sts: modules/sts.md
   - substitutions: modules/substitutions.md
   - sysguard: modules/sysguard.md
   - testcookie: modules/testcookie.md
@@ -110,6 +117,7 @@ nav:
   - vts: modules/vts.md
   - webp: modules/webp.md
   - xslt: modules/xslt.md
+  - xss: modules/xss.md
   - zip: modules/zip.md
 - Lua Scripting: lua-scripting.md
 - Distributions:

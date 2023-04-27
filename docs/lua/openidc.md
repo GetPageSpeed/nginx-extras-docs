@@ -15,10 +15,11 @@ yum -y install lua-resty-openidc
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openidc [v1.7.5](https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.7.5){target=_blank} 
-released on Dec 21 2021.
+This document describes lua-resty-openidc [v1.7.6](https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.7.6){target=_blank} 
+released on Jan 30 2023.
     
 <hr />
+[![CI Status](https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml)
 [<img width="184" height="96" align="right" src="http://openid.net/wordpress-content/uploads/2016/04/oid-l-certification-mark-l-rgb-150dpi-90mm@2x.png" alt="OpenID Certification">](https://openid.net/certification)
 
 ## lua-resty-openidc
@@ -112,6 +113,7 @@ MIIEogIBAAKCAQEAiThmpvXBYdur716D2q7fYKirKxzZIU5QrkBGDvUOwg5izcTv
              -- Connection keepalive with the OP can be enabled ("yes") or disabled ("no").
              --keepalive = "no",
 
+             --response_mode=form_post can be used to make lua-resty-openidc use the [OAuth 2.0 Form Post Response Mode](https://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html). *Note* for modern browsers you will need to set [`$session_cookie_samesite`](https://github.com/bungle/lua-resty-session#string-sessioncookiesamesite) to `None` with form_post unless your OpenID Connect Provider and Relying Party share the same domain.
              --authorization_params = { hd="zmartzone.eu" },
              --scope = "openid email profile",
              -- Refresh the users id_token after 900 seconds without requiring re-authentication
@@ -251,6 +253,45 @@ MIIEogIBAAKCAQEAiThmpvXBYdur716D2q7fYKirKxzZIU5QrkBGDvUOwg5izcTv
   }
 }
 ```
+
+## About `redirect_uri`
+
+The so called `redirect_uri` is an URI that is part of the OpenID
+Connect protocoll. The redirect URI is registered with your OpenID
+Connect provider and is the URI your provider will redirect the users
+to after successful login. This URI then is handelled by
+lua-resty-openidc where it obtains tokens and performs some checks and
+only after that the browser is redirected to where your user wanted to
+go initially.
+
+The `redirect_uri` is not expected to be handelled by your appication
+code at all. It must be an URI wthat lua-resty-openidc is responsible
+for so it must be in a `location` protected by lua-resty-openidc.
+
+You configure the `redirect_uri` on the lua-resty-openidc side via the
+`opts.redirect_uri` parameter (which defaults to `/redirect_uri`). If
+it starts with a `/` then lua-resty-openidc will prepend the protocoll
+and current hostname to it when sending the URI to the OpenID Connect
+provider (taking `Forwarded` and `X-Forwarded-*` HTTP headers into
+account). But you can also specify an absolute URI containing host and
+protocoll yourself.
+
+Before version 1.6.1 `opts.redirect_uri_path` has been the way to
+configure the `redirect_uri` without any option to take control over
+the protocoll and host parts.
+
+Whenever lua-resty-openidc "sees" a local path navigated that matches
+the path of `opts.redirect_uri` (or `opts.redirect_uri_path`) it will
+intercept the request and handle it itself.
+
+This works for most cases but sometimes the externally visible
+`redirect_uri` has a different path than the one locally visible to
+the server. This may happen if a reverse proxy in front of your server
+rewrites URIs before forwarding the requests. Therefore version 1.7.6
+introduced a new option `opts.local_redirect_uri_path`. If it is set
+lua-resty-opendic will intercepts requests to this path rather than
+the path of `opts.redirect_uri`.
+
 
 ## Check authentication only
 

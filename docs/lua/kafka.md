@@ -15,8 +15,8 @@ yum -y install lua-resty-kafka
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-kafka [v0.20](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.20){target=_blank} 
-released on May 06 2022.
+This document describes lua-resty-kafka [v0.22](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.22){target=_blank} 
+released on Apr 11 2023.
     
 <hr />
 
@@ -128,6 +128,7 @@ The `broker_list` is a list of broker, like the below
 
         // optional auth
         "sasl_config": {
+            //support mechanism: PLAIN、SCRAM-SHA-256、SCRAM-SHA-512
             "mechanism": "PLAIN",
             "user": "USERNAME",
             "password": "PASSWORD"
@@ -135,6 +136,11 @@ The `broker_list` is a list of broker, like the below
     }
 ]
 ```
+* `sasl_config`
+
+  support mechanism: PLAIN、SCRAM-SHA-256、SCRAM-SHA-512.
+
+  warn:SCRAM-SHA-256、SCRAM-SHA-512 need install lua-resty-jit-uuid and lua-resty-openssl
 
 An optional `client_config` table can be specified. The following options are as follows:
 

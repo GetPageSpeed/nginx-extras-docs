@@ -23,8 +23,8 @@ load_module modules/ngx_http_array_var_module.so;
 ```
 
 
-This document describes nginx-module-array-var [v0.5](https://github.com/openresty/array-var-nginx-module/releases/tag/v0.05){target=_blank} 
-released on Mar 09 2016.
+This document describes nginx-module-array-var [v0.6](https://github.com/openresty/array-var-nginx-module/releases/tag/v0.06){target=_blank} 
+released on May 23 2022.
 
 <hr />
 
@@ -244,6 +244,20 @@ Then request `GET /foo?names=bob,marry,nomas` will yield the response body
 ```
 
 Pretty cool, huh?
+
+
+## Here we assume you would install you nginx under /opt/nginx/.
+./configure --prefix=/opt/nginx \
+  --add-module=/path/to/ngx_devel_kit \
+  --add-module=/path/to/array-var-nginx-module
+
+make -j2
+make install
+```
+
+Download the latest version of the release tarball of this module from [array-var-nginx-module file list](https://github.com/openresty/array-var-nginx-module/tags), and the latest tarball for [ngx_devel_kit](https://github.com/simplresty/ngx_devel_kit) from its [file list](https://github.com/simplresty/ngx_devel_kit/tags).
+
+Also, this module is included and enabled by default in the [OpenResty bundle](http://openresty.org).
 
 
 ## Source Repository

@@ -23,8 +23,8 @@ load_module modules/ngx_http_passenger_module.so;
 ```
 
 
-This document describes nginx-module-passenger [v6.0.15](https://github.com/phusion/passenger/releases/tag/release-6.0.15){target=_blank} 
-released on Sep 19 2022.
+This document describes nginx-module-passenger [v6.0.17](https://github.com/phusion/passenger/releases/tag/release-6.0.17){target=_blank} 
+released on Jan 25 2023.
 
 <hr />
 [![Gem Version](https://badge.fury.io/rb/passenger.svg)](https://badge.fury.io/rb/passenger)

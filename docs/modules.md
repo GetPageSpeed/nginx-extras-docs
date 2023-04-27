@@ -3,6 +3,7 @@
 | [nginx-module-accept-language](modules/accept-language.md)       | NGINX Accept-Language module                                                  |
 | [nginx-module-ajp](modules/ajp.md)                               | Support AJP protocol proxy with NGINX                                         |
 | [nginx-module-array-var](modules/array-var.md)                   | Array-typed variables for NGINX                                               |
+| [nginx-module-auth-digest](modules/auth-digest.md)               | Digest Authentication for NGINX                                               |
 | [nginx-module-auth-ldap](modules/auth-ldap.md)                   | LDAP Authentication module for nginx                                          |
 | [nginx-module-auth-pam](modules/auth-pam.md)                     | PAM authentication dynamic module for NGINX                                   |
 | [nginx-module-aws-auth](modules/aws-auth.md)                     | NGINX module to proxy to authenticated AWS services                           |
@@ -15,6 +16,7 @@
 | [nginx-module-cookie-flag](modules/cookie-flag.md)               | NGINX cookie flag module                                                      |
 | [nginx-module-cookie-limit](modules/cookie-limit.md)             | NGINX module to limit the number of malicious ip forged cookies               |
 | [nginx-module-coolkit](modules/coolkit.md)                       | NGINX CoolKit Module                                                          |
+| [nginx-module-dav-ext](modules/dav-ext.md)                       | NGINX WebDAV PROPFIND,OPTIONS,LOCK,UNLOCK support                             |
 | [nginx-module-doh](modules/doh.md)                               | NGINX module for serving DNS-over-HTTPS (DOH) requests                        |
 | [nginx-module-dynamic-etag](modules/dynamic-etag.md)             | NGINX module for adding ETag to dynamic content                               |
 | [nginx-module-dynamic-limit-req](modules/dynamic-limit-req.md)   | NGINX module to dynamically lock IP and release it periodically               |
@@ -42,8 +44,10 @@
 | [nginx-module-json-var](modules/json-var.md)                     | NGINX JSON variables module                                                   |
 | [nginx-module-jwt](modules/jwt.md)                               | NGINX JWT Module                                                              |
 | [nginx-module-length-hiding](modules/length-hiding.md)           | NGINX Length Hiding Filter Module                                             |
+| [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
 | [nginx-module-log-zmq](modules/log-zmq.md)                       | ZeroMQ logger module for NGINX                                                |
 | [nginx-module-lua](modules/lua.md)                               | Lua scripting support for NGINX                                               |
+| [nginx-module-markdown](modules/markdown.md)                     | Markdown-to-html NGINX module                                                 |
 | [nginx-module-memc](modules/memc.md)                             | Extended version of the standard NGINX memcached module                       |
 | [nginx-module-naxsi](modules/naxsi.md)                           | NGINX Anti XSS & SQL Injection module                                         |
 | [nginx-module-nchan](modules/nchan.md)                           | Scalable, flexible pub/sub server for the modern web                          |
@@ -66,11 +70,14 @@
 | [nginx-module-shibboleth](modules/shibboleth.md)                 | Shibboleth Auth Request module for NGINX                                      |
 | [nginx-module-slowfs](modules/slowfs.md)                         | NGINX SlowFS Cache Module                                                     |
 | [nginx-module-small-light](modules/small-light.md)               | Dynamic image transformation module For NGINX                                 |
+| [nginx-module-spnego-http-auth](modules/spnego-http-auth.md)     | Nginx module for HTTP SPNEGO auth                                             |
 | [nginx-module-srcache](modules/srcache.md)                       | Transparent subrequest-based caching layout for arbitrary NGINX locations     |
 | [nginx-module-statsd](modules/statsd.md)                         | NGINX module for sending stats to statsd                                      |
 | [nginx-module-sticky](modules/sticky.md)                         | NGINX sticky cookie module                                                    |
 | [nginx-module-stream-lua](modules/stream-lua.md)                 | Lua scripting support for NGINX streams                                       |
+| [nginx-module-stream-sts](modules/stream-sts.md)                 | Nginx stream server traffic status core module                                |
 | [nginx-module-stream-upsync](modules/stream-upsync.md)           | NGINX module for syncing stream backends from consul or etcd                  |
+| [nginx-module-sts](modules/sts.md)                               | Nginx stream server traffic status module                                     |
 | [nginx-module-substitutions](modules/substitutions.md)           | String substitutions module for nginx                                         |
 | [nginx-module-sysguard](modules/sysguard.md)                     | NGINX sysguard module                                                         |
 | [nginx-module-testcookie](modules/testcookie.md)                 | NGINX testcookie robot mitigation module                                      |
@@ -84,4 +91,5 @@
 | [nginx-module-vts](modules/vts.md)                               | NGINX virtual host traffic status module                                      |
 | [nginx-module-webp](modules/webp.md)                             | NGINX WebP module                                                             |
 | [nginx-module-xslt](modules/xslt.md)                             | NGINX XSLT dynamic module                                                     |
+| [nginx-module-xss](modules/xss.md)                               | Native cross-site scripting support in NGINX                                  |
 | [nginx-module-zip](modules/zip.md)                               | Streaming ZIP archiver for NGINX                                              |

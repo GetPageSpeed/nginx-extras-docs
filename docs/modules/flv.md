@@ -23,19 +23,20 @@ load_module modules/ngx_http_flv_live_module.so;
 ```
 
 
-This document describes nginx-module-flv [v1.2.10](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.10){target=_blank} 
-released on Feb 20 2022.
+This document describes nginx-module-flv [v1.2.11](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.11){target=_blank} 
+released on Mar 19 2023.
 
 <hr />
 
+![nginx-http-flv-module workflow](https://github.com/winshining/nginx-http-flv-module/actions/workflows/nginx-http-flv-module.yml/badge.svg?branch=master)
 
-Media streaming server based on [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module).
+A media streaming server based on [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module).
 
 [中文说明](https://github.com/winshining/nginx-http-flv-module/blob/master/README.CN.md).
 
 Donate if you like this module. Many thanks to you!
 
-<a href="https://www.buymeacoffee.com/winshining" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/white_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://www.paypal.me/ShingWong" target="_blank"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/44_Grey_PayPal_Pill_Button.png" alt="PayPal" /></a>
 
 ### Credits
 
@@ -51,17 +52,19 @@ Donate if you like this module. Many thanks to you!
 
 * Other features provided by nginx-http-flv-module vs [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module):
 
-|         Features        | nginx-http-flv-module | nginx-rtmp-module |                     Remarks                     |
-| :---------------------: | :-------------------: | :---------------: | :---------------------------------------------: |
-|   HTTP-FLV (for play)   |           √           |         x         |     HTTPS-FLV and chunked response supported    | 
-|        GOP cache        |           √           |         x         |                                                 |
-|          VHOST          |           √           |         x         |                                                 |
-| Omit `listen` directive |           √           |    See remarks    |  There MUST be at least one `listen` directive  |
-|   Audio-only support    |           √           |    See remarks    |  Won't work if `wait_video` or `wait_key` is on |
-|   `reuseport` support   |           √           |         x         |                                                 |
-|  Timer for access log   |           √           |         x         |                                                 |
-|     JSON style stat     |           √           |         x         |                                                 |
-|   Stat for recordings   |           √           |         x         |                                                 |
+|         Features                   | nginx-http-flv-module | nginx-rtmp-module |                    Remarks                     |
+| :--------------------------------: | :-------------------: | :---------------: | :--------------------------------------------: |
+|        HTTP-FLV (for play)         |           √           |         x         |    HTTPS-FLV and chunked response supported    |
+|             GOP cache              |           √           |         x         |                                                |
+|            Virtual Host            |           √           |         x         |                                                |
+|      Omit `listen` directive       |           √           |    See remarks    | There MUST be at least one `listen` directive  |
+|Audio-only support for RTMP/HTTP-FLV|           √           |    See remarks    | Won't work if `wait_video` or `wait_key` is on |
+|    Single-track support for HLS    |           √           |         x         |                                                |
+|        `reuseport` support         |           √           |         x         |                                                |
+|        Timer for access log        |           √           |         x         |                                                |
+|       JSON style statistics        |           √           |         x         |                                                |
+|     Statistics for recordings      |           √           |         x         |                                                |
+|     Independent of endianness      |           √           |    See remarks    |   Partially supported in branch `big-endian`   |
 
 ## Systems supported
 

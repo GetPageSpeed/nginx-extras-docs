@@ -15,13 +15,13 @@ yum -y install lua-resty-healthcheck
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-healthcheck [v1.6.1](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.6.1){target=_blank} 
-released on Jul 26 2022.
+This document describes lua-resty-healthcheck [v1.6.2](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.6.2){target=_blank} 
+released on Nov 17 2022.
     
 <hr />
 
 ![legacy version](https://img.shields.io/luarocks/v/kong/lua-resty-healthcheck/1.6.1-1?style=flat-square)
-![Release 1.6.x](https://github.com/Kong/lua-resty-healthcheck/actions/workflows/latest_os.yml/badge.svg?branch=release/1.6.x)
+![Release 1.6.x](https://github.com/Kong/lua-resty-healthcheck/actions/workflows/build_and_test_with_resty_events.yml/badge.svg?branch=release/1.6.x)
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square)
 ![Twitter Follow](https://img.shields.io/twitter/follow/thekonginc?style=social)
 
@@ -110,6 +110,12 @@ for the complete API.
 ## History
 
 Versioning is strictly based on [Semantic Versioning](https://semver.org/)
+
+### 1.6.2 (17-Nov-2022)
+
+* Fix: avoid raising worker events for new targets that were marked for delayed
+  removal, i.e. targets that already exist in memory only need the removal flag
+  cleared when added back. [#122](https://github.com/Kong/lua-resty-healthcheck/pull/122)
 
 ### 1.6.1 (25-Jul-2022)
 

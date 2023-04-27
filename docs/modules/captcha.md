@@ -1,4 +1,4 @@
-# *[BETA!] captcha*: NGINX Captcha Module
+# *captcha*: NGINX Captcha Module
 
 ## Installation
 
@@ -26,10 +26,9 @@ load_module modules/ngx_http_captcha_module.so;
 ```
 
 
-This document describes nginx-module-captcha [v0](https://github.com/dvershinin/ngx_http_captcha_module/releases/tag/0){target=_blank} 
-released on Aug 23 2020.
+This document describes nginx-module-captcha [v0.0.1](https://github.com/RekGRpth/ngx_http_captcha_module/releases/tag/0.0.1){target=_blank} 
+released on Apr 14 2023.
 
-Production stability is *not guaranteed*.
 <hr />
 
 ### Example Configuration:
@@ -126,4 +125,4 @@ Sets secret of captcha.
 
 You may find additional configuration tips and documentation for this module in the [GitHub 
 repository for 
-nginx-module-captcha](https://github.com/dvershinin/ngx_http_captcha_module){target=_blank}.
+nginx-module-captcha](https://github.com/RekGRpth/ngx_http_captcha_module){target=_blank}.

@@ -23,8 +23,8 @@ load_module modules/ngx_http_cache_purge_module.so;
 ```
 
 
-This document describes nginx-module-cache-purge [v2.5.2](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.2){target=_blank} 
-released on Jun 01 2022.
+This document describes nginx-module-cache-purge [v2.5.3](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.3){target=_blank} 
+released on Feb 22 2023.
 
 <hr />
 `ngx_cache_purge` is `nginx` module which adds ability to purge content from
@@ -134,7 +134,7 @@ The asterisk must be the last character of the key, so you **must** put the $uri
             location / {
                 proxy_pass         http://127.0.0.1:8000;
                 proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
+                proxy_cache_key    "$uri$is_args$args";
                 proxy_cache_purge  PURGE from 127.0.0.1;
             }
         }
@@ -149,8 +149,8 @@ The asterisk must be the last character of the key, so you **must** put the $uri
             location / {
                 proxy_pass         http://127.0.0.1:8000;
                 proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
-                proxy_cache_purge  PURGE purge_all from 127.0.0.1;
+                proxy_cache_key    "$uri$is_args$args";
+                proxy_cache_purge  PURGE purge_all from 127.0.0.1 192.168.0.0/8;
             }
         }
     }
@@ -164,13 +164,14 @@ The asterisk must be the last character of the key, so you **must** put the $uri
             location / {
                 proxy_pass         http://127.0.0.1:8000;
                 proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
+                proxy_cache_key    "$uri$is_args$args";
             }
 
             location ~ /purge(/.*) {
                 allow              127.0.0.1;
                 deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
+                proxy_cache        tmpcache;
+                proxy_cache_key    "$1$is_args$args";
             }
         }
     }
@@ -188,20 +189,22 @@ The asterisk must be the last character of the key, so you **must** put the $uri
             location / { #json
                 proxy_pass         http://127.0.0.1:8000;
                 proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
+                proxy_cache_key    "$uri$is_args$args";
             }
 
             location ~ /purge(/.*) { #xml
                 allow              127.0.0.1;
                 deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
+                proxy_cache        tmpcache;
+                proxy_cache_key    "$1$is_args$args";
                 cache_purge_response_type xml;
             }
 
             location ~ /purge2(/.*) { # json
                 allow              127.0.0.1;
                 deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
+                proxy_cache        tmpcache;
+                proxy_cache_key    "$1$is_args$args";
             }
         }
 
@@ -210,19 +213,21 @@ The asterisk must be the last character of the key, so you **must** put the $uri
             location / { #text
                 proxy_pass         http://127.0.0.1:8000;
                 proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
+                proxy_cache_key    "$uri$is_args$args";
             }
 
             location ~ /purge(/.*) { #text
                 allow              127.0.0.1;
                 deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
+                proxy_cache        tmpcache;
+                proxy_cache_key    "$1$is_args$args";
             }
 
             location ~ /purge2(/.*) { #html
                 allow              127.0.0.1;
                 deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
+                proxy_cache        tmpcache;
+                proxy_cache_key    "$1$is_args$args";
                 cache_purge_response_type html;
             }
         }

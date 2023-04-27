@@ -23,8 +23,8 @@ load_module modules/ngx_http_graphite_module.so;
 ```
 
 
-This document describes nginx-module-graphite [v4.2](https://github.com/mailru/graphite-nginx-module/releases/tag/v4.2){target=_blank} 
-released on Aug 01 2022.
+This document describes nginx-module-graphite [v4.3](https://github.com/mailru/graphite-nginx-module/releases/tag/v4.3){target=_blank} 
+released on Jan 20 2023.
 
 <hr />
 

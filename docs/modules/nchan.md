@@ -23,8 +23,8 @@ load_module modules/ngx_nchan_module.so;
 ```
 
 
-This document describes nginx-module-nchan [v1.3.5](https://github.com/slact/nchan/releases/tag/v1.3.5){target=_blank} 
-released on Oct 27 2022.
+This document describes nginx-module-nchan [v1.3.6](https://github.com/slact/nchan/releases/tag/v1.3.6){target=_blank} 
+released on Jan 06 2023.
 
 <hr />
 <img class="logo" alt="NCHAN" src="https://nchan.io/github-logo.png" />
@@ -51,7 +51,7 @@ In a web browser, you can use Websocket or EventSource natively, or the [NchanSu
 
 ## Status and History
 
-The latest Nchan release is 1.3.5 (October 27, 2022) ([changelog](https://nchan.io/changelog)).
+The latest Nchan release is 1.3.6 (January 6, 2023) ([changelog](https://nchan.io/changelog)).
 
 The first iteration of Nchan was written in 2009-2010 as the [Nginx HTTP Push Module](https://pushmodule.slact.net), and was vastly refactored into its present state in 2014-2016.
 
@@ -1675,9 +1675,9 @@ Additionally, `nchan_stub_status` data is also exposed as variables. These are a
   context: upstream  
   > Keep stats for disconnected nodes around for this long. Useful for tracking stats for nodes that have intermittent connectivity issues.    
 
-- **nchan_redis_upstream_stats_enabled**  
+- **nchan_redis_upstream_stats_enabled** `[ on | off ]`  
   arguments: 1  
-  default: `<yes> if at least 1 redis stats location is configured, otherwise <no>`  
+  default: `<on> if at least 1 redis stats location is configured, otherwise <off>`  
   context: upstream  
   > Gather Redis node command timings for this upstream    
 

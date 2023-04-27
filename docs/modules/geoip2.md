@@ -21,6 +21,9 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 ```nginx
 load_module modules/ngx_http_geoip2_module.so;
 ```
+```nginx
+load_module modules/ngx_stream_geoip2_module.so;
+```
 
 
 This document describes nginx-module-geoip2 [v3.4](https://github.com/leev/ngx_http_geoip2_module/releases/tag/3.4){target=_blank} 

@@ -15,8 +15,8 @@ yum -y install lua-resty-http
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-http [v0.16.1](https://github.com/ledgetech/lua-resty-http/releases/tag/v0.16.1){target=_blank} 
-released on Apr 09 2021.
+This document describes lua-resty-http [v0.17.1](https://github.com/ledgetech/lua-resty-http/releases/tag/v0.17.1){target=_blank} 
+released on Mar 22 2023.
     
 <hr />
 
@@ -39,6 +39,7 @@ Production ready.
 * Request pipelining
 * Trailers
 * HTTP proxy connections
+* mTLS (requires `ngx_lua_http_module` >= v0.10.23)
 
 
 ## API
@@ -111,9 +112,9 @@ local body   = res.body
 local httpc = require("resty.http").new()
 
 -- First establish a connection
-local ok, err = httpc:connect({
+local ok, err, ssl_session = httpc:connect({
     scheme = "https",
-    host = "127.0.0.1"
+    host = "127.0.0.1",
     port = 8080,
 })
 if not ok then
@@ -173,7 +174,7 @@ Creates the HTTP connection object. In case of failures, returns `nil` and a str
 
 ## connect
 
-`syntax: ok, err = httpc:connect(options)`
+`syntax: ok, err, ssl_session = httpc:connect(options)`
 
 Attempts to connect to the web server while incorporating the following activities:
 
@@ -192,9 +193,12 @@ The options table has the following fields:
 * `pool_size`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsockconnect)
 * `backlog`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsockconnect)
 * `proxy_opts`: sub-table, defaults to the global proxy options set, see [set\_proxy\_options](#set_proxy_options).
+* `ssl_reused_session`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake)
 * `ssl_verify`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake), except that it defaults to `true`.
 * `ssl_server_name`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake)
 * `ssl_send_status_req`: option as per [OpenResty docs](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake)
+* `ssl_client_cert`: will be passed to `tcpsock:setclientcert`. Requires `ngx_lua_http_module` >= v0.10.23.
+* `ssl_client_priv_key`: as above.
 
 ## set\_timeout
 
@@ -270,6 +274,8 @@ When the request is successful, `res` will contain the following fields:
 * `body_reader`: An iterator function for reading the body in a streaming fashion.
 * `read_body`: A method to read the entire body into a string.
 * `read_trailers`: A method to merge any trailers underneath the headers, after reading the body.
+
+If the response has a body, then before the same connection can be used for another request, you must read the body using `read_body` or `body_reader`.
 
 ## request\_uri
 

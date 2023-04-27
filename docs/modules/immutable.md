@@ -23,14 +23,27 @@ load_module modules/ngx_http_immutable_module.so;
 ```
 
 
-This document describes nginx-module-immutable [v0.0.3](https://github.com/GetPageSpeed/ngx_immutable/releases/tag/v0.0.3){target=_blank} 
-released on Jun 27 2022.
+This document describes nginx-module-immutable [v0.0.4](https://github.com/GetPageSpeed/ngx_immutable/releases/tag/v0.0.4){target=_blank} 
+released on Nov 21 2022.
 
 <hr />
 
 [![Coverity Scan](https://img.shields.io/coverity/scan/GetPageSpeed-ngx_immutable)](https://scan.coverity.com/projects/GetPageSpeed-ngx_immutable)
 
 This tiny NGINX module can help improve caching of your public static assets, by setting far future expiration with `immutable` attribute.
+
+## Intended audience
+
+Websites and frameworks which rely on the cache-busting pattern:
+
+* static resources include version/hashes in their URLs, while never modifying the resources
+* when necessary, updating the resources with newer versions that have new version-numbers/hashes, 
+so that their URLs are different
+
+Popular frameworks which use cache-busting:
+
+* Magento 2
+* Include your own here! 
 
 ## Synopsis
 
@@ -48,18 +61,34 @@ will yield the following HTTP headers:
 
 ```
 ...
-Cache-Control: public,max-age=31536000,immutable
+Cache-Control: public,max-age=31536000,stale-while-revalidate=31536000,stale-if-error=31536000,immutable
 Expires: Thu, 31 Dec 2037 23:55:55 GMT 
 ...
 ```
 
 How it's different to `expires max;`:
 
-* Sets `immutable` attribute, e.g. `Cache-Control: public,max-age=31536000,immutable` for improved caching
+* Sets `immutable` attribute, e.g. `Cache-Control: public,max-age=31536000,immutable` for improved caching. 
+That is 1 year and not 10 years, see why below.
 * Sends `Expires` only when it's really necessary, e.g. when a client is requesting resources over `HTTP/1.0`
 * Sets `public` attribute to ensure the assets can be cached by public caches, which is typically a desired thing.
 
-Thus, in most cases, `immutable on;` can be used as a better alternative to `expires max;`.
+Due to the [lacking support of `immutable`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#browser_compatibility) in Chromium-based browsers, 
+we also add `stale-while-revalidate=31536000,stale-if-error=31536000` which helps to improve cache hit-ratio in edge cases. 
+Use of these directives allows serving cached responses beyond their cache lifetime, which is forever in case of immutable resources.
+
+Thus, in most cases, `immutable on;` can be used as a better alternative to `expires max;` to implement the cache-busting pattern.
+
+### Why 31536000 seconds (1 year?)
+
+The [RFC](https://www.ietf.org/rfc/rfc2616.txt) defines to use one year to make a response as "never expires":
+
+> To mark a response as “never expires,” an origin server sends an
+> Expires date approximately one year from the time the response is
+> sent. HTTP/1.1 servers SHOULD NOT send Expires dates more than one
+> year in the future.
+
+More details in [the article](https://ashton.codes/set-cache-control-max-age-1-year/).
 
 ## Example: Magento 2 production configuration
 
@@ -89,7 +118,7 @@ location /static/ {
 
 When used together with [`ngx_security_headers`](https://github.com/GetPageSpeed/ngx_security_headers), it can be simplified further:
 
-```
+```nginx
 security_headers on;
 
 location /static/ {

@@ -15,12 +15,12 @@ yum -y install lua-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v0.8.15](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.15){target=_blank} 
-released on Oct 28 2022.
+This document describes lua-resty-openssl [v0.8.22](https://github.com/fffonion/lua-resty-openssl/releases/tag/0.8.22){target=_blank} 
+released on Apr 26 2023.
     
 <hr />
 
-FFI-based OpenSSL binding for LuaJIT, supporting OpenSSL 3.0, 1.1 and 1.0.2 series.
+FFI-based OpenSSL binding for LuaJIT, supporting OpenSSL 3.1, 3.0, 1.1 and 1.0.2 series.
 
 BoringSSL is also supported.
 
@@ -330,7 +330,13 @@ ngx.say(version.version(version.INFO_DSO_EXTENSION))
 -- outputs ".so"
 ```
 
-### version.OPENSSL_30
+### version.OPENSSL_3X
+
+A boolean indicates whether the linked OpenSSL is 3.x series.
+
+### version.OPENSSL_3X
+
+Deprecated: use `version.OPENSSL_3X` is encouraged.
 
 A boolean indicates whether the linked OpenSSL is 3.0 series.
 
@@ -428,24 +434,67 @@ X448 | Y | Y | | | Y (ECDH) |
 
 `Ed25519`, `X25519`, `Ed448` and `X448` keys are only supported since OpenSSL 1.1.0.
 
+Note BoringSSL doesn't support `Ed448` and `X448` keys.
+
 Direct support of encryption and decryption for EC and ECX does not exist, but
 processes like ECIES is possible with [pkey:derive](#pkeyderive),
 [kdf](#restyopensslkdf) and [cipher](#restyopensslcipher)
 
 ### pkey.new
 
-**syntax**: *pk, err = pkey.new(config)*
+#### Load existing key
 
 **syntax**: *pk, err = pkey.new(string, opts?)*
 
-**syntax**: *pk, err = pkey.new()*
+Supports loading a private or public key in PEM, DER or JWK format passed as first argument `string`.
 
-Function to generate a key pair, or load existing key in PEM or DER format.
-  
-1. Pass a `config` table to create a new PKEY pair. Which defaults to:
+The second parameter `opts` accepts an optional table to constraint the behaviour of key loading.
+
+- `opts.format`: set explictly to `"PEM"`, `"DER"`, `"JWK"` to load specific format or set to `"*"` for auto detect
+- `opts.type`: set explictly to `"pr"` for privatekey, `"pu"` for public key; set to `"*"` for auto detect
+
+When loading a PEM encoded RSA key, it can either be a PKCS#8 encoded
+`SubjectPublicKeyInfo`/`PrivateKeyInfo` or a PKCS#1 encoded `RSAPublicKey`/`RSAPrivateKey`.
+
+When loading a encrypted PEM encoded key, the `passphrase` to decrypt it can either be set
+in `opts.passphrase` or `opts.passphrase_cb`:
+
+```lua
+pkey.new(pem_or_der_text, {
+  format = "*", -- choice of "PEM", "DER", "JWK" or "*" for auto detect
+  type = "*", -- choice of "pr" for privatekey, "pu" for public key and "*" for auto detect
+  passphrase = "secret password", -- the PEM encryption passphrase
+  passphrase_cb = function()
+    return "secret password"
+  end, -- the PEM encryption passphrase callback function
+}
+
+```
+
+When loading JWK, there are couple of caveats:
+- Make sure the encoded JSON text is passed in, it must have been base64 decoded.
+- Constraint `type` on JWK key is not supported, the parameters
+in provided JSON will decide if a private or public key is loaded.
+- Only key type of `RSA`, `P-256`, `P-384` and `P-512` `EC`,
+`Ed25519`, `X25519`, `Ed448` and `X448` `OKP` keys are supported.
+- Public key part for `OKP` keys (the `x` parameter) is always not honored and derived
+from private key part (the `d` parameter) if it's specified.
+- Signatures and verification must use `ecdsa_use_raw` option to work with JWS standards
+for EC keys. See [pkey:sign](#pkeysign) and [pkey.verify](#pkeyverify) for detail.
+
+#### Key generation
+
+**syntax**: *pk, err = pkey.new(config?)*
+
+Generate a new public key or private key.
+
+
+To generate RSA key, `config` table can have `bits` and `exp` field to control key generation.
+When `config` is emitted, this function generates a 2048 bit RSA key with `exponent` of 65537,
+which is equivalent to:
   
 ```lua
-locak key, err = pkey.new({
+local key, err = pkey.new({
   type = 'RSA',
   bits = 2048,
   exp = 65537
@@ -453,7 +502,16 @@ locak key, err = pkey.new({
 ```
 
 To generate EC or DH key, please refer to [pkey.paramgen](#pkeyparamgen) for possible values of
-`config` table. It's also possible to load a PEM-encoded EC or DH parameters for key generation:
+`config` table. For example:
+
+```lua
+local key, err = pkey.new({
+  type = 'EC',
+  curve = 'prime256v1',
+})
+```
+
+It's also possible to pass a PEM-encoded EC or DH parameters to `config.param` for key generation:
 
 ```lua
 local dhparam = pkey.paramgen({
@@ -469,36 +527,6 @@ local key, err = pkey.new({
 }) 
 ```
 
-Other possible `type`s are `Ed25519`, `X25519`, `Ed448` and `X448`. No additional parameters
-can be set during key generation for those keys.
-
-2. Pass a `string` of private or public key in PEM, DER or JWK format text; optionally accpet a table
-`opts` to explictly load `format` and key `type`. When loading a key in PEM format,
-`passphrase` or `passphrase_cb` may be provided to decrypt the key.
-
-```lua
-pkey.new(pem_or_der_text, {
-  format = "*", -- choice of "PEM", "DER", "JWK" or "*" for auto detect
-  type = "*", -- choice of "pr" for privatekey, "pu" for public key and "*" for auto detect
-  passphrase = "secret password", -- the PEM encryption passphrase
-  passphrase_cb = function()
-    return "secret password"
-  end, -- the PEM encryption passphrase callback function
-}
-
-```
-
-  -  When loading JWK, make sure the encoded JSON text is passed in.
-  - Currently it's not supported to contraint
-  `type` on JWK key, the parameters in provided JSON will decide if a private or public key is loaded.
-  - Only JWK with key type of `RSA`, `P-256`, `P-384` and `P-512` `EC`,
-  `Ed25519`, `X25519`, `Ed448` and `X448` `OKP` keys are supported.
-  - Public key part for `OKP` keys
-  (the `x` parameter) is always not honored and derived from private key part (the `d` parameter) if it's specified.
-
-3. Pass `nil` to create a 2048 bits RSA key.
-4. Pass a `EVP_PKEY*` pointer, to return a wrapped `pkey` instance. Normally user won't use this
-approach. User shouldn't free the pointer on their own, since the pointer is not copied.
 
 ### pkey.istype
 
@@ -695,7 +723,11 @@ For EC key, this function does a ECDSA signing.
 Note that OpenSSL does not support EC digital signature (ECDSA) with the
 obsolete MD5 hash algorithm and will return error on this combination. See
 [EVP_DigestSign(3)](https://www.openssl.org/docs/manmaster/man3/EVP_DigestSign.html)
-for a list of algorithms and associated public key algorithms.
+for a list of algorithms and associated public key algorithms. Normally, the ECDSA signature
+is encoded in ASN.1 DER format. If the `opts` table contains a `ecdsa_use_raw` field with
+a true value, a binary with just the concatenation of binary representation `pr` and `ps` is returned.
+This is useful for example to send the signature as JWS. This feature
+is only supported on OpenSSL 1.1.0 or later.
 
 ### pkey:verify
 
@@ -724,7 +756,11 @@ For RSA key, it's also possible to specify `padding` scheme. The choice of value
 as those in [pkey:encrypt](#pkeyencrypt). When `padding` is `RSA_PKCS1_PSS_PADDING`, it's
 possible to specify PSS salt length by setting `opts.pss_saltlen`.
 
-For EC key, this function does a ECDSA verification.
+For EC key, this function does a ECDSA verification. Normally, the ECDSA signature
+should be encoded in ASN.1 DER format. If the `opts` table contains a `ecdsa_use_raw` field with
+a true value, this library treat `signature` as concatenation of binary representation `pr` and `ps`.
+This is useful for example to verify the signature as JWS. This feature
+is only supported on OpenSSL 1.1.0 or later.
 
 ```lua
 -- RSA and EC keys
@@ -841,18 +877,23 @@ for an example on how key exchange works for X25519 keys with DH algorithm.
 
 ### pkey:tostring
 
-**syntax**: *txt, err = pk:tostring(private_or_public?, fmt?)*
+**syntax**: *txt, err = pk:tostring(private_or_public?, fmt?, is_pkcs1?)*
 
 Outputs private key or public key of pkey instance in PEM-formatted text.
 The first argument must be a choice of `public`, `PublicKey`, `private`, `PrivateKey` or nil.
+
 The second argument `fmt` can be `PEM`, `DER`, `JWK` or nil.
 If both arguments are omitted, this functions returns the `PEM` representation of public key.
 
+If `is_pkcs1` is set to true, the output is encoded using a PKCS#1 RSAPublicKey structure;
+`PKCS#1` encoding is currently supported for RSA key in PEM format. Writing out a PKCS#1
+encoded RSA key is currently not supported when using with OpenSSL 3.0.
+
 ### pkey:to_PEM
 
-**syntax**: *pem, err = pk:to_PEM(private_or_public?)*
+**syntax**: *pem, err = pk:to_PEM(private_or_public?, is_pkcs1?)*
 
-Equivalent to `pkey:tostring(private_or_public, "PEM")`.
+Equivalent to `pkey:tostring(private_or_public, "PEM", is_pkcs1)`.
 
 ## resty.openssl.bn
 
@@ -882,11 +923,15 @@ Returns `true` if table is an instance of `bn`. Returns `false` otherwise.
 
 **syntax**: *bn, err = bn.from_binary(bin)*
 
-**syntax**: *bin, err = bn:to_binary()*
+**syntax**: *bin, err = bn:to_binary(padto?)*
 
 Creates a `bn` instance from binary string.
 
 Exports the BIGNUM value in binary string.
+
+`bn:to_binary` accepts an optional number argument `padto` that can be
+used to pad leading zeros to the output to a specific length. This feature
+is only supported on OpenSSL 1.1.0 or later.
 
 ```lua
 local b, err = require("resty.openssl.bn").from_binary(ngx.decode_base64("WyU="))
@@ -3131,7 +3176,7 @@ for explanation of each flag.
 
 ### store:verify
 
-**syntax**: *chain, err = store:verify(x509, chain?, return_chain?, properties?, verify_method?)*
+**syntax**: *chain, err = store:verify(x509, chain?, return_chain?, properties?, verify_method?, verify_flags?)*
 
 Verifies a X.509 object with the store. The first argument must be
 [resty.openssl.x509](#restyopensslx509) instance. Optionally accept a validation chain as second
@@ -3148,6 +3193,9 @@ to explictly select provider to fetch algorithms.
 `"smime_sign"`, `"ssl_client"` and `"ssl_server"`. This set corresponding `purpose`, `trust` and
 couple of other defaults but **does not** override the parameters set from
 [store:set_purpose](#storeset_purpose).
+
+`verify_flags` paramter is the additional verify flags to be set. See [store:set_flags](#storeset_flags)
+for all available flags.
 
 ## resty.openssl.x509.revoked
 

@@ -23,8 +23,8 @@ load_module modules/ngx_stream_lua_module.so;
 ```
 
 
-This document describes nginx-module-stream-lua [v0.0.11](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.11){target=_blank} 
-released on Dec 06 2021.
+This document describes nginx-module-stream-lua [v0.0.13](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.13){target=_blank} 
+released on Mar 21 2023.
 
 <hr />
 
@@ -495,6 +495,7 @@ output to be completely flushed out (to the system socket send buffers).
 * [ngx.config.ngx_lua_version](https://github.com/openresty/lua-nginx-module#ngxconfigngx_lua_version)
 * [ngx.worker.exiting](https://github.com/openresty/lua-nginx-module#ngxworkerexiting)
 * [ngx.worker.pid](https://github.com/openresty/lua-nginx-module#ngxworkerpid)
+* [ngx.worker.pids](https://github.com/openresty/lua-nginx-module#ngxworkerpids)
 * [ngx.worker.count](https://github.com/openresty/lua-nginx-module#ngxworkercount)
 * [ngx.worker.id](https://github.com/openresty/lua-nginx-module#ngxworkerid)
 * [coroutine.create](https://github.com/openresty/lua-nginx-module#coroutinecreate)

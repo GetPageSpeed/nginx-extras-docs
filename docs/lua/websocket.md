@@ -15,8 +15,8 @@ yum -y install lua-resty-websocket
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-websocket [v0.9](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.09){target=_blank} 
-released on Dec 10 2021.
+This document describes lua-resty-websocket [v0.10](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.10){target=_blank} 
+released on Jan 19 2023.
     
 <hr />
 
@@ -324,6 +324,21 @@ SSL handshake if the `wss://` scheme is used.
 * `headers`
 
     Specifies custom headers to be sent in the handshake request. The table is expected to contain strings in the format `{"a-header: a header value", "another-header: another header value"}`.
+
+* `client_cert`
+
+    Specifies a client certificate chain cdata object that will be used while TLS handshaking with remote server. 
+    These objects can be created using 
+    [ngx.ssl.parse_pem_cert](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_cert) 
+    function provided by lua-resty-core. 
+    Note that specifying the `client_cert` option requires corresponding `client_priv_key` be provided too. See below.
+
+* `client_priv_key`
+
+    Specifies a private key corresponds to the `client_cert` option above. 
+    These objects can be created using 
+    [ngx.ssl.parse_pem_priv_key](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_priv_key) 
+    function provided by lua-resty-core.
 
 The SSL connection mode (`wss://`) requires at least `ngx_lua` 0.9.11 or OpenResty 1.7.4.1.
 
