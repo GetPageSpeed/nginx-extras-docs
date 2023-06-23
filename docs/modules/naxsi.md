@@ -24,7 +24,7 @@ load_module modules/ngx_http_naxsi_module.so;
 
 
 This document describes nginx-module-naxsi [v1.3](https://github.com/dvershinin/naxsi/releases/tag/1.3){target=_blank} 
-released on Jun 27 2022.
+released on Apr 27 2023.
 
 <hr />
 ![naxsi](https://raw.githubusercontent.com/nbs-system/naxsi/master/logo.png)

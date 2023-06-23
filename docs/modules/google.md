@@ -23,8 +23,8 @@ load_module modules/ngx_http_google_filter_module.so;
 ```
 
 
-This document describes nginx-module-google [v0.2.2](https://github.com/GetPageSpeed/ngx_http_google_filter_module/releases/tag/0.2.2){target=_blank} 
-released on Jun 26 2022.
+This document describes nginx-module-google [v0.2.4](https://github.com/GetPageSpeed/ngx_http_google_filter_module/releases/tag/0.2.4){target=_blank} 
+released on Jun 17 2023.
 
 <hr />
 

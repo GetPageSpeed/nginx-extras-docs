@@ -5,18 +5,25 @@
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install lua-resty-session
 ```
 
+### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+
+```bash
+yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install lua5.1-resty-session
+```
+
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-session [v4.0.3](https://github.com/bungle/lua-resty-session/releases/tag/v4.0.3){target=_blank} 
-released on Feb 21 2023.
+This document describes lua-resty-session [v4.0.4](https://github.com/bungle/lua-resty-session/releases/tag/v4.0.4){target=_blank} 
+released on Jun 05 2023.
     
 <hr />
 

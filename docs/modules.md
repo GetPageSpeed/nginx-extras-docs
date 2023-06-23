@@ -25,7 +25,6 @@
 | [nginx-module-execute](modules/execute.md)                       | NGINX Execute module                                                          |
 | [nginx-module-f4fhds](modules/f4fhds.md)                         | NGINX module for Adobe f4f format                                             |
 | [nginx-module-fancyindex](modules/fancyindex.md)                 | NGINX Fancy Index module                                                      |
-| [nginx-module-fips-check](modules/fips-check.md)                 | FIPS status check module for NGINX                                            |
 | [nginx-module-flv](modules/flv.md)                               | Media streaming server based on nginx-module-rtmp                             |
 | [nginx-module-form-input](modules/form-input.md)                 | NGINX form input module                                                       |
 | [nginx-module-geoip2](modules/geoip2.md)                         | NGINX GeoIP2 module                                                           |

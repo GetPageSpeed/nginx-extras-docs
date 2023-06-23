@@ -5,18 +5,25 @@
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install lua-resty-hmac
 ```
 
+### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+
+```bash
+yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install lua5.1-resty-hmac
+```
+
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-hmac [v0.6](https://github.com/jkeys089/lua-resty-hmac/releases/tag/v0.06){target=_blank} 
-released on Dec 15 2021.
+This document describes lua-resty-hmac [v0.6.1](https://github.com/jkeys089/lua-resty-hmac/releases/tag/0.06-1){target=_blank} 
+released on May 31 2023.
     
 <hr />
 
@@ -145,7 +152,7 @@ This MUST be called after `hmac_sha256:final()` in order to calculate a new MAC 
 
 This module is licensed under the BSD license.
 
-Copyright (C) 2012-2021, Thought Foundry Inc.
+Copyright (C) 2012-2023, Thought Foundry Inc.
 
 All rights reserved.
 

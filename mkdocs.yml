@@ -51,7 +51,6 @@ nav:
   - execute: modules/execute.md
   - f4fhds: modules/f4fhds.md
   - fancyindex: modules/fancyindex.md
-  - fips-check: modules/fips-check.md
   - flv: modules/flv.md
   - form-input: modules/form-input.md
   - geoip: modules/geoip.md
@@ -124,7 +123,6 @@ nav:
   - branches.md
   - nginx-mod.md
   - tengine.md
-  - angie.md
   - plesk.md
 - RPM Repository: https://www.getpagespeed.com/redhat
 plugins:

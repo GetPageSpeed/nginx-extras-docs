@@ -23,8 +23,8 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.2.0](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.2.0){target=_blank} 
-released on Nov 01 2022.
+This document describes nginx-module-jwt [v3.2.2](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.2.2){target=_blank} 
+released on Jun 03 2023.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
@@ -38,7 +38,7 @@ This is an NGINX module to check for a valid JWT.
 
 Inspired by [TeslaGov](https://github.com/TeslaGov/ngx-http-auth-jwt-module), [ch1bo](https://github.com/ch1bo/nginx-jwt) and [tizpuppi](https://github.com/tizpuppi/ngx_http_auth_jwt_module), this module intend to be as light as possible and to remain simple.
  - Docker image based on the [official nginx Dockerfile](https://github.com/nginxinc/docker-nginx) (alpine).
- - Light image (~16MB).
+ - Light image (~10MB).
 
 ### Module:
 

@@ -23,14 +23,14 @@ load_module modules/ngx_http_shibboleth_module.so;
 ```
 
 
-This document describes nginx-module-shibboleth [v2.0.1](https://github.com/nginx-shib/nginx-http-shibboleth/releases/tag/v2.0.1){target=_blank} 
-released on Apr 06 2017.
+This document describes nginx-module-shibboleth [v2.0.2](https://github.com/nginx-shib/nginx-http-shibboleth/releases/tag/v2.0.2){target=_blank} 
+released on May 26 2023.
 
 <hr />
 Shibboleth auth request module for Nginx
 ========================================
 
-[![image](https://travis-ci.org/nginx-shib/nginx-http-shibboleth.svg?branch=master)](https://travis-ci.org/nginx-shib/nginx-http-shibboleth)
+[![image](https://github.com/nginx-shib/nginx-http-shibboleth/actions/workflows/build.yml/badge.svg)](https://github.com/nginx-shib/nginx-http-shibboleth/actions/workflows/build.yml)
 
 This module allows Nginx to work with Shibboleth, by way of Shibboleth's FastCGI authorizer. This module requires specific configuration in order to work correctly, as well as Shibboleth's FastCGI authorizer application available on the system. It aims to be similar to parts of Apache's [mod\_shib](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPApacheConfig), though Shibboleth authorisation and authentication settings are configured via [shibboleth2.xml](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPShibbolethXML) rather than in the web server configuration.
 
@@ -40,7 +40,7 @@ This module works at access phase and therefore may be combined with other acces
 
 Read more about the Behaviour\_ below and consult Configuration\_ for important notes on avoiding spoofing if using headers for attributes.
 
-For further information on why this is a dedicated module, see <http://forum.nginx.org/read.php?2,238523,238523#msg-238523>
+For further information on why this is a dedicated module, see <https://forum.nginx.org/read.php?2,238523,238523#msg-238523>
 
 Directives
 ----------
@@ -53,7 +53,7 @@ shib\_request \<uri\>|off
 
 Switches the Shibboleth auth request module on and sets URI which will be asked for authorization. The configured URI should refer to a Nginx location block that points to your Shibboleth FastCGI authorizer.
 
-The HTTP status and headers of the response resulting from the sub-request to the configured URI will be returned to the user, in accordance with the [FastCGI Authorizer specification](http://www.fastcgi.com/drupal/node/22#S6.3). The one (potentially significant) caveat is that due to the way Nginx operates at present with regards to subrequests (what an Authorizer effectively requires), the request body will *not* be forwarded to the authorizer, and similarly, the response body from the authorizer will *not* be returned to the client.
+The HTTP status and headers of the response resulting from the sub-request to the configured URI will be returned to the user, in accordance with the [FastCGI Authorizer specification](https://web.archive.org/web/20160306081510/http://fastcgi.com/drupal/node/6?q=node/22#S6.3). The one (potentially significant) caveat is that due to the way Nginx operates at present with regards to subrequests (what an Authorizer effectively requires), the request body will *not* be forwarded to the authorizer, and similarly, the response body from the authorizer will *not* be returned to the client.
 
 Configured URIs are not restricted to using a FastCGI backend to generate a response, however. This may be useful during testing or otherwise, as you can use Nginx's built in `return` and `rewrite` directives to produce a suitable response. Additionally, this module may be used with *any* FastCGI authorizer, although operation may be affected by the above caveat.
 
@@ -65,7 +65,7 @@ shib\_request\_set \<variable\> \<value\>
 **Context:** `http`, `server`, `location`
 **Default:** `none`
 
-Set the `variable` to the specified `value` after the auth request has completed. The `value` may contain variables from the auth request's response. For instance, `$upstream_http_*`, `$upstream_status`, and any other variables mentioned in the [nginx\_http\_upstream\_module](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables) documentation.
+Set the `variable` to the specified `value` after the auth request has completed. The `value` may contain variables from the auth request's response. For instance, `$upstream_http_*`, `$upstream_status`, and any other variables mentioned in the [nginx\_http\_upstream\_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables) documentation.
 
 This directive can be used to introduce Shibboleth attributes into the environment of the backend application, such as \$\_SERVER for a FastCGI PHP application and is the recommended method of doing so. See the Configuration\_ documentation for an example.
 
@@ -88,7 +88,9 @@ Installation
 
 This module can either be compiled statically or dynamically, since the introduction of [dynamic modules](https://www.nginx.com/resources/wiki/extending/converting/) in Nginx 1.9.11. The practical upshot of dynamic modules is that they can be loaded, as opposed to static modules which are permanently present and enabled.
 
-To compile Nginx with this module dynamically, pass the following option to `./configure` when building Nginx:
+The easiest way to obtain a packaged version of this module is to use the [pkg-oss](https://hg.nginx.org/pkg-oss/) tool from Nginx, which provides for packaging of dynamic modules for installation alongside the official releases of Nginx from the [main repositories](https://nginx.org/en/download.html) and helps avoid the need to compile Nginx by hand.
+
+Otherwise, to compile Nginx with this module dynamically, pass the following option to `./configure` when building Nginx:
 
     --add-dynamic-module=<path>
 
@@ -96,7 +98,7 @@ You will need to explicitly load the module in your `nginx.conf` by including:
 
     load_module /path/to/modules/ngx_http_shibboleth_module.so;
 
-and reloading Nginx.
+and reload or restart Nginx.
 
 To compile Nginx with this module statically, pass the following option to `./configure` when building Nginx:
 
@@ -109,58 +111,66 @@ Configuration
 
 For full details about configuring the Nginx/Shibboleth environment, see the documentation at <https://github.com/nginx-shib/nginx-http-shibboleth/blob/master/CONFIG.rst>.
 
-An example consists of the following:
+An example `server` block consists of the following:
 
-    # FastCGI authorizer for Shibboleth Auth Request module
-    location = /shibauthorizer {
-        internal;
-        include fastcgi_params;
-        fastcgi_pass unix:/opt/shibboleth/shibauthorizer.sock;
-    }
+``` {.sourceCode .nginx}
+#FastCGI authorizer for Auth Request module
+location = /shibauthorizer {
+    internal;
+    include fastcgi_params;
+    fastcgi_pass unix:/opt/shibboleth/shibauthorizer.sock;
+}
 
-    # Using the ``shib_request_set`` directive, we can introduce attributes as
-    # environment variables for the backend application. In this example, we
-    # set ``fastcgi_param`` but this could be any type of Nginx backend that
-    # supports parameters (by using the appropriate *_param option)
-    #
-    # The ``shib_fastcgi_params`` is an optional set of default parameters,
-    # available in the ``includes/`` directory in this repository.
-    #
-    # Choose this type of configuration unless your backend application
-    # doesn't support server parameters or specifically requires headers.
-    location /secure-environment-vars {
-        shib_request /shibauthorizer;
-        include shib_fastcgi_params;
-        shib_request_set $shib_commonname $upstream_http_variable_commonname;
-        shib_request_set $shib_email $upstream_http_variable_email;
-        fastcgi_param COMMONNAME $shib_commonname;
-        fastcgi_param EMAIL $shib_email;
-        fastcgi_pass unix:/path/to/backend.socket;
-    }
+#FastCGI responder
+location /Shibboleth.sso {
+    include fastcgi_params;
+    fastcgi_pass unix:/opt/shibboleth/shibresponder.sock;
+}
 
-    # A secured location. All incoming requests query the Shibboleth FastCGI authorizer.
-    # Watch out for performance issues and spoofing!
-    #
-    # Choose this type of configuration for ``proxy_pass`` applications
-    # or backends that don't support server parameters. 
-    location /secure {
-        shib_request /shibauthorizer;
-        shib_request_use_headers on;
+## Using the ``shib_request_set`` directive, we can introduce attributes as
+## environment variables for the backend application. In this example, we
+## set ``fastcgi_param`` but this could be any type of Nginx backend that
+## supports parameters (by using the appropriate *_param option)
+#
+## The ``shib_fastcgi_params`` is an optional set of default parameters,
+## available in the ``includes/`` directory in this repository.
+#
+## Choose this type of configuration unless your backend application
+## doesn't support server parameters or specifically requires headers.
+location /secure-environment-vars {
+    shib_request /shibauthorizer;
+    include shib_fastcgi_params;
+    shib_request_set $shib_commonname $upstream_http_variable_commonname;
+    shib_request_set $shib_email $upstream_http_variable_email;
+    fastcgi_param COMMONNAME $shib_commonname;
+    fastcgi_param EMAIL $shib_email;
+    fastcgi_pass unix:/path/to/backend.socket;
+}
 
-        # Attributes from Shibboleth are introduced as headers by the FastCGI
-        # authorizer so we must prevent spoofing. The
-        # ``shib_clear_headers`` is a set of default header directives,
-        # available in the `includes/` directory in this repository.
-        include shib_clear_headers;
+## A secured location. All incoming requests query the Shibboleth FastCGI authorizer.
+## Watch out for performance issues and spoofing!
+#
+## Choose this type of configuration for ``proxy_pass`` applications
+## or backends that don't support server parameters.
+location /secure {
+    shib_request /shibauthorizer;
+    shib_request_use_headers on;
 
-        # Add *all* attributes that your application uses, including all
-        #variations.
-        more_clear_input_headers 'displayName' 'mail' 'persistent-id';
+    # Attributes from Shibboleth are introduced as headers by the FastCGI
+    # authorizer so we must prevent spoofing. The
+    # ``shib_clear_headers`` is a set of default header directives,
+    # available in the `includes/` directory in this repository.
+    include shib_clear_headers;
 
-        # This backend application will receive Shibboleth variables as request
-        # headers (from Shibboleth's FastCGI authorizer)
-        proxy_pass http://localhost:8080;
-    }
+    # Add *all* attributes that your application uses, including all
+    #variations.
+    more_clear_input_headers 'displayName' 'mail' 'persistent-id';
+
+    # This backend application will receive Shibboleth variables as request
+    # headers (from Shibboleth's FastCGI authorizer)
+    proxy_pass http://localhost:8080;
+}
+```
 
 Note that we use the [headers-more-nginx-module](https://github.com/openresty/headers-more-nginx-module) to clear potentially dangerous input headers and avoid the potential for spoofing. The latter example with environment variables isn't susceptible to header spoofing, as long as the backend reads data from the environment parameters **only**.
 
@@ -172,12 +182,12 @@ With use of `shib_request_set`, a [default params](https://github.com/nginx-shib
 
 -   Subrequests, such as the Shibboleth auth request, aren't processed through header filters. This means that built-in directives like `add_header` will **not** work if configured as part of the a `/shibauthorizer` block. If you need to manipulate subrequest headers, use `more_set_headers` from the module `headers-more`.
 
-    See <http://forum.nginx.org/read.php?29,257271,257272#msg-257272>.
+    See <https://forum.nginx.org/read.php?29,257271,257272#msg-257272>.
 
 Behaviour
 ---------
 
-This module follows the [FastCGI Authorizer spec](http://www.fastcgi.com/drupal/node/6?q=node/22#S6.3) where possible, but has some notable deviations - with good reason. The behaviour is thus:
+This module follows the [FastCGI Authorizer specification](https://web.archive.org/web/20160306081510/http://fastcgi.com/drupal/node/6?q=node/22#S6.3) where possible, but has some notable deviations - with good reason. The behaviour is thus:
 
 -   An authorizer subrequest is comprised of all aspects of the original request, excepting the request body as Nginx does not support buffering of request bodies. As the Shibboleth FastCGI authorizer does not consider the request body, this is not an issue.
 -   If an authorizer subrequest returns a `200` status, access is allowed.
@@ -192,38 +202,89 @@ This module follows the [FastCGI Authorizer spec](http://www.fastcgi.com/drupal/
 
     The FastCGI Authorizer spec calls for the response body to be returned to the client, but as Nginx does not currently support buffering subrequest responses (`NGX_HTTP_SUBREQUEST_IN_MEMORY`), the authorizer response body is effectively ignored. A workaround is to have Nginx serve an `error_page` of its own, like so:
 
-        location /secure {
-           shib_request /shibauthorizer;
-           error_page 403 /shibboleth-forbidden.html;
-           ...
-        }
+    ``` {.sourceCode .nginx}
+    location /secure {
+       shib_request /shibauthorizer;
+       error_page 403 /shibboleth-forbidden.html;
+       ...
+    }
+    ```
 
     This serves the given error page if the Shibboleth authorizer denies the user access to this location. Without `error_page` specified, Nginx will serve its generic error pages.
 
     Note that this does *not* apply to the Shibboleth responder (typically hosted at `Shibboleth.sso`) as it is a FastCGI responder and Nginx is fully compatible with this as no subrequests are used.
 
-    For more details, see <http://forum.nginx.org/read.php?2,238444,238453>.
+    For more details, see <https://forum.nginx.org/read.php?2,238444,238453>.
 
 Whilst this module is geared specifically for Shibboleth's FastCGI authorizer, it will likely work with other authorizers, bearing in mind the deviations from the spec above.
 
 Tests
 -----
 
-Tests are automatically run on Travis CI whenever new commits are made to the repository or when new pull requests are opened. If something breaks, you'll be informed by Travis and the results will be reported on GitHub.
+Tests are automatically run on GitHub Actions (using [this configuration](https://github.com/nginx-shib/nginx-http-shibboleth/blob/master/.github/workflows/build.yml)) whenever new commits are made to the repository or when new pull requests are opened. If something breaks, you'll be informed and the results will be reported on GitHub.
 
-Tests are written using a combination of a simple Bash script in .travis.yml for compilation of different versions of Nginx with our module, and also the [Test::Nginx](https://metacpan.org/pod/Test::Nginx::Socket) Perl test scaffolding for integration testing with this module. Consult the previous link for information on how to extend the tests, and also refer to the underlying [Test::Base](https://metacpan.org/pod/Test::Base#blocks-data-section-name) documentation on aspects like the blocks() function.
+Tests are written using a combination of a simple Bash script for compilation of our module with different versions and configurations of Nginx and the [Test::Nginx](https://metacpan.org/pod/Test::Nginx::Socket) Perl test scaffolding for integration testing. Consult the previous link for information on how to extend the tests, and also refer to the underlying [Test::Base](https://metacpan.org/pod/Test::Base#blocks-data-section-name) documentation on aspects like the blocks() function.
 
-Integration tests are run automatically with Travis CI but also be run manually (requires Perl & CPAN to be installed):
+Integration tests are run automatically by CI but can also be run manually (requires Perl & CPAN to be installed):
 
-    cd nginx-http-shibboleth
-    cpanm --notest --local-lib=$HOME/perl5 Test::Nginx
-    # nginx must be present in PATH and built with debugging symbols
-    PERL5LIB=$HOME/perl5/lib/perl5 prove
+``` {.sourceCode .bash}
+cd nginx-http-shibboleth
+cpanm --notest --local-lib=$HOME/perl5 Test::Nginx
+## nginx must be present in PATH and built with debugging symbols
+PERL5LIB=$HOME/perl5/lib/perl5 prove
+```
+
+Help & Support
+--------------
+
+Support requests for Shibboleth configuration and Nginx or web server setup should be directed to the Shibboleth community users mailing list. See <https://www.shibboleth.net/community/lists/> for details.
+
+Debugging
+---------
+
+Because of the complex nature of the nginx/FastCGI/Shibboleth stack, debugging configuration issues can be difficult. Here's some key points:
+
+1.  Confirm that `nginx-http-shibboleth` is successfully built and installed within nginx. You can check by running `nginx -V` and inspecting the output for `--add-module=[path]/nginx-http-shibboleth` or `--add-dynamic-module=[path]/nginx-http-shibboleth`.
+2.  If using dynamic modules for nginx, confirm you have used the `load_module` directive to load this module. Your use of `shib_request` and other directives will fail if you have forgotten to load the module.
+3.  If using a version of nginx that is different to those we [test with](https://github.com/nginx-shib/nginx-http-shibboleth/blob/master/.github/workflows/build.yml) or if you are using other third-party modules, you should run the test suite above to confirm compatibility. If any tests fail, then check your configuration or consider updating your nginx version.
+4.  Shibboleth configuration: check your `shibboleth2.xml` and associated configuration to ensure your hosts, paths and attributes are being correctly released. An [example configuration](https://github.com/nginx-shib/nginx-http-shibboleth/blob/master/CONFIG.rst#configuring-shibboleths-shibboleth2xml-to-recognise-secured-paths) can help you identify key "gotchas" to configuring `shibboleth2.xml` to work with the FastCGI authorizer.
+5.  Application-level: within your code, always start with the simplest possible debugging output (such as printing the request environment) and work up from there. If you want to create a basic, stand-alone app, take a look at the [Bottle](https://github.com/nginx-shib/nginx-http-shibboleth/wiki/bottle) configuration on the wiki.
+6.  Debugging module internals: if you've carefully checked all of the above, then you can also debug the behaviour of this module itself. You will need to have compiled nginx with debugging support (via `./auto/configure --with-debug ...`) and when running nginx, it is easiest if you're able run in the foreground with debug logging enabled. Add the following to your `nginx.conf`:
+
+    ``` {.sourceCode .nginx}
+    daemon off;
+    error_log stderr debug;
+    ```
+
+    and run nginx. Upon starting nginx you should see lines containing [debug] and as you make requests, console logging will continue. If this doesn't happen, then check your nginx configuration and compilation process.
+
+    When you eventually make a request that hits (or should invoke) the `shib_request` location block, you will see lines like so in the output:
+
+    ``` {.sourceCode .nginx}
+    [debug] 1234#0: shib request handler
+    [debug] 1234#0: shib request set variables
+    [debug] 1234#0: shib request authorizer handler
+    [debug] 1234#0: shib request authorizer allows access
+    [debug] 1234#0: shib request authorizer copied header: "AUTH_TYPE: shibboleth"
+    [debug] 1234#0: shib request authorizer copied header: "REMOTE_USER: john.smith@example.com"
+    ...
+    ```
+
+    If you don't see these types of lines containing shib request ..., or if you see *some* of the lines above but not where headers/variables are being copied, then double-check your nginx configuration. If you're still not getting anywhere, then you can add your own debugging lines into the source (follow this module's examples) to eventually determine what is going wrong and when. If doing this, don't forget to recompile nginx and/or `nginx-http-shibboleth` whenever you make a change.
+
+If you believe you've found a bug in the core module code, then please [create an issue](https://github.com/nginx-shib/nginx-http-shibboleth/issues).
+
+You can also search existing issues as it is likely someone else has encountered a similar issue before.
 
 Versioning
 ----------
 
-This module uses [Semantic Versioning](http://semver.org/) and all releases are tagged on GitHub, which allows package downloads of individual tags.
+This module uses [Semantic Versioning](https://semver.org/) and all releases are tagged on GitHub, which allows package downloads of individual tags.
+
+License
+-------
+
+This project is licensed under the same license that nginx is, the [2-clause BSD-like license](https://github.com/nginx-shib/nginx-http-shibboleth/blob/master/LICENSE).
 
 ## GitHub
 

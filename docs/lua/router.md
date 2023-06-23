@@ -5,11 +5,18 @@
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install lua-resty-router
+```
+
+### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+
+```bash
+yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install lua5.1-resty-router
 ```
 
 

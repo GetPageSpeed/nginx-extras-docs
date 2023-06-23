@@ -23,8 +23,8 @@ load_module modules/ngx_http_lua_module.so;
 ```
 
 
-This document describes nginx-module-lua [v0.10.24](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.24){target=_blank} 
-released on Mar 21 2023.
+This document describes nginx-module-lua [v0.10.25](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.25){target=_blank} 
+released on Jun 19 2023.
 
 <hr />
 

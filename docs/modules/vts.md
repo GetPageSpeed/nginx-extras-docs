@@ -23,8 +23,8 @@ load_module modules/ngx_http_vhost_traffic_status_module.so;
 ```
 
 
-This document describes nginx-module-vts [v0.2.1](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.1){target=_blank} 
-released on Sep 16 2022.
+This document describes nginx-module-vts [v0.2.2](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.2){target=_blank} 
+released on May 26 2023.
 
 <hr />
 
