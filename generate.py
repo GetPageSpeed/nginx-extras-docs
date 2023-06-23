@@ -136,7 +136,7 @@ def enrich_lib_with_yml_info(md, module_config, release):
         intro = f"""
 ## Installation
 
-CentOS/RHEL 6, 7, 8 and Amazon Linux 2 are supported and require a commercial subscription.
+CentOS/RHEL and Amazon Linux 2 are supported and require a commercial subscription.
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
@@ -167,11 +167,18 @@ yum -y install lua-resty-{handle}
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
-### CentOS/RHEL 6, 7, 8 or Amazon Linux 2
+### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
 yum -y install lua-resty-{handle}
+```
+
+### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+
+```bash
+yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install lua5.1-resty-{handle}
 ```
 
 """
@@ -319,7 +326,7 @@ def normalize_to_md(readme_contents, file_name):
         return normalize_md_headings(readme_contents)
 
     try:
-        # this is available in pandoc for RHEL 8+ 
+        # this is available in pandoc for RHEL 8+
         return doc.gfm.decode("utf-8")
     except AttributeError:
         # available everywhere, less accurate
