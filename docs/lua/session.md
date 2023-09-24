@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-session
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-session [v4.0.4](https://github.com/bungle/lua-resty-session/releases/tag/v4.0.4){target=_blank} 
-released on Jun 05 2023.
+This document describes lua-resty-session [v4.0.5](https://github.com/bungle/lua-resty-session/releases/tag/v4.0.5){target=_blank} 
+released on Aug 16 2023.
     
 <hr />
 

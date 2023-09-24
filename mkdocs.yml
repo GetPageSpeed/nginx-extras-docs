@@ -118,6 +118,7 @@ nav:
   - xslt: modules/xslt.md
   - xss: modules/xss.md
   - zip: modules/zip.md
+  - zstd: modules/zstd.md
 - Lua Scripting: lua-scripting.md
 - Distributions:
   - branches.md

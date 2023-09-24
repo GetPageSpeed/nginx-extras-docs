@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-lmdb
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-lmdb [v1.1.0](https://github.com/Kong/lua-resty-lmdb/releases/tag/1.1.0){target=_blank} 
-released on Apr 28 2023.
+This document describes lua-resty-lmdb [v1.3.0](https://github.com/Kong/lua-resty-lmdb/releases/tag/v1.3.0){target=_blank} 
+released on Jul 14 2023.
     
 <hr />
 

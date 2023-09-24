@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-healthcheck
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-healthcheck [v1.6.2](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.6.2){target=_blank} 
-released on Nov 17 2022.
+This document describes lua-resty-healthcheck [v1.6.3](https://github.com/Kong/lua-resty-healthcheck/releases/tag/1.6.3){target=_blank} 
+released on Sep 06 2023.
     
 <hr />
 
@@ -117,6 +117,11 @@ for the complete API.
 ## History
 
 Versioning is strictly based on [Semantic Versioning](https://semver.org/)
+
+### 1.6.3 (06-Sep-2023)
+
+* Feature: Added support for https_sni [#49](https://github.com/Kong/lua-resty-healthcheck/pull/49) (backport)
+* Fix: Use OpenResty API for mTLS [#99](https://github.com/Kong/lua-resty-healthcheck/pull/99) (backport)
 
 ### 1.6.2 (17-Nov-2022)
 

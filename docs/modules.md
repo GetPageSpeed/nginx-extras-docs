@@ -92,3 +92,4 @@
 | [nginx-module-xslt](modules/xslt.md)                             | NGINX XSLT dynamic module                                                     |
 | [nginx-module-xss](modules/xss.md)                               | Native cross-site scripting support in NGINX                                  |
 | [nginx-module-zip](modules/zip.md)                               | Streaming ZIP archiver for NGINX                                              |
+| [nginx-module-zstd](modules/zstd.md)                             | NGINX module for the Zstandard compression                                    |
