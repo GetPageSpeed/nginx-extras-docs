@@ -23,8 +23,8 @@ load_module modules/ngx_curity_http_phantom_token_module.so;
 ```
 
 
-This document describes nginx-module-phantom-token [v1.4.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.4.0){target=_blank} 
-released on Mar 08 2023.
+This document describes nginx-module-phantom-token [v1.5.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.5.0){target=_blank} 
+released on Sep 28 2023.
 
 <hr />
 
