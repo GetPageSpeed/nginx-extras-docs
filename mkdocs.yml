@@ -123,9 +123,7 @@ nav:
 - Distributions:
   - branches.md
   - nginx-mod.md
-  - quic.md
   - tengine.md
-  - angie.md
   - plesk.md
 - RPM Repository: https://www.getpagespeed.com/redhat
 plugins:

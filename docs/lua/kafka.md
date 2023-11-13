@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-kafka
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-kafka [v0.22](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.22){target=_blank} 
-released on Apr 11 2023.
+This document describes lua-resty-kafka [v0.23](https://github.com/doujiang24/lua-resty-kafka/releases/tag/v0.23){target=_blank} 
+released on Nov 03 2023.
     
 <hr />
 
@@ -300,6 +300,18 @@ buffer config ( only work `producer_type` = "async" )
     `index` is the message_queue length, should not use `#message_queue`.
     when `retryable` is `true` that means kafka server surely not committed this messages, you can safely retry to send;
     and else means maybe, recommend to log to somewhere.
+
+* `wait_on_buffer_full`
+
+    Specifies whether to wait when the buffer queue is full, Default `false`.
+    When buffer queue is full, if option passed `true`, 
+    will use semaphore wait function to block coroutine until timeout or buffer queue has reduced,
+    Otherwise, return "buffer overflow" error with `false`.
+    Notice, it could not be used in those phases which do not support yields, i.e. log phase.
+
+* `wait_buffer_timeout`
+
+    Specifies the max wait time when buffer is full, Default `5` seconds.
 
 Not support compression now.
 

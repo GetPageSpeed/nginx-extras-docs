@@ -23,8 +23,8 @@ load_module modules/ngx_http_vod_module.so;
 ```
 
 
-This document describes nginx-module-vod [v1.31](https://github.com/kaltura/nginx-vod-module/releases/tag/1.31){target=_blank} 
-released on Dec 27 2022.
+This document describes nginx-module-vod [v1.32](https://github.com/kaltura/nginx-vod-module/releases/tag/1.32){target=_blank} 
+released on Oct 17 2023.
 
 <hr />
 ## nginx-vod-module [![Build Status](https://travis-ci.org/kaltura/nginx-vod-module.svg?branch=master)](https://travis-ci.org/kaltura/nginx-vod-module)

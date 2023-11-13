@@ -23,8 +23,8 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.2.2](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.2.2){target=_blank} 
-released on Jun 03 2023.
+This document describes nginx-module-jwt [v3.4.0](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.0){target=_blank} 
+released on Nov 01 2023.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
@@ -80,13 +80,19 @@ server {
 
 ### Directives:
 
+#### auth_jwt
+
     Syntax:	 auth_jwt $variable | on | off;
     Default: auth_jwt off;
     Context: http, server, location
 
 Enables validation of JWT.
 
+The `auth_jwt $variable` value can be used to set a custom way to get the JWT, for example to get it from a cookie instead of the default `Authentication` header: ` auth_jwt $cookie_MyCookieName;`
+
 <hr>
+
+#### auth_jwt_key
 
     Syntax:	 auth_jwt_key value [encoding];
     Default: ——
@@ -98,6 +104,8 @@ The `file` option requires the *value* to be a valid file path (pointing to a PE
 
 <hr>
 
+#### auth_jwt_alg
+
     Syntax:	 auth_jwt_alg any | HS256 | HS384 | HS512 | RS256 | RS384 | RS512 | ES256 | ES384 | ES512;
     Default: auth_jwt_alg any;
     Context: http, server, location
@@ -105,6 +113,8 @@ The `file` option requires the *value* to be a valid file path (pointing to a PE
 Specifies which algorithm the server expects to receive in the JWT.
 
 <hr>
+
+#### auth_jwt_require
 
     Syntax:	 auth_jwt_require $value ... [error=401 | 403];
     Default: ——

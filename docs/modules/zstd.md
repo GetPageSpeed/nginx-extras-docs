@@ -26,8 +26,8 @@ load_module modules/ngx_http_zstd_static_module.so;
 ```
 
 
-This document describes nginx-module-zstd [v0.1.0](https://github.com/tokers/zstd-nginx-module/releases/tag/0.1.0){target=_blank} 
-released on Sep 23 2023.
+This document describes nginx-module-zstd [v0.1.1](https://github.com/tokers/zstd-nginx-module/releases/tag/0.1.1){target=_blank} 
+released on Oct 23 2023.
 
 <hr />
 zstd-nginx-module - Nginx module for the [Zstandard compression](https://facebook.github.io/zstd/).
