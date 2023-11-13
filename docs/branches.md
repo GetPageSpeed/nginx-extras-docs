@@ -9,7 +9,7 @@ Which one is best for you? It depends.
 
 ## The stable NGINX branch
 
-When you simply set up GetPageSpeed repository on your system, you are able to install stable NGINX
+When you set up GetPageSpeed repository on your system, you are able to install stable NGINX
 packages, by default.
 
 The stable branch has less moving parts, and NGINX itself is rarely updated on it.
