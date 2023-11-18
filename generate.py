@@ -39,7 +39,7 @@ def enrich_with_yml_info(md, module_config, release):
         intro = f"""
 ## Installation
 
-CentOS/RHEL 6, 7, 8 and Amazon Linux 2 are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
+CentOS/RHEL/RockyLinux/etc. and Amazon Linux are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
 
 Fedora Linux is supported free of charge and doesn't require a subscription.
 
@@ -71,11 +71,11 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -136,7 +136,7 @@ def enrich_lib_with_yml_info(md, module_config, release):
         intro = f"""
 ## Installation
 
-CentOS/RHEL and Amazon Linux 2 are supported and require a commercial subscription.
+CentOS/RHEL and Amazon Linux are supported and require a commercial subscription.
 
 If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
 
