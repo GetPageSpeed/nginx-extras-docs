@@ -13,7 +13,7 @@ No longer you have to manually compile anything when you need to update NGINX or
 An update is just a `yum update` that takes seconds and no downtime whatsoever.
 
 We currently support all major RPM-based distros, including CentOS/RHEL,
-as well as Amazon Linux 2 and latest Fedora Linux.
+as well as Amazon Linux and latest Fedora Linux.
 
 All RHEL derivatives like Oracle Linux, AlmaLinux and Rocky Linux are supported as well.
 
