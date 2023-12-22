@@ -1,5 +1,6 @@
 # Lua
 
-Nginx Lua module is a high-level Lua API for Nginx. It allows to script Nginx without touching the C code. It is bundled with the [OpenResty](https://openresty.org/en/){target=_blank} distribution.
+Nginx Lua module is a high-level Lua API for Nginx. It allows scripting Nginx without touching the C code.
+Multiple Lua library packages are made available by GetPageSpeed to build ultimate Nginx configurations, powered by Lua.
 
 {!docs/lua_list.md!}
