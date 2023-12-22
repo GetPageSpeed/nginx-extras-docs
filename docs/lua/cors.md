@@ -157,17 +157,6 @@ run
 This is the entry for lua-resty-cors to run
 
 
-## Contributing
-
-To contribute to lua-resty-cors, clone this repo locally and commit your code on a separate branch.
-
-PS: PR Welcome :rocket: :rocket: :rocket: :rocket:
-
-
-## Author
-
-> GitHub [@detailyang](https://github.com/detailyang)
-
 ## License
 lua-resty-cors is licensed under the [MIT] license.
 

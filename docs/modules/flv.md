@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -37,14 +37,6 @@ A media streaming server based on [nginx-rtmp-module](https://github.com/arut/ng
 Donate if you like this module. Many thanks to you!
 
 <a href="https://www.paypal.me/ShingWong" target="_blank"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/44_Grey_PayPal_Pill_Button.png" alt="PayPal" /></a>
-
-### Credits
-
-* Igor Sysoev, the creator of [NGINX](http://nginx.org).
-
-* Roman Arutyunyan, who created [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module).
-
-* Contributors, refer to [AUTHORS](https://github.com/winshining/nginx-http-flv-module/blob/master/AUTHORS) for details.
 
 ## Features
 

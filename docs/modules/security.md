@@ -2,7 +2,7 @@
 
 ## Installation
 
-CentOS/RHEL 6, 7, 8 and Amazon Linux 2 are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
+CentOS/RHEL/RockyLinux/etc. and Amazon Linux are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
 
 Fedora Linux is supported free of charge and doesn't require a subscription.
 
@@ -177,92 +177,6 @@ using the same unique identificator.
 
 String can contain variables.
 
-
-## Contributing
-
-As an open source project we invite (and encourage) anyone from the community to contribute to our project. This may take the form of: new
-functionality, bug fixes, bug reports, beginners user support, and anything else that you
-are willing to help with. Thank you.
-
-
-## Providing Patches
-
-We prefer to have your patch within the GitHub infrastructure to facilitate our
-review work, and our QA integration. GitHub provides an excellent
-documentation on how to perform “Pull Requests”. More information available
-here: https://help.github.com/articles/using-pull-requests/
-
-Please respect the coding style in use. Pull requests can include various commits, so
-provide one fix or one functionality per commit. Do not change anything outside
-the scope of your target work (e.g. coding style in a function that you have
-passed by). 
-
-### Don’t know where to start?
-
-Within our code there are various items marked as TODO or FIXME that may need
-your attention. Check the list of items by performing a grep:
-
-```
-$ cd /path/to/modsecurity-nginx
-$ egrep -Rin "TODO|FIXME" -R *
-```
-
-You may also take a look at recent bug reports and open issues to get an idea of what kind of help we are looking for.
-
-### Testing your patch
-
-Along with the manual testing, we strongly recommend that you to use the nginx test
-utility to make sure that you patch does not adversely affect the behavior or performance of nginx. 
-
-The nginx tests are available on: http://hg.nginx.org/nginx-tests/ 
-
-To use those tests, make sure you have the Perl utility prove (part of Perl 5)
-and proceed with the following commands:
-
-```
-$ cp /path/to/ModSecurity-nginx/tests/* /path/to/nginx/test/repository
-$ cd /path/to/nginx/test/repository
-$ TEST_NGINX_BINARY=/path/to/your/nginx prove .
-```
-
-If you are facing problems getting your added functionality to pass all the nginx tests, feel free to contact us or the nginx mailing list at: http://nginx.org/en/support.html
-
-### Debugging 
-
-We respect the nginx debugging schema. By using the configuration option
-"--with-debug" during the nginx configuration you will also be enabling the
-connector's debug messages. Core dumps and crashes are expected to be debugged
-in the same fashion that is used to debug nginx. For further information,
-please check the nginx debugging information: http://wiki.nginx.org/Debugging
-
-
-## Reporting Issues
-
-If you are facing a configuration issue or if something is not working as you
-expect it to be, please use ModSecurity user’s mailing list. Issues on GitHub
-are also welcome, but we prefer to have users question on the mailing list first,
-where you can reach an entire community. Also don’t forget to look for an
-existing issue before opening a new one.
-
-Lastly, If you are planning to open an issue on GitHub, please don’t forget to tell us the
-version of your libmodsecurity and the version of the nginx connector you are running.
-
-### Security issue
-
-Please do not publicly report any security issue. Instead, contact us at:
-security@modsecurity.org to report the issue. Once the problem is fixed we will provide you with credit for the discovery.
-
-
-## Feature Request
-
-We would love to discuss any ideas that you may have for a new feature. Please keep in mind this is a community driven project so be sure to contact the community via the mailing list to get feedback first. Alternatively,
-feel free to open GitHub issues requesting for new features. Before opening a new issue, please check if there is an existing feature request for the desired functionality.
-
-
-## Packaging
-
-Having our packages in distros on time is something we highly desire. Let us know if
-there is anything we can do to facilitate your work as a packager.
 
 ## GitHub
 

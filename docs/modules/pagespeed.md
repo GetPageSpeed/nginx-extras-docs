@@ -2,7 +2,7 @@
 
 ## Installation
 
-CentOS/RHEL 6, 7, 8 and Amazon Linux 2 are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
+CentOS/RHEL/RockyLinux/etc. and Amazon Linux are supported and require a [subscription](https://www.getpagespeed.com/repo-subscribe).
 
 Fedora Linux is supported free of charge and doesn't require a subscription.
 

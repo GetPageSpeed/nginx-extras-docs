@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -23,8 +23,8 @@ load_module modules/ndk_http_module.so;
 ```
 
 
-This document describes nginx-module-ndk [v0.3.2](https://github.com/vision5/ngx_devel_kit/releases/tag/v0.3.2){target=_blank} 
-released on Nov 24 2022.
+This document describes nginx-module-ndk [v0.3.3](https://github.com/vision5/ngx_devel_kit/releases/tag/v0.3.3){target=_blank} 
+released on Nov 15 2023.
 
 <hr />
 
@@ -202,12 +202,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 If you are an Nginx module developer, and have developed some functions that are
 generic in nature (or would be easily adapted to be so), then please send them to
 me at the address below, and I'll addmclyne to the kit.
-
-
-## Author
-
-[Marcus Clyne](https://github.com/mclyne)
-
 
 
 ## Special Thanks

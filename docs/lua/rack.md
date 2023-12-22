@@ -207,10 +207,6 @@ end
 
 Your application can add new fields or even functions to the req / res tables where appropriate, which could be used by other middleware so long as the dependencies are clear (and one calls `use()` in the correct order). 
 
-## Author
-
-James Hurst <james@pintsized.co.uk>
-
 ## Licence
 
 This module is licensed under the 2-clause BSD license.

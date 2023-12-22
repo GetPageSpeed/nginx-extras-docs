@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -131,10 +131,6 @@ brotli_types application/atom+xml application/javascript application/json applic
              font/eot font/opentype font/otf font/truetype image/svg+xml image/vnd.microsoft.icon
              image/x-icon image/x-win-bitmap text/css text/javascript text/plain text/xml;
 ```
-
-## Contributing
-
-See [Contributing](CONTRIBUTING.md).
 
 ## License
 

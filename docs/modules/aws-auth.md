@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -132,11 +132,6 @@ The 2.x version of the module currently only has support for GET and HEAD calls.
 signing request body is complex and has not yet been implemented.
 
 
-
-## Credits
-Original idea based on http://nginx.org/pipermail/nginx/2010-February/018583.html and suggestion of moving to variables rather than patching the proxy module.
-
-Subsequent contributions can be found in the commit logs of the project.
 
 ## GitHub
 

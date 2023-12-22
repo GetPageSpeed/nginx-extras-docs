@@ -95,10 +95,6 @@ You may need to terminate these processes yourself.
 When the sub-process is terminated by a UNIX signal, the `reason` return value
 will be `"signal"` and the `status` return value will hold the signal number.
 
-## Author
-
-Yichun Zhang (agentzh) <yichun@openresty.com>
-
 ## Copyright & Licenses
 
 This module is licensed under the BSD license.

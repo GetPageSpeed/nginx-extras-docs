@@ -525,13 +525,6 @@ and data.
 
 
 
-## Author
-
-James Hurst <james@pintsized.co.uk>
-
-Based on the Ruby [Qless reference implementation](https://github.com/seomoz/qless). Documentation also adapted from the
-original project.
-
 ## Licence
 
 This module is licensed under the 2-clause BSD license.

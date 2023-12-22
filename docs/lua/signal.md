@@ -110,10 +110,6 @@ INFO
 
 The special signal name `NONE` is also supported, which is mapped to zero (0).
 
-## Author
-
-Yichun Zhang (agentzh) <yichun@openresty.com>
-
 ## Copyright & Licenses
 
 This module is licensed under the BSD license.

@@ -366,19 +366,6 @@ it will throw an error if `callback` is not a function value.
 
 Please report bugs or submit patches by creating a ticket on the [GitHub Issue Tracker](http://github.com/Kong/lua-resty-worker-events/issues),
 
-## Author
-
-Thijs Schreijer <thijs@konghq.com>, Kong Inc.
-
-## Copyright and License
-
-This module is licensed under the [Apache 2.0 license](https://opensource.org/licenses/Apache-2.0).
-
-Copyright (C) 2016-2020, by Thijs Schreijer, Kong Inc.
-
-All rights reserved.
-
-
 ## History
 
 ### Releasing new versions

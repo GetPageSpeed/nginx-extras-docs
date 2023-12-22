@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -154,12 +154,6 @@ location ^~ /backend_location/ {
 * `$secure_link_hmac_token` - 
 * `$secure_link_hmac_expires` - The lifetime of a link passed in a request.
 
-
-## Contributing:
-
-Git source repositories: http://github.com/nginx-modules/ngx_http_hmac_secure_link_module/tree/master
-
-Please feel free to fork the project at GitHub and submit pull requests or patches.
 
 ## GitHub
 

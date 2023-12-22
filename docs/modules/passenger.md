@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -23,8 +23,8 @@ load_module modules/ngx_http_passenger_module.so;
 ```
 
 
-This document describes nginx-module-passenger [v6.0.18](https://github.com/phusion/passenger/releases/tag/release-6.0.18){target=_blank} 
-released on Jun 12 2023.
+This document describes nginx-module-passenger [v6.0.19](https://github.com/phusion/passenger/releases/tag/release-6.0.19){target=_blank} 
+released on Nov 20 2023.
 
 <hr />
 [![Gem Version](https://badge.fury.io/rb/passenger.svg)](https://badge.fury.io/rb/passenger)

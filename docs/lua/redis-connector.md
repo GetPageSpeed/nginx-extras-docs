@@ -301,11 +301,6 @@ Given a connected Sentinel instance and a master name, will return a list of
 registered slave Redis instances.
 
 
-## Author
-
-James Hurst <james@pintsized.co.uk>
-
-
 ## Licence
 
 This module is licensed under the 2-clause BSD license.

@@ -82,6 +82,7 @@ nav:
     ipscrub: modules/ipscrub.md
     jpeg: modules/jpeg.md
     js-challenge: modules/js-challenge.md
+    json: modules/json.md
     json-var: modules/json-var.md
     jwt: modules/jwt.md
     length-hiding: modules/length-hiding.md
@@ -127,6 +128,7 @@ nav:
     untar: modules/untar.md
     upload: modules/upload.md
     upstream-fair: modules/upstream-fair.md
+    upstream-jdomain: modules/upstream-jdomain.md
     upsync: modules/upsync.md
     vod: modules/vod.md
     vts: modules/vts.md

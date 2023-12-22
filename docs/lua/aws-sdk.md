@@ -150,10 +150,6 @@ us. So, don't change the code manually in the `lib/resty/aws` directory.
 - `resty.aws.cognito-identity`
 
 
-## Not Yet Implemented
-
-- [s3 signigure](http://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

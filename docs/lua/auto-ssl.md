@@ -392,10 +392,6 @@ To release a new version to LuaRocks:
 - Run `make release VERSION=X.X.X`.
 - Copy the CHANGELOG notes into a [new GitHub Release](https://github.com/GUI/lua-resty-auto-ssl/releases/new).
 
-## Credits
-
-**[dehydrated](https://github.com/lukas2511/dehydrated)** is the client used internally that does all the heavy lifting with Let's Encrypt.
-
 ## TODO
 
 - Document and formalize the API for other storage adapters.

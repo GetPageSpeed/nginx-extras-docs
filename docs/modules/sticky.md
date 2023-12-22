@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -131,12 +131,6 @@ Cookie settings:
 - sticky module does not work with the "backup" option of the "server" configuration item.
 - sticky module might work with the nginx_http_upstream_check_module (up from version 1.2.3)
   
-
-
-## Contributing
-
-- please send/suggest patches as diffs
-- tickets and issues here: https://bitbucket.org/nginx-goodies/nginx-sticky-session-ng
 
 
 ## Downloads

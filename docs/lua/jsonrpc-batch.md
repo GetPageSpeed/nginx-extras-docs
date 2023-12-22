@@ -252,10 +252,6 @@ Context object is a lua table, and has following keys.
   This is the response of `ngx.location.capture_multi`.
 
 
-## Author
-
-* Yusuke Enomoto ([mosa_siru](https://twitter.com/mosa_siru))
-
 ## License
 
 Copyright 2014- Yusuke Enomoto (mosa_siru)

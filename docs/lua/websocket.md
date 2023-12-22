@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-websocket
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-websocket [v0.10](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.10){target=_blank} 
-released on Jan 19 2023.
+This document describes lua-resty-websocket [v0.11](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.11){target=_blank} 
+released on Aug 07 2023.
     
 <hr />
 
@@ -323,6 +323,44 @@ An optional Lua table can be specified as the last argument to this method to sp
 * `pool`
 
     Specifies a custom name for the connection pool being used. If omitted, then the connection pool name will be generated from the string template `<host>:<port>`.
+* `pool_size`
+
+  specify the size of the connection pool. If omitted and no
+  `backlog` option was provided, no pool will be created. If omitted
+  but `backlog` was provided, the pool will be created with a default
+  size equal to the value of the [lua_socket_pool_size](https://github.com/openresty/lua-nginx-module/tree/master#lua_socket_pool_size)
+  directive.
+  The connection pool holds up to `pool_size` alive connections
+  ready to be reused by subsequent calls to [connect](#client:connect), but
+  note that there is no upper limit to the total number of opened connections
+  outside of the pool. If you need to restrict the total number of opened
+  connections, specify the `backlog` option.
+  When the connection pool would exceed its size limit, the least recently used
+  (kept-alive) connection already in the pool will be closed to make room for
+  the current connection.
+  Note that the cosocket connection pool is per Nginx worker process rather
+  than per Nginx server instance, so the size limit specified here also applies
+  to every single Nginx worker process. Also note that the size of the connection
+  pool cannot be changed once it has been created.
+  This option was first introduced in the `v0.10.14` release.
+
+* `backlog`
+
+  if specified, this module will limit the total number of opened connections
+  for this pool. No more connections than `pool_size` can be opened
+  for this pool at any time. If the connection pool is full, subsequent
+  connect operations will be queued into a queue equal to this option's
+  value (the "backlog" queue).
+  If the number of queued connect operations is equal to `backlog`,
+  subsequent connect operations will fail and return `nil` plus the
+  error string `"too many waiting connect operations"`.
+  The queued connect operations will be resumed once the number of connections
+  in the pool is less than `pool_size`.
+  The queued connect operation will abort once they have been queued for more
+  than `connect_timeout`, controlled by
+  [settimeouts](#client:set_timeout), and will return `nil` plus
+  the error string `"timeout"`.
+  This option was first introduced in the `v0.10.14` release.
 * `ssl_verify`
 
     Specifies whether to perform SSL certificate verification during the
@@ -479,26 +517,6 @@ Please report bugs or submit patches by
 
 1. creating a ticket on the [GitHub Issue Tracker](http://github.com/agentzh/lua-resty-websocket/issues),
 1. or posting to the [OpenResty community](http://wiki.nginx.org/HttpLuaModule#Community).
-
-## Author
-
-Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, OpenResty Inc.
-
-## Copyright and License
-
-This module is licensed under the BSD license.
-
-Copyright (C) 2013-2017, by Yichun Zhang (agentzh) <agentzh@gmail.com>, OpenResty Inc.
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## See Also
 * Blog post [WebSockets with OpenResty](https://medium.com/p/1778601c9e05) by Aapo Talvensaari.

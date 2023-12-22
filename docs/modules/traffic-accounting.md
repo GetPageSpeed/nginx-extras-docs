@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -247,52 +247,6 @@ See [samples/](samples/) for examples.
 
 * master : main development branch.
 * tag v0.1 or v2-freeze-20110526 : legacy release. works with nginx version(0.7.xx, 0.8.xx), nginx 0.9 is not tested. didn't work with nginx above 1.0.x.
-
-## Contributing
-
-1. Fork it ( https://github.com/Lax/traffic-accounting-nginx-module/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-[Known issues](https://github.com/Lax/traffic-accounting-nginx-module/issues?q=)
-
-## Author
-
-Liu Lantao [Github@Lax](https://github.com/Lax)
-
-[Contributors](https://github.com/Lax/traffic-accounting-nginx-module/graphs/contributors)
-
-## Contributors
-
-### Code Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/Lax/traffic-accounting-nginx-module/graphs/contributors"><img src="https://opencollective.com/traffic-acctiong-nginx-module/contributors.svg?width=890&button=false" /></a>
-
-### Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/traffic-acctiong-nginx-module/contribute)]
-
-#### Individuals
-
-<a href="https://opencollective.com/traffic-acctiong-nginx-module"><img src="https://opencollective.com/traffic-acctiong-nginx-module/individuals.svg?width=890"></a>
-
-#### Organizations
-
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/traffic-acctiong-nginx-module/contribute)]
-
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/0/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/1/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/2/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/3/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/4/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/5/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/6/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/7/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/8/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/traffic-acctiong-nginx-module/organization/9/website"><img src="https://opencollective.com/traffic-acctiong-nginx-module/organization/9/avatar.svg"></a>
 
 ## License
 

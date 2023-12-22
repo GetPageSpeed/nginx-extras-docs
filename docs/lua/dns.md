@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-dns
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-dns [v0.22](https://github.com/openresty/lua-resty-dns/releases/tag/v0.22){target=_blank} 
-released on Apr 30 2021.
+This document describes lua-resty-dns [v0.23](https://github.com/openresty/lua-resty-dns/releases/tag/v0.23){target=_blank} 
+released on Aug 06 2023.
     
 <hr />
 
@@ -35,7 +35,7 @@ This library is considered production ready.
 
 ## Description
 
-This Lua library provies a DNS resolver for the ngx_lua nginx module:
+This Lua library provides a DNS resolver for the ngx_lua nginx module:
 
 https://github.com/openresty/lua-nginx-module/#readme
 
@@ -48,7 +48,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
 
 Note that, this library is bundled and enabled by default in the [OpenResty bundle](http://openresty.org/).
 
-IMPORTANT: to be able generate unique ids, the random generator must be properly seeded using `math.randomseed` prior to using this module.
+IMPORTANT: to be able to generate unique ids, the random generator must be properly seeded using `math.randomseed` prior to using this module.
 
 ## Synopsis
 
@@ -97,7 +97,7 @@ new
 ---
 `syntax: r, err = class:new(opts)`
 
-Creates a dns.resolver object. Returns `nil` and an message string on error.
+Creates a dns.resolver object. Returns `nil` and a message string on error.
 
 It accepts a `opts` table argument. The following options are supported:
 
@@ -109,13 +109,18 @@ It accepts a `opts` table argument. The following options are supported:
 	the total number of times of retransmitting the DNS request when receiving a DNS response times out according to the `timeout` setting. Defaults to `5` times. When trying to retransmit the query, the next nameserver according to the round-robin algorithm will be picked up.
 * `timeout`
 
-	the time in milliseconds for waiting for the respond for a single attempt of request transmition. note that this is ''not'' the maximal total waiting time before giving up, the maximal total waiting time can be calculated by the expression `timeout x retrans`. The `timeout` setting can also be changed by calling the `set_timeout` method. The default `timeout` setting is 2000 milliseconds, or 2 seconds.
+	the time in milliseconds for waiting for the response for a single attempt of request transmission. note that this is ''not'' the maximal total waiting time before giving up, the maximal total waiting time can be calculated by the expression `timeout x retrans`. The `timeout` setting can also be changed by calling the `set_timeout` method. The default `timeout` setting is 2000 milliseconds, or 2 seconds.
 * `no_recurse`
 
 	a boolean flag controls whether to disable the "recursion desired" (RD) flag in the UDP request. Defaults to `false`.
 * `no_random`
 
 	a boolean flag controls whether to randomly pick the nameserver to query first, if `true` will always start with the first nameserver listed. Defaults to `false`.
+
+## destroy
+`syntax: r:destroy()`
+
+Destroy the dns.resolver object by releasing all the internal occupied resources.
 
 ## query
 `syntax: answers, err, tries? = r:query(name, options?, tries?)`
@@ -137,7 +142,7 @@ which usually takes some of the following fields:
 	The current resource record type, possible values are `1` (`TYPE_A`), `5` (`TYPE_CNAME`), `28` (`TYPE_AAAA`), and any other values allowed by RFC 1035.
 * `address`
 
-	The IPv4 or IPv6 address in their textual representations when the resource record type is either `1` (`TYPE_A`) or `28` (`TYPE_AAAA`), respectively. Secussesive 16-bit zero groups in IPv6 addresses will not be compressed by default, if you want that, you need to call the `compress_ipv6_addr` static method instead.
+	The IPv4 or IPv6 address in their textual representations when the resource record type is either `1` (`TYPE_A`) or `28` (`TYPE_AAAA`), respectively. Successive 16-bit zero groups in IPv6 addresses will not be compressed by default, if you want that, you need to call the `compress_ipv6_addr` static method instead.
 * `section`
 
 	The identifier of the section that the current answer record belongs to. Possible values are `1` (`SECTION_AN`), `2` (`SECTION_NS`), and `3` (`SECTION_AR`).
@@ -342,11 +347,11 @@ Identifier of the `Authority` section in the DNS response. Equal to the decimal 
 ## SECTION_AR
 `syntax: stype = r.SECTION_AR`
 
-Idnetifier of the `Additional` section in the DNS response. Equal to the decimal number `3`.
+Identifier of the `Additional` section in the DNS response. Equal to the decimal number `3`.
 
 ## Automatic Error Logging
 
-By default the underlying [ngx_lua](https://github.com/openresty/lua-nginx-module/#readme) module
+By default, the underlying [ngx_lua](https://github.com/openresty/lua-nginx-module/#readme) module
 does error logging when socket errors happen. If you are already doing proper error
 handling in your own Lua code, then you are recommended to disable this automatic error logging by turning off [ngx_lua](https://github.com/openresty/lua-nginx-module/#readme)'s [lua_socket_log_errors](https://github.com/openresty/lua-nginx-module/#lua_socket_log_errors) directive, that is,
 
@@ -371,26 +376,6 @@ each request.
 
 * Concurrent (or parallel) query mode
 * Better support for other resource record types like `TLSA`.
-
-## Author
-
-Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, OpenResty Inc.
-
-## Copyright and License
-
-This module is licensed under the BSD license.
-
-Copyright (C) 2012-2019, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, OpenResty Inc.
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme

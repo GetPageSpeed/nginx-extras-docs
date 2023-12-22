@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -23,23 +23,11 @@ load_module modules/ngx_http_naxsi_module.so;
 ```
 
 
-This document describes nginx-module-naxsi [v1.3](https://github.com/dvershinin/naxsi/releases/tag/1.3){target=_blank} 
-released on Apr 27 2023.
+This document describes nginx-module-naxsi [v1.6](https://github.com/dvershinin/naxsi/releases/tag/1.6){target=_blank} 
+released on Nov 28 2023.
 
 <hr />
-![naxsi](https://raw.githubusercontent.com/nbs-system/naxsi/master/logo.png)
-
-[![coverity](https://scan.coverity.com/projects/1883/badge.svg)](https://scan.coverity.com/projects/1883)
-[![travis-ci](https://travis-ci.org/nbs-system/naxsi.svg?branch=master)](https://travis-ci.org/nbs-system/naxsi)
-[![coveralls](https://coveralls.io/repos/github/nbs-system/naxsi/badge.svg?branch=master)](https://coveralls.io/github/nbs-system/naxsi?branch=master)
-[![codecov](http://codecov.io/github/nbs-system/naxsi/coverage.svg?branch=master)](http://codecov.io/github/nbs-system/naxsi?branch=master)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/740/badge)](https://bestpractices.coreinfrastructure.org/projects/740)
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/nbs-system/naxsi)
-
-### We need your help
-
-[Please fill in this little feedback survey](https://docs.google.com/spreadsheet/viewform?formkey=dG9UWDFuTEhiWWt4UF9fZEtwWFVJUlE6MQ), 2 minutes of your time, great help for us !
-
+![naxsi](logo.png)
 
 ## What is Naxsi?
 
@@ -47,8 +35,7 @@ NAXSI means [Nginx]( http://nginx.org/ ) Anti [XSS]( https://www.owasp.org/index
 
 Technically, it is a third party nginx module, available as a package for
 many UNIX-like platforms. This module, by default, reads a small subset of
-[simple (and readable) rules]( https://github.com/nbs-system/naxsi/blob/master/naxsi_config/naxsi_core.rules )
-containing 99% of known patterns involved in
+simple (and readable) rules containing 99% of known patterns involved in
 website vulnerabilities. For example, `<`, `|` or `drop` are not supposed
 to be part of a URI.
 
@@ -75,50 +62,36 @@ Naxsi should be compatible with any nginx version.
 
 It depends on `libpcre` for its regexp support, and is reported to work great on NetBSD, FreeBSD, OpenBSD, Debian, Ubuntu and CentOS.
 
-### Getting started
+## Why using this repository
 
-- The [documentation](https://github.com/nbs-system/naxsi/wiki)
-- Some [rules]( https://github.com/nbs-system/naxsi-rules ) for mainstream software
-- The [nxapi/nxtool]( https://github.com/nbs-system/naxsi/tree/master/nxapi ) to generate rules
+*The original project is (unofficially) abandoned*, but you can fully ask for support here as i'm willing to keep the project working as last remaining developer.
 
+## Documentation
 
-<img alt="nxapi-dashboard logo" src="https://raw.githubusercontent.com/wiki/nbs-system/naxsi/Images/kibana.png" align="center"/>   
+[docs](docs/index)
 
-## Security issues
+## Build naxsi
 
+**Be sure when you clone the repository to fetch all the submodules.**
 
-If you find a security issue, please send us a mail to the security user, on nbs-system.com, using the gpg key 498C46FF087EDC36E7EAF9D445414A82A9B22D78:
-
-## ```
-
-mQENBFnKHhoBCADaOa0MKEqRy0h2ohIzczblzkMQCbU9oD1HwJ1VkYnn7TGW2iKi
-NISxisExIXpy2Bn/pA27GiV0V/Do3NL6D9r0oOCrGR27muGM0N/dk9UMv7MWw8zv
-K8cO+Sa28s0cAv7r2ogUJj5YOo8D4wHEpE8424TE89V9+Qg/SaFCxKoELFP0c7wu
-mtsm0PnL65piZ1EB7lQo2gxg+8AV45MD1Y2rREMKUoZE23X+nXKsmEh9BFEPaU5M
-7WQp0NasqeMNoGhwfw9ttVAeLhkEkaTjW1PkNRIb7vrtV9KVb5uKucflfbOnDlzu
-tQ9U3tYto0mcSCRchAClfEmoSi/0mKyb5N6ZABEBAAG0NVNlY3VyaXR5IHRlYW0g
-b2YgTkJTIFN5c3RlbSA8c2VjdXJpdHlAbmJzLXN5c3RlbS5jb20+iQE3BBMBCAAh
-BQJZyh4aAhsDBQsJCAcCBhUICQoLAgQWAgMBAh4BAheAAAoJEEVBSoKpsi14jy0H
-/1/XB9THhvmG0ow81sld2Zx8qhnNed8VvYDS6mEjpDWNVPxENwDbnakEjisq1Hrb
-2UQPYCyQ5dekPNFVwQHIGXkX0eb1Ank+4esBJuEpQ2985tgNhJy5ZX+Imb5C8nZC
-90uYSN1UUg559nUsFeElOXSEH6tIXK/TvjsvMYoi2Ukl6lb7PbIU2fjLY9Iqv3QY
-32p8/Bl1fVKWbXOk0HDgJ6zA3Kr56QhZOLBkxjOa2XAnnIE76jZxUJ9qPCwWd1vW
-GFxtx1Y+eZriqHiC9CPe6aBWcIHaTXSu1WBbXrFu8/eCWw243Rxm8l9wgA/a7VWq
-WBfO45IhJUwh95naRpw8/4a5AQ0EWcoeGgEIAJtzSyyzfn2RX+BsyoRFANUpIgrV
-/9eohYQVNqK3AFthmq7Kjmt4+hszF5+0wCFmWwYqGnqk1/dsWmqpkXsJldEn6oPJ
-Bng+Dc67Yki2dR3TroAf95UmI08fhyM7TMXp8m46BPRRMzPNwalEeEm49Oclmfxb
-JsWWCChWVLWGz2xgPEAv3fPHqus7Rwz/WIl53l/qy1Wf0ewmjRpVEfnEMKBExtBK
-4kRxQ40LzUZ1SfpyGc3nMbswhevT7/klqrdJdCnlu67Y/IfRGxGZuNj1n1Dib3Hx
-zTBHo3Y2R3BB93Ix8dkbLaxLqFbOYVdijCgJklqUWhx7btpQ2xnZyzyCMuUAEQEA
-AYkBHwQYAQgACQUCWcoeGgIbDAAKCRBFQUqCqbIteFRvB/9u3Mae8n8ELrJKOn+P
-PEbWjutObIuTplvY4QcbnNb9dsgsKryamp4CFJsA5XuitPpC31GDMXBZO5/LLOuH
-HoMaXFJdic0NToL/3REhu+aZkNIU6S/iaPRNVhkSV4lwQsvncz+nBaiDUJjyfJm2
-kEjVcRTM8yqzcNo/9Gn0ts+XCUqRj7+S1M4Bj3NySoO/w2n+7OLbIAj+wQZcj3Gf
-5QhBYaY4YaFxrJE0IZxyXGHw8xhKR6AN+u4TO7LRCW+cWV/sHWir1MXieJoEG8+R
-W/BhrB0Rz5uxOXMoGCCD2TUiHq7zpuHGnYFVmAnHQZaaQxXve4VrcmznxgpV8lpW
-mZug
-## =+eIv
 ```
+$ git clone --recurse-submodules https://github.com/wargio/naxsi.git
+$ wget --no-clobber -O nginx.tar.gz "https://nginx.org/download/nginx-1.22.0.tar.gz"
+$ mkdir nginx-source
+$ tar -C nginx-source -xzf nginx.tar.gz --strip-components=1
+$ cd nginx-source
+$ ./configure  --prefix=/etc/nginx --add-dynamic-module=../naxsi/naxsi_src
+$ make
+```
+
+## Support
+
+You can ask for support regarding NAXSI here or on the original repository https://github.com/nbs-system/naxsi
+
+## Future plans
+
+- Bring back nxapi via py3
+- Creation of a simple tool to create rules and test them
 
 ## GitHub
 

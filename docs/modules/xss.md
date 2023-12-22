@@ -5,11 +5,11 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 6, 7, 8, 9
-* CentOS 6, 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9
+* CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
-* Amazon Linux 2
+* Amazon Linux 2 and Amazon Linux 2023
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
@@ -166,11 +166,6 @@ diagnostics when things go wrong.
 ## TODO
 
 * add cross-site POST support.
-
-
-## Author
-
-Yichun "agentzh" Zhang (章亦春) &lt;agentzh@gmail@com&gt;
 
 
 ## Copyright & License

@@ -942,15 +942,6 @@ Returns a Lua string which describe the error code `code`, `"unknown error"` wil
 Judges whether the error code `code` is a stream-level error.
 
 
-## Author
-
-Alex Zhang (张超) zchao1995@gmail.com, UPYUN Inc.
-
-
-## Copyright and License
-
-Please see the [LICENSE](LICENSE) file.
-
 ## See Also
 
 * upyun-resty: https://github.com/upyun/upyun-resty

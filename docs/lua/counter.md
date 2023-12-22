@@ -95,14 +95,6 @@ for return values.
 ## TODO
 
 
-## Copyright and License
-
-This module is licensed under the Apache 2.0 license.
-
-Copyright (C) 2019, Kong Inc.
-
-All rights reserved.
-
 ## See Also
 * [lua-nginx-module](https://github.com/openresty/lua-nginx-module)
 

@@ -197,39 +197,6 @@ Please report bugs by filing an issue with our GitHub issue tracker at https://g
 
 If the bug is casued by libmaxminddb  tracker at https://github.com/maxmind/libmaxminddb/issues
 
-## Copyright and License
-
-This module is licensed under the apache LICENSE-2.0 license.
-
-Copyright 2017-now anjia (anjia0532@gmail.com)
-
-Licensed under the Apache License, Version 2.0 (the "License");
-
-you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at
-
-	http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-
-distributed under the License is distributed on an "AS IS" BASIS,
-
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-See the License for the specific language governing permissions and
-
-limitations under the License.
-
-[maxmind/libmaxminddb]: https://github.com/maxmind/libmaxminddb
-[openresty]: https://openresty.org/en/installation.html
-[linkGeolite2FreeDownloadableDatabases]: http://dev.maxmind.com/geoip/geoip2/geolite2/
-[maxmind/geoipupdate]: https://github.com/maxmind/geoipupdate
-[linkGeoip2CityAndCountryCsvDatabases]: https://dev.maxmind.com/geoip/geoip2/geoip2-city-country-csv-databases/
-[maxmind/libmaxminddb#source#lookup_and_print]: https://github.com/maxmind/libmaxminddb/blob/master/bin/mmdblookup.c#L262
-[maxmind/libmaxminddb#source#dump_entry_data_list]: https://github.com/maxmind/libmaxminddb/blob/master/src/maxminddb.c#L1938
-[lilien1010/lua-resty-maxminddb]: https://github.com/lilien1010/lua-resty-maxminddb
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

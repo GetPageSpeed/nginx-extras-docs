@@ -463,10 +463,10 @@ nginx-module-{handle}](https://github.com/{lib_config['repo']}){{target=_blank}}
                 [f'[lua-resty-{handle}](lua/{handle}.md)', lib_config['summary']])
 
 
-# process_lua_glob("../nginx-lua-extras/resty/*.yml")
-# process_modules_glob("../nginx-extras/modules/*.yml")
-# process_modules_glob("../nginx-extras/modules/others/*.yml")
-# process_modules_glob("../nginx-extras/modules/internal/*.yml")
+process_lua_glob("../nginx-lua-extras/resty/*.yml")
+process_modules_glob("../nginx-extras/modules/*.yml")
+process_modules_glob("../nginx-extras/modules/others/*.yml")
+process_modules_glob("../nginx-extras/modules/internal/*.yml")
 
 with open(f"docs/modules_list.md", "w") as index_md_f:
     table.sort()

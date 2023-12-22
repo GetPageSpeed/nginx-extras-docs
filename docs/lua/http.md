@@ -481,10 +481,6 @@ Performs a request using the current client request arguments, effectively proxy
 Sets the current response based on the given `res`. Ensures that hop-by-hop headers are not sent downstream, and will read the response according to `chunksize` (see [documentation on the body reader](#resbody_reader) above).
 
 
-## Author
-
-James Hurst <james@pintsized.co.uk>, with contributions from @hamishforbes, @Tieske, @bungle et al.
-
 ## Licence
 
 This module is licensed under the 2-clause BSD license.

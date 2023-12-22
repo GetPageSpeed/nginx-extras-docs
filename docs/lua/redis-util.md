@@ -225,34 +225,6 @@ local red2 = redis:new({
 
 如果有问题，欢迎提 [issues][]
 
-## Copyright and License
-
-This module is licensed under the BSD license.
-
-Copyright (C) 2017-, by AnJia <anjia0532@gmail.com>.
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
-[openresty/lua-resty-redis]: https://github.com/openresty/lua-resty-redis
-[agentzh]: https://github.com/agentzh
-[README.md]: https://github.com/openresty/lua-resty-redis/blob/master/README.markdown
-[linkScript压缩复杂请求]: https://moonbingbing.gitbooks.io/openresty-best-practices/content/redis/script.html
-[openresty/lua-resty-redis#Synopsis]: https://github.com/openresty/lua-resty-redis/blob/master/README.markdown#synopsis
-[linkRedis接口的二次封装（发布订阅）]: https://moonbingbing.gitbooks.io/openresty-best-practices/content/redis/pub_sub_package.html
-[linkRedis接口的二次封装]: https://moonbingbing.gitbooks.io/openresty-best-practices/content/redis/out_package.html
-[lua-resty-redis/lib/resty/redis.lua]: https://github.com/openresty/lua-resty-redis/blob/master/lib/resty/redis.lua
-[issues]: https://github.com/anjia0532/lua-resty-redis-util/issues/new
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

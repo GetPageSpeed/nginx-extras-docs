@@ -459,16 +459,6 @@ local res, err = hp:request{
 }
 ```
 
-## Author
-
-Monkey Zhang <timebug.info@gmail.com>, UPYUN Inc.
-
-Originally started life based on <https://github.com/bakins/lua-resty-http-simple>.
-
-The part of the interface design inspired from <https://github.com/pintsized/lua-resty-http>.
-
-Cosocket docs and implementation borrowed from the other lua-resty-* cosocket modules.
-
 ## Licence
 
 This module is licensed under the 2-clause BSD license.
