@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v1.0.1](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.0.1){target=_blank} 
-released on Nov 07 2023.
+This document describes lua-resty-openssl [v1.1.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.1.0){target=_blank} 
+released on Dec 15 2023.
     
 <hr />
 
@@ -132,7 +132,7 @@ lua-resty-openssl supports following modes:
 
 Compile the module per [security policy](https://www.openssl.org/docs/fips/SecurityPolicy-2.0.2.pdf),
 
-**OpenSSL 3.0.0 fips provider **
+**OpenSSL 3.0.0 fips provider**
 
 Refer to https://wiki.openssl.org/index.php/OpenSSL_3.0 Section 7
 Compile the provider per guide, install the fipsmodule.cnf that
@@ -157,12 +157,6 @@ print(c:get_provider_name()) -- prints "default"
 local c = assert(cipher.new("aes256", "fips=yes"))
 print(c:get_provider_name()) -- prints "fips"
 ```
-
-**BroingSSL fips-20190808 and fips-20210429 (later haven't been certified)**
-
-Compile the module per [security policy](https://csrc.nist.gov/CSRC/media/projects/cryptographic-module-validation-program/documents/security-policies/140sp3678.pdf)
-
-Check if FIPS is acticated by running `assert(openssl.set_fips_mode(true))`.
 
 ### openssl.get_fips_version_text
 
@@ -265,6 +259,61 @@ print(c:encrypt(string.rep("0", 32), string.rep("0", 16), "🦢"))
 **syntax**: *ctx.free(request_context_only?)*
 
 Free the context that was previously created by [ctx.new](#ctxnew).
+
+## resty.openssl.err
+
+A module to provide error messages.
+
+### err.format_error
+
+**syntax**: *msg = err.format_error(ctx_msg?, return_code?, all_errors?)*
+
+**syntax**: *msg = err.format_all_errors(ctx_msg?, return_code?)*
+
+Return the latest error message from the last error code. Errors are formatted as:
+
+    [ctx_msg]: code: [return_code]: error:[error code]:[library name]:[func name]:[reason string]:[file name]:[line number]:
+
+On OpenSSL prior to 3.x, errors are formatted as:
+
+    [ctx_msg]: code: [return_code]: [file name]:[line number]:error:[error code]:[library name]:[func name]:[reason string]:
+
+
+If `all_errors` is set to `true`, all errors no just the latest one will be returned in a single string. All errors thrown
+by this library internally only thrown the latest error.
+
+For example:
+
+```lua
+local f = io.open("t/fixtures/ec_key_encrypted.pem"):read("*a")
+local privkey, err = require("resty.openssl.pkey").new(f, {
+    format = "PEM",
+    type = "pr",
+    passphrase = "wrongpasswrod",
+})
+ngx.say(err)
+-- pkey.new:load_key: error:4800065:PEM routines:PEM_do_header:bad decrypt:crypto/pem/pem_lib.c:467:
+```
+
+### err.get_last_error_code
+
+**syntax**: *code = err.get_last_error_code()*
+
+Return the last error code.
+
+### err.get_lib_error_string
+
+**syntax**: *lib_error_message = err.get_lib_error_string(code?)*
+
+Return the library name of the last error code as string. If `code` is set, return the library name
+corresponding to provided error code instead.
+
+### err.get_reason_error_string
+
+**syntax**: *reason_error_message = err.get_reason_error_string(code?)*
+
+Return the reason of the last error code as string. If `code` is set, return the reason
+corresponding to provided error code instead.
 
 ## resty.openssl.version
 
@@ -514,6 +563,26 @@ local key, err = pkey.new({
 }) 
 ```
 
+It's also possible to pass raw pkeyopt control strings in `config` table as used in the `genpkey` CLI program.
+See [openssl-genpkey(1)](https://www.openssl.org/docs/man3.0/man1/openssl-genpkey.html) for a list of options.
+
+For example:
+
+```lua
+pkey.new({
+  type = 'RSA',
+  bits = 2048,
+  exp = 65537,
+})
+-- is same as
+pkey.new({
+  type = 'RSA',
+  exp = 65537,
+  "rsa_keygen_bits:4096",
+})
+
+```
+
 
 ### pkey.istype
 
@@ -560,6 +629,9 @@ local pem, err = pkey.paramgen({
   group = 'ffdhe4096',
 })
 ```
+
+It's also possible to pass raw pkeyopt control strings in `config` table as used in the `genpkey` CLI program.
+See [openssl-genpkey(1)](https://www.openssl.org/docs/man3.0/man1/openssl-genpkey.html) for a list of options.
 
 ### pkey:get_provider_name
 
@@ -699,10 +771,20 @@ to use when signing. When `md_alg` is undefined, for RSA and EC keys, this funct
 by default. For Ed25519 or Ed448 keys, this function does a PureEdDSA signing,
 no message digest should be specified and will not be used.
 
-`opts` is a table that accepts additional parameters.
+For RSA key, it's also possible to specify `padding` scheme with following choices:
 
-For RSA key, it's also possible to specify `padding` scheme. The choice of values are same
-as those in [pkey:encrypt](#pkeyencrypt). When `padding` is `RSA_PKCS1_PSS_PADDING`, it's
+```lua
+  pkey.PADDINGS = {
+    RSA_PKCS1_PADDING       = 1,
+    RSA_SSLV23_PADDING      = 2,
+    RSA_NO_PADDING          = 3,
+    RSA_PKCS1_OAEP_PADDING  = 4,
+    RSA_X931_PADDING        = 5, -- sign only
+    RSA_PKCS1_PSS_PADDING   = 6, -- sign and verify only
+  }
+```
+
+When `padding` is `RSA_PKCS1_PSS_PADDING`, it's
 possible to specify PSS salt length by setting `opts.pss_saltlen`.
 
 For EC key, this function does a ECDSA signing.
@@ -713,6 +795,32 @@ for a list of algorithms and associated public key algorithms. Normally, the ECD
 is encoded in ASN.1 DER format. If the `opts` table contains a `ecdsa_use_raw` field with
 a true value, a binary with just the concatenation of binary representation `pr` and `ps` is returned.
 This is useful for example to send the signature as JWS.
+
+`opts` is a table that accepts additional parameters with following choices:
+
+```
+{
+  pss_saltlen, -- For PSS mode only this option specifies the salt length.
+  mgf1_md, -- For PSS and OAEP padding sets the MGF1 digest. If the MGF1 digest is not explicitly set in PSS mode then the signing digest is used.
+  oaep_md, -- The digest used for the OAEP hash function. If not explicitly set then SHA1 is used.
+}
+```
+
+It's also possible to pass raw pkeyopt control strings as used in the `pkeyutl` CLI program. This lets user pass in options that
+are not explictly supported as parameters above.
+See [openssl-pkeyutl(1)](https://www.openssl.org/docs/manmaster/man1/openssl-pkeyutl.html) for a list of options.
+
+```lua
+pk:sign(message, nil, pk.PADDINGS.RSA_PKCS1_OAEP_PADDING, {
+  oaep_md = "sha256",
+})
+-- is same as
+pk:sign(message, nil, nil, {
+  "rsa_padding_mode:oaep",
+  "rsa_oaep_md:sha256",
+})
+-- in pkeyutl CLI the above is equivalent to: `openssl pkeyutl -sign -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+```
 
 ### pkey:verify
 
@@ -734,16 +842,18 @@ to use when verifying. When `md_alg` is undefined, for RSA and EC keys, this fun
 by default. For Ed25519 or Ed448 keys, this function does a PureEdDSA verification,
 no message digest should be specified and will not be used.
 
-`opts` is a table that accepts additional parameters.
-
-For RSA key, it's also possible to specify `padding` scheme. The choice of values are same
-as those in [pkey:encrypt](#pkeyencrypt). When `padding` is `RSA_PKCS1_PSS_PADDING`, it's
+When key is a RSA key, the function accepts an optional argument `padding` which choices
+of values are same as those in [pkey:sign](#pkeysign). When `padding` is `RSA_PKCS1_PSS_PADDING`, it's
 possible to specify PSS salt length by setting `opts.pss_saltlen`.
 
 For EC key, this function does a ECDSA verification. Normally, the ECDSA signature
 should be encoded in ASN.1 DER format. If the `opts` table contains a `ecdsa_use_raw` field with
 a true value, this library treat `signature` as concatenation of binary representation `pr` and `ps`.
 This is useful for example to verify the signature as JWS.
+
+`opts` is a table that accepts additional parameters which choices
+of values are same as those in [pkey:sign](#pkeysign).
+
 
 ```lua
 -- RSA and EC keys
@@ -778,32 +888,26 @@ ngx.say(ngx.encode_base64(signature))
 
 ### pkey:encrypt
 
-**syntax**: *cipher_txt, err = pk:encrypt(txt, padding?)*
+**syntax**: *cipher_txt, err = pk:encrypt(txt, padding?, opts?)*
 
 Encrypts plain text `txt` with `pkey` instance, which must loaded a public key.
 
-When key is a RSA key, the function accepts an optional second argument `padding` which can be:
-
-```lua
-  pkey.PADDINGS = {
-    RSA_PKCS1_PADDING       = 1,
-    RSA_SSLV23_PADDING      = 2,
-    RSA_NO_PADDING          = 3,
-    RSA_PKCS1_OAEP_PADDING  = 4,
-    RSA_X931_PADDING        = 5,
-    RSA_PKCS1_PSS_PADDING   = 6,
-  }
-```
-
+The optional second argument `padding` has same meaning as in [pkey:sign](#pkeysign).
 If omitted, `padding` is default to `pkey.PADDINGS.RSA_PKCS1_PADDING`.
+
+The third optional argument `opts` has same meaning as in [pkey:sign](#pkeysign).
+
 
 ### pkey:decrypt
 
-**syntax**: *txt, err = pk:decrypt(cipher_txt, padding?)*
+**syntax**: *txt, err = pk:decrypt(cipher_txt, padding?, opts?)*
 
 Decrypts cipher text `cipher_txt` with pkey instance, which must loaded a private key.
 
-The optional second argument `padding` has same meaning in [pkey:encrypt](#pkeyencrypt).
+The optional second argument `padding` has same meaning as in [pkey:sign](#pkeysign).
+If omitted, `padding` is default to `pkey.PADDINGS.RSA_PKCS1_PADDING`.
+
+The third optional argument `opts` has same meaning as in [pkey:sign](#pkeysign).
 
 ```lua
 local pkey = require("resty.openssl.pkey")
@@ -820,11 +924,14 @@ ngx.say(decrypted)
 
 ### pkey:sign_raw
 
-**syntax**: *signature, err = pk:sign_raw(txt, padding?)*
+**syntax**: *signature, err = pk:sign_raw(txt, padding?, opts?)*
 
 Signs the cipher text `cipher_txt` with pkey instance, which must loaded a private key.
 
-The optional second argument `padding` has same meaning in [pkey:encrypt](#pkeyencrypt).
+The optional second argument `padding` has same meaning as in [pkey:sign](#pkeysign).
+If omitted, `padding` is default to `pkey.PADDINGS.RSA_PKCS1_PADDING`.
+
+The third optional argument `opts` has same meaning as in [pkey:sign](#pkeysign).
 
 This function may also be called "private encrypt" in some implementations like NodeJS or PHP.
 Do note as the function names suggested, this function is not secure to be regarded as an encryption.
@@ -836,12 +943,15 @@ for an example.
 
 ### pkey:verify_recover
 
-**syntax**: *txt, err = pk:verify_recover(signature, padding?)*
+**syntax**: *txt, err = pk:verify_recover(signature, padding?, opts?)*
 
 Verify the cipher text `signature` with pkey instance, which must loaded a public key, and also
 returns the original text being signed. This operation is only supported by RSA key.
 
-The optional second argument `padding` has same meaning in [pkey:encrypt](#pkeyencrypt).
+The optional second argument `padding` has same meaning as in [pkey:sign](#pkeysign).
+If omitted, `padding` is default to `pkey.PADDINGS.RSA_PKCS1_PADDING`.
+
+The third optional argument `opts` has same meaning as in [pkey:sign](#pkeysign).
 
 This function may also be called "public decrypt" in some implementations like NodeJS or PHP.
 

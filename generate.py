@@ -20,6 +20,38 @@ import lastversion
 
 print(lastversion.__file__)
 
+REMOVABLE_SECTIONS = [
+    'installation',
+    'install',
+    'installing',
+    'build',
+    'how to install',
+    'how to build',
+    'building as a dynamic module',
+    'installation:',
+    'compilation',
+    'how to install',
+    'patch to collect ssl_cache_usage, ssl_handshake_time content_time, gzip_time, '
+    'upstream_time, upstream_connect_time, upstream_header_time graphs (optional)',
+    'table of contents',
+    'install in centos 7',
+    'c macro configurations',
+    'requirements',
+    'building',
+    'compatibility',
+    'toc',
+    'dependencies',
+    'installation for stable nginx',
+    'version',
+    'credits',
+    'copyright and license',
+    'license'
+    'todo',
+    'not yet implemented',
+    'author',
+    'contributing'
+]
+
 
 def enrich_with_yml_info(md, module_config, release):
     handle = module_config['handle']
@@ -340,31 +372,7 @@ def get_readme_contents_from_github(handle, module_config):
         return None
     readme_contents = base64.b64decode(release['readme']['content']).decode("utf-8")
     readme_contents = normalize_to_md(readme_contents, release['readme']['name'])
-    readme_contents = remove_md_sections(readme_contents, [
-        'installation',
-        'install',
-        'installing',
-        'build',
-        'build from source',
-        'how to install',
-        'how to build',
-        'building as a dynamic module',
-        'installation:',
-        'compilation',
-        'how to install',
-        'patch to collect ssl_cache_usage, ssl_handshake_time content_time, gzip_time, '
-        'upstream_time, upstream_connect_time, upstream_header_time graphs (optional)',
-        'table of contents',
-        'install in centos 7',
-        'c macro configurations',
-        'requirements',
-        'building',
-        'compatibility',
-        'toc',
-        'dependencies',
-        'installation for stable nginx',
-        'version'
-    ])
+    readme_contents = remove_md_sections(readme_contents, REMOVABLE_SECTIONS)
 
     readme_contents = enrich_with_yml_info(readme_contents, module_config, release)
 
@@ -436,30 +444,7 @@ def process_lua_glob(g):
                 continue
             readme_contents = base64.b64decode(release['readme']['content']).decode("utf-8")
             readme_contents = normalize_to_md(readme_contents, release['readme']['name'])
-            readme_contents = remove_md_sections(readme_contents, [
-                'installation',
-                'install',
-                'installing',
-                'build',
-                'how to install',
-                'how to build',
-                'building as a dynamic module',
-                'installation:',
-                'compilation',
-                'how to install',
-                'patch to collect ssl_cache_usage, ssl_handshake_time content_time, gzip_time, '
-                'upstream_time, upstream_connect_time, upstream_header_time graphs (optional)',
-                'table of contents',
-                'install in centos 7',
-                'c macro configurations',
-                'requirements',
-                'building',
-                'compatibility',
-                'toc',
-                'dependencies',
-                'installation for stable nginx',
-                'version'
-            ])
+            readme_contents = remove_md_sections(readme_contents, REMOVABLE_SECTIONS)
 
             readme_contents = enrich_lib_with_yml_info(readme_contents, lib_config, release)
 
@@ -478,18 +463,18 @@ nginx-module-{handle}](https://github.com/{lib_config['repo']}){{target=_blank}}
                 [f'[lua-resty-{handle}](lua/{handle}.md)', lib_config['summary']])
 
 
-process_lua_glob("../nginx-lua-extras/resty/*.yml")
-process_modules_glob("../nginx-extras/modules/*.yml")
-process_modules_glob("../nginx-extras/modules/others/*.yml")
-process_modules_glob("../nginx-extras/modules/internal/*.yml")
+# process_lua_glob("../nginx-lua-extras/resty/*.yml")
+# process_modules_glob("../nginx-extras/modules/*.yml")
+# process_modules_glob("../nginx-extras/modules/others/*.yml")
+# process_modules_glob("../nginx-extras/modules/internal/*.yml")
 
-with open(f"docs/modules.md", "w") as index_md_f:
+with open(f"docs/modules_list.md", "w") as index_md_f:
     table.sort()
     index_md_f.write(
         tabulate(table, headers, tablefmt="github")
     )
 
-with open(f"docs/lua.md", "w") as libs_index_md_f:
+with open(f"docs/lua_list.md", "w") as libs_index_md_f:
     libs_table.sort()
     libs_index_md_f.write(
         tabulate(libs_table, headers, tablefmt="github")
@@ -510,10 +495,25 @@ for l in all_libs:
 # write nav:
 with open("mkdocs.yml") as mkdocs_f:
     mkdocs_config = yaml.load(mkdocs_f, Loader=yaml.Loader)
+    # get list of lua libs from lua/*.md
+    lua_libs = sorted(os.listdir('docs/lua'))
+    lua_libs_index = {"Overview": 'lua.md'}
+    for l in lua_libs:
+        if l.endswith('.md'):
+            handler_name = l.replace('.md', '')
+            lua_libs_index[handler_name] = f"lua/{l}"
+
+    nginx_modules = sorted(os.listdir('docs/modules'))
+    nginx_modules_index = {"Overview": 'modules.md'}
+    for m in nginx_modules:
+        if m.endswith('.md'):
+            handler_name = m.replace('.md', '')
+            nginx_modules_index[handler_name] = f"modules/{m}"
+
     nav = [
         {'Overview': 'index.md'},
-        {'Modules': final_all_modules},
-        {'Lua Scripting': 'lua-scripting.md'},
+        {'Modules': nginx_modules_index},
+        {'Lua Scripting': lua_libs_index},
         {'Distributions': ['branches.md', 'nginx-mod.md', 'tengine.md', 'plesk.md']},
         {'RPM Repository': 'https://www.getpagespeed.com/redhat'}
     ]

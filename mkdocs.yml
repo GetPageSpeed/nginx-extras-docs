@@ -1,7 +1,20 @@
 extra:
+  generator: false
   analytics:
-    property: UA-51252096-1
     provider: google
+    property: G-YZHLYCQK9D
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GetPageSpeed
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/GetPageSpeed
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/getpagespeed
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/getpagespeed/
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/GetPageSpeed
+
 extra_css:
 - stylesheets/extra.css
 markdown_extensions:
@@ -9,9 +22,10 @@ markdown_extensions:
 - admonition
 - markdown_include.include
 - meta
+- attr_list
 - pymdownx.emoji:
-    emoji_generator: !!python/name:materialx.emoji.to_svg ''
-    emoji_index: !!python/name:materialx.emoji.twemoji ''
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
     options:
       custom_icons:
       - overrides/.icons
@@ -26,100 +40,213 @@ markdown_extensions:
 nav:
 - Overview: index.md
 - Modules:
-  - accept-language: modules/accept-language.md
-  - ajp: modules/ajp.md
-  - array-var: modules/array-var.md
-  - auth-digest: modules/auth-digest.md
-  - auth-ldap: modules/auth-ldap.md
-  - auth-pam: modules/auth-pam.md
-  - aws-auth: modules/aws-auth.md
-  - bot-verifier: modules/bot-verifier.md
-  - brotli: modules/brotli.md
-  - cache-purge: modules/cache-purge.md
-  - captcha: modules/captcha.md
-  - combined-upstreams: modules/combined-upstreams.md
-  - concat: modules/concat.md
-  - cookie-flag: modules/cookie-flag.md
-  - cookie-limit: modules/cookie-limit.md
-  - coolkit: modules/coolkit.md
-  - dav-ext: modules/dav-ext.md
-  - doh: modules/doh.md
-  - dynamic-etag: modules/dynamic-etag.md
-  - dynamic-limit-req: modules/dynamic-limit-req.md
-  - echo: modules/echo.md
-  - encrypted-session: modules/encrypted-session.md
-  - execute: modules/execute.md
-  - f4fhds: modules/f4fhds.md
-  - fancyindex: modules/fancyindex.md
-  - flv: modules/flv.md
-  - form-input: modules/form-input.md
-  - geoip: modules/geoip.md
-  - geoip2: modules/geoip2.md
-  - google: modules/google.md
-  - graphite: modules/graphite.md
-  - headers-more: modules/headers-more.md
-  - hmac-secure-link: modules/hmac-secure-link.md
-  - html-sanitize: modules/html-sanitize.md
-  - iconv: modules/iconv.md
-  - image-filter: modules/image-filter.md
-  - immutable: modules/immutable.md
-  - ipscrub: modules/ipscrub.md
-  - jpeg: modules/jpeg.md
-  - js-challenge: modules/js-challenge.md
-  - json-var: modules/json-var.md
-  - jwt: modules/jwt.md
-  - length-hiding: modules/length-hiding.md
-  - let: modules/let.md
-  - log-zmq: modules/log-zmq.md
-  - lua: modules/lua.md
-  - markdown: modules/markdown.md
-  - memc: modules/memc.md
-  - naxsi: modules/naxsi.md
-  - nchan: modules/nchan.md
-  - ndk: modules/ndk.md
-  - njs: modules/njs.md
-  - pagespeed: modules/pagespeed.md
-  - passenger: modules/passenger.md
-  - perl: modules/perl.md
-  - phantom-token: modules/phantom-token.md
-  - postgres: modules/postgres.md
-  - pta: modules/pta.md
-  - push-stream: modules/push-stream.md
-  - rdns: modules/rdns.md
-  - redis2: modules/redis2.md
-  - rtmp: modules/rtmp.md
-  - secure-token: modules/secure-token.md
-  - security: modules/security.md
-  - security-headers: modules/security-headers.md
-  - set-misc: modules/set-misc.md
-  - shibboleth: modules/shibboleth.md
-  - slowfs: modules/slowfs.md
-  - small-light: modules/small-light.md
-  - spnego-http-auth: modules/spnego-http-auth.md
-  - srcache: modules/srcache.md
-  - statsd: modules/statsd.md
-  - sticky: modules/sticky.md
-  - stream-lua: modules/stream-lua.md
-  - stream-sts: modules/stream-sts.md
-  - stream-upsync: modules/stream-upsync.md
-  - sts: modules/sts.md
-  - substitutions: modules/substitutions.md
-  - sysguard: modules/sysguard.md
-  - testcookie: modules/testcookie.md
-  - traffic-accounting: modules/traffic-accounting.md
-  - ts: modules/ts.md
-  - untar: modules/untar.md
-  - upload: modules/upload.md
-  - upstream-fair: modules/upstream-fair.md
-  - upsync: modules/upsync.md
-  - vod: modules/vod.md
-  - vts: modules/vts.md
-  - webp: modules/webp.md
-  - xslt: modules/xslt.md
-  - xss: modules/xss.md
-  - zip: modules/zip.md
-  - zstd: modules/zstd.md
-- Lua Scripting: lua-scripting.md
+    Overview: modules.md
+    accept-language: modules/accept-language.md
+    ajp: modules/ajp.md
+    array-var: modules/array-var.md
+    auth-digest: modules/auth-digest.md
+    auth-ldap: modules/auth-ldap.md
+    auth-pam: modules/auth-pam.md
+    aws-auth: modules/aws-auth.md
+    bot-verifier: modules/bot-verifier.md
+    brotli: modules/brotli.md
+    cache-purge: modules/cache-purge.md
+    captcha: modules/captcha.md
+    combined-upstreams: modules/combined-upstreams.md
+    concat: modules/concat.md
+    cookie-flag: modules/cookie-flag.md
+    cookie-limit: modules/cookie-limit.md
+    coolkit: modules/coolkit.md
+    dav-ext: modules/dav-ext.md
+    doh: modules/doh.md
+    dynamic-etag: modules/dynamic-etag.md
+    dynamic-limit-req: modules/dynamic-limit-req.md
+    echo: modules/echo.md
+    encrypted-session: modules/encrypted-session.md
+    execute: modules/execute.md
+    f4fhds: modules/f4fhds.md
+    fancyindex: modules/fancyindex.md
+    fips-check: modules/fips-check.md
+    flv: modules/flv.md
+    form-input: modules/form-input.md
+    geoip: modules/geoip.md
+    geoip2: modules/geoip2.md
+    google: modules/google.md
+    graphite: modules/graphite.md
+    headers-more: modules/headers-more.md
+    hmac-secure-link: modules/hmac-secure-link.md
+    html-sanitize: modules/html-sanitize.md
+    iconv: modules/iconv.md
+    image-filter: modules/image-filter.md
+    immutable: modules/immutable.md
+    ipscrub: modules/ipscrub.md
+    jpeg: modules/jpeg.md
+    js-challenge: modules/js-challenge.md
+    json-var: modules/json-var.md
+    jwt: modules/jwt.md
+    length-hiding: modules/length-hiding.md
+    let: modules/let.md
+    log-zmq: modules/log-zmq.md
+    lua: modules/lua.md
+    markdown: modules/markdown.md
+    memc: modules/memc.md
+    naxsi: modules/naxsi.md
+    nchan: modules/nchan.md
+    ndk: modules/ndk.md
+    njs: modules/njs.md
+    pagespeed: modules/pagespeed.md
+    passenger: modules/passenger.md
+    perl: modules/perl.md
+    phantom-token: modules/phantom-token.md
+    postgres: modules/postgres.md
+    pta: modules/pta.md
+    push-stream: modules/push-stream.md
+    rdns: modules/rdns.md
+    redis2: modules/redis2.md
+    rtmp: modules/rtmp.md
+    secure-token: modules/secure-token.md
+    security: modules/security.md
+    security-headers: modules/security-headers.md
+    set-misc: modules/set-misc.md
+    shibboleth: modules/shibboleth.md
+    slowfs: modules/slowfs.md
+    small-light: modules/small-light.md
+    spnego-http-auth: modules/spnego-http-auth.md
+    srcache: modules/srcache.md
+    statsd: modules/statsd.md
+    sticky: modules/sticky.md
+    stream-lua: modules/stream-lua.md
+    stream-sts: modules/stream-sts.md
+    stream-upsync: modules/stream-upsync.md
+    sts: modules/sts.md
+    substitutions: modules/substitutions.md
+    sysguard: modules/sysguard.md
+    testcookie: modules/testcookie.md
+    traffic-accounting: modules/traffic-accounting.md
+    ts: modules/ts.md
+    untar: modules/untar.md
+    upload: modules/upload.md
+    upstream-fair: modules/upstream-fair.md
+    upsync: modules/upsync.md
+    vod: modules/vod.md
+    vts: modules/vts.md
+    webp: modules/webp.md
+    xslt: modules/xslt.md
+    xss: modules/xss.md
+    zip: modules/zip.md
+    zstd: modules/zstd.md
+- Lua Scripting:
+    Overview: lua.md
+    acme: lua/acme.md
+    auto-ssl: lua/auto-ssl.md
+    aws-auth: lua/aws-auth.md
+    aws-sdk: lua/aws-sdk.md
+    balancer: lua/balancer.md
+    base-encoding: lua/base-encoding.md
+    cache: lua/cache.md
+    checkups: lua/checkups.md
+    consul: lua/consul.md
+    consul-event: lua/consul-event.md
+    cookie: lua/cookie.md
+    core: lua/core.md
+    cors: lua/cors.md
+    counter: lua/counter.md
+    ctxdump: lua/ctxdump.md
+    dns: lua/dns.md
+    dns-server: lua/dns-server.md
+    etcd: lua/etcd.md
+    exec: lua/exec.md
+    feishu-auth: lua/feishu-auth.md
+    fileinfo: lua/fileinfo.md
+    ftpclient: lua/ftpclient.md
+    global-throttle: lua/global-throttle.md
+    healthcheck: lua/healthcheck.md
+    hmac: lua/hmac.md
+    hoedown: lua/hoedown.md
+    http: lua/http.md
+    http2: lua/http2.md
+    httpipe: lua/httpipe.md
+    hyperscan: lua/hyperscan.md
+    influx: lua/influx.md
+    ini: lua/ini.md
+    injection: lua/injection.md
+    iputils: lua/iputils.md
+    jit-uuid: lua/jit-uuid.md
+    jsonrpc-batch: lua/jsonrpc-batch.md
+    jump-consistent-hash: lua/jump-consistent-hash.md
+    jwt: lua/jwt.md
+    kafka: lua/kafka.md
+    libcjson: lua/libcjson.md
+    libr3: lua/libr3.md
+    limit-rate: lua/limit-rate.md
+    limit-traffic: lua/limit-traffic.md
+    lmdb: lua/lmdb.md
+    locations: lua/locations.md
+    lock: lua/lock.md
+    logger-socket: lua/logger-socket.md
+    lrucache: lua/lrucache.md
+    macaroons: lua/macaroons.md
+    mail: lua/mail.md
+    maxminddb: lua/maxminddb.md
+    memcached: lua/memcached.md
+    mlcache: lua/mlcache.md
+    multiplexer: lua/multiplexer.md
+    murmurhash2: lua/murmurhash2.md
+    mysql: lua/mysql.md
+    nettle: lua/nettle.md
+    newrelic: lua/newrelic.md
+    nsq: lua/nsq.md
+    ntlm: lua/ntlm.md
+    openidc: lua/openidc.md
+    openssl: lua/openssl.md
+    perf: lua/perf.md
+    prettycjson: lua/prettycjson.md
+    pubsub: lua/pubsub.md
+    qless: lua/qless.md
+    qless-web: lua/qless-web.md
+    rabbitmqstomp: lua/rabbitmqstomp.md
+    rack: lua/rack.md
+    radixtree: lua/radixtree.md
+    redis: lua/redis.md
+    redis-connector: lua/redis-connector.md
+    redis-ratelimit: lua/redis-ratelimit.md
+    redis-util: lua/redis-util.md
+    repl: lua/repl.md
+    reqargs: lua/reqargs.md
+    requests: lua/requests.md
+    riak: lua/riak.md
+    router: lua/router.md
+    rsa: lua/rsa.md
+    scrypt: lua/scrypt.md
+    session: lua/session.md
+    shell: lua/shell.md
+    signal: lua/signal.md
+    smtp: lua/smtp.md
+    snappy: lua/snappy.md
+    sniproxy: lua/sniproxy.md
+    socket: lua/socket.md
+    stats: lua/stats.md
+    string: lua/string.md
+    t1k: lua/t1k.md
+    tags: lua/tags.md
+    tarantool: lua/tarantool.md
+    template: lua/template.md
+    test: lua/test.md
+    timer: lua/timer.md
+    tlc: lua/tlc.md
+    tsort: lua/tsort.md
+    upload: lua/upload.md
+    upstream: lua/upstream.md
+    upstream-healthcheck: lua/upstream-healthcheck.md
+    uuid: lua/uuid.md
+    validation: lua/validation.md
+    vhost: lua/vhost.md
+    waf: lua/waf.md
+    weauth: lua/weauth.md
+    websocket: lua/websocket.md
+    woothee: lua/woothee.md
+    worker-events: lua/worker-events.md
+    xxhash: lua/xxhash.md
 - Distributions:
   - branches.md
   - nginx-mod.md
@@ -128,18 +255,14 @@ nav:
 - RPM Repository: https://www.getpagespeed.com/redhat
 plugins:
 - search
-- mkdocstrings:
-    handlers:
-      python:
-        selection:
-          new_path_syntax: true
-        setup_commands:
-        - import sys
-        - sys.path.append("docs")
+- social
+- tags
+site_author: Danila Vershinin
 site_description: Automatic documentation from sources, for NGINX Extras.
 site_name: NGINX Extras Documentation
 site_url: https://nginx-extras.getpagespeed.com/
 theme:
+  language: en
   custom_dir: overrides
   features:
   - navigation.expand
@@ -159,3 +282,4 @@ theme:
     toggle:
       icon: material/toggle-switch
       name: Switch to light mode
+copyright: Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023

@@ -23,7 +23,7 @@ yum -y install lua5.1-resty-socket
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-socket [v1.0.0](https://github.com/thibaultcha/lua-resty-socket/releases/tag/1.0.0){target=_blank} 
-released on Jan 17 2019.
+released on Jan 18 2019.
     
 <hr />
 
