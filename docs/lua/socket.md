@@ -27,7 +27,6 @@ released on Jan 18 2019.
     
 <hr />
 
-![Module Version][badge-version-image]
 cosocket/LuaSocket automatic compatibility module for lua-resty modules wanting
 to be compatible with plain Lua or OpenResty's `init` context.
 
@@ -141,16 +140,6 @@ return _M
 The user of such a module could use it in contexts with cosocket support, or
 in the `init` phase of ngx_lua, with little effort from the developer.
 
-### License
-
-Work licensed under the MIT License.
-
-[ngx_lua]: https://github.com/openresty/lua-nginx-module
-
-[badge-travis-url]: https://travis-ci.org/thibaultcha/lua-resty-socket
-[badge-travis-image]: https://travis-ci.org/thibaultcha/lua-resty-socket.svg?branch=master
-
-[badge-version-image]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat
 
 ## GitHub
 

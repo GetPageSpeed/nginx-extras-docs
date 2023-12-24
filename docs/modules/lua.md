@@ -70,10 +70,8 @@ You are welcome to subscribe to our [official YouTube channel, OpenResty](https:
 ```nginx
 
  # set search paths for pure Lua external libraries (';;' is the default path):
- lua_package_path '/foo/bar/?.lua;/blah/?.lua;;';
 
  # set search paths for Lua external libraries written in C (can also use ';;'):
- lua_package_cpath '/bar/baz/?.so;/blah/blah/?.so;;';
 
  server {
      location /lua_content {
@@ -289,31 +287,10 @@ The latest version of this module is compatible with the following versions of N
 Nginx cores older than 1.6.0 (exclusive) are *not* supported.
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
 ## Code Repository
 
 The code repository of this project is hosted on GitHub at
 [openresty/lua-nginx-module](https://github.com/openresty/lua-nginx-module).
-
-
-## Bugs and Patches
-
-Please submit bug reports, wishlists, or patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/lua-nginx-module/issues),
-1. or posting to the [OpenResty community](#community).
 
 
 ## LuaJIT bytecode support
@@ -775,20 +752,6 @@ This means that phases that normally run are skipped, such as the rewrite or
 access phase. This also means that later phases that are run regardless, e.g.
 [log_by_lua](#log_by_lua), will not have access to information that is normally set in those
 phases.
-
-
-## TODO
-
-* cosocket: implement LuaSocket's unconnected UDP API.
-* cosocket: add support in the context of [init_by_lua*](#init_by_lua).
-* cosocket: implement the `bind()` method for stream-typed cosockets.
-* cosocket: review and merge aviramc's [patch](https://github.com/openresty/lua-nginx-module/pull/290) for adding the `bsdrecv` method.
-* cosocket: add configure options for different strategies of handling the cosocket connection exceeding in the pools.
-* review and apply vadim-pavlov's patch for [ngx.location.capture](#ngxlocationcapture)'s `extra_headers` option
-* use `ngx_hash_t` to optimize the built-in header look-up process for [ngx.req.set_header](#ngxreqset_header), and etc.
-* add `ignore_resp_headers`, `ignore_resp_body`, and `ignore_resp` options to [ngx.location.capture](#ngxlocationcapture) and [ngx.location.capture_multi](#ngxlocationcapture_multi) methods, to allow micro performance tuning on the user side.
-* add automatic Lua code time slicing support by yielding and resuming the Lua VM actively via Lua's debug hooks.
-* add `stat` mode similar to [mod_lua](https://httpd.apache.org/docs/trunk/mod/mod_lua.html).
 
 
 ## Changes
@@ -8904,7 +8867,6 @@ The second argument `module_name` specifies the lua module name to execute in th
 
 ```nginx
 
- lua_package_path '/opt/openresty/?.lua;;';
 ```
 
 The third argument `func_name` specifies the function field in the module table as the second argument.

@@ -1474,19 +1474,6 @@ The following modules take advantage of this `echo` module in their test suite:
 Please mail me other modules that use `echo` in any form and I'll add them to the list above :)
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
 ## Report Bugs
 
 Although a lot of effort has been put into testing and code tuning, there must be some serious bugs lurking somewhere in this module. So whenever you are bitten by any quirks, please don't hesitate to
@@ -1524,80 +1511,6 @@ You need to terminate any Nginx processes before running the test suite if you h
 Because a single nginx server (by default, `localhost:1984`) is used across all the test scripts (`.t` files), it's meaningless to run the test suite in parallel by specifying `-jN` when invoking the `prove` utility.
 
 Some parts of the test suite requires standard modules [proxy](http://nginx.org/en/docs/http/ngx_http_proxy_module.html), [rewrite](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) and [SSI](http://nginx.org/en/docs/http/ngx_http_ssi_module.html) to be enabled as well when building Nginx.
-
-
-## TODO
-
-* Fix the [echo_after_body](#echo_after_body) directive in subrequests.
-* Add directives *echo_read_client_request_body* and *echo_request_headers*.
-* Add new directive *echo_log* to use Nginx's logging facility directly from the config file and specific loglevel can be specified, as in
-
-```nginx
-
-   echo_log debug "I am being called.";
-```
-
-* Add support for options `-h` and `-t` to [echo_subrequest_async](#echo_subrequest_async) and [echo_subrequest](#echo_subrequest). For example
-
-```nginx
-
-   echo_subrequest POST /sub -q 'foo=Foo&bar=Bar' -b 'hello' -t 'text/plan' -h 'X-My-Header: blah blah'
-```
-
-* Add options to control whether a subrequest should inherit cached variables from its parent request (i.e. the current request that is calling the subrequest in question). Currently none of the subrequests issued by this module inherit the cached variables from the parent request.
-* Add new variable *$echo_active_subrequests* to show `r->main->count - 1`.
-* Add the *echo_file* and *echo_cached_file* directives.
-* Add new varaible *$echo_request_headers* to accompany the existing [$echo_client_request_headers](#echo_client_request_headers) variable.
-* Add new directive *echo_foreach*, as in
-
-```nginx
-
-   echo_foreach 'cat' 'dog' 'mouse';
-     echo_location_async "/animals/$echo_it";
-   echo_end;
-```
-
-* Add new directive *echo_foreach_range*, as in
-
-```nginx
-
-   echo_foreach_range '[1..100]' '[a-zA-z0-9]';
-     echo_location_async "/item/$echo_it";
-   echo_end;
-```
-
-* Add new directive *echo_repeat*, as in
-
-```nginx
-
-   echo_repeat 10 $i {
-       echo "Page $i";
-       echo_location "/path/to/page/$i";
-   }
-```
-
-This is just another way of saying
-
-```nginx
-
-   echo_foreach_range $i [1..10];
-       echo "Page $i";
-       echo_location "/path/to/page/$i";
-   echo_end;
-```
-
-Thanks Marcus Clyne for providing this idea.
-
-* Add new variable $echo_random which always returns a random non-negative integer with the lower/upper limit specified by the new directives `echo_random_min` and `echo_random_max`. For example,
-
-```nginx
-
-   echo_random_min  10
-   echo_random_max  200
-   echo "random number: $echo_random";
-```
-
-Thanks Marcus Clyne for providing this idea.
 
 
 ## Getting involved

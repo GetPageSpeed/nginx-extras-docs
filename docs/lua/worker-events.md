@@ -362,10 +362,6 @@ The return value will be `true` if it was removed, `false` if it was not in the 
 it will throw an error if `callback` is not a function value.
 
 
-## Bugs and Patches
-
-Please report bugs or submit patches by creating a ticket on the [GitHub Issue Tracker](http://github.com/Kong/lua-resty-worker-events/issues),
-
 ## History
 
 ### Releasing new versions

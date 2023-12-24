@@ -1003,27 +1003,6 @@ Several common pitfalls for beginners:
 * Memcached might fail to store objects larger than 1m, causing errors like `srcache_store subrequest failed status=502`. Since version 1.4.2, memcached supports a command-line `-I` option to override the default size of each slab page. Please read its manpage for more information.
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
-## Bugs and Patches
-
-Please submit bug reports, wishlists, or patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/srcache-nginx-module/issues),
-1. or posting to the [OpenResty community](#community).
-
-
 ## Source Repository
 Available on github at [openresty/srcache-nginx-module](https://github.com/openresty/srcache-nginx-module).
 
@@ -1041,11 +1020,6 @@ You need to terminate any Nginx processes before running the test suite if you h
 Because a single nginx server (by default, `localhost:1984`) is used across all the test scripts (`.t` files), it's meaningless to run the test suite in parallel by specifying `-jN` when invoking the `prove` utility.
 
 Some parts of the test suite requires modules [ngx_http_rewrite_module](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html), [echo-nginx-module](https://github.com/openresty/echo-nginx-module), [rds-json-nginx-module](https://github.com/openresty/rds-json-nginx-module), and [drizzle-nginx-module](https://github.com/openresty/drizzle-nginx-module) to be enabled as well when building Nginx.
-
-
-## TODO
-* add gzip compression and decompression support.
-* add new nginx variable `$srcache_key` and new directives `srcache_key_ignore_args`, `srcache_key_filter_args`, and `srcache_key_sort_args`.
 
 
 ## Getting involved

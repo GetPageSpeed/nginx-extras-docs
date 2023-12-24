@@ -148,8 +148,7 @@ The main difference between this module and [resty.limit.count](https://github.c
 
 ## Methods
 
-new
----
+## new
 **syntax:** `obj, err = class.new(shdict_name, interval, capacity, quantum?, max_wait?, opts?)`
 
 Instantiates an object of this class. The `class` value is returned by the call `require "resty.limit.rate"`.
@@ -249,23 +248,6 @@ This tries to undo the commit of the `incoming` call. This is simply an approxim
 ## Limiting Granularity
 
 The limiting works on the granularity of an individual NGINX server instance (including all its worker processes). Thanks to the shm mechanism; we can share state cheaply across all the workers in a single NGINX server instance.
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/lua-resty-limit-traffic/issues),
-1. or posting to the [OpenResty community](#community).
 
 ## See Also
 * module [resty.limit.req](https://github.com/openresty/lua-resty-limit-traffic/blob/master/lib/resty/limit/req.md)

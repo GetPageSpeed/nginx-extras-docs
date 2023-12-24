@@ -138,10 +138,6 @@ Cookie settings:
 - tarballs are available via tags from the repo: https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/downloads
 
 
-## TODO
-
-see Todo.md
-  
 ## Authors & Credits
 
 - Jerome Loyet, initial module

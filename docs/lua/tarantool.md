@@ -416,10 +416,6 @@ tar:hide_version_header()
 
 It returns no values.
 
-## TODO
-
- * Test setup.
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

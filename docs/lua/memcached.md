@@ -117,8 +117,7 @@ Note that at least [ngx_lua 0.5.0rc29](https://github.com/chaoslawful/lua-nginx-
 
 The `key` argument provided in the following methods will be automatically escaped according to the URI escaping rules before sending to the memcached server.
 
-new
----
+## new
 `syntax: memc, err = memcached:new(opts?)`
 
 Creates a memcached object. In case of failures, returns `nil` and a string describing the error.
@@ -154,8 +153,7 @@ Does SSL/TLS handshake on the currently established connection. See the
 [tcpsock.sslhandshake](https://github.com/openresty/lua-nginx-module#tcpsocksslhandshake)
 API from OpenResty for more details.
 
-set
----
+## set
 `syntax: ok, err = memc:set(key, value, exptime, flags)`
 
 Inserts an entry into memcached unconditionally. If the key already exists, overrides it.
@@ -218,8 +216,7 @@ Closes the current memcached connection and returns the status.
 In case of success, returns `1`. In case of errors, returns `nil` with a string describing the error.
 
 
-add
----
+## add
 `syntax: ok, err = memc:add(key, value, exptime, flags)`
 
 Inserts an entry into memcached if and only if the key does not exist.
@@ -319,8 +316,7 @@ The `flags` parameter is optional and defaults to `0`.
 
 In case of success, returns `1`. In case of errors, returns `nil` with a string describing the error.
 
-get
----
+## get
 `syntax: value, flags, err = memc:get(key)`
 `syntax: results, err = memc:get(keys)`
 
@@ -349,8 +345,7 @@ Just like the `get` method, but will also return the CAS unique value associated
 
 This method is usually used together with the `cas` method.
 
-cas
----
+## cas
 `syntax: ok, err = memc:cas(key, value, cas_unique, exptime?, flags?)`
 
 Just like the `set` method but does a check and set operation, which means "store this data but
@@ -358,8 +353,7 @@ Just like the `set` method but does a check and set operation, which means "stor
 
 The `cas_unique` argument can be obtained from the `gets` method.
 
-touch
----
+## touch
 `syntax: ok, err = memc:touch(key, exptime)`
 
 Update the expiration time of an existing key.
@@ -467,11 +461,6 @@ result in bad race conditions when concurrent requests are trying to use the sam
 You should always initiate `resty.memcached` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
-
-## TODO
-
-* implement the memcached pipelining API.
-* implement the UDP part of the memcached ascii protocol.
 
 ## See Also
 * the ngx_lua module: http://wiki.nginx.org/HttpLuaModule

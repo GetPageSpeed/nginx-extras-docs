@@ -499,25 +499,6 @@ You should always initiate `resty.websocket` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
 
-## TODO
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](http://github.com/agentzh/lua-resty-websocket/issues),
-1. or posting to the [OpenResty community](http://wiki.nginx.org/HttpLuaModule#Community).
-
 ## See Also
 * Blog post [WebSockets with OpenResty](https://medium.com/p/1778601c9e05) by Aapo Talvensaari.
 * the ngx_lua module: http://wiki.nginx.org/HttpLuaModule

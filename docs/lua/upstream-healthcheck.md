@@ -226,25 +226,6 @@ http {
 }
 ```
 
-## TODO
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](http://github.com/openresty/lua-resty-upstream-healthcheck/issues),
-1. or posting to the [OpenResty community](#community).
-
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module
 * the ngx_lua_upstream module: https://github.com/openresty/lua-upstream-nginx-module

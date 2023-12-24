@@ -119,22 +119,6 @@ A test suite for this repo is provided. Tests are written using [Test::Nginx](ht
 
 To best test library behavior, the suite expects a Consul server to be running and accessible. By default, Consul is accessed at `127.0.0.1:8500`; the Consul host and port can be overriden by defining the environmental variables `TEST_NGINX_CONSUL_ADDR` and `TEST_NGINX_CONSUL_PORT`, respectively.
 
-## License
-
-Copyright 2018 Kong Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

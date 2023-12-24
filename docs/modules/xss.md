@@ -163,11 +163,6 @@ Use the "info" error log level (or lower) to get more
 diagnostics when things go wrong.
 
 
-## TODO
-
-* add cross-site POST support.
-
-
 ## Copyright & License
 
 The implementation of the builtin connection pool has borrowed

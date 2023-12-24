@@ -152,8 +152,7 @@ http {
 
 ## Methods
 
-new
----
+## new
 **syntax:** `cache, err = mlcache.new(name, shm, opts?)`
 
 Create a new mlcache instance. If failed, returns `nil` and a string
@@ -283,8 +282,7 @@ is enabled (which is the default). If you turn off this directive during
 development, mlcache will work, but L1 caching will be ineffective since a new
 Lua VM will be created for every request.
 
-get
----
+## get
 **syntax:** `value, err, hit_level = cache:get(key, opts?, callback?, ...)`
 
 Perform a cache lookup. This is the primary and most efficient method of this
@@ -730,8 +728,7 @@ without a callback function in order to "query" the cache. Unlike `peek()`, a
 `get()` call with no callback *will* promote the value to the L1 cache, and
 *will not* return its TTL.
 
-set
----
+## set
 **syntax:** `ok, err = cache:set(key, opts?, value)`
 
 Unconditionally set a value in the L2 cache and broadcasts an event to other
@@ -941,14 +938,6 @@ The slides and a recording of the talk (about 40 min long) can be viewed
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-## License
-
-Work licensed under the MIT License.
-
-[lua-resty-lock]: https://github.com/openresty/lua-resty-lock
-[lua-resty-lrucache]: https://github.com/openresty/lua-resty-lrucache
-[lua_shared_dict]: https://github.com/openresty/lua-nginx-module#lua_shared_dict
-[talk]: https://www.slideshare.net/ThibaultCharbonnier/layered-caching-in-openresty-openresty-con-2018
 
 ## GitHub
 

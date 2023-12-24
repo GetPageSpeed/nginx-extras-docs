@@ -93,8 +93,7 @@ server {
 
 ## Methods
 
-new
----
+## new
 `syntax: r, err = class:new(opts)`
 
 Creates a dns.resolver object. Returns `nil` and a message string on error.
@@ -371,11 +370,6 @@ result in bad race conditions when concurrent requests are trying to use the sam
 You should always initiate `resty.dns.resolver` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
-
-## TODO
-
-* Concurrent (or parallel) query mode
-* Better support for other resource record types like `TLSA`.
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme

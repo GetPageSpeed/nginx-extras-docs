@@ -152,8 +152,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
 
 ## Methods
 
-new
----
+## new
 `syntax: db, err = mysql:new()`
 
 Creates a MySQL connection object. In case of failures, returns `nil` and a string describing the error.
@@ -432,30 +431,6 @@ each request.
 By default, Of all authentication method, only [Old Password Authentication(mysql_old_password)](https://dev.mysql.com/doc/internals/en/old-password-authentication.html) and [Secure Password Authentication(mysql_native_password)](https://dev.mysql.com/doc/internals/en/secure-password-authentication.html) are suppored. If the server requires [sha256_password](https://dev.mysql.com/doc/internals/en/sha256.html) or cache_sha2_password, an error like `auth plugin caching_sha2_password or sha256_password are not supported because resty.rsa is not installed` may be returned.
 
 Need [lua-resty-rsa](https://github.com/spacewander/lua-resty-rsa) when using the `sha256_password` and `cache_sha2_password`.
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please submit bug reports, wishlists, or patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](http://github.com/agentzh/lua-resty-mysql/issues),
-1. or posting to the [OpenResty community](https://github.com/openresty/lua-nginx-module#community).
-
-## TODO
-
-* improve the MySQL connection pool support.
-* implement the MySQL binary row data packets.
-* implement MySQL server prepare and execute packets.
-* implement the data compression support in the protocol.
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module

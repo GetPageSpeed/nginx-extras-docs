@@ -140,8 +140,7 @@ This Lua library can be used with `balancer_by_lua*`.
 
 Both `resty.chash`, `resty.roundrobin` and `resty.swrr` have the same apis.
 
-new
----
+## new
 **syntax:** `obj, err = class.new(nodes)`
 
 Instantiates an object of this class. The `class` value is returned by the call `require "resty.chash"`.

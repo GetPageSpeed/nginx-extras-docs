@@ -26,13 +26,10 @@ This document describes lua-resty-maxminddb [v1.3.3](https://github.com/anjia053
 released on Apr 13 2022.
     
 <hr />
-Name
----
 lua-resty-maxminddb - A Lua library for reading [MaxMind's Geolocation database format](https://maxmind.github.io/MaxMind-DB/)  (aka mmdb or geoip2).
 
 
-Prerequisites
----
+## Prerequisites
 
 **Bug fixed**
 
@@ -57,14 +54,7 @@ Prerequisites
 - [maxmind/geoipupdate][]
 
 
-Installation
----
-```bash
-opm get anjia0532/lua-resty-maxminddb
-```
-
-Synopsis
----
+## Synopsis
 ```
   local cjson = require 'cjson'
   local geo = require 'resty.maxminddb'
@@ -183,16 +173,14 @@ node name: city, value: {
 
 ```
 
-References
----
+## References
 
 - [GeoIP2 City and Country CSV Databases][linkGeoip2CityAndCountryCsvDatabases]
 - [lilien1010/lua-resty-maxminddb][]
 - [maxmind/libmaxminddb#source#lookup_and_print][]
 - [maxmind/libmaxminddb#source#dump_entry_data_list][]
 
-Bug Reports
----
+## Bug Reports
 Please report bugs by filing an issue with our GitHub issue tracker at https://github.com/anjia0532/lua-resty-maxminddb/issues
 
 If the bug is casued by libmaxminddb  tracker at https://github.com/maxmind/libmaxminddb/issues

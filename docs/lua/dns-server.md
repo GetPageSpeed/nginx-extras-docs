@@ -180,8 +180,7 @@ stream {
 
 ## Methods
 
-new
----
+## new
 `syntax: s, err = class:new()`
 
 Creates a dns.server object. Returns `nil` and an message string on error.
@@ -422,8 +421,6 @@ The all resource record type, equal to the decimal number `255`.
 ## RCODE_FORMAT_ERROR
 
 ## RCODE_NOT_IMPLEMENTED
-
-## TODO
 
 ## See Also
 * the stream-lua-nginx-module: https://github.com/openresty/stream-lua-nginx-module/#readme

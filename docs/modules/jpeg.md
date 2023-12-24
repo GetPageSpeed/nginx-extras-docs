@@ -241,7 +241,6 @@ Or generate a logo with [Lua-GD](http://ittner.github.io/lua-gd/):
 ```nginx
 http {
    ...
-   lua_package_cpath '/usr/local/lib/lua/5.1/?.so;;';
    ...
    server {
       ...
@@ -521,11 +520,6 @@ PNG bytestreams as dropon are supported only if libmodjpeg has been compiled wit
 The directives `jpeg_filter_effect`, `jpeg_filter_dropon_align`, `jpeg_filter_dropon_offset`, and `jpeg_filter_dropon` are applied in the order they
 appear in the nginx config file, i.e. it makes a difference if you apply first an effect and then add a dropon or vice versa. In the former case the dropon will be
 unaffected by the effect and in the latter case the effect will be also applied on the dropon.
-
-
-## License
-
-This module is distributed under the BSD license. Refer to [LICENSE](/blob/master/LICENSE).
 
 
 ## Acknowledgement

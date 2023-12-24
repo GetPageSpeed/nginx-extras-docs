@@ -39,8 +39,7 @@ the test requires Nginx to listen on port 80.
 
 ## Screenshots
 ![screenshot-vts-0](https://cloud.githubusercontent.com/assets/3648408/23890539/a4c0de18-08d5-11e7-9a8b-448662454854.png "screenshot with default")
-
----
+## 
 ![screenshot-vts-1](https://cloud.githubusercontent.com/assets/3648408/23890545/a9d5b504-08d5-11e7-88c2-eb55f39233db.png "screenshot with filter")
 
 ## Synopsis
@@ -1750,9 +1749,6 @@ After the PR is merged, create the new tag and release on the [GitHub Releases](
 
 * System protection
   * [nginx-module-sysguard](https://github.com/vozlt/nginx-module-sysguard)
-
-## TODO
-* Add an implementation that periodically updates computed statistic in each worker processes to shared memory to reduce the contention due to locks when using ngx_shmtx_lock().
 
 ## GitHub
 

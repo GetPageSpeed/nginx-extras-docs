@@ -139,8 +139,7 @@ or
 local lrucache = require "resty.lrucache.pureffi"
 ```
 
-new
----
+## new
 `syntax: cache, err = lrucache.new(max_items [, load_factor])`
 
 Creates a new cache instance. Upon failure, returns `nil` and a string
@@ -157,8 +156,7 @@ saturated to 1; likewise, if load-factor is smaller than `0.1`, it will be
 clamped to `0.1`). This argument is only meaningful for
 `resty.lrucache.pureffi`.
 
-set
----
+## set
 `syntax: cache:set(key, value, ttl?, flags?)`
 
 Sets a key with a value and an expiration time.
@@ -176,8 +174,7 @@ stored as an unsigned 32-bit integer internally, and thus must be specified as
 a Lua number. If not specified, flags will have a default value of `0`. This
 argument was added in the `v0.10` release.
 
-get
----
+## get
 `syntax: data, stale_data, flags = cache:get(key)`
 
 Fetches a value with the key. If the key does not exist in the cache or has
@@ -260,26 +257,6 @@ and then load the library in Lua:
 ```lua
 local lrucache = require "resty.lrucache"
 ```
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list
-is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for
-Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue
-   Tracker](https://github.com/openresty/lua-resty-lrucache/issues),
-1. or posting to the [OpenResty community](#community).
 
 ## See Also
 

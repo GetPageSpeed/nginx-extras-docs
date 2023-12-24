@@ -358,11 +358,6 @@ ngx.say(r:body())
 
 A session object has same interfaces with `requests`, i.e. those http methods.
 
-## TODO
-
-* other interesting features...
-
-
 ## See Also
 
 * upyun-resty: https://github.com/upyun/upyun-resty

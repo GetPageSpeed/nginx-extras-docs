@@ -41,6 +41,75 @@ to know the file checksums (CRC-32's) in advance. See "Usage" for details.
 To unzip files on the fly, check out [nginx-unzip-module](https://github.com/youzee/nginx-unzip-module).
 
 
+## Usage
+
+The module is activated when the original response (presumably from an
+upstream) includes the following HTTP header:
+
+    X-Archive-Files: zip
+
+It then scans the response body for a list of files. The syntax is a 
+space-separated list of the file checksum (CRC-32), size (in bytes), location
+(properly URL-encoded), and file name. One file per line.  The file location
+corresponds to a location in your nginx.conf; the file can be on disk, from an
+upstream, or from another module.  The file name can include a directory path,
+and is what will be extracted from the ZIP file. Example:
+
+    1034ab38 428    /foo.txt   My Document1.txt
+    83e8110b 100339 /bar.txt   My Other Document1.txt
+    0        0      @directory My empty directory
+
+Files are retrieved and encoded in order. If a file cannot be found or the file
+request returns any sort of error, the download is aborted.
+
+The CRC-32 is optional. Put "-" if you don't know the CRC-32; note that in this
+case mod_zip will disable support for the `Range` header.
+
+A special URL marker `@directory` can be used to declare a directory entry
+within an archive. This is very convenient when you have to package a tree of
+files, including some empty directories. As they have to be declared explicitly.
+
+If you want mod_zip to include some HTTP headers of the original request, in the
+sub-requests that fetch content of files, then pass the list of their names in
+the following HTTP header:
+
+    X-Archive-Pass-Headers: <header-name>[:<header-name>]*
+
+
+## Re-encoding filenames
+
+To re-encode the filenames as UTF-8, add the following header to the upstream
+response:
+
+    X-Archive-Charset: [original charset name]
+
+The original charset name should be something that iconv understands. (This feature
+only works if iconv is present.)
+
+If you set original charset as `native`:
+
+    X-Archive-Charset: native;
+
+filenames from the file list are treated as already in the system native charset.
+Consequently, the ZIP general purpose flag (bit 11) that indicates UTF-8 encoded
+names will not be set, and archivers will know it's a native charset.
+
+Sometimes there is problem converting UTF-8 names to native(CP866) charset that
+causes popular archivers to fail to recognize them. And at the same time you want
+data not to be lost so that smart archivers can use Unicode Path extra field.
+You can provide you own, adapted representation of filename in native charset along
+with original UTF-8 name in one string. You just need to add following header:
+
+    X-Archive-Name-Sep: [separator];
+
+So your file list should look like:
+
+    <CRC-32> <size> <path> <native-filename><separator><utf8-filename>
+    ...
+
+then filename field will contatin `native-filename` and Unicode Path extra field
+will contain `utf8-filename`.
+
 ## Tips
 
 1. Add a header "Content-Disposition: attachment; filename=foobar.zip" in the

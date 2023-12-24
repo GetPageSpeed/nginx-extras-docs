@@ -120,15 +120,6 @@ support _Q-encoding_ yet);
 
 
 
-## TODO
-
-* Don't abort the whole SMTP request while one of the many recipients invalid;
-* To reimplement MIME-relative pure-lua version low-level filters with FFI?
-* To implement filter `mime.unew`;
-* To Reduce namespace pollution by `module()`;
-
-
-
 ## Performance
 
 Your SMTP server is the bottleneck. :)

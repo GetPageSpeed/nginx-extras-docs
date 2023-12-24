@@ -52,8 +52,7 @@ Please ask questions, report issues, and send patches to the mailing list:
 or via Github:
 
     https://github.com/nginx/njs
-
---
+## 
 NGINX, Inc., https://nginx.com
 
 ## GitHub

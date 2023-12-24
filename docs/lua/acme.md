@@ -701,10 +701,6 @@ Etcd storage requires [lua-resty-etcd](https://github.com/api7/lua-resty-etcd) l
 It can be manually installed with `opm install api7/lua-resty-etcd` or `luarocks install lua-resty-etcd`.
 
 
-## TODO
-- autossl: ocsp staping
-
-
 ## Testing
 Setup e2e test environment by running `bash t/fixtures/prepare_env.sh`.
 

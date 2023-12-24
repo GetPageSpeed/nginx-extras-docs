@@ -82,12 +82,6 @@ The library is designed to be extendable. Currently only approximate sliding win
 
 Storage providers are implemented in `lib/resty/global_throttle/store/`.
 
-### TODO
-
- - [ ] Redis store provider
- - [ ] Support Sliding Window algorithm (where bursts are allowed)
- - [ ] Implement Leaky Bucket
-
 ### References
 
 - Cloudflare's blog post on approximate sliding window: https://blog.cloudflare.com/counting-things-a-lot-of-different-things/

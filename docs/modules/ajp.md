@@ -461,54 +461,9 @@ __context:__ _http, server, location, if_
 
 Sets the amount of data that will be flushed to the ajp\_temp\_path when writing. It may be used to prevent a worker process blocking for too long while spooling data.
 
-## TODO
-
-- SSL
-
 ## Known Issues
 
 \*
-
-## Changelogs
-
-## v0.3
-
-- remove the jvm\_route and keepalive module
-
-## v0.2
-
-- bugfix
-
-## v0.1
-
-- first release
-
-## Authors
-
-- Weibin Yao(姚伟斌) _yaoweibin AT gmail DOT com_
-- Jinti Shen(路奇) _jinti.shen AT gmail DOT com_
-- Joshua Zhu(叔度) _zhuzhaoyuan AT gmail DOT com_
-- Simon Liu(雕梁) _simohayha.bobo AT gmail DOT com_
-- Matthew Ma(东坡) _mj19821214 AT gmail DOT com_
-
-## Acknowledgments
-
-- Thanks 李金虎(beagem@163.com) to improve the keepalive feature with this module.
-
-## License
-
-This README template is from agentzh ([http://github.com/agentzh](http://github.com/agentzh)).
-
-I borrowed a lot of codes from Fastcgi module of Nginx. This part of code is copyrighted by Igor Sysoev. And the design of apache's mod\_ajp\_proxy ([http://httpd.apache.org/docs/trunk/mod/mod\_proxy\_ajp.html](http://httpd.apache.org/docs/trunk/mod/mod_proxy_ajp.html)). Thanks for their hard work.
-
-This module is licensed under the BSD license.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-- Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## POD ERRORS
 

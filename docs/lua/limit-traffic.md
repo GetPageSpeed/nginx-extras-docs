@@ -296,23 +296,6 @@ and then load one of the modules provided by this library in Lua. For example,
 local limit_req = require "resty.limit.req"
 ```
 
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/lua-resty-limit-traffic/issues),
-1. or posting to the [OpenResty community](#community).
-
 ## See Also
 * module [resty.limit.req](lib/resty/limit/req.md)
 * module [resty.limit.count](lib/resty/limit/count.md)

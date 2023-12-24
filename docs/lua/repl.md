@@ -27,8 +27,6 @@ released on Aug 29 2016.
     
 <hr />
 
-resty-repl is released under the [MIT License](http://www.opensource.org/licenses/MIT).
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

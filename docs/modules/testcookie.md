@@ -416,11 +416,6 @@ This module comes with a Perl-driven test suite. Thanks to the [Test::Nginx](htt
 
 Available on github at [kyprizel/testcookie-nginx-module](http://github.com/kyprizel/testcookie-nginx-module).
 
-## TODO
-
-*   Code review
-*   Statistics (?)
-
 ## Bugs
 
 Feel free to report bugs and send patches to kyprizel@gmail.com

@@ -103,11 +103,6 @@ Retrieves value for best matching hostname entry.
 
 Returns nil and an error message on failure
 
-##TODO
- * Regex matches
- * Prefix matches
- * Trie compression
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

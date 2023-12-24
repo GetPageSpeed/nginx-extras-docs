@@ -168,10 +168,6 @@ With the "always" value, "zsted" file is used in all cases, without checking if 
 
 Achieved compression ratio, computed as the ratio between the original and compressed response sizes.
 
-## License
-
-This Nginx module is licensed under [BSD 2-Clause License](LICENSE).
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

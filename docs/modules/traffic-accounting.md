@@ -54,15 +54,13 @@ When a new **request** hits the server, the module will try to find its `account
 
 For each time period (defined by `interval`), a timer event is triggered, those metrics are rotated and exported to log files or sent to remote log servers.
 
-
----
+## 
 
 ## Dashboard
 
 **Dashboard - Visualize with Grafana**
 ![Accounting Dashboard](http://lax.github.io/traffic-accounting-nginx-module/images/accounting-dashboard.png)
-
----
+## 
 
 ## Configuration
 
@@ -212,8 +210,7 @@ which contains a list of key-values.
 | `upstream_latency_ms`  | sum of `$upstream_response_time`, in `millisecond` |
 | `200` / `302` / `400` / `404` / `500` ... | count of requests/sessions with status code `200`/`302`/`400`/`404`/`500`, etc. Notice the differences between http codes and stream codes |
 
-
----
+## 
 
 
 ### Configuration example
@@ -240,20 +237,12 @@ stream {
 
 Visualization with `Kibana` or `Grafana` is easy.
 See [samples/](samples/) for examples.
-
----
+## 
 
 ## Branches
 
 * master : main development branch.
 * tag v0.1 or v2-freeze-20110526 : legacy release. works with nginx version(0.7.xx, 0.8.xx), nginx 0.9 is not tested. didn't work with nginx above 1.0.x.
-
-## License
-
-[BSD-2-Clause](LICENSE)
-
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FLax%2Ftraffic-accounting-nginx-module.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FLax%2Ftraffic-accounting-nginx-module?ref=badge_large)
 
 ## GitHub
 

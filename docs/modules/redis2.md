@@ -553,34 +553,9 @@ If you cannot stand these limitations, then you are highly recommended to switch
 * When you're benchmarking performance using something like `ab` or `http_load`, please ensure that your error log level is high enough (like `warn`) to prevent Nginx workers spend too much cycles on flushing the `error.log` file, which is always non-buffered and blocking and thus very expensive.
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
-## Bugs and Patches
-
-Please submit bug reports, wishlists, or patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](http://github.com/openresty/redis2-nginx-module/issues),
-1. or posting to the [OpenResty community](#community).
-
-
 ## Source Repository
 
 Available on github at [openresty/redis2-nginx-module](http://github.com/openresty/redis2-nginx-module).
-
-
-## TODO
-* Add the `redis2_as_json` directive to allow emitting JSON directly.
 
 
 ## Getting involved

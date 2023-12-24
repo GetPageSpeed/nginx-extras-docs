@@ -68,10 +68,6 @@ Invokes untar of **untar_file** from **untar_archive**
 * no archive entries listing
 * base tar format support (only normal files: no symlink, sparse e.t.c)
 
-## TODO
-* Limit cache archive descriptors, free expired archive descriptors
-* GNU extension modification time format
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

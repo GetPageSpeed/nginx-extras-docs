@@ -178,13 +178,6 @@ should be as follows:
     }
 
 
-## Authors
-
-The original version of this module has been designed by
-Dmitry Stolyarov, written by Timofey Kirillov, CJSC Flant
-(flant.com).
-
-
 ## Links
 
 * The source code on GitHub:

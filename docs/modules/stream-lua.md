@@ -506,12 +506,6 @@ output to be completely flushed out (to the system socket send buffers).
 * [coroutine.status](https://github.com/openresty/lua-nginx-module#coroutinestatus)
 
 
-## TODO
-
-* Add new directives `access_by_lua_block` and `access_by_lua_file`.
-* Add `lua_postpone_output` to emulate the [postpone_output](https://nginx.org/r/postpone_output) directive.
-
-
 ## Nginx Compatibility
 
 The latest version of this module is compatible with the following versions of Nginx:
@@ -546,42 +540,10 @@ You may use `--without-http` if you do not wish to use this module with the
 subsystem.
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
 ## Code Repository
 
 The code repository of this project is hosted on GitHub at
 [openresty/stream-lua-nginx-module](https://github.com/openresty/stream-lua-nginx-module).
-
-
-## Bugs and Patches
-
-Please submit bug reports, wishlists, or patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/stream-lua-nginx-module/issues),
-1. or posting to the [OpenResty community](#community).
-
-
-## Acknowledgments
-
-We appreciate [Kong Inc.](https://konghq.com/) for kindly sponsoring [OpenResty Inc.](https://openresty.com/) on the following
-work:
-* Compatibility with Nginx core 1.13.3.
-* Development of [meta-lua-nginx-module](https://github.com/openresty/meta-lua-nginx-module)
-to make code sharing between this module and [lua-nginx-module](https://github.com/openresty/lua-nginx-module) possible.
-* `balancer_by_lua_*`, `preread_by_lua_*`, `log_by_lua_*` and `ssl_certby_lua*` phases support.
-* [`reqsock:peek`](#reqsockpeek) API support.
 
 
 ## See Also

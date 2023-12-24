@@ -183,11 +183,6 @@ Turn off ZeroMQ logging in the current context.
 Bug reports, wishlists, or patches are welcome. You can submit them on our [GitHub repository](http://github.com/danielfbento/nginx-log-zmq/).
 
 
-## Authors
-
- * Dani Bento &lt;dani@telecom.pt&gt;
-
-
 ## Copyright & Licence
 
 The MIT License (MIT)

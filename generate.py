@@ -28,6 +28,8 @@ REMOVABLE_SECTIONS = [
     'how to install',
     'how to build',
     'building as a dynamic module',
+    'static module',
+    'dynamic module',
     'installation:',
     'compilation',
     'how to install',
@@ -45,12 +47,36 @@ REMOVABLE_SECTIONS = [
     'version',
     'credits',
     'copyright and license',
-    'license'
+    'license',
+    'licence',
     'todo',
     'not yet implemented',
     'author',
-    'contributing'
+    'contributing',
+    'luarocks',
+    'authors',
+    'community',
+    'english mailing list',
+    'chinese mailing list',
+    'bugs and patches',
+    'copyright & licenses',
+    'changelogs',
+    'acknowledgments'
 ]
+
+# Line must start with this in order to be ignored/removed
+bad_lines = (
+    '[back to toc](#table-of-contents)',
+    'this module is not distributed',
+    'installation instructions](#installation).',
+    '[![build',
+    'status]',
+    '[![travisci build',
+    '![ngx\_pagespeed]',
+    'lua_package_path',
+    'lua_package_cpath',
+    '![module version]',
+)
 
 
 def enrich_with_yml_info(md, module_config, release):
@@ -137,15 +163,7 @@ released on {release['tag_date'].strftime("%b %d %Y")}.
     intro += "\n<hr />\n"
 
     out = [new_title] + intro.splitlines()
-    bad_lines = (
-        '[back to toc](#table-of-contents)',
-        'this module is not distributed',
-        'installation instructions](#installation).',
-        '[![build',
-        'status]',
-        '[![travisci build',
-        '![ngx\_pagespeed]'
-    )
+
     for l in lines:
         check_l = l.strip().lower().lstrip('*_')
         if check_l not in bad_lines and not check_l.startswith(bad_lines):
@@ -222,17 +240,6 @@ released on {release['tag_date'].strftime("%b %d %Y")}.
     """
     intro += "\n<hr />\n"
     out = [new_title] + intro.splitlines()
-    bad_lines = (
-        '[back to toc](#table-of-contents)',
-        'this module is not distributed',
-        'installation instructions](#installation).',
-        '[![build',
-        'status]',
-        '[![travisci build',
-        '![ngx\_pagespeed]',
-        'lua_package_path',
-        'lua_package_cpath'
-    )
 
     prev_skipped = False
     for line in lines:
@@ -250,6 +257,39 @@ released on {release['tag_date'].strftime("%b %d %Y")}.
     return "\n".join(out)
 
 
+def convert_headings(lines):
+    """Converts headings to GitHub-flavored Markdown."""
+    converted_lines = []
+    i = 0
+    inside_code_section = False
+    while i < len(lines):  # Iterate through all lines
+        current_line = lines[i]
+
+        # Check if we are inside a code section
+        if current_line.startswith('```'):
+            inside_code_section = not inside_code_section
+
+        if not inside_code_section and i + 1 < len(lines):  # Check if the next line exists
+            next_line = lines[i + 1].strip()
+
+            # Check if the next line consists solely of '=' or '-' characters
+            if set(next_line) == {'='}:
+                heading = '#' + ' ' + current_line  # Convert to level 1 heading
+                converted_lines.append(heading)
+                i += 2  # Skip the next line
+                continue
+            elif set(next_line) == {'-'}:
+                heading = '##' + ' ' + current_line  # Convert to level 2 heading
+                converted_lines.append(heading)
+                i += 2  # Skip the next line
+                continue
+
+        # Add the current line as is if it's not a heading or there's no next line
+        converted_lines.append(current_line)
+        i += 1
+
+    return "\n".join(converted_lines)
+
 # only support GitHub flavored markdown
 # so we preprocess files with pandoc docs/modulesupsync.md -o docs/modulesupsync.md -t gfm
 def remove_md_sections(md, titles):
@@ -257,7 +297,9 @@ def remove_md_sections(md, titles):
     # marks that we are "within" target section
     section_level = None
 
-    for line in md.splitlines():
+    markdown_lines = md.splitlines()
+
+    for line in markdown_lines:
         # remove that stuff:
         # https://stackoverflow.com/questions/46154561/remove-zero-width-space-unicode-character-from-python-string/55400921
         line = line.replace('\u200c', '')
@@ -318,33 +360,17 @@ all_libs = []
 libs_table = []
 
 
-def normalize_md_headings(readme_contents):
+def detect_code_lang(readme_contents):
     out = []
     lines = readme_contents.splitlines()
     total = len(lines)
-    skip_next = False
     for i in range(total):
         line = lines[i]
         if line.strip() == "```" and i < (total - 1) and lines[i + 1].strip().startswith(
-                ('http ', 'location ', 'server ', 'map ')):
+                ('http ', 'location ', 'server ', 'map ', 'stream ', 'upstream ')):
             line = '```nginx'
-        if skip_next is True:
-            skip_next = False
-            continue
-
-        # check if next line is heading, then normalize current, and skip +1
-        if i + 1 == total:
-            out.append(line)
-        else:
-            if lines[i + 1].startswith('====') and '|' not in lines[i + 1]:
-                out.append(f"# {line}")
-                skip_next = True
-            elif lines[i + 1].startswith('----') and '|' not in lines[i + 1]:
-                out.append(f"## {line}")
-                skip_next = True
-            else:
-                out.append(line)
-    return "\n".join(out)
+        out.append(line)
+    return out
 
 
 def normalize_to_md(readme_contents, file_name):
@@ -355,7 +381,8 @@ def normalize_to_md(readme_contents, file_name):
     elif file_name.endswith('.textile'):
         doc.textile = readme_contents.encode('utf-8')
     else:
-        return normalize_md_headings(readme_contents)
+        readme_lines = detect_code_lang(readme_contents)
+        return convert_headings(readme_lines)
 
     try:
         # this is available in pandoc for RHEL 8+

@@ -78,5 +78,3 @@ This ensures that NGINX loads the updated module(s).
 ## Complete module list
 
 {!docs/modules_list.md!}
-
---8<-- "includes/abbreviations.md"

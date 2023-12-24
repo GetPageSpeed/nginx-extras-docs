@@ -380,18 +380,6 @@ server {
 </form>
 ```
 
-## License
-
-The above-described module is an addition to
-[nginx](https://www.nginx.com/) web-server, nevertheless they are
-independent products. The license of above-described module is
-[BSD](http://en.wikipedia.org/wiki/BSD_license) You should have received
-a copy of license along with the source code. By using the materials
-from this site you automatically agree to the terms and conditions of
-this license. If you don't agree to the terms and conditions of this
-license, you must immediately remove from your computer all materials
-downloaded from this site.
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

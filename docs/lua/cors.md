@@ -66,8 +66,7 @@ http {
 
 ## API
 
-allow_host
----
+## allow_host
 `syntax: cors.allow_host(host)`
 
 This will match the host from cors request then be added to the header Access-Control-Allow-Origin like as the following:
@@ -80,8 +79,7 @@ Response:
 Access-Control-Allow-Origin: http://www.google.com
 ````
 
-expose_header
----
+## expose_header
 `syntax: cors.expose_header(header)`
 
 This will be added to the header Access-Control-Expose-Headers like as the following:
@@ -94,8 +92,7 @@ Response:
 Access-Control-Expose-Headers: x-custom-field1,x-custom-field2
 ````
 
-allow_method
----
+## allow_method
 `syntax: cors.allow_method(method)`
 
 This will be added to the header Access-Control-Allow-Methods like as the following:
@@ -108,8 +105,7 @@ Response:
 Access-Control-Allow-Methods:GET,POST,PUT
 ````
 
-allow_header
----
+## allow_header
 `syntax: cors.allow_header(header)`
 
 This will be added to the header Access-Control-Allow-Headers like as the following:
@@ -122,8 +118,7 @@ Response:
 Access-Control-Allow-Headers:x-custom-field1,x-custom-field2
 ````
 
-max_age
----
+## max_age
 `syntax: cors.max_age(age)`
 
 This will be added to the header Access-Control-Max-Age like as the following:
@@ -136,8 +131,7 @@ Response:
 Access-Control-Max-Age: 7200
 ````
 
-Allow-Credentials
----
+## Allow-Credentials
 `syntax: cors.allow_credentials(true or false)`
 
 This will be added to the header Access-Control-Allow-Credentials like as the following:
@@ -150,17 +144,11 @@ Response:
 Access-Control-Allow-Credentials: true
 ````
 
-run
----
+## run
 `syntax: cors.run()`
 
 This is the entry for lua-resty-cors to run
 
-
-## License
-lua-resty-cors is licensed under the [MIT] license.
-
-[MIT]: https://github.com/detailyang/ybw/blob/master/licenses/MIT
 
 ## GitHub
 

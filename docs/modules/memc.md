@@ -492,19 +492,6 @@ Determines whether the connection with a memcache server should be closed when a
 This directive was first added in the `v0.14` release.
 
 
-## Community
-
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-
 ## Report Bugs
 
 Although a lot of effort has been put into testing and code tuning, there must be some serious bugs lurking somewhere in this module. So whenever you are bitten by any quirks, please don't hesitate to
@@ -546,12 +533,6 @@ Because a single nginx server (by default, `localhost:1984`) is used across all 
 You should also keep a memcached server listening on the `11211` port at localhost before running the test suite.
 
 Some parts of the test suite requires modules [rewrite](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) and [echo](http://github.com/openresty/echo-nginx-module) to be enabled as well when building Nginx.
-
-
-## TODO
-
-* add support for the memcached commands `cas`, `gets` and `stats $memc_value`.
-* add support for the `noreply` option.
 
 
 ## Getting involved

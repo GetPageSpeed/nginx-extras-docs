@@ -250,11 +250,6 @@ Load rules in order. Each *rule* is an array table that is in the format of:
 Supported matchers can be found in [matcher](lib/resty/multiplexer/matcher).
 
 
-## TODO
-
-- Add tests.
-
-
 ## See Also
 * [Original patch to add the read partial mode](https://gist.github.com/fcicq/82e1c6d0c85cbc2d3f8e9f1523bfd1d1)
 * [stream-lua-nginx-module](https://github.com/openresty/stream-lua-nginx-module)

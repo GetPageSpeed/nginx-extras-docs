@@ -1141,14 +1141,6 @@ Note that there are several limitations in the translation script, with respect 
 
 ## Notes
 
-### Community
-
-There is a Freenode IRC channel `#lua-resty-waf`. Travis CI sends notifications here; feel free to ask questions/leave comments in this channel as well.
-
-Additionally, Q/A is available on CodeWake:
-
-[![Codewake](https://www.codewake.com/badges/ask_question.svg)](https://www.codewake.com/p/lua-resty-waf)
-
 ### Pull Requests
 
 Please target all pull requests towards the development branch, or a feature branch if the PR is a significant change. Commits to master should only come in the form of documentation updates or other changes that have no impact of the module itself (and can be cleanly merged into development).
@@ -1164,21 +1156,6 @@ Please target all pull requests towards the development branch, or a feature bra
 ## Limitations
 
 lua-resty-waf is undergoing continual development and improvement, and as such, may be limited in its functionality and performance. Currently known limitations can be found within the GitHub issue tracker for this repo.
-
-## License
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 ## Bugs
 

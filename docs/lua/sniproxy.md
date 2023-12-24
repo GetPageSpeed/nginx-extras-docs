@@ -44,7 +44,7 @@ Experimental.
 ## Synopsis
 
 
-```
+```nginx
 stream {
     init_by_lua_block {
         local sni = require("resty.sniproxy")
@@ -112,11 +112,6 @@ To use flags, the server must be configured to do **Lua land proxying** (see abo
 Rules are applied with the priority as its occurrence sequence in the table. In the example above, **api.twitter.com** will match the third rule **api.twitter.com** rather than the fourth **.+.twitter.com**.
 
 If the protocol version is less than TLSv1 (eg. SSLv3, SSLv2), connection will be closed, since SNI extension is not supported in these versions.
-
-
-## TODO
-
-- stress and performance test
 
 
 ## See Also

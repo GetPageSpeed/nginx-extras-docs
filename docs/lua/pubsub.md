@@ -175,12 +175,6 @@ To load this module, just do this
 
 * Requires a message of type string and attributes of type table
 
-## TODO
-
-1.  Pubsub Message Fetch API
-2.  Add Unit Test Cases
-
-
 ## See Also
 
 * the ngx_lua module: http://wiki.nginx.org/HttpLuaModule

@@ -32,8 +32,7 @@ ngx_coolkit is collection of small and useful nginx add-ons.
 
 ## CONFIGURATION DIRECTIVES:
 
-  override_method off | [methods] source (context: http, server, location)
-  ------------------------------------------------------------------------
+##   override_method off | [methods] source (context: http, server, location)
   Override HTTP method.
 
   default: none
@@ -41,13 +40,11 @@ ngx_coolkit is collection of small and useful nginx add-ons.
 
 ## CONFIGURATION VARIABLES:
 
-  $remote_passwd
-  -----------------
+##   $remote_passwd
   Decoded password from "Authorization" header (Basic HTTP Authentication).
 
 
-  $location
-  ---------
+##   $location
   Name of the matched location block.
 
 

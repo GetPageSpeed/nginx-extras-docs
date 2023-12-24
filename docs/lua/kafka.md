@@ -482,13 +482,6 @@ Depending on the source, they can be divided into the following categories.
 * Error returned by Kafka: sometimes Kafka will include err_code data in the response data, When this problem occurs, the `err` in the return value looks like this `OFFSET_OUT_OF_RANGE`, all uppercase characters, and separated by underscores, and in the current library we provide [a error list of mappings](lib/resty/kafka/errors.lua) corresponding to the textual descriptions. To learn more about these errors, see the descriptions in the [Kafka documentation](https://kafka.apache.org/protocol.html#protocol_error_codes).
 
 
-## TODO
-
-1.  Fetch API
-2.  Offset API
-3.  Offset Commit/Fetch API
-
-
 ## See Also
 * the ngx_lua module: http://wiki.nginx.org/HttpLuaModule
 * the kafka protocol: https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol

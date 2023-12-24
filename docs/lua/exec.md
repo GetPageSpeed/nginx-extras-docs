@@ -368,10 +368,6 @@ location /shell {
 
 ```
 
-## License
-
-MIT license (see `LICENSE`)
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

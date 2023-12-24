@@ -99,8 +99,7 @@ To load this library,
     local hmac = require "resty.hmac"
 ```
 
-new
----
+## new
 `syntax: local hmac_sha256 = hmac:new(key [, hash_algorithm])`
 
 Creates a new hmac instance. If failed, returns `nil`.
@@ -111,8 +110,7 @@ The `key` argument specifies the key to use when calculating the message authent
 The `hash_algorithm` argument specifies which hashing algorithm to use (`hmac.ALGOS.MD5`, `hmac.ALGOS.SHA1`, `hmac.ALGOS.SHA256`, `hmac.ALGOS.SHA512`).
 The default value is `hmac.ALGOS.MD5`.
 
-update
----
+## update
 `syntax: hmac_sha256:update(data)`
 
 Updates the MAC calculation to include new data. If failed, returns `false`.
@@ -120,8 +118,7 @@ Updates the MAC calculation to include new data. If failed, returns `false`.
 The `data` argument specifies the additional data to include in the MAC.
 `data` is a lua string which may contain printable characters or binary data.
 
-final
----
+## final
 `syntax: local mac = hmac_sha256:final([data, output_hex])`
 
 Finalizes the MAC calculation and returns the final MAC value. If failed, returns `nil`.

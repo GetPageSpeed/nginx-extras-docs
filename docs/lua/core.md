@@ -304,11 +304,6 @@ If the user Lua code is not JIT compiled, then use of this library may
 lead to performance drop in interpreted mode. You will only observe
 speedup when you get a good part of your user Lua code JIT compiled.
 
-## TODO
-
-* Re-implement `ngx_lua`'s cosocket API with FFI.
-* Re-implement `ngx_lua`'s `ngx.eof` and `ngx.flush` API functions with FFI.
-
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module#readme
 * LuaJIT FFI: http://luajit.org/ext_ffi.html

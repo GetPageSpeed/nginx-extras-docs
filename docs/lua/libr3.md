@@ -64,8 +64,7 @@ This is Lua-Openresty implementation library base on FFI for [libr3](https://git
 
 ## Methods
 
-new
----
+## new
 
 `syntax: r3, err = r3router:new()`
 

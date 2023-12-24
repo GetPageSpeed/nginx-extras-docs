@@ -339,8 +339,7 @@ If you use stream subsystem, you should put these lines into `stream` block of y
     lua_shared_dict stream_locks 1m;
     lua_shared_dict stream_config 10m;
 
-API
-===
+## API
 
 ![](lua-resty-checkups+API.png)
 

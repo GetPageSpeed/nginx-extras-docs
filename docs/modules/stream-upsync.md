@@ -340,11 +340,6 @@ mainly like etcd, http_interface example:
 ```
 
 
-## TODO
-
-* support zookeeper and so on
-
-
 ## Code style
 
 Code style is mainly based on [style](http://tengine.taobao.org/book/appendix_a.html)

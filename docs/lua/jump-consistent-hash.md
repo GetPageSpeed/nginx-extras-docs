@@ -86,10 +86,6 @@ svr = cs:lookup(uri)   -- if the server was 127.0.0.2, then it has 66% chance to
 
 ```
 
-## Todo
-- ~~weight for the servers list~~ [done]
-- ~~Test::Nginx~~ [done]
-
 ## Test
 
 ```

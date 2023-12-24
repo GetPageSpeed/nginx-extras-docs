@@ -337,10 +337,6 @@ NGINX_BIN=${nginx_prefix_dir}/sbin/nginx ./Build test
 NGINX_BIN=${nginx_prefix_dir}/sbin/nginx prove t/**/*.t
 ```
 
-## License
-
-Please read the [COPYING](https://github.com/cubicdaiya/ngx_small_light/blob/master/COPYING).
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

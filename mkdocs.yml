@@ -36,6 +36,8 @@ markdown_extensions:
 - attr_list
 - pymdownx.highlight
 - pymdownx.snippets:
+    auto_append:
+    - includes/abbreviations.md
     check_paths: true
 nav:
 - Overview: index.md
@@ -259,6 +261,15 @@ plugins:
 - search
 - social
 - tags
+- with-pdf:
+    author: Danila Vershinin
+    back_cover: true
+    copyright: GetPageSpeed LLC
+    cover: true
+    cover_subtitle: Documentation
+    cover_title: NGINX Extras by GetPageSpeed
+    enabled_if_env: ENABLE_PDF_EXPORT
+    toc_level: 1
 site_author: Danila Vershinin
 site_description: Automatic documentation from sources, for NGINX Extras.
 site_name: NGINX Extras Documentation
@@ -270,6 +281,7 @@ theme:
   - navigation.top
   - navigation.tabs
   - search.suggest
+  - content.tooltips
   language: en
   logo: assets/nginx-logo.png
   name: material

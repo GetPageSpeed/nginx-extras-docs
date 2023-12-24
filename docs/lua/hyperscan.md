@@ -37,8 +37,7 @@ lua-resty-hyperscan - [Hyperscan](https://github.com/intel/hyperscan) for [Openr
 This library is under development so far.
 
 Support [Block Mode](http://intel.github.io/hyperscan/dev-reference/runtime.html#block-mode) and [Vectored Mode](http://intel.github.io/hyperscan/dev-reference/runtime.html#vectored-mode) now.
-
----
+## 
 
 ## first, you should install openresty
 git clone git@github.com:LubinLew/lua-resty-hyperscan.git
@@ -131,7 +130,7 @@ $ curl http://localhost/aaaaaaa
 [/aaaaaaa] match: 1003 zone [0 - 3).
 ```
 
----
+## 
 
 ## Methods
 
@@ -310,7 +309,7 @@ Destroy a hyperscan instance.
 handle:free()
 ```
 
----
+## 
 
 ## GitHub
 

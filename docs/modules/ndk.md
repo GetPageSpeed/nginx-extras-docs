@@ -159,44 +159,6 @@ The following 3rd-party modules make use of NDK.
 If you would like to add your module to this list, please let us know.
 
 
-## TODO
-
-* documentation for modules that don't already have it
-* additional phase-handler functions
-* generically testing for needing to add a handler
-* remove dependency of set_var on OpenSSL being compiled in
-* for backward compatability, add the ndk_macros
-
-
-## License
-
-Copyright (c) 2010-2018, Marcus Clyne
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are
-permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of
-conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice, this list of
-conditions and the following disclaimer in the documentation and/or other materials
-provided with the distribution.
-3. Neither the name of the copyright holder nor the names of its contributors may be used
-to endorse or promote products derived from this software without specific prior
-written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
 ## Contributing / Feedback
 
 If you are an Nginx module developer, and have developed some functions that are

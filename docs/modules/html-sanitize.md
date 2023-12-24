@@ -285,21 +285,6 @@ Testing with `wrk -s benchmarks/shot.lua -d 60s "http://127.0.0.1:8888"` on Inte
 | [wikipedia.html](/benchmakrs/wikipedia.html) | 511KB | 57.62ms | 160.10
 | [html5_spec.html](/benchmarks/html5_spec.html) | 7.7MB | 1.63s | 2.00
 
-## TODO
-
-* gumbo-parser (hard): Improvement with SSE-4.2 to speed up string processing
-* gumbo-parser (hard): Additional performance improvements with algorithm level
-* katana-parser (hard): Improvement with SSE-4.2 to speed up string processing
-* katana-parser (hard): Additional performance improvements with algorithm level
-* directive (optional): Add mode directives to carefully control HTML5 and inline CSS output
-* html_sanitize_attribute (hard): Add new algorithm instead of current hash find to reduce memory allocation
-* tests (easy): Pass more xss security tests
-* querystring (optional): Allow foreign whitelisted querystring to control whitelisted elements、attributes、style_properties.
-
-A tips to optimize performance is learn from the On-CPU Flamegraph as the following:
-
-[![flamegraph](https://cdn.rawgit.com/youzan/ngx_http_html_sanitize_module/master/flamegraphs/html_sanitize_gumbo_parse.svg)](https://cdn.rawgit.com/youzan/ngx_http_html_sanitize_module/master/flamegraphs/html_sanitize_gumbo_parse.svg)
-
 ## Directive
 
 ## html_sanitize

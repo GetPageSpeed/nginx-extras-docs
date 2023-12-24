@@ -198,11 +198,6 @@ Re-initialises LRU cache in current worker and flushes shared dictionary.
 TODO: Re-initialise LRU cache in all workers
 
 
-## TODO
-
-* Add feature to ngx_lua shared dictionary to retrieve remaining TTL of entry
-* Syncronise LRU cache delete / flush across workers
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

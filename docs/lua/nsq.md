@@ -121,8 +121,6 @@ This Lua library takes advantage of ngx_lua's cosocket API, which ensures
 
 #### new
 
-## TODO
-
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme
 * the nsq wired protocol specification: https://nsq.io/clients/tcp_protocol_spec.html

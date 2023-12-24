@@ -184,8 +184,7 @@ See http://redis.io/topics/protocol for details regarding various Redis reply ty
 
 In addition to all those redis command methods, the following methods are also provided:
 
-new
----
+## new
 `syntax: red, err = redis:new()`
 
 Creates a redis object. In case of failures, returns `nil` and a string describing the error.
@@ -585,25 +584,6 @@ result in bad race conditions when concurrent requests are trying to use the sam
 You should always initiate `resty.redis` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
-
-## TODO
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](http://github.com/agentzh/lua-resty-redis/issues),
-1. or posting to the [OpenResty community](#community).
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme

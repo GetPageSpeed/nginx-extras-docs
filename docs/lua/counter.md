@@ -92,9 +92,6 @@ Get the keys of counters in shared dict. This function is a wrapper of
 for return values.
 
 
-## TODO
-
-
 ## See Also
 * [lua-nginx-module](https://github.com/openresty/lua-nginx-module)
 

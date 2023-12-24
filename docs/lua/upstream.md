@@ -434,15 +434,6 @@ api:add_host("primary", {host = 123.123.123.123, port = 80, healthcheck = true})
 ```
 
 
-## TODO
- * IP based sticky sessions
- * Slow start - recovered hosts have lower weighting
- * Active TCP healthchecks
- * Use Cap'n Proto instead of JSON for serialisation
- * HTTP Minimum Rises - Hosts must have n succesful healthchecks before being marked up
- * HTTP Specific options
-     * Cookie based sticky sessions
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

@@ -179,8 +179,7 @@ local stats = require("resty.stats")
 ```
 
 
-add_def_stats
----
+## add_def_stats
 `syntax: stats.add_def_stats()`
 
 add the predefined stats configs that contains:
@@ -200,8 +199,7 @@ stats_config:
 ```
 After this method is called, when you used stats.log(stats_name) method, you can use these predefined statistics.
 
-add_stats_config
----
+## add_stats_config
 `syntax: stats.add_stats_config(stats_name, stats_config)`
 
 Add a custom statistical configuration item that contains stats_name and stats config.
@@ -217,8 +215,7 @@ The name will be used when calling the `stats.log(stats_name)` method.
 The `selector` and `update` configuration can use [variables](#variables).  <br/>
 Note that "$inc" is not a nginx variable, it's a mongodb's operator. 
 
-init
----
+## init
 `syntax: stats.init(mongo_cfg, flush_interval, retry_interval)`
 
 Initialization statistical library.
@@ -230,8 +227,7 @@ Initialization statistical library.
 * `retry_interval` the retry time interval on flush error,the time unit is seconds.
 
 
-log
----
+## log
 `syntax: stats.log(stats_name)`
 
 Collect the specified(by stats_name) statistical information at the log phrase.<br/>
@@ -298,11 +294,6 @@ curl http://127.0.0.1:8020/stats/api?table=stats_uri&key=/path/to/uri
 
 You can include it in nginx.conf using the include directive. Such as:
 `include /path/to/simple_stats.conf;`
-
-## Authors
-
-jie123108 <jie123108@163.com>。
-
 
 ## GitHub
 

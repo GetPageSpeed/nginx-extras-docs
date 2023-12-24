@@ -144,19 +144,6 @@ improved by enabling
 Suggestions improving this module's or the benchmarks' performance
 (of any benchmarked library) are particularly appreciated.
 
-### License
-
-Work licensed under the MIT License.
-
-[luarocks-resty-jit-uuid]: http://luarocks.org/modules/thibaultcha/lua-resty-jit-uuid
-
-[badge-travis-url]: https://travis-ci.org/thibaultcha/lua-resty-jit-uuid
-[badge-travis-image]: https://travis-ci.org/thibaultcha/lua-resty-jit-uuid.svg?branch=master
-
-[badge-coveralls-url]: https://coveralls.io/r/thibaultcha/lua-resty-jit-uuid?branch=master
-[badge-coveralls-image]: https://coveralls.io/repos/thibaultcha/lua-resty-jit-uuid/badge.svg?branch=master&style=flat
-
-[badge-version-image]: https://img.shields.io/badge/version-0.0.7-blue.svg?style=flat
 
 ## GitHub
 

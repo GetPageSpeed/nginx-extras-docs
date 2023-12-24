@@ -109,8 +109,6 @@ variables or in the `ngx.ctx` table. These places all have their own data copies
 each request.
 
 
-## TODO ##
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

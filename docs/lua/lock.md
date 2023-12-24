@@ -87,8 +87,7 @@ To load this library,
     local lock = require "resty.lock"
 ```
 
-new
----
+## new
 `syntax: obj, err = lock:new(dict_name)`
 
 `syntax: obj, err = lock:new(dict_name, opts)`
@@ -284,27 +283,6 @@ Some of this library's API functions may yield. So do not call those functions i
 
 * [LuaJIT](http://luajit.org) 2.0+
 * [ngx_lua](https://github.com/openresty/lua-nginx-module) 0.8.10+
-
-## TODO
-
-* We should simplify the current implementation when LuaJIT 2.1 gets support for `__gc` metamethod on normal Lua tables. Right now we are using an FFI cdata and a ref/unref memo table to work around this, which is rather ugly and a bit inefficient.
-
-## Community
-
-## English Mailing List
-
-The [openresty-en](https://groups.google.com/group/openresty-en) mailing list is for English speakers.
-
-## Chinese Mailing List
-
-The [openresty](https://groups.google.com/group/openresty) mailing list is for Chinese speakers.
-
-## Bugs and Patches
-
-Please report bugs or submit patches by
-
-1. creating a ticket on the [GitHub Issue Tracker](https://github.com/openresty/lua-resty-lock/issues),
-1. or posting to the [OpenResty community](#community).
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module

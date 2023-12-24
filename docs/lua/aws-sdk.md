@@ -139,17 +139,6 @@ us. So, don't change the code manually in the `lib/resty/aws` directory.
 - `resty.aws.sqs`
 - `resty.aws.sns`
 
-## Todo
-
-- `resty.aws.s3`
-- `resty.aws.cloudwatch`
-- `resty.aws.elb`
-- `resty.aws.kinesis`
-- `resty.aws.logs`
-- `resty.aws.kms`
-- `resty.aws.cognito-identity`
-
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

@@ -150,8 +150,7 @@ Available user configurations are listed as follows:
 
 Get a boolean value indicating whether this module has been initted (by calling the [init](#init) method).
 
-log
----
+## log
 `syntax: bytes, err = logger.log(msg)`
 
 Log a message. By default, the log message will be buffered in the logger module until `flush_limit` is reached in which case the logger will flush all the buffered messages to remote log server via a socket.
@@ -162,17 +161,6 @@ Log a message. By default, the log message will be buffered in the logger module
 
 Flushes any buffered messages out to remote immediately. Usually you do not need
 to call this manually because flushing happens automatically when the buffer is full.
-
-## TODO
-
-* Multiple log server sharding and/or failover support.
-* "match_similar" utf8 support test.
-
-## Authors
-
-Jiale Zhi <vipcalio@gmail.com>, CloudFlare Inc.
-
-Yichun Zhang (agentzh) <agentzh@gmail.com>, CloudFlare Inc.
 
 
 ## GitHub
