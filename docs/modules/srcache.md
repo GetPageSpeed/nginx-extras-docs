@@ -1003,10 +1003,6 @@ Several common pitfalls for beginners:
 * Memcached might fail to store objects larger than 1m, causing errors like `srcache_store subrequest failed status=502`. Since version 1.4.2, memcached supports a command-line `-I` option to override the default size of each slab page. Please read its manpage for more information.
 
 
-## Source Repository
-Available on github at [openresty/srcache-nginx-module](https://github.com/openresty/srcache-nginx-module).
-
-
 ## Test Suite
 This module comes with a Perl-driven test suite. The [test cases](https://github.com/openresty/srcache-nginx-module/tree/master/test/t) are [declarative](https://github.com/openresty/srcache-nginx-module/blob/master/test/t/main-req.t) too. Thanks to the [Test::Nginx](http://search.cpan.org/perldoc?Test::Base) module in the Perl world.
 
@@ -1020,24 +1016,6 @@ You need to terminate any Nginx processes before running the test suite if you h
 Because a single nginx server (by default, `localhost:1984`) is used across all the test scripts (`.t` files), it's meaningless to run the test suite in parallel by specifying `-jN` when invoking the `prove` utility.
 
 Some parts of the test suite requires modules [ngx_http_rewrite_module](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html), [echo-nginx-module](https://github.com/openresty/echo-nginx-module), [rds-json-nginx-module](https://github.com/openresty/rds-json-nginx-module), and [drizzle-nginx-module](https://github.com/openresty/drizzle-nginx-module) to be enabled as well when building Nginx.
-
-
-## Getting involved
-You'll be very welcomed to submit patches to the author or just ask for a commit bit to the source repository on GitHub.
-
-
-## Copyright & License
-
-Copyright (c) 2010-2016, Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-
-This module is licensed under the terms of the BSD license.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 ## See Also

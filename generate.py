@@ -56,12 +56,18 @@ REMOVABLE_SECTIONS = [
     'luarocks',
     'authors',
     'community',
+    'support the project',
     'english mailing list',
     'chinese mailing list',
     'bugs and patches',
+    'bugs',
     'copyright & licenses',
     'changelogs',
-    'acknowledgments'
+    'acknowledgments',
+    'getting involved',
+    'report bugs',
+    'source repository',
+    'donation'
 ]
 
 # Line must start with this in order to be ignored/removed
@@ -319,7 +325,7 @@ def remove_md_sections(md, titles):
             else:
                 cur_sec_title = cur_sec_title + c
         cur_sec_title = cur_sec_title.strip().rstrip(':')
-        if cur_sec_title.lower() in titles:
+        if cur_sec_title.lower() in titles or 'copyright' in cur_sec_title.lower() or 'license' in cur_sec_title.lower() or 'licensing' in cur_sec_title.lower():
             section_level = cur_sec_level
             # do not add this target section title
         elif section_level:

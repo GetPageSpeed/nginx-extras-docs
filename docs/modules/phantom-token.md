@@ -270,9 +270,6 @@ If you wish to build this module from source, in order to run against other NGIN
 ## More Information
 For more information about the Curity Identity Server, its capabilities, and how to use it to issue phantom tokens for microservices, visit [curity.io](https://curity.io/product/token-service/?=use-cases?tab=microservices). For background information on using the Curity Identity Server to secure API access, see our [API security resources](https://curity.io/resources/api-security).
 
-## Licensing
-This software is copyright (C) 2022 Curity AB. It is open source software that is licensed under the [Apache v. 2](LICENSE). For commercial support of this module, please contact [Curity sales](mailto:sales@curity.io).
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

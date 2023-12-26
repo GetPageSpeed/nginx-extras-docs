@@ -250,10 +250,6 @@ Write all data points buffered in the current worker process to the configured i
 
 This operation returns immediately and runs asynchronously
 
-## Bugs
-
-Please report bugs by creating a ticket with the GitHub issue tracker.
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 

@@ -519,12 +519,6 @@ The module adds the following nginx variables:
 * `$secure_token_original_uri` - contains the original (encrypted) uri when using uri encryption.
 	Note that the built in `$uri` variable contains the modified (decrypted) uri in this case.
 
-## Copyright & License
-
-All code in this project is released under the [AGPLv3 license](http://www.gnu.org/licenses/agpl-3.0.html) unless a different license for a particular library is specified in the applicable library path. 
-
-Copyright © Kaltura Inc. All rights reserved.
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

@@ -263,12 +263,6 @@ server {
 ```
 
 
-#### Copyright & License ####
-  All codes are under the same [LICENCE](http://nginx.org/LICENSE) with [Nginx](http://nginx.org)    
-  Copyright (C) 2014 by Cube.
-
-
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

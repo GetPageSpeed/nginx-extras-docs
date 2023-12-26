@@ -1157,10 +1157,6 @@ Please target all pull requests towards the development branch, or a feature bra
 
 lua-resty-waf is undergoing continual development and improvement, and as such, may be limited in its functionality and performance. Currently known limitations can be found within the GitHub issue tracker for this repo.
 
-## Bugs
-
-Please report bugs by creating a ticket with the GitHub issue tracker.
-
 ## See Also
 
 - The OpenResty project: <http://openresty.org/>

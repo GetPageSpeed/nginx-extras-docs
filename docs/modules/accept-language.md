@@ -76,10 +76,6 @@ location / {
 I'm using page caching with merb on a multi-lingual website and I needed a way to serve the correct language page from the cache
 I'll soon put an example on http://gom-jabbar.org
 
-## Bugs
-
-Send Bugs to Guillaume Maury (dev@gom-jabbar.org)
-
 ## Acknowledgement
 
 Thanks to Evan Miller for his [guide on writing nginx modules](http://emiller.info/nginx-modules-guide.html).
