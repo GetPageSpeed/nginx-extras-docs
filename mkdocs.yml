@@ -266,10 +266,12 @@ plugins:
     back_cover: true
     copyright: GetPageSpeed LLC
     cover: true
+    cover_logo: https://www.getpagespeed.com/img/logo-horizontal.png
     cover_subtitle: Documentation
     cover_title: NGINX Extras by GetPageSpeed
     enabled_if_env: ENABLE_PDF_EXPORT
     toc_level: 1
+    output_path: NGINX Extras Documentation.pdf
 site_author: Danila Vershinin
 site_description: Automatic documentation from sources, for NGINX Extras.
 site_name: NGINX Extras Documentation

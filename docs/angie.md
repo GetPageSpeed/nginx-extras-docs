@@ -36,4 +36,18 @@ So for the time being, you can't use numerous module packages from NGINX Extras 
 ## Angie Features
 
 Angie is a superset to standard NGINX distribution and includes a number of features not available elsewhere.
-You can consult the [CHANGES](https://angie.software/en/changes/) document to find the features unique to Angie.
+
+Core advantages over nginx include the following:
+
+* Supporting HTTP/3 for client connections, as well as for proxied server connections, with the ability to independently use different protocol versions (HTTP/1.x, HTTP/2, HTTP/3) on opposite sides.
+* Simplifying configuration: the `location` directive can define several matching expressions at once, which enables combining blocks with shared settings.
+* Exposing basic information about the web server, its configuration, as well as metrics of proxied servers, client connections, shared memory zones, and many other things via a RESTful API interface in JSON format.
+* Exporting statistics in Prometheus format with customizable templates.
+* Monitoring the server through the browser with the Console Light visual monitoring tool. See the online demo: https://console.angie.software/
+* Automatically updating lists of proxied servers matching a domain name or retrieving such lists from SRV DNS records.
+* Session binding mode, which directs all requests within one session to the same proxied server.
+* Recommissioning upstream servers after a failure smoothly using the slow_start option of the server directive.
+* Limiting the MP4 file transfer rate proportionally to its bitrate, thus reducing the bandwidth load.
+* Extending authorization and balancing capabilities for the MQTT protocol with the mqtt_preread directive under stream.
+* Pre-built binary packages for many popular third-party modules.
+* Server- and client-side support for NTLS when using the TongSuo TLS library, enabled at build time.

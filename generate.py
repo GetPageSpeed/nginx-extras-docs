@@ -547,7 +547,7 @@ with open("mkdocs.yml") as mkdocs_f:
         {'Overview': 'index.md'},
         {'Modules': nginx_modules_index},
         {'Lua Scripting': lua_libs_index},
-        {'Distributions': ['branches.md', 'nginx-mod.md', 'tengine.md', 'plesk.md']},
+        {'Distributions': ['branches.md', 'nginx-mod.md', 'tengine.md', 'plesk.md', 'quic.md', 'angie.md']},
         {'RPM Repository': 'https://www.getpagespeed.com/redhat'}
     ]
     mkdocs_config['nav'] = nav
