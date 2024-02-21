@@ -45,6 +45,7 @@
 | [nginx-module-jwt](modules/jwt.md)                               | NGINX JWT Module                                                              |
 | [nginx-module-length-hiding](modules/length-hiding.md)           | NGINX Length Hiding Filter Module                                             |
 | [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
+| [nginx-module-live-common](modules/live-common.md)               | Kaltura Media Framework Common NGINX Module                                   |
 | [nginx-module-log-zmq](modules/log-zmq.md)                       | ZeroMQ logger module for NGINX                                                |
 | [nginx-module-lua](modules/lua.md)                               | Lua scripting support for NGINX                                               |
 | [nginx-module-markdown](modules/markdown.md)                     | Markdown-to-html NGINX module                                                 |
@@ -72,6 +73,7 @@
 | [nginx-module-small-light](modules/small-light.md)               | Dynamic image transformation module For NGINX                                 |
 | [nginx-module-spnego-http-auth](modules/spnego-http-auth.md)     | Nginx module for HTTP SPNEGO auth                                             |
 | [nginx-module-srcache](modules/srcache.md)                       | Transparent subrequest-based caching layout for arbitrary NGINX locations     |
+| [nginx-module-srt](modules/srt.md)                               | Nginx SRT Module                                                              |
 | [nginx-module-statsd](modules/statsd.md)                         | NGINX module for sending stats to statsd                                      |
 | [nginx-module-sticky](modules/sticky.md)                         | NGINX sticky cookie module                                                    |
 | [nginx-module-stream-lua](modules/stream-lua.md)                 | Lua scripting support for NGINX streams                                       |

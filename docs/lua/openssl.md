@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v1.1.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.1.0){target=_blank} 
-released on Dec 15 2023.
+This document describes lua-resty-openssl [v1.2.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.2.0){target=_blank} 
+released on Dec 28 2023.
     
 <hr />
 
@@ -172,27 +172,31 @@ Sets the default properties for all future EVP algorithm fetches, implicit as we
 
 ### openssl.list_cipher_algorithms
 
-**syntax**: *ret = openssl.list_cipher_algorithms()*
+**syntax**: *ret = openssl.list_cipher_algorithms(hide_provider?)*
 
-Return available cipher algorithms in an array.
+Return available cipher algorithms in an array. Set `hide_provider` to `true` to
+hide provider name from the result.
 
 ### openssl.list_digest_algorithms
 
-**syntax**: *ret = openssl.list_digest_algorithms()*
+**syntax**: *ret = openssl.list_digest_algorithms(hide_provider?)*
 
-Return available digest algorithms in an array.
+Return available digest algorithms in an array. Set `hide_provider` to `true` to
+hide provider name from the result.
 
 ### openssl.list_mac_algorithms
 
-**syntax**: *ret = openssl.list_mac_algorithms()*
+**syntax**: *ret = openssl.list_mac_algorithms(hide_provider?)*
 
-Return available MAC algorithms in an array.
+Return available MAC algorithms in an array. Set `hide_provider` to `true` to
+hide provider name from the result.
 
 ### openssl.list_kdf_algorithms
 
-**syntax**: *ret = openssl.list_kdf_algorithms()*
+**syntax**: *ret = openssl.list_kdf_algorithms(hide_provider?)*
 
-Return available KDF algorithms in an array.
+Return available KDF algorithms in an array. Set `hide_provider` to `true` to
+hide provider name from the result.
 
 ### openssl.list_ssl_ciphers
 
@@ -517,6 +521,8 @@ in provided JSON will decide if a private or public key is loaded.
 from private key part (the `d` parameter) if it's specified.
 - Signatures and verification must use `ecdsa_use_raw` option to work with JWS standards
 for EC keys. See [pkey:sign](#pkeysign) and [pkey.verify](#pkeyverify) for detail.
+- When running outside of OpenResty, needs to install a JSON library (`cjson` or `dkjson`)
+and `basexx`.
 
 #### Key generation
 
@@ -997,8 +1003,20 @@ Module to expose BIGNUM structure. Note bignum is a big integer, no float operat
 
 **syntax**: *b, err = bn.new(number?)*
 
-Creates a `bn` instance. The first argument can be a Lua number or `nil` to
-creates an empty instance.
+**syntax**: *b, err = bn.new(string?, base?)*
+
+Creates a `bn` instance. The first argument can be:
+
+- `nil` to creates an empty bn instance.
+- A Lua number to initialize the bn instance.
+- A string to initialize the bn instance. The second argument `base` specifies the base of the string,
+and can take value from (compatible with Ruby OpenSSL.BN API):
+  - `10` or omitted, for decimal string (`"23333"`)
+  - `16`, for hex encoded string (`"5b25"`)
+  - `2`, for binary string (`"\x5b\x25"`)
+  - `0`, for MPI formated string (`"\x00\x00\x00\x02\x5b\x25"`)
+
+MPI is a format that consists of the number's length in bytes represented as a 4-byte big-endian number, and the number itself in big-endian format, where the most significant bit signals a negative number (the representation of numbers with the MSB set is prefixed with null byte).
 
 ### bn.dup
 
@@ -1011,6 +1029,15 @@ Duplicates a `BIGNUM*` to create a new `bn` instance.
 **syntax**: *ok = bn.istype(table)*
 
 Returns `true` if table is an instance of `bn`. Returns `false` otherwise.
+
+### bn.set
+
+**syntax**: *b, err = bn:set(number)*
+
+**syntax**: *b, err = bn:set(string, base?)*
+
+Reuse the existing bn instance and reset its value with given number or string.
+Refer to [bn.new](#bnnew) for the type of arguments supported.
 
 ### bn.from_binary, bn:to_binary
 
@@ -1026,10 +1053,30 @@ Exports the BIGNUM value in binary string.
 used to pad leading zeros to the output to a specific length.
 
 ```lua
-local b, err = require("resty.openssl.bn").from_binary(ngx.decode_base64("WyU="))
+local to_hex = require "resty.string".to_hex
+local b, err = require("resty.openssl.bn").from_binary("\x5b\x25")
 local bin, err = b:to_binary()
-ngx.say(ngx.encode_base64(bin))
--- outputs "WyU="
+ngx.say(to_hex(bin))
+-- outputs "5b25
+```
+
+### bn.from_mpi, bn:to_mpi
+
+**syntax**: *bn, err = bn.from_mpi(bin)*
+
+**syntax**: *bin, err = bn:to_mpi()*
+
+Creates a `bn` instance from MPI formatted binary string.
+
+Exports the BIGNUM value in MPI formatted binary string.
+
+
+```lua
+local to_hex = require "resty.string".to_hex
+local b, err = require("resty.openssl.bn").from_mpi("\x00\x00\x00\x02\x5b\x25")
+local bin, err = b:to_mpi()
+ngx.say(to_hex(bin))
+-- outputs "000000025b25
 ```
 
 ### bn.from_hex, bn:to_hex
@@ -1264,6 +1311,18 @@ to explictly select provider to fetch algorithms.
 **syntax**: *ok = cipher.istype(table)*
 
 Returns `true` if table is an instance of `cipher`. Returns `false` otherwise.
+
+### cipher.set_buffer_size
+
+**syntax**: *ok = cipher.set_buffer_size(sz)*
+
+Resize the internal buffer size used by all cipher instance. The default buffer size is 1024 bytes.
+
+If you are expecting to pass input text larger than 1024 bytes at one time to `update()`, `encrypt()`
+or `decrypt()`, setting the buffer to larger than the expected input size will improve performance
+by let more code to be JIT-able.
+
+Avoid call this function at hotpath, as this re-allocate the buffer every time it's called.
 
 ### cipher:get_provider_name
 
@@ -1570,10 +1629,13 @@ Module to interact with message authentication code (EVP_MAC).
 
 **syntax**: *h, err = mac.new(key, mac, cipher?, digest?, properties?)*
 
-Creates a mac instance. `mac` is a case-insensitive string of digest algorithm name.
+Creates a mac instance. `mac` is a case-insensitive string of MAC algorithm name.
 To view a list of digest algorithms implemented, use
 [openssl.list_mac_algorithms](#openssllist_mac_algorithms) or
 `openssl list -mac-algorithms`.
+
+At least one of `cipher` or `digest` must be specified.
+
 `cipher` is a case-insensitive string of digest algorithm name.
 To view a list of digest algorithms implemented, use
 [openssl.list_cipher_algorithms](#openssllist_cipher_algorithms) or
@@ -1627,6 +1689,16 @@ local hmac, err = d:final("🦢")
 ngx.say(ngx.encode_base64(mac))
 -- outputs "k2UcrRp25tj1Spff89mJF3fAVQ0lodq/tJT53EYXp0c="
 ```
+
+### mac:reset
+
+**syntax**: *ok, err = mac:reset()*
+
+Reset the internal state of `mac` instance as it's just created by [mac.new](#macnew).
+It calls [EVP_MAC_Init](https://www.openssl.org/docs/manmaster/man3/EVP_MAC_init.html) under
+the hood.
+
+User must call this before reusing the same `mac` instance.
 
 ## resty.openssl.kdf
 

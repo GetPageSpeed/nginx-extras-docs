@@ -23,8 +23,8 @@ load_module modules/ngx_stream_lua_module.so;
 ```
 
 
-This document describes nginx-module-stream-lua [v0.0.13](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.13){target=_blank} 
-released on Mar 21 2023.
+This document describes nginx-module-stream-lua [v0.0.14](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.14){target=_blank} 
+released on Dec 27 2023.
 
 <hr />
 
@@ -152,6 +152,8 @@ behavior.
 * [lua_ssl_ciphers](https://github.com/openresty/lua-nginx-module#lua_ssl_ciphers)
 * [lua_ssl_crl](https://github.com/openresty/lua-nginx-module#lua_ssl_crl)
 * [lua_ssl_protocols](https://github.com/openresty/lua-nginx-module#lua_ssl_protocols)
+* [lua_ssl_certificate](https://github.com/openresty/lua-nginx-module#lua_ssl_certificate)
+* [lua_ssl_certificate_key](https://github.com/openresty/lua-nginx-module#lua_ssl_certificate_key)
 * [lua_ssl_trusted_certificate](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate)
 * [lua_ssl_verify_depth](https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth)
 * [lua_ssl_conf_command](https://github.com/openresty/lua-nginx-module#lua_ssl_conf_command)
@@ -510,6 +512,8 @@ output to be completely flushed out (to the system socket send buffers).
 
 The latest version of this module is compatible with the following versions of Nginx:
 
+* 1.25.x (last tested: 1.25.1)
+* 1.21.x (last tested: 1.21.4)
 * 1.19.x (last tested: 1.19.3)
 * 1.17.x (last tested: 1.17.8)
 * 1.15.x (last tested: 1.15.8)

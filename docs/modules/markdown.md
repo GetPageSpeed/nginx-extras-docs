@@ -23,8 +23,8 @@ load_module modules/ngx_markdown_filter_module.so;
 ```
 
 
-This document describes nginx-module-markdown [v0.1.2](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.2){target=_blank} 
-released on Apr 23 2023.
+This document describes nginx-module-markdown [v0.1.3](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.3){target=_blank} 
+released on Feb 07 2024.
 
 <hr />
 

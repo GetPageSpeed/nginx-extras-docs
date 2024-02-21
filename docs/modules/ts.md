@@ -27,14 +27,27 @@ This document describes nginx-module-ts [v0.1.1](https://github.com/arut/nginx-t
 released on Jul 14 2017.
 
 <hr />
+NGINX MPEG-TS Live Module
+=========================
 
-## Features
+Features
+--------
 
 -   receives MPEG-TS over HTTP
--   produces and manages live
-    [HLS](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23)
--   produces and manages live
-    [MPEG-DASH](https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP)
+-   produces and manages live [HLS](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23)
+-   produces and manages live [MPEGDDASH](https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP)
+
+Compatibility
+-------------
+
+-   [nginx](http://nginx.org) version \>= 1.11.5
+
+Build
+-----
+
+Building nginx with the module:
+
+``` {.sourceCode .bash}
 
 ## GitHub
 

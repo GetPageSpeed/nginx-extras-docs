@@ -23,8 +23,8 @@ load_module modules/ngx_http_memc_module.so;
 ```
 
 
-This document describes nginx-module-memc [v0.19](https://github.com/openresty/memc-nginx-module/releases/tag/v0.19){target=_blank} 
-released on Apr 19 2018.
+This document describes nginx-module-memc [v0.20](https://github.com/openresty/memc-nginx-module/releases/tag/v0.20){target=_blank} 
+released on Dec 27 2023.
 
 <hr />
 

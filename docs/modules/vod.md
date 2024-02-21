@@ -23,8 +23,8 @@ load_module modules/ngx_http_vod_module.so;
 ```
 
 
-This document describes nginx-module-vod [v1.32](https://github.com/kaltura/nginx-vod-module/releases/tag/1.32){target=_blank} 
-released on Oct 17 2023.
+This document describes nginx-module-vod [v1.33](https://github.com/kaltura/nginx-vod-module/releases/tag/1.33){target=_blank} 
+released on Jan 01 2024.
 
 <hr />
 ## nginx-vod-module [![Build Status](https://travis-ci.org/kaltura/nginx-vod-module.svg?branch=master)](https://travis-ci.org/kaltura/nginx-vod-module)
@@ -552,6 +552,7 @@ Mandatory fields:
 	an empty captions file (useful in case only some videos in a playlist have captions)
 
 Optional fields:
+* `id` - a string that identifies the source clip
 * `sourceType` - sets the interface that should be used to read the MP4 file, allowed values are:
 	`file` and `http`. By default, the module uses `http` if `vod_remote_upstream_location` is set,
 	and `file` otherwise.
@@ -1670,8 +1671,19 @@ padding is added as needed.
 * **default**: `off`
 * **context**: `http`, `server`, `location`
 
-When enabled, an ID3 TEXT frame will be outputted in each TS segment, containing a JSON with the absolute segment timestamp.
-The timestamp is measured in milliseconds since the epoch (unixtime x 1000), the JSON structure is: `{"timestamp":1459779115000}`
+When enabled, an ID3 TEXT frame is outputted in each TS segment.
+The content of the ID3 TEXT frame can be set using the directive `vod_hls_mpegts_id3_data`.
+
+#### vod_hls_mpegts_id3_data
+* **syntax**: `vod_hls_mpegts_id3_data string`
+* **default**: `{"timestamp":$vod_segment_time,"sequenceId":"$vod_sequence_id"}`
+* **context**: `http`, `server`, `location`
+
+Sets the data of the ID3 TEXT frame outputted in each TS segment, when `vod_hls_mpegts_output_id3_timestamps` is set to `on`.
+When the directive is not set, the ID3 frames contain by default a JSON object of the format `{"timestamp":1459779115000,"sequenceId":"{id}"}`:
+- `timestamp` - an absolute time measured in milliseconds since the epoch (unixtime x 1000).
+- `sequenceId` - the id field of the sequence object, as specified in the mapping JSON. The field is omitted when the sequence id is empty / not specified in the mapping JSON.
+The parameter value can contain variables.
 
 #### vod_hls_mpegts_align_pts
 * **syntax**: `vod_hls_mpegts_align_pts on/off`
@@ -1802,6 +1814,7 @@ The module adds the following nginx variables:
 	`EXPIRED` - the current server time is larger than `expirationTime`
 	`ALLOC_FAILED` - the module failed to allocate memory
 	`UNEXPECTED` - a scenario that is not supposed to happen, most likely a bug in the module
+* `$vod_segment_time` - for segment requests, contains the absolute timestamp of the first frame in the segment, measured in milliseconds since the epoch (unixtime x 1000).
 * `$vod_segment_duration` - for segment requests, contains the duration of the segment in milliseconds
 * `$vod_frames_bytes_read` - for segment requests, total number of bytes read while processing media frames
 

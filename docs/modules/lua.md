@@ -23,19 +23,17 @@ load_module modules/ngx_http_lua_module.so;
 ```
 
 
-This document describes nginx-module-lua [v0.10.25](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.25){target=_blank} 
-released on Jun 19 2023.
+This document describes nginx-module-lua [v0.10.26](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.26){target=_blank} 
+released on Dec 27 2023.
 
 <hr />
 
 ngx_http_lua_module - Embed the power of Lua into Nginx HTTP Servers.
 
 This module is a core component of [OpenResty](https://openresty.org). If you are using this module,
-then you are essentially using OpenResty.
+then you are essentially using OpenResty :)
 
 [the installation instructions](#installation).
-
-This is a core component of OpenResty. If you are using this module, then you are essentially using OpenResty :)
 
 ## Status
 
@@ -271,6 +269,8 @@ performance level.
 
 The latest version of this module is compatible with the following versions of Nginx:
 
+* 1.25.x  (last tested: 1.25.1)
+* 1.21.x  (last tested: 1.21.4)
 * 1.19.x  (last tested: 1.19.3)
 * 1.17.x  (last tested: 1.17.8)
 * 1.15.x  (last tested: 1.15.8)
@@ -917,6 +917,8 @@ Other related modules and libraries:
 * [lua_ssl_ciphers](#lua_ssl_ciphers)
 * [lua_ssl_crl](#lua_ssl_crl)
 * [lua_ssl_protocols](#lua_ssl_protocols)
+* [lua_ssl_certificate](#lua_ssl_certificate)
+* [lua_ssl_certificate_key](#lua_ssl_certificate_key)
 * [lua_ssl_trusted_certificate](#lua_ssl_trusted_certificate)
 * [lua_ssl_verify_depth](#lua_ssl_verify_depth)
 * [lua_ssl_conf_command](#lua_ssl_conf_command)
@@ -2427,6 +2429,8 @@ This directive was first introduced in the `v0.10.0` release.
 
 **phase:** *depends on usage*
 
+Due to the stream processing feature of HTTP/2 or HTTP/3, this configuration could potentially block the entire request. Therefore, this configuration is effective only when HTTP/2 or HTTP/3 requests send content-length header. For requests with versions lower than HTTP/2, this configuration can still be used without any problems.
+
 Determines whether to force the request body data to be read before running rewrite/access/content_by_lua* or not. The Nginx core does not read the client request body by default and if request body data is required, then this directive should be turned `on` or the [ngx.req.read_body](#ngxreqread_body) function should be called within the Lua code.
 
 To read the request body data within the [$request_body](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body) variable,
@@ -3007,15 +3011,52 @@ This directive was first introduced in the `v0.9.11` release.
 
 **syntax:** *lua_ssl_protocols \[SSLv2\] \[SSLv3\] \[TLSv1\] [TLSv1.1] [TLSv1.2] [TLSv1.3]*
 
-**default:** *lua_ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2*
+**default:** *lua_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3*
 
 **context:** *http, server, location*
 
 Enables the specified protocols for requests to a SSL/TLS server in the [tcpsock:sslhandshake](#tcpsocksslhandshake) method.
 
 The support for the `TLSv1.3` parameter requires version `v0.10.12` *and* OpenSSL 1.1.1.
+From version v0.10.25, the default value change from `SSLV3 TLSv1 TLSv1.1 TLSv1.2` to `TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`.
 
 This directive was first introduced in the `v0.9.11` release.
+
+[Back to TOC](#directives)
+
+## lua_ssl_certificate
+
+**syntax:** *lua_ssl_certificate &lt;file&gt;*
+
+**default:** *none*
+
+**context:** *http, server, location*
+
+Specifies the file path to the SSL/TLS certificate in PEM format used for the [tcpsock:sslhandshake](#tcpsocksslhandshake) method.
+
+This directive allows you to specify the SSL/TLS certificate that will be presented to server during the SSL/TLS handshake process.
+
+This directive was first introduced in the `v0.10.26` release.
+
+See also [lua_ssl_certificate_key](#lua_ssl_certificate_key) and [lua_ssl_verify_depth](#lua_ssl_verify_depth).
+
+[Back to TOC](#directives)
+
+## lua_ssl_certificate_key
+
+**syntax:** *lua_ssl_certificate_key &lt;file&gt;*
+
+**default:** *none*
+
+**context:** *http, server, location*
+
+Specifies the file path to the private key associated with the SSL/TLS certificate used in the [tcpsock:sslhandshake](#tcpsocksslhandshake) method.
+
+This directive allows you to specify the private key file corresponding to the SSL/TLS certificate specified by lua_ssl_certificate. The private key should be in PEM format and must match the certificate.
+
+This directive was first introduced in the `v0.10.26` release.
+
+See also [lua_ssl_certificate](#lua_ssl_certificate) and [lua_ssl_verify_depth](#lua_ssl_verify_depth).
 
 [Back to TOC](#directives)
 
@@ -3023,7 +3064,7 @@ This directive was first introduced in the `v0.9.11` release.
 
 **syntax:** *lua_ssl_trusted_certificate &lt;file&gt;*
 
-**default:** *no*
+**default:** *none*
 
 **context:** *http, server, location*
 
@@ -3047,7 +3088,7 @@ Sets the verification depth in the server certificates chain.
 
 This directive was first introduced in the `v0.9.11` release.
 
-See also [lua_ssl_trusted_certificate](#lua_ssl_trusted_certificate).
+See also [lua_ssl_certificate](#lua_ssl_certificate), [lua_ssl_certificate_key](#lua_ssl_certificate_key) and [lua_ssl_trusted_certificate](#lua_ssl_trusted_certificate).
 
 [Back to TOC](#directives)
 
@@ -5028,6 +5069,8 @@ Reads the client request body synchronously without blocking the Nginx event loo
  local args = ngx.req.get_post_args()
 ```
 
+Due to the stream processing feature of HTTP/2 or HTTP/3, this api could potentially block the entire request. Therefore, this api is effective only when HTTP/2 or HTTP/3 requests send content-length header. For requests with versions lower than HTTP/2, this api can still be used without any problems.
+
 If the request body is already read previously by turning on [lua_need_request_body](#lua_need_request_body) or by using other modules, then this function does not run and returns immediately.
 
 If the request body has already been explicitly discarded, either by the [ngx.req.discard_body](#ngxreqdiscard_body) function or other modules, this function does not run and returns immediately.
@@ -5065,11 +5108,13 @@ See also [ngx.req.read_body](#ngxreqread_body).
 
 ## ngx.req.get_body_data
 
-**syntax:** *data = ngx.req.get_body_data()*
+**syntax:** *data = ngx.req.get_body_data(max_bytes?)*
 
 **context:** *rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, log_by_lua&#42;*
 
 Retrieves in-memory request body data. It returns a Lua string rather than a Lua table holding all the parsed query arguments. Use the [ngx.req.get_post_args](#ngxreqget_post_args) function instead if a Lua table is required.
+
+The optional `max_bytes` argument can be used when you don't need the entire body.
 
 This function returns `nil` if
 
@@ -5231,6 +5276,8 @@ See also [ngx.req.init_body](#ngxreqinit_body).
 Returns a read-only cosocket object that wraps the downstream connection. Only [receive](#tcpsockreceive), [receiveany](#tcpsockreceiveany) and [receiveuntil](#tcpsockreceiveuntil) methods are supported on this object.
 
 In case of error, `nil` will be returned as well as a string describing the error.
+
+Due to the streaming nature of HTTP2 and HTTP3, this API cannot be used when the downstream connection is HTTP2 and HTTP3.
 
 The socket object returned by this method is usually used to read the current request's body in a streaming fashion. Do not turn on the [lua_need_request_body](#lua_need_request_body) directive, and do not mix this call with [ngx.req.read_body](#ngxreqread_body) and [ngx.req.discard_body](#ngxreqdiscard_body).
 
@@ -8840,12 +8887,6 @@ Only the following ngx_lua APIs could be used in `function_name` function of the
 * `ngx.decode_args`
 * `ngx.quote_sql_str`
 
-* `ngx.re.match`
-* `ngx.re.find`
-* `ngx.re.gmatch`
-* `ngx.re.sub`
-* `ngx.re.gsub`
-
 * `ngx.crc32_short`
 * `ngx.crc32_long`
 * `ngx.hmac_sha1`
@@ -8871,7 +8912,7 @@ The second argument `module_name` specifies the lua module name to execute in th
 
 The third argument `func_name` specifies the function field in the module table as the second argument.
 
-The type of `arg`s must be one of type below:
+The type of `args` must be one of type below:
 
 * boolean
 * number

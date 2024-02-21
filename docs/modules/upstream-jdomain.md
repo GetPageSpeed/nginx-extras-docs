@@ -23,8 +23,8 @@ load_module modules/ngx_http_upstream_jdomain_module.so;
 ```
 
 
-This document describes nginx-module-upstream-jdomain [v1.4.0](https://github.com/nicholaschiasson/ngx_upstream_jdomain/releases/tag/1.4.0){target=_blank} 
-released on May 29 2022.
+This document describes nginx-module-upstream-jdomain [v1.5.0](https://github.com/nicholaschiasson/ngx_upstream_jdomain/releases/tag/1.5.0){target=_blank} 
+released on Jan 24 2024.
 
 <hr />
 

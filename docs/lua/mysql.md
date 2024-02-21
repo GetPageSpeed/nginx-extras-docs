@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-mysql
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-mysql [v0.26](https://github.com/openresty/lua-resty-mysql/releases/tag/v0.26){target=_blank} 
-released on Jan 19 2023.
+This document describes lua-resty-mysql [v0.27](https://github.com/openresty/lua-resty-mysql/releases/tag/v0.27){target=_blank} 
+released on Nov 23 2023.
     
 <hr />
 
