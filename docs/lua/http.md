@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-http
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-http [v0.17.1](https://github.com/ledgetech/lua-resty-http/releases/tag/v0.17.1){target=_blank} 
-released on Mar 22 2023.
+This document describes lua-resty-http [v0.17.2](https://github.com/ledgetech/lua-resty-http/releases/tag/v0.17.2){target=_blank} 
+released on Feb 29 2024.
     
 <hr />
 
