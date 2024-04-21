@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-acme
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-acme [v0.12.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.12.0){target=_blank} 
-released on Sep 05 2023.
+This document describes lua-resty-acme [v0.13.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.13.0){target=_blank} 
+released on Mar 27 2024.
     
 <hr />
 

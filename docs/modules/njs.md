@@ -26,8 +26,8 @@ load_module modules/ngx_stream_js_module.so;
 ```
 
 
-This document describes nginx-module-njs [v0.8.3](https://github.com/nginx/njs/releases/tag/0.8.3){target=_blank} 
-released on Feb 07 2024.
+This document describes nginx-module-njs [v0.8.4](https://github.com/nginx/njs/releases/tag/0.8.4){target=_blank} 
+released on Apr 15 2024.
 
 <hr />
 

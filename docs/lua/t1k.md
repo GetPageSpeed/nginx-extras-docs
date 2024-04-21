@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-t1k
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-t1k [v1.1.0](https://github.com/chaitin/lua-resty-t1k/releases/tag/v1.1.0){target=_blank} 
-released on Aug 03 2023.
+This document describes lua-resty-t1k [v1.1.3](https://github.com/chaitin/lua-resty-t1k/releases/tag/v1.1.3){target=_blank} 
+released on Mar 13 2024.
     
 <hr />
 
