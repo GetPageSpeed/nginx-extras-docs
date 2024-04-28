@@ -23,8 +23,8 @@ load_module modules/ngx_http_api_module.so;
 ```
 
 
-This document describes nginx-module-live-common [v1.22.0](https://github.com/kaltura/media-framework/releases/tag/v1.22.0){target=_blank} 
-released on Mar 24 2024.
+This document describes nginx-module-live-common [v1.22.0](https://github.com/kaltura/media-framework/releases/tag/v1.22.0-hevc-rtmp-kmp-5){target=_blank} 
+released on Apr 21 2024.
 
 <hr />
 

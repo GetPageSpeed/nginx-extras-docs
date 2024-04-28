@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v1.3.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.3.0){target=_blank} 
-released on Apr 15 2024.
+This document describes lua-resty-openssl [v1.3.1](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.3.1){target=_blank} 
+released on Apr 22 2024.
     
 <hr />
 
