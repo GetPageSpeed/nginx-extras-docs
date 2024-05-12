@@ -23,8 +23,8 @@ load_module modules/ngx_http_push_stream_module.so;
 ```
 
 
-This document describes nginx-module-push-stream [v0.5.5](https://github.com/wandenberg/nginx-push-stream-module/releases/tag/0.5.5){target=_blank} 
-released on Dec 11 2021.
+This document describes nginx-module-push-stream [v0.6.0](https://github.com/wandenberg/nginx-push-stream-module/releases/tag/0.6.0){target=_blank} 
+released on May 09 2024.
 
 <hr />
 Nginx Push Stream Module
