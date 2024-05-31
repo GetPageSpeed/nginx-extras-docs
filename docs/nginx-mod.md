@@ -24,6 +24,7 @@ More on those patches in the documentation below.
 
 ```bash
 sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
+sudo yum-config-manager --disable getpagespeed-extras-mainline
 sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
 sudo yum -y install nginx
 sudo systemctl enable --now nginx
@@ -35,6 +36,7 @@ If you were using our regular NGINX build, you can run a series of commands to u
 
 ```bash
 sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
+sudo yum-config-manager --disable getpagespeed-extras-mainline
 sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
 sudo yum -y update nginx
 # importantly, we must re-enable the nginx service after switching packages:
