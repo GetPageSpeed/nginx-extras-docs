@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v1.3.1](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.3.1){target=_blank} 
-released on Apr 22 2024.
+This document describes lua-resty-openssl [v1.4.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.4.0){target=_blank} 
+released on May 27 2024.
     
 <hr />
 
@@ -530,7 +530,6 @@ and `basexx`.
 
 Generate a new public key or private key.
 
-
 To generate RSA key, `config` table can have `bits` and `exp` field to control key generation.
 When `config` is emitted, this function generates a 2048 bit RSA key with `exponent` of 65537,
 which is equivalent to:
@@ -589,6 +588,25 @@ pkey.new({
 
 ```
 
+#### Key composition
+
+**syntax**: *pk, err = pkey.new(config?)*
+
+Compose a public or private key using existing parameters. To see
+list of parameters for each key, refer to [pkey:set_parameters](#pkeyset_parameters).
+
+Only `type` and `params` should exist in `config` table, all other keys will be ignored.
+
+```lua
+local private_bn = require "resty.openssl.bn".new("7F48282CCA4C1A65D589C06DBE9C42AE50FBFFDF3A18CBB48498E1DE47F11BE1A3486CD8FA950D68F111970F922279D8", 16)
+local p_384, err = assert(require("resty.openssl.pkey").new({
+    type = "EC",
+    params = {
+        private = private_bn,
+        group = "secp384r1",
+    }
+}))
+```
 
 ### pkey.istype
 
@@ -828,6 +846,8 @@ pk:sign(message, nil, nil, {
 -- in pkeyutl CLI the above is equivalent to: `openssl pkeyutl -sign -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
 ```
 
+To sign a message without doing message digest, please check [pkey:sign_raw](#pkeysign_raw).
+
 ### pkey:verify
 
 **syntax**: *ok, err = pk:verify(signature, digest)*
@@ -893,6 +913,8 @@ ngx.say(ngx.encode_base64(signature))
 
 ```
 
+To verify a message without doing message digest, please check [pkey:verify_raw](#pkeyverify_raw) and [pkey:verify_recover](#pkeyverify_recover).
+
 ### pkey:encrypt
 
 **syntax**: *cipher_txt, err = pk:encrypt(txt, padding?, opts?)*
@@ -944,6 +966,23 @@ This function may also be called "private encrypt" in some implementations like 
 Do note as the function names suggested, this function is not secure to be regarded as an encryption.
 When developing new applications, user should use [pkey:sign](#pkeysign) for signing with digest, or 
 [pkey:encrypt](#pkeyencrypt) for encryption.
+
+See [examples/raw-sign-and-recover.lua](https://github.com/fffonion/lua-resty-openssl/blob/master/examples/raw-sign-and-recover.lua)
+for an example.
+
+### pkey:verify_raw
+
+**syntax**: *ok, err = pk:verify_raw(signature, data, md_alg, padding?, opts?)*
+
+Verify the cipher text `signature` with the message `data` with pkey instance, which must loaded a public key. Set the message digest to `md_alg` but doesn't do message digest
+automatically, in other words, this function assumes `data` has already been hashed with `md_alg`.
+
+When `md_alg` is undefined, for RSA and EC keys, this function does SHA256 by default. For Ed25519 or Ed448 keys, no default value is set.
+
+The optinal fourth argument `padding` has same meaning as in [pkey:sign](#pkeysign).
+If omitted, `padding` is default to `pkey.PADDINGS.RSA_PKCS1_PADDING`.
+
+The fifth optional argument `opts` has same meaning as in [pkey:sign](#pkeysign).
 
 See [examples/raw-sign-and-recover.lua](https://github.com/fffonion/lua-resty-openssl/blob/master/examples/raw-sign-and-recover.lua)
 for an example.

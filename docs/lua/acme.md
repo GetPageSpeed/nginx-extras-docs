@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-acme
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-acme [v0.13.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.13.0){target=_blank} 
-released on Mar 27 2024.
+This document describes lua-resty-acme [v0.14.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.14.0){target=_blank} 
+released on May 28 2024.
     
 <hr />
 
@@ -149,14 +149,33 @@ with the fallback certificate.
 
 Note that `domain_whitelist` or `domain_whitelist_callback` must be set to include your domain
 that you wish to server autossl, to prevent potential abuse using fake SNI in SSL handshake.
-`domain_whitelist` defines a table that includes all domains should be included, and
-`domain_whitelist_callback` defines a function that accepts domain as parameter and return
-boolean to indicate if it should be included.
+
+`domain_whitelist` defines a table that includes all domains should be included and the CN to be
+used to create cert for. Only a single `*` is allowed as a wildcard.
+
 ```lua
-domain_whitelist = { "domain1.com", "domain2.com", "domain3.com" },
+domain_whitelist = { "domain1.com", "domain2.com", "domain3.com", "*.domain4.com" },
 ```
 
-To match a pattern in your domain name, for example all subdomains under `example.com`, use:
+## Wildcard certificates
+
+To enable this library to create wildcard certificate, the following requirements must be met:
+
+- The wildcard domain appear exactly as `*.somedomain.com` in `domain_whitelist`.
+- `dns-01` challenge is enabled and a dns provider that has `domains` matching the domain is configured.
+
+Otherwise a non-wildcard certificate will be created as fallback.
+
+By default, the wildcard domain `*.example.com` will appear in Common Name. When `wildcard_domain_in_san` is set to `true` however, a cert with Common Name `example.com` and Subject Alternate Name `*.example.com` will be created. Note both `*.example.com` and `example.com` should appear in `dns_provider_accounts`.
+
+## Advanced Usage
+
+### Use a function to include domains
+
+`domain_whitelist_callback` defines a function that accepts domain as parameter and return
+boolean to indicate if it should be included.
+
+To match a pattern in your domain name, for example **all** subdomains under `example.com`, use:
 
 ```lua
 domain_whitelist_callback = function(domain, is_new_cert_needed)
@@ -186,6 +205,8 @@ end}),
 
 `domain_whitelist_callback` function is provided with a second argument,
 which indicates whether the certificate is about to be served on incoming HTTP request (false) or new certificate is about to be requested (true). This allows to use cached values on hot path (serving requests) while fetching fresh data from storage for new certificates. One may also implement different logic, e.g. do extra checks before requesting new cert.
+
+### Define failure cooloff period
 
 In case of certificate request failure one may want to prevent ACME client to request another certificate immediatelly. By default, the cooloff period it is set to 300 seconds (5 minutes). It may be customized with `failure_cooloff` or with `failure_cooloff_callback` function, e.g. to implement exponential backoff.
 
@@ -351,6 +372,54 @@ kept same as possible.
 than `shm`. If you must use `shm`, you will need to apply
 [this patch](https://github.com/fffonion/lua-resty-shdict-server/tree/master/patches).
 
+## dns-01 challenge
+
+DNS-01 challenge is supported on lua-resty-acme > 0.13.0. Currently, following DNS providers are supported:
+
+- `cloudflare`: Cloudflare
+- `dynv6`: Dynv6
+- `dnspod-intl`: Dnspod International (only Dnspod token is supported and use `id,token` in secret field)
+
+To read to how to extend a new DNS provider to work with `dns-01` challenge, see [DNS provider](#dns-providers).
+
+An example config to use `dns-01` challenge would be:
+
+```lua
+require("resty.acme.autossl").init({
+  -- setting the following to true
+  -- implies that you read and accepted https://letsencrypt.org/repository/
+  tos_accepted = true,
+  -- uncomment following for first time setup
+  -- staging = true,
+  -- uncomment following to enable RSA + ECC double cert
+  -- domain_key_types = { 'rsa', 'ecc' },
+  -- do not set `http-01` or `tls-alpn-01` if you only plan to use dns-01.
+  enabled_challenge_handlers = { 'dns-01' },
+  account_key_path = "/etc/openresty/account.key",
+  account_email = "youemail@youdomain.com",
+  domain_whitelist = { "example.com", "subdomain.anotherdomain.com" },
+
+  dns_provider_accounts = {
+    {
+      name = "cloudflare_prod",
+      provider = "cloudflare",
+      secret = "apikey of cloudflare",
+      domains = { "example.com" },
+    },
+    {
+      name = "dynv6_staging",
+      provider = "dynv6",
+      secret = "apikey of dynv6",
+      domains = { "*.anotherdomain.com" },
+    },
+  },
+  -- uncomment following to create anotherdomain.com in CN and *.anotherdomain.com in SAN
+  -- wildcard_domain_in_san = true,
+})
+```
+
+By default, this library tries up to 5 minutes for DNS propagation. If the default TTL for dns provider is longer than that, user may want to tune up `challenge_start_delay` manually to wait longer.
+
 ## resty.acme.autossl
 
 A config table can be passed to `resty.acme.autossl.init()`, the default values are:
@@ -400,6 +469,18 @@ default_config = {
   challenge_start_delay = 0,
   -- if true, the request to nginx waits until the cert has been generated and it is used right away
   blocking = false,
+  -- if true, the certificate for domain not in whitelist will be deleted from storage
+  enabled_delete_not_whitelisted_domain = false,
+  -- the dict of dns providers, each provider should have following struct:
+  -- {
+  --   name = "prod_account",
+  --   provider = "provider_name", -- "cloudflare" or "dynv6"
+  --   secret  = "the api key or token",
+  --   domains = { "example.com", "*.example.com" }, -- the list of domains that can be used with this provider
+  -- }
+  dns_provider_accounts = {},
+  -- if enabled, wildcard domains like *.example.com will be created as SAN and CN will be example.com
+  wildcard_domain_in_san = false,
 }
 ```
 
@@ -479,6 +560,8 @@ default_config = {
   preferred_chain = nil,
   -- callback function that allows to wait before signaling ACME server to validate
   challenge_start_callback = nil,
+  -- the dict of dns providers, each provider should have following struct:
+  dns_provider_accounts = {},
 }
 ```
 
@@ -699,6 +782,31 @@ storage_config = {
 
 Etcd storage requires [lua-resty-etcd](https://github.com/api7/lua-resty-etcd) library to installed.
 It can be manually installed with `opm install api7/lua-resty-etcd` or `luarocks install lua-resty-etcd`.
+
+
+## DNS providers
+
+TO create a custom DNS provider, follow these steps:
+
+- Create a file like `route53.lua` under `lib/resty/acme/dns_provider`
+- Implement following function signature
+
+```lua
+function _M.new(token)
+  -- ... 
+  return self
+end
+
+function _M:post_txt_record(fqdn, content)
+  return ok, err
+end
+
+function _M:delete_txt_record(fqdn)
+  return ok, err
+end
+```
+
+Where `token` is the apikey, `fqdn` is the DNS record name to set record, and `content` is the value of the record.
 
 
 ## Testing
