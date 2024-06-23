@@ -22,8 +22,8 @@ yum -y install lua5.1-resty-healthcheck
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-healthcheck [v3.0.2](https://github.com/Kong/lua-resty-healthcheck/releases/tag/3.0.2){target=_blank} 
-released on May 16 2024.
+This document describes lua-resty-healthcheck [v3.1.0](https://github.com/Kong/lua-resty-healthcheck/releases/tag/3.1.0){target=_blank} 
+released on Jun 19 2024.
     
 <hr />
 
@@ -130,7 +130,11 @@ Versioning is strictly based on [Semantic Versioning](https://semver.org/)
 * push commit and tag
 * upload rock to luarocks: `luarocks upload rockspecs/[name] --api-key=abc`
 
-### Unreleased
+### 3.1.0 (19-Jun-2024)
+
+* Feat: remove version check of resty.events [#162](https://github.com/Kong/lua-resty-healthcheck/pull/162)
+
+### 3.0.2 (16-May-2024)
 
 * Fix: avoid creating multiple timers to run the same active check [#157](https://github.com/Kong/lua-resty-healthcheck/pull/157)
 
