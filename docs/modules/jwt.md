@@ -23,8 +23,8 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.4.0](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.0){target=_blank} 
-released on Nov 01 2023.
+This document describes nginx-module-jwt [v3.4.1](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.1){target=_blank} 
+released on Jun 23 2024.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
@@ -153,7 +153,7 @@ server {
 }
 ```
 
-> Note that as `$jwt_claim_` returns a JSON-encoded value, we check form `\"value\"` (and not  `value`)
+> Note that as `$jwt_claim_` returns a JSON-encoded value, so we have to check `\"value\"` (and not  `value`)
 
 ### Embedded Variables:
 The ngx_http_auth_jwt_module module supports embedded variables:
@@ -175,7 +175,7 @@ docker pull ghcr.io/max-lt/nginx-jwt-module:latest
 ```dockerfile
 FROM ghcr.io/max-lt/nginx-jwt-module:latest
 
-## Copy you nginx conf
+## Copy your nginx conf
 ## Don't forget to include this module in your configuration
 ## load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
 COPY my-nginx-conf /etc/nginx

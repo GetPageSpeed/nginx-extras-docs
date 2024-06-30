@@ -242,6 +242,7 @@ nav:
     timer: lua/timer.md
     tlc: lua/tlc.md
     tsort: lua/tsort.md
+    txid: lua/txid.md
     upload: lua/upload.md
     upstream: lua/upstream.md
     upstream-healthcheck: lua/upstream-healthcheck.md
