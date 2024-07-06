@@ -1,0 +1,7463 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/waf/">
+      
+      
+        <link rel="prev" href="../vhost/">
+      
+      
+        <link rel="next" href="../weauth/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>waf - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="waf - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/waf.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/waf/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="waf - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/waf.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#waf-high-performance-waf-built-on-nginx-module-lua-stack" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              waf
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modules/" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/secure-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-with-pcrepathtopcresource-with-pcre-jit" class="md-nav__link">
+    <span class="md-ellipsis">
+      ./configure --with-pcre=/path/to/pcre/source --with-pcre-jit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafload_secrules" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf.load_secrules()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf.init()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafnew" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:new()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafset_option" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:set_option()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafset_var" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:set_var()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:exec()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafwrite_log_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:write_log_events()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_ruleset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_ruleset_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_ruleset_string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow_unknown_content_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      allow_unknown_content_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed_content_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      allowed_content_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_log_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug_log_level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      deny_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable_pcre_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      disable_pcre_optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_altered_only" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_altered_only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_buffer_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ngx_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ngx_vars
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_periodic_flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_periodic_flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_body" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl_sni_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl_sni_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl_verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_socket_proto" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_socket_proto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook_action" class="md-nav__link">
+    <span class="md-ellipsis">
+      hook_action
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ignore_rule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore_ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ignore_ruleset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nameservers" class="md-nav__link">
+    <span class="md-ellipsis">
+      nameservers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process_multipart_body" class="md-nav__link">
+    <span class="md-ellipsis">
+      process_multipart_body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#req_tid_header" class="md-nav__link">
+    <span class="md-ellipsis">
+      req_tid_header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_body_max_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_body_max_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_body_mime_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_body_mime_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_tid_header" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_tid_header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#score_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      score_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive_timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive_pool_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive_pool_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_memcached_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_memcached_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_memcached_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_memcached_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_redis_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_redis_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_redis_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_redis_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#included-rulesets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Included Rulesets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rule Definitions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-with-pcrepathtopcresource-with-pcre-jit" class="md-nav__link">
+    <span class="md-ellipsis">
+      ./configure --with-pcre=/path/to/pcre/source --with-pcre-jit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafload_secrules" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf.load_secrules()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf.init()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafnew" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:new()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafset_option" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:set_option()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafset_var" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:set_var()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:exec()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-resty-wafwrite_log_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      lua-resty-waf:write_log_events()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_ruleset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_ruleset_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_ruleset_string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow_unknown_content_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      allow_unknown_content_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed_content_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      allowed_content_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_log_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug_log_level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      deny_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable_pcre_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      disable_pcre_optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_altered_only" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_altered_only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_buffer_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ngx_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ngx_vars
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_periodic_flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_periodic_flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_body" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_request_headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_request_headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl_sni_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl_sni_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_ssl_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_ssl_verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_socket_proto" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_socket_proto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_log_target_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      event_log_target_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook_action" class="md-nav__link">
+    <span class="md-ellipsis">
+      hook_action
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ignore_rule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore_ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ignore_ruleset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nameservers" class="md-nav__link">
+    <span class="md-ellipsis">
+      nameservers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process_multipart_body" class="md-nav__link">
+    <span class="md-ellipsis">
+      process_multipart_body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#req_tid_header" class="md-nav__link">
+    <span class="md-ellipsis">
+      req_tid_header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_body_max_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_body_max_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_body_mime_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_body_mime_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#res_tid_header" class="md-nav__link">
+    <span class="md-ellipsis">
+      res_tid_header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#score_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      score_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive_timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_keepalive_pool_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_keepalive_pool_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_memcached_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_memcached_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_memcached_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_memcached_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_redis_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_redis_host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_redis_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_redis_port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#included-rulesets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Included Rulesets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rule Definitions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="waf-high-performance-waf-built-on-nginx-module-lua-stack"><em>waf</em>: High-performance WAF built on nginx-module-lua stack</h1>
+<h2 id="installation">Installation</h2>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-waf
+</code></pre></div>
+<h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-waf
+</code></pre></div>
+<p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
+<p>This document describes lua-resty-waf <a href="https://github.com/p0pr0ck5/lua-resty-waf/releases/tag/v0.11.1" target="_blank">v0.11.1</a> 
+released on May 09 2017.</p>
+<hr />
+
+<p>lua-resty-waf - High-performance WAF built on the OpenResty stack</p>
+<h2 id="status">Status</h2>
+<p><a href="https://www.codewake.com/p/lua-resty-waf"><img alt="Codewake" src="https://www.codewake.com/badges/ask_question.svg" /></a>
+<a href="https://bestpractices.coreinfrastructure.org/projects/761"><img alt="CII Best Practices" src="https://bestpractices.coreinfrastructure.org/projects/761/badge" /></a></p>
+<p>lua-resty-waf is currently in active development. New bugs and questions opened in the issue tracker will be answered within a day or two, and performance impacting / security related issues will be patched with high priority. Larger feature sets and enhancements will be added when development resources are available (see the <a href="#roadmap">Roadmap</a> section for an outline of planned features).</p>
+<p>lua-resty-waf is compatible with the master branch of <code>lua-resty-core</code>. The bundled version of <code>lua-resty-core</code> available in recent releases of OpenResty (&gt;= 1.9.7.4) is compatible with lua-resty-waf; versions bundled with older OpenResty bundles are not, so users wanting to leverage <code>resty.core</code> will either need to replace the local version with the one available from the <a href="https://github.com/openresty/lua-resty-core">GitHub project</a>, or patch the module based off <a href="https://github.com/openresty/lua-resty-core/commit/40445b12c0359eb82702f0097cd65948c245b6a4">this commit</a>.</p>
+<h2 id="description">Description</h2>
+<p>lua-resty-waf is a reverse proxy WAF built using the OpenResty stack. It uses the Nginx Lua API to analyze <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> request information and process against a flexible rule structure. lua-resty-waf is distributed with a ruleset that mimics the ModSecurity CRS, as well as a few custom rules built during initial development and testing, and a small virtual patchset for emerging threats. Additionally, lua-resty-waf is distributed with tooling to automatically translate existing ModSecurity rules, allowing users to extend lua-resty-waf implementation without the need to learn a new rule syntax.</p>
+<p>lua-resty-waf was initially developed by Robert Paprocki for his Master's thesis at Western Governor's University.</p>
+<h2 id="configure-with-pcrepathtopcresource-with-pcre-jit">./configure --with-pcre=/path/to/pcre/source --with-pcre-jit</h2>
+<div class="highlight"><pre><span></span><code>You can download the PCRE source from the [PCRE website](http://www.pcre.org/). See also this [blog post](https://www.cryptobells.com/building-openresty-with-pcre-jit/) for a step-by-step walkthrough on building OpenResty with a JIT-enabled PCRE library.
+
+## Performance
+
+lua-resty-waf was designed with efficiency and scalability in mind. It leverages Nginx&#39;s asynchronous processing model and an efficient design to process each transaction as quickly as possible. Load testing has show that deployments implementing all provided rulesets, which are designed to mimic the logic behind the ModSecurity CRS, process transactions in roughly 300-500 microseconds per request; this equals the performance advertised by [Cloudflare&#39;s WAF](https://www.cloudflare.com/waf). Tests were run on a reasonable hardware stack (E3-1230 CPU, 32 GB RAM, 2 x 840 EVO in RAID 0), maxing at roughly 15,000 requests per second. See [this blog post](http://www.cryptobells.com/freewaf-a-high-performance-scalable-open-web-firewall) for more information.
+
+lua-resty-waf workload is almost exclusively CPU bound. Memory footprint in the Lua VM (excluding persistent storage backed by `lua-shared-dict`) is roughly 2MB.
+
+## make &amp;&amp; sudo make install
+</code></pre></div>
+<p>Alternatively, install via Luarocks:</p>
+<div class="highlight"><pre><span></span><code>## luarocks install lua-resty-waf
+</code></pre></div>
+<p>lua-resty-waf makes use of the <a href="https://github.com/openresty/opm">OPM</a> package manager, available in modern OpenResty distributions. The client OPM tools requires that the <code>resty</code> command line tool is available in your system's <code>PATH</code> environmental variable.</p>
+<p>Note that by default lua-resty-waf runs in SIMULATE mode, to prevent immediately affecting an application; users who wish to enable rule actions must explicitly set the operational mode to ACTIVE.</p>
+<h2 id="synopsis">Synopsis</h2>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="n">init_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- use resty.core for performance improvement, see the status note above</span>
+        <span class="nb">require</span> <span class="s2">&quot;resty.core&quot;</span>
+
+        <span class="c1">-- require the base module</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="c1">-- perform some preloading and optimization</span>
+        <span class="n">lua_resty_waf</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="n">server</span> <span class="p">{</span>
+        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+            <span class="n">access_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+                <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+                <span class="c1">-- define options that will be inherited across all scopes</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">)</span>
+
+                <span class="c1">-- this may be desirable for low-traffic or testing sites</span>
+                <span class="c1">-- by default, event logs are not written until the buffer is full</span>
+                <span class="c1">-- for testing, flush the log buffer every 5 seconds</span>
+                <span class="c1">--</span>
+                <span class="c1">-- this is only necessary when configuring a remote TCP/UDP</span>
+                <span class="c1">-- socket server for event logs. otherwise, this is ignored</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_periodic_flush&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+                <span class="c1">-- run the firewall</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="n">header_filter_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+                <span class="c1">-- note that options set in previous handlers (in the same scope)</span>
+                <span class="c1">-- do not need to be set again</span>
+                <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+                <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="n">body_filter_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+                <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+                <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="n">log_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+                <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+                <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="public-functions">Public Functions</h2>
+<h3 id="lua-resty-wafload_secrules">lua-resty-waf.load_secrules()</h3>
+<p>Translate and initialize a ModSecurity SecRules file from disk. Note that this still requires the ruleset to be added via <a href="#add_ruleset">add_ruleset</a> (the basename of the file must be given as the key).</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="n">init_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="c1">-- this translates and calculates a ruleset called &#39;ruleset_name&#39;</span>
+        <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="nb">pcall</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+            <span class="n">lua_resty_waf</span><span class="p">.</span><span class="n">load_secrules</span><span class="p">(</span><span class="s2">&quot;/path/to/secrules/ruleset_name&quot;</span><span class="p">)</span>
+        <span class="kr">end</span><span class="p">)</span>
+
+        <span class="c1">-- errs is an array-like table</span>
+        <span class="kr">if</span> <span class="n">errs</span> <span class="kr">then</span>
+            <span class="kr">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">errs</span> <span class="kr">do</span> <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="n">errs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="kr">end</span>
+    <span class="p">}</span>
+
+    <span class="n">server</span> <span class="p">{</span>
+        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+            <span class="n">access_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+                <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+                <span class="c1">-- in order to use the loaded ruleset, it must be added via</span>
+                <span class="c1">-- the &#39;add_ruleset&#39; option</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;add_ruleset&quot;</span><span class="p">,</span> <span class="s2">&quot;ruleset_name&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Additionally, <code>load_secrules</code> can take an optional second argument as a table of options to pass to various translation functions. The following options are recognized:</p>
+<ul>
+<li><em>path</em>: Define a filesystem path to search for data files for operators such as @pmFromFile. If no such key is defined, the current working directory (<code>.</code>) is used</li>
+<li><em>force</em>: Do not error and abort when failing to translate a rule variable</li>
+<li><em>loose</em>: Do not error and abort when failing to translate a rule action</li>
+<li><em>quiet</em>: Do not error or warn when failing to translate a rule action</li>
+</ul>
+<p>This function can also take a third option as a table to catch translation errors, for later processing. If this option is not present or a not a table, translation errors will instead be logged to the error log.</p>
+<h3 id="lua-resty-wafinit">lua-resty-waf.init()</h3>
+<p>Perform some pre-computation of rules and rulesets, based on what's been made available via the default distributed rulesets. It's recommended, but not required, to call this function (not doing so will result in a small performance penalty). This function should never be called outside this scope.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="n">init_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="n">lua_resty_waf</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="public-methods">Public Methods</h2>
+<h3 id="lua-resty-wafnew">lua-resty-waf:new()</h3>
+<p>Instantiate a new instance of lua-resty-waf. You must call this in every request handler phase you wish to run lua-resty-waf, and use the return result to call further object methods.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="lua-resty-wafset_option">lua-resty-waf:set_option()</h3>
+<p>Configure an option on a per-scope basis.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+        <span class="c1">-- enable debug logging only for this scope</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="lua-resty-wafset_var">lua-resty-waf:set_var()</h3>
+<p>Define a transaction variable (stored in the <code>TX</code> variable collection) before executing the WAF. This can be used to define variables used by complex rulesets such as the <a href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP CRS</a>.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_var</span><span class="p">(</span><span class="s2">&quot;FOO&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that as with any other ModSecurity rule, the existence of a variable bears no functional change to WAF processing; it is the responsibility of the rule author to understand and use <code>TX</code> variables.</p>
+<h3 id="lua-resty-wafexec">lua-resty-waf:exec()</h3>
+<p>Run the rule engine. By default, the engine is executed according to the currently running phase. An optional table may be passed, allowing users to "mock" execution of a different phase.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+        <span class="c1">-- execute according to access phase collections and rules</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="n">content_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+        <span class="c1">-- execute header_filter rules, passing in a table of additional collections</span>
+        <span class="c1">-- this assumes the &#39;request_headers&#39; and &#39;status&#39; Lua variables were</span>
+        <span class="c1">-- declared and initialized elsewhere</span>
+        <span class="kd">local</span> <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">phase</span> <span class="o">=</span> <span class="s1">&#39;header_filter&#39;</span><span class="p">,</span>
+            <span class="n">collections</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">REQUEST_HEADERS</span> <span class="o">=</span> <span class="n">request_headers</span><span class="p">,</span>
+                <span class="n">STATUS</span> <span class="o">=</span> <span class="n">status</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">waf</span><span class="p">:</span><span class="n">exec</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="lua-resty-wafwrite_log_events">lua-resty-waf:write_log_events()</h3>
+<p>Write any audit log entries that were generated from the transaction. This is only optional when <code>exec</code> is called in a <code>log_by_lua</code> handler.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">log_by_lua_block</span> <span class="p">{</span>
+        <span class="kd">local</span> <span class="n">lua_resty_waf</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.waf&quot;</span>
+
+        <span class="kd">local</span> <span class="n">waf</span> <span class="o">=</span> <span class="n">lua_resty_waf</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+
+        <span class="c1">-- write out any event log entries to the</span>
+        <span class="c1">-- configured target, if applicable</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">write_log_events</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="options">Options</h2>
+<h3 id="add_ruleset">add_ruleset</h3>
+<p><em>Default</em>: none</p>
+<p>Adds an additional ruleset to be used during processing. This allows users to implement custom rulesets without stomping over the included rules directory. Additional rulesets much reside within a folder called "rules" that lives within the <code>lua_package_path</code>.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="c1">-- the rule file 50000.json must live at</span>
+    <span class="c1">-- /path/to/extra/rulesets/rules/50000.json</span>
+    <span class="n">server</span> <span class="p">{</span>
+        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+            <span class="n">access_by_lua_block</span> <span class="p">{</span>
+                <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;add_ruleset&quot;</span><span class="p">,</span> <span class="s2">&quot;50000_extra_rules&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Multiple rulesets may be added by passing a table of values to <code>set_option</code>. Note that ruleset names are sorted before processing. Rulesets are processed in a low-to-high sorted order.</p>
+<h3 id="add_ruleset_string">add_ruleset_string</h3>
+<p><em>Default</em>: none</p>
+<p>Adds an additional ruleset to be used during processing. This allows users to implement custom rulesets without stomping over the included rules directory. Rulesets are defined inline as a Lua string, in the form of a translated ruleset JSON structure.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;add_ruleset_string&quot;</span><span class="p">,</span> <span class="s2">&quot;70000_extra_rules&quot;</span><span class="p">,</span> <span class="s">[=[{&quot;access&quot;:[{&quot;action&quot;:&quot;DENY&quot;,&quot;id&quot;:73,&quot;operator&quot;:&quot;REGEX&quot;,&quot;opts&quot;:{},&quot;pattern&quot;:&quot;foo&quot;,&quot;vars&quot;:[{&quot;parse&quot;:{&quot;values&quot;:1},&quot;type&quot;:&quot;REQUEST_ARGS&quot;}]}],&quot;body_filter&quot;:[],&quot;header_filter&quot;:[]}]=]</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that ruleset names are sorted before processing, and must be given as strings. Rulesets are processed in a low-to-high sorted order.</p>
+<h3 id="allow_unknown_content_types">allow_unknown_content_types</h3>
+<p><em>Default</em>: false</p>
+<p>Instructs lua-resty-waf to continue processing the request when a Content-Type header has been sent that is not in the <code>allowed_content_types</code> table. Such requests will not have their request body processed by lua-resty-waf (the <code>REQUEST_BODY</code> collection will be nil). In this manner, users do not need to explicitly whitelist all possible Content-Type headers they may encounter.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;allow_unknown_content_types&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="allowed_content_types">allowed_content_types</h3>
+<p><em>Default</em>: none</p>
+<p>Defines one or more Content-Type headers that will be allowed, in addition to the default Content-Types <code>application/x-www-form-urlencoded</code> and <code>multipart/form-data</code>. A request whose content type matches one of <code>allowed_content_types</code> will set the <code>REQUEST_BODY</code> collection to a single string containing (rather than a table); a request whose content type does not match one of these values, or <code>application/x-www-form-urlencoded</code> or <code>multipart/form-data</code>, will be rejected.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- define a single allowed Content-Type value</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;allowed_content_types&quot;</span><span class="p">,</span> <span class="s2">&quot;text/xml&quot;</span><span class="p">)</span>
+
+        <span class="c1">-- defines multiple allowed Content-Type values</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;allowed_content_types&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span> <span class="s2">&quot;text/json&quot;</span><span class="p">,</span> <span class="s2">&quot;application/json&quot;</span> <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that mutiple <code>set_option</code> calls with a parameter of <code>allowed_content_types</code> will simply override the existing options table, so if you want to define multiple allowed content types, you must define them as a Lua table as shown above.</p>
+<h3 id="debug">debug</h3>
+<p><em>Default</em>: false</p>
+<p>Disables/enables debug logging. Debug log statements are printed to the error_log. Note that debug logging is very expensive and should not be used in production environments.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="debug_log_level">debug_log_level</h3>
+<p><em>Default</em>: ngx.INFO</p>
+<p>Sets the nginx log level constant used for debug logging.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;debug_log_level&quot;</span><span class="p">,</span> <span class="n">ngx</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="deny_status">deny_status</h3>
+<p><em>Default</em>: ngx.HTTP_FORBIDDEN</p>
+<p>Sets the status to use when denying requests.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;deny_status&quot;</span><span class="p">,</span> <span class="n">ngx</span><span class="p">.</span><span class="n">HTTP_NOT_FOUND</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="disable_pcre_optimization">disable_pcre_optimization</h3>
+<p><em>Default</em>: false</p>
+<p>Removes the <code>oj</code> flags from all <code>ngx.re.match</code>, <code>ngx.re.find</code>, and <code>ngx.re.sub</code> calls. This may be useful in some cases where older PCRE libraries are used, but will cause severe performance degradation, so its use is strongly discouraged; users are instead encouraged to build OpenResty with a modern, JIT-capable PCRE library.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;disable_pcre_optimization&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em>Note: This behavior is deprecated and will be removed in future versions.</em></p>
+<h3 id="event_log_altered_only">event_log_altered_only</h3>
+<p><em>Default</em>: true</p>
+<p>Determines whether to write log entries for rule matches in a transaction that was not altered by lua-resty-waf. "Altered" is defined as lua-resty-waf acting on a rule whose action is <code>ACCEPT</code> or <code>DENY</code>. When this option is unset, lua-resty-waf will log rule matches even if the transaction was not altered. By default, lua-resty-waf will only write log entries for matches if the transaction was altered.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_altered_only&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that <code>mode</code> will not have an effect on determing whether a transaction is considered altered. That is, if a rule with a <code>DENY</code> action is matched, but lua-resty-waf is running in <code>SIMULATE</code> mode, the transaction will still be considered altered, and rule matches will be logged.</p>
+<h3 id="event_log_buffer_size">event_log_buffer_size</h3>
+<p><em>Default</em>: 4096</p>
+<p>Defines the threshold size, in bytes, of the buffer to be used to hold event logs. The buffer will be flushed when this threshold is met.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- 8 KB event log message buffer</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_buffer_size&quot;</span><span class="p">,</span> <span class="mi">8192</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_level">event_log_level</h3>
+<p><em>Default</em>: ngx.INFO</p>
+<p>Sets the nginx log level constant used for event logging.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_level&quot;</span><span class="p">,</span> <span class="n">ngx</span><span class="p">.</span><span class="n">WARN</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_ngx_vars">event_log_ngx_vars</h3>
+<p><em>Default</em>: empty</p>
+<p>Defines what extra variables from <code>ngx.var</code> are put to the log event. This is a generic way to extend the alert with extra context. The variable name will be the key of the entry under an <code>ngx</code> key in the log entry. If the variable is not present as an nginx variable, no item is added to the event.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_ngx_vars&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span><span class="p">)</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_ngx_vars&quot;</span><span class="p">,</span> <span class="s2">&quot;request_id&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The resulting event has these extra items:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">&quot;ngx&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;373bcce584e3c18a&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_periodic_flush">event_log_periodic_flush</h3>
+<p><em>Default</em>: none</p>
+<p>Defines an interval, in seconds, at which the event log buffer will periodically flush. If no value is configured, the buffer will not flush periodically, and will only flush when the <code>event_log_buffer_size</code> threshold is reached. Configure this option for very low traffic sites that may not receive any event log data in a long period of time, to prevent stale data from sitting in the buffer.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- flush the event log buffer every 30 seconds</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_periodic_flush&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_request_arguments">event_log_request_arguments</h3>
+<p><em>Default</em>: false</p>
+<p>When set to true, the log entries contain the request arguments under the <code>uri_args</code> key.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_request_arguments&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_request_body">event_log_request_body</h3>
+<p><em>Default</em>: false</p>
+<p>When set to true, the log entries contain the request body under the <code>request_body</code> key.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_request_body&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_request_headers">event_log_request_headers</h3>
+<p><em>Default</em>: false</p>
+<p>The headers of the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> request is copied to the log event, under the <code>request_headers</code> key.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_request_headers&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The resulting event has these extra items:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">&quot;request_headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;accept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_ssl">event_log_ssl</h3>
+<p><em>Default</em>: false</p>
+<p>Enable SSL connections when logging via TCP/UDP.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_ssl&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_ssl_sni_host">event_log_ssl_sni_host</h3>
+<p><em>Default</em>: none</p>
+<p>Set the SNI host for <code>lua-resty-logger-socket</code> connections.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_ssl_sni_host&quot;</span><span class="p">,</span> <span class="s2">&quot;loghost.example.com&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_ssl_verify">event_log_ssl_verify</h3>
+<p><em>Default</em>: false</p>
+<p>Enable certification verification for SSL connections when logging via TCP/UDP.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_ssl_verify&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_socket_proto">event_log_socket_proto</h3>
+<p><em>Default</em>: udp</p>
+<p>Defines which IP protocol to use (TCP or UDP) when shipping event logs via a remote socket. The same buffering and recurring flush logic will be used regardless of protocol.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- send logs via TCP</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_socket_proto&quot;</span><span class="p">,</span> <span class="s2">&quot;tcp&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_target">event_log_target</h3>
+<p><em>Default</em>: error</p>
+<p>Defines the destination for event logs. lua-resty-waf currently supports logging to the error log, a separate file on the local file system, or a remote TCP or UDP server. In the latter two cases, event logs are buffered and flushed when a defined threshold is reached (see below for further options regarding event logging options).</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- send event logs to the server&#39;s error_log location (default)</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
+
+        <span class="c1">-- send event logs to a local file on disk</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">)</span>
+
+        <span class="c1">-- send event logs to a remote server</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target&quot;</span><span class="p">,</span> <span class="s2">&quot;socket&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that, due to a limition in the logging library used, only a single target socket can be defined. This is to say, you may only configure one <code>socket</code> target with a specific host/port combination; if you configure a second host/port combination, data will not be properly logged.</p>
+<h3 id="event_log_target_host">event_log_target_host</h3>
+<p><em>Default</em>: none</p>
+<p>Defines the target server for event logs that target a remote server.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target_host&quot;</span><span class="p">,</span> <span class="s2">&quot;10.10.10.10&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="event_log_target_path">event_log_target_path</h3>
+<p><em>Default</em>: none</p>
+<p>Defines the target path for event logs that target a local file system location.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target_path&quot;</span><span class="p">,</span> <span class="s2">&quot;/var/log/lua-resty-waf/event.log&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This path must be in a location writeable by the nginx user. Note that, by nature, on-disk logging can cause significant performance degredation in high-concurrency environments.</p>
+<h3 id="event_log_target_port">event_log_target_port</h3>
+<p><em>Default</em>: none</p>
+<p>Defines the target port for event logs that target a remote server.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;event_log_target_port&quot;</span><span class="p">,</span> <span class="mi">9001</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="hook_action">hook_action</h3>
+<p><em>Default</em>: none</p>
+<p>Override the functionality of actions taken when a rule is matched. See the example for more details</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+        <span class="n">access_by_lua_block</span> <span class="p">{</span>
+            <span class="kd">local</span> <span class="n">deny_override</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">waf</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+                <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;Overriding DENY action&quot;</span><span class="p">)</span>
+                <span class="n">ngx</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">404</span>
+            <span class="kr">end</span>
+
+            <span class="c1">-- override the DENY action with the function defined above</span>
+            <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;hook_action&quot;</span><span class="p">,</span> <span class="s2">&quot;DENY&quot;</span><span class="p">,</span> <span class="n">deny_override</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h3 id="ignore_rule">ignore_rule</h3>
+<p><em>Default</em>: none</p>
+<p>Instructs the module to ignore a specified rule ID. Note that ignoring a rule in a chain will result in the entire chain being ignored, and processing will continue to the next rule following the chain.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;ignore_rule&quot;</span><span class="p">,</span> <span class="mi">40294</span><span class="p">)</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;ignore_rule&quot;</span><span class="p">,</span> <span class="p">{</span><span class="mi">40002</span><span class="p">,</span> <span class="mi">41036</span><span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Multiple rules can be ignored by passing a table of rule IDs to <code>set_option</code>.</p>
+<h3 id="ignore_ruleset">ignore_ruleset</h3>
+<p><em>Default</em>: none</p>
+<p>Instructs the module to ignore an entire ruleset. This can be useful when some rulesets (such as the SQLi or XSS CRS rulesets) are too prone to false positives, or aren't applicable to your application.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;ignore_ruleset&quot;</span><span class="p">,</span> <span class="s2">&quot;41000_sqli&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="mode">mode</h3>
+<p><em>Default</em>: SIMULATE</p>
+<p>Sets the operational mode of the module. Options are ACTIVE, INACTIVE, and SIMULATE. In ACTIVE mode, rule matches are logged and actions are run. In SIMULATE mode, lua-resty-waf loops through each enabled rule and logs rule matches, but does not complete the action specified in a given run. INACTIVE mode prevents the module from running.</p>
+<p>By default, SIMULATE is selected if a mode is not explicitly set; this requires new users to actively implement blocking by setting the mode to ACTIVE.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="nameservers">nameservers</h3>
+<p><em>Default</em>: none</p>
+<p>Sets the DNS resolver(s) to be used for RBL lookups. Currently only UDP/53 traffic is supported. This option must be defined as a numeric address, not a hostname. If this option is not defined, all RBL lookup rules will return false.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;nameservers&quot;</span><span class="p">,</span> <span class="s2">&quot;10.10.10.10&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="process_multipart_body">process_multipart_body</h3>
+<p><em>Default</em> true</p>
+<p>Enable processing of multipart/form-data request bodies (when present), using the <code>lua-resty-upload</code> module. In the future, lua-resty-waf may use this processing to perform stricter checking of upload bodies; for now this module performs only minimal sanity checks on the request body, and will not log an event if the request body is invalid. Disable this option if you do not need this checking, or if bugs in the upstream module are causing problems with <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> uploads.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- disable processing of multipart/form-data requests</span>
+        <span class="c1">-- note that the request body will still be sent to the upstream</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;process_multipart_body&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="req_tid_header">req_tid_header</h3>
+<p><em>Default</em>: false</p>
+<p>Set an <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> header <code>X-Lua-Resty-WAF-ID</code> in the upstream request, with the value as the transaction ID. This ID will correlate with the transaction ID present in the debug logs (if set). This can be useful for request tracking or debug purposes.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;req_tid_header&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="res_body_max_size">res_body_max_size</h3>
+<p><em>Default</em>: 1048576 (1 MB)</p>
+<p>Defines the content length threshold beyond which response bodies will not be processed. This size of the response body is determined by the Content-Length response header. If this header does not exist in the response, the response body will never be processed.</p>
+<p><em>Example</em>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- increase the max response size to 2 MB</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;res_body_max_size&quot;</span><span class="p">,</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+Note that by nature, it is required to buffer the entire response body in order to properly use the response as a collection, so increasing this number significantly is not recommended without justification (and ample server resources).</p>
+<h3 id="res_body_mime_types">res_body_mime_types</h3>
+<p><em>Default</em>: "text/plain", "text/html"</p>
+<p>Defines the MIME types with which lua-resty-waf will process the response body. This value is determined by the Content-Type header. If this header does not exist, or the response type is not in this list, the response body will not be processed. Setting this option will add the given MIME type to the existing defaults of <code>text/plain</code> and <code>text/html</code>.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="c1">-- mime types that will be processed are now text/plain, text/html, and text/json</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;res_body_mime_types&quot;</span><span class="p">,</span> <span class="s2">&quot;text/json&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Multiple MIME types can be added by passing a table of types to <code>set_option</code>.</p>
+<h3 id="res_tid_header">res_tid_header</h3>
+<p><em>Default</em>: false</p>
+<p>Set an <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> header <code>X-Lua-Resty-WAF-ID</code> in the downstream response, with the value as the transaction ID. This ID will correlate with the transaction ID present in the debug logs (if set). This can be useful for request tracking or debug purposes.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;res_tid_header&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="score_threshold">score_threshold</h3>
+<p><em>Default</em>: 5</p>
+<p>Sets the threshold for anomaly scoring. When the threshold is reached, lua-resty-waf will deny the request.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;score_threshold&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_backend">storage_backend</h3>
+<p><em>Default</em>: dict</p>
+<p>Define an engine to use for persistent variable storage. Current available options are <em>dict</em> (ngx_lua shared memory zone), <em>memcached</em>, amd <em>redis</em>.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_backend&quot;</span><span class="p">,</span> <span class="s2">&quot;memcached&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_keepalive">storage_keepalive</h3>
+<p><em>Default</em>: true</p>
+<p>Enable or disable TCP keepalive for connections to remote persistent storage hosts.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_keepalive&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_keepalive_timeout">storage_keepalive_timeout</h3>
+<p><em>Default</em>: 10000</p>
+<p>Configure (in milliseconds) the timeout for the cosocket keepalive pool for remote persistent storage hosts.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_keepalive_timeout&quot;</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_keepalive_pool_size">storage_keepalive_pool_size</h3>
+<p><em>Default</em>: 100</p>
+<p>Configure the pool size for the cosocket keepalive pool for remote persistent storage hosts.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_keepalive_pool_size&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_memcached_host">storage_memcached_host</h3>
+<p><em>Default</em>: 127.0.0.1</p>
+<p>Define a host to use when using memcached as a persistent variable storage engine.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_memcached_host&quot;</span><span class="p">,</span> <span class="s2">&quot;10.10.10.10&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_memcached_port">storage_memcached_port</h3>
+<p><em>Default</em>: 11211</p>
+<p>Define a port to use when using memcached as a persistent variable storage engine.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_memcached_port&quot;</span><span class="p">,</span> <span class="mi">11221</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_redis_host">storage_redis_host</h3>
+<p><em>Default</em>: 127.0.0.1</p>
+<p>Define a host to use when using redis as a persistent variable storage engine.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_redis_host&quot;</span><span class="p">,</span> <span class="s2">&quot;10.10.10.10&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_redis_port">storage_redis_port</h3>
+<p><em>Default</em>: 6379</p>
+<p>Define a port to use when using redis as a persistent variable storage engine.</p>
+<p><em>Example</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">acccess_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_redis_port&quot;</span><span class="p">,</span> <span class="mi">6397</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="storage_zone">storage_zone</h3>
+<p><em>Default</em>: none</p>
+<p>Defines the <code>lua_shared_dict</code> that will be used to hold persistent storage data. This zone must be defined in the <code>http{}</code> block of the configuration.</p>
+<p><em>Example</em>:_</p>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="c1">-- define a 64M shared memory zone to hold persistent storage data</span>
+    <span class="n">lua_shared_dict</span> <span class="n">persistent_storage</span> <span class="mi">64</span><span class="n">m</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">access_by_lua_block</span> <span class="p">{</span>
+        <span class="n">waf</span><span class="p">:</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;storage_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent_storage&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Multiple shared zones can be defined and used, though only one zone can be defined per configuration location. If a zone becomes full and the shared dictionary interface cannot add additional keys, the following will be entered into the error log:</p>
+<p><code>Error adding key to persistent storage, increase the size of the lua_shared_dict</code></p>
+<h2 id="phase-handling">Phase Handling</h2>
+<p>lua-resty-waf is designed to run in multiple phases of the request lifecycle. Rules can be processed in the following phases:</p>
+<ul>
+<li><strong>access</strong>: Request information, such as URI, request headers, URI args, and request body are available in this phase.</li>
+<li><strong>header_filter</strong>: Response headers and <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> status are available in this phase.</li>
+<li><strong>body_filter</strong>: Response body is available in this phase.</li>
+<li><strong>log</strong>: Event logs are automatically written at the completion of this phase.</li>
+</ul>
+<p>These phases correspond to their appropriate Nginx lua handlers (<code>access_by_lua</code>, <code>header_filter_by_lua</code>, <code>body_filter_by_lua</code>, and <code>log_by_lua</code>, respectively). Note that running lua-resty-waf in a lua phase handler not in this list will lead to broken behavior. All data available in an earlier phase is available in a later phase. That is, data available in the <code>access</code> phase is also available in the <code>header_filter</code> and <code>body_filter</code> phases, but not vice versa.</p>
+<h2 id="included-rulesets">Included Rulesets</h2>
+<p>lua-resty-waf is distributed with a number of rulesets that are designed to mimic the functionality of the ModSecurity CRS. For reference, these rulesets are listed here:</p>
+<ul>
+<li><strong>11000_whitelist</strong>: Local policy whitelisting</li>
+<li><strong>20000_http_violation</strong>: <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> protocol violation</li>
+<li><strong>21000_http_anomaly</strong>: <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> protocol anomalies</li>
+<li><strong>35000_user_agent</strong>: Malicious/suspect user agents</li>
+<li><strong>40000_generic_attack</strong>: Generic attacks</li>
+<li><strong>41000_sqli</strong>: SQLi</li>
+<li><strong>42000_xss</strong>: XSS</li>
+<li><strong>90000_custom</strong>: Custom rules/virtual patching</li>
+<li><strong>99000_scoring</strong>: Anomaly score handling</li>
+</ul>
+<h2 id="rule-definitions">Rule Definitions</h2>
+<p>lua-resty-waf parses rules definitions from JSON blobs stored on-disk. Rules are grouped based on purpose and severity, defined as a ruleset. The included rulesets were created to mimic some functionality of the ModSecurity CRS, particularly the <code>base_rules</code> definitions. Additionally, the included <code>modsec2lua-resty-waf.pl</code> script can be used to translate additional or custom rulesets to a lua-resty-waf-compatible JSON blob.</p>
+<p>Note that there are several limitations in the translation script, with respect to unsupported actions, collections, and operators. Please see <a href="https://github.com/p0pr0ck5/lua-resty-waf/wiki/Known-ModSecurity-Translation-Limitations">this wiki page</a> for an up-to-date list of known incompatibilities.</p>
+<h2 id="notes">Notes</h2>
+<h3 id="pull-requests">Pull Requests</h3>
+<p>Please target all pull requests towards the development branch, or a feature branch if the PR is a significant change. Commits to master should only come in the form of documentation updates or other changes that have no impact of the module itself (and can be cleanly merged into development).</p>
+<h2 id="roadmap">Roadmap</h2>
+<ul>
+<li><strong>Expanded virtual patch ruleset</strong>: Increase coverage of emerging threats.</li>
+<li><strong>Expanded integration/acceptance testing</strong>: Increase coverage of common threats and usage scenarios.</li>
+<li><strong>Expanded ModSecurity syntax translations</strong>: Support more operators, variables, and actions.</li>
+<li><strong>Common application profiles</strong>: Tuned rulesets for common CMS/applications.</li>
+<li><strong>Support multiple socket/file logger targets</strong>: Likely requires forking the lua-resty-logger-socket project.</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<p>lua-resty-waf is undergoing continual development and improvement, and as such, may be limited in its functionality and performance. Currently known limitations can be found within the GitHub issue tracker for this repo.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li>The OpenResty project: <a href="http://openresty.org/">http://openresty.org/</a></li>
+<li>My personal blog for updates and notes on lua-resty-waf development: <a href="http://www.cryptobells.com/tag/lua-resty-waf/">http://www.cryptobells.com/tag/lua-resty-waf/</a></li>
+</ul>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/p0pr0ck5/lua-resty-waf" target="_blank">GitHub repository for 
+nginx-module-waf</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,6769 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/validation/">
+      
+      
+        <link rel="prev" href="../uuid/">
+      
+      
+        <link rel="next" href="../vhost/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>validation - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="validation - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/validation.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/validation/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="validation - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/validation.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#validation-validation-library-input-validation-and-filtering-for-lua-and-nginx-module-lua" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modules/" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/secure-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello-world-with-lua-resty-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello World with lua-resty-validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Validators and Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Validators and Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validators-and-filters-without-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validators and Filters without Arguments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validators and Filters without Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-factory-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Factory Validators and Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation Factory Validators and Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-validation-factory-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Validation Factory Validators
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group Validators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop Validators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-value-and-setting-the-value-to-nil" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Value and Setting the Value to nil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-inline-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom (Inline) Validators and Filters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-validator-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Validator Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Validator Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationngx-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.ngx extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.ngx extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationtz-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.tz extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.tz extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationutf8-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.utf8 extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.utf8 extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationinjection-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.injection extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.injection extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      validation._VERSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-valueerror-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      boolean, value/error validation...
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-validationnewtable-of-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      table validation.new([table of validators])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldacceptvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      field:accept(value)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldrejecterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      field:reject(error)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-fieldstateinvalid-valid-unvalidated" class="md-nav__link">
+    <span class="md-ellipsis">
+      string field:state(invalid, valid, unvalidated)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello-world-with-lua-resty-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello World with lua-resty-validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Validators and Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Validators and Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validators-and-filters-without-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validators and Filters without Arguments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validators and Filters without Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-factory-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Factory Validators and Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation Factory Validators and Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-validation-factory-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Validation Factory Validators
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group Validators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop Validators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-value-and-setting-the-value-to-nil" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Value and Setting the Value to nil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-inline-validators-and-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom (Inline) Validators and Filters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-validator-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Validator Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Validator Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationngx-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.ngx extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.ngx extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationtz-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.tz extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.tz extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationutf8-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.utf8 extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.utf8 extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restyvalidationinjection-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.validation.injection extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.validation.injection extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      validation._VERSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-valueerror-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      boolean, value/error validation...
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-validationnewtable-of-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      table validation.new([table of validators])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldacceptvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      field:accept(value)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldrejecterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      field:reject(error)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-fieldstateinvalid-valid-unvalidated" class="md-nav__link">
+    <span class="md-ellipsis">
+      string field:state(invalid, valid, unvalidated)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="validation-validation-library-input-validation-and-filtering-for-lua-and-nginx-module-lua"><em>validation</em>: Validation Library (Input Validation and Filtering) for Lua and nginx-module-lua</h1>
+<h2 id="installation">Installation</h2>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-validation
+</code></pre></div>
+<h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-validation
+</code></pre></div>
+<p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
+<p>This document describes lua-resty-validation <a href="https://github.com/bungle/lua-resty-validation/releases/tag/v2.7" target="_blank">v2.7</a> 
+released on Aug 25 2017.</p>
+<hr />
+
+<p><strong>lua-resty-validation</strong> is an extendable chaining validation and filtering library for Lua and OpenResty.</p>
+<h2 id="hello-world-with-lua-resty-validation">Hello World with lua-resty-validation</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">number</span><span class="p">:</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">-- valid = true,  e = 5</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">number</span><span class="p">:</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)(</span><span class="mi">50</span><span class="p">)</span> <span class="c1">-- valid = false, e = &quot;between&quot;</span>
+
+<span class="c1">-- Validators can be reused</span>
+<span class="kd">local</span> <span class="n">smallnumber</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">number</span><span class="p">:</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">smallnumber</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">-- valid = true,  e = 5</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">smallnumber</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1">-- valid = false, e = &quot;between&quot;</span>
+
+<span class="c1">-- Validators can do filtering (i.e. modify the value being validated)</span>
+<span class="c1">-- valid = true, s = &quot;HELLO WORLD!&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">upper</span> <span class="s2">&quot;hello world!&quot;</span>
+
+<span class="c1">-- You may extend the validation library with your own validators and filters...</span>
+<span class="n">validation</span><span class="p">.</span><span class="n">validators</span><span class="p">.</span><span class="n">capitalize</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> 
+    <span class="kr">return</span> <span class="kc">true</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&quot;^%l&quot;</span><span class="p">,</span> <span class="nb">string.upper</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- ... and then use it</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">capitalize</span> <span class="s2">&quot;abc&quot;</span> <span class="c1">-- valid = true,  e = &quot;Abc&quot;</span>
+
+<span class="c1">-- You can also group validate many values</span>
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">string</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">tonumber</span><span class="p">:</span><span class="n">equal</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">group</span><span class="p">{</span> <span class="n">artist</span> <span class="o">=</span> <span class="s2">&quot;Eddie Vedder&quot;</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="s2">&quot;10&quot;</span> <span class="p">}</span>
+
+<span class="kr">if</span> <span class="n">valid</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;all the group fields are valid&quot;</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>      <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="nb">error</span><span class="p">,</span>
+        <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">valid</span><span class="p">,</span>     <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">invalid</span><span class="p">,</span>
+        <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">input</span><span class="p">,</span>     <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="p">,</span>
+        <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">validated</span><span class="p">,</span> <span class="n">fields</span><span class="p">.</span><span class="n">artist</span><span class="p">.</span><span class="n">unvalidated</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- You can even call fields to get simple name, value table</span>
+<span class="c1">-- (in that case all the `nil`s are removed as well)</span>
+
+<span class="c1">-- By default this returns only the valid fields&#39; names and values:</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span><span class="p">()</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span> <span class="s2">&quot;valid&quot;</span>
+
+<span class="c1">-- To get only the invalid fields&#39; names and values call:</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span> <span class="s2">&quot;invalid&quot;</span>
+
+<span class="c1">-- To get only the validated fields&#39; names and values call (whether or not they are valid):</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span> <span class="s2">&quot;validated&quot;</span>
+
+<span class="c1">-- To get only the unvalidated fields&#39; names and values call (whether or not they are valid):</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span> <span class="s2">&quot;unvalidated&quot;</span>
+
+<span class="c1">-- To get all, call:</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span> <span class="s2">&quot;all&quot;</span>
+
+<span class="c1">-- Or combine:</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span><span class="p">(</span><span class="s2">&quot;valid&quot;</span><span class="p">,</span> <span class="s2">&quot;invalid&quot;</span><span class="p">)</span>
+
+<span class="c1">-- This doesn&#39;t stop here. You may also want to get only some fields by their name.</span>
+<span class="c1">-- You can do that by calling (returns a table):</span>
+<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">{</span> <span class="s2">&quot;artist&quot;</span> <span class="p">}</span>
+</code></pre></div>
+<h2 id="built-in-validators-and-filters">Built-in Validators and Filters</h2>
+<p><code>lua-resty-validation</code> comes with several built-in validators, and the project is open for contributions of more validators.</p>
+<h3 id="validators-and-filters-without-arguments">Validators and Filters without Arguments</h3>
+<p>Type validators can be used to validate the type of the validated value. These validators are argument-less
+validators (call them with dot <code>.</code>):</p>
+<ul>
+<li><code>null</code> or <code>["nil"]</code> (as the nil is a reserved keyword in Lua)</li>
+<li><code>boolean</code></li>
+<li><code>number</code></li>
+<li><code>string</code></li>
+<li><code>table</code></li>
+<li><code>userdata</code></li>
+<li><code>func</code> or <code>["function"]</code> (as the function is a reserved keyword in Lua)</li>
+<li><code>callable</code> (either a function or a table with metamethod <code>__call</code>)</li>
+<li><code>thread</code></li>
+<li><code>integer</code></li>
+<li><code>float</code></li>
+<li><code>file</code> (<code>io.type(value) == 'file'</code>)</li>
+</ul>
+<p>Type conversion filters:</p>
+<ul>
+<li><code>tostring</code></li>
+<li><code>tonumber</code></li>
+<li><code>tointeger</code></li>
+<li><code>toboolean</code></li>
+</ul>
+<p>Other filters:</p>
+<ul>
+<li><code>tonil</code> or <code>tonull</code></li>
+<li><code>abs</code></li>
+<li><code>inf</code></li>
+<li><code>nan</code></li>
+<li><code>finite</code></li>
+<li><code>positive</code></li>
+<li><code>negative</code></li>
+<li><code>lower</code></li>
+<li><code>upper</code></li>
+<li><code>trim</code></li>
+<li><code>ltrim</code></li>
+<li><code>rtrim</code></li>
+<li><code>reverse</code></li>
+<li><code>email</code></li>
+<li><code>optional</code></li>
+</ul>
+<h4 id="example">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">null</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">number</span><span class="p">(</span><span class="mf">5.2</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">string</span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">integer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">float</span><span class="p">(</span><span class="nb">math.pi</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">assert</span><span class="p">(</span><span class="nb">io.open</span><span class="p">(</span><span class="s1">&#39;filename.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">))</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="validation-factory-validators-and-filters">Validation Factory Validators and Filters</h3>
+<p>Validation factory consist of different validators and filters used to validate or filter the value
+(call them with colon <code>:</code>):</p>
+<ul>
+<li><code>type(t)</code>, validates that the value is of type <code>t</code> (see Type Validators)</li>
+<li><code>nil()</code> or <code>["null"]()</code>, check that value type is <code>nil</code></li>
+<li><code>boolean()</code>, check that value type is <code>boolean</code></li>
+<li><code>number()</code>, check that value type is <code>number</code></li>
+<li><code>string()</code>, check that value type is <code>string</code></li>
+<li><code>table()</code>, check that value type is <code>table</code></li>
+<li><code>userdata()</code>, check that value type is <code>userdata</code></li>
+<li><code>func()</code> or <code>["function"]()</code>, check that value type is <code>function</code></li>
+<li><code>callable()</code>, check that value is callable (aka a function or a table with metamethod <code>__call</code>)</li>
+<li><code>thread()</code>, check that value type is <code>thread</code></li>
+<li><code>integer()</code>, check that value type is <code>integer</code></li>
+<li><code>float()</code>, check that value type is <code>float</code></li>
+<li><code>file()</code>, check that value type is <code>file</code> (<code>io.type(value) == 'file'</code>)</li>
+<li><code>abs()</code>, filters value and returns absolute value (<code>math.abs</code>)</li>
+<li><code>inf()</code>, checks that the value is <code>inf</code> or <code>-inf</code></li>
+<li><code>nan()</code>, checks that the value is <code>nan</code></li>
+<li><code>finite()</code>, checks that the value is not <code>nan</code>, <code>inf</code> or <code>-inf</code></li>
+<li><code>positive()</code>, validates that the value is positive (<code>&gt; 0</code>)</li>
+<li><code>negative()</code>, validates that the value is negative (<code>&lt; 0</code>)</li>
+<li><code>min(min)</code>, validates that the value is at least <code>min</code> (<code>&gt;=</code>)</li>
+<li><code>max(max)</code>, validates that the value is at most <code>max</code> (<code>&lt;=</code>)</li>
+<li><code>between(min[, max = min])</code>, validates that the value is between <code>min</code> and <code>max</code></li>
+<li><code>outside(min[, max = min])</code>, validates that the value is not between <code>min</code> and <code>max</code></li>
+<li><code>divisible(number)</code>, validates that the value is divisible with <code>number</code></li>
+<li><code>indivisible(number)</code>, validates that the value is not divisible with <code>number</code></li>
+<li><code>len(min[, max = min])</code>, validates that the length of the value is exactly <code>min</code> or between <code>min</code> and <code>max</code>  (UTF-8)</li>
+<li><code>minlen(min)</code>, validates that the length of the value is at least <code>min</code> (UTF-8)</li>
+<li><code>maxlen(max)</code>, validates that the length of the value is at most <code>max</code>  (UTF-8)</li>
+<li><code>equals(equal)</code> or <code>equal(equal)</code>, validates that the value is exactly something</li>
+<li><code>unequals(equal)</code> or <code>unequal(equal)</code>, validates that the value is not exactly something</li>
+<li><code>oneof(...)</code>, validates that the value is equal to one of the supplied arguments</li>
+<li><code>noneof(...)</code>, validates that the value is not equal to any of the supplied arguments</li>
+<li><code>match(pattern[, init])</code>, validates that the value matches (<code>string.match</code>) the pattern</li>
+<li><code>unmatch(pattern[, init])</code>, validates that the value does not match (<code>string.match</code>) the pattern</li>
+<li><code>tostring()</code>, converts value to string</li>
+<li><code>tonumber([base])</code>, converts value to number</li>
+<li><code>tointeger()</code>, converts value to integer</li>
+<li><code>toboolean()</code>, converts value to boolean (using <code>not not value</code>)</li>
+<li><code>tonil()</code> or <code>tonull()</code>, converts value to nil</li>
+<li><code>lower()</code>, converts value to lower case (UTF-8 support is not yet implemented)</li>
+<li><code>upper()</code>, converts value to upper case (UTF-8 support is not yet implemented)</li>
+<li><code>trim([pattern])</code>, trims whitespace (you may use pattern as well) from the left and the right</li>
+<li><code>ltrim([pattern])</code>, trims whitespace (you may use pattern as well) from the left</li>
+<li><code>rtrim([pattern])</code>, trims whitespace (you may use pattern as well) from the right</li>
+<li><code>starts(starts)</code>, checks if string starts with <code>starts</code></li>
+<li><code>ends(ends)</code>, checks if string ends with <code>ends</code></li>
+<li><code>reverse</code>, reverses the value (string or number) (UTF-8)</li>
+<li><code>coalesce(...)</code>, if the value is nil, returns first non-nil value passed as arguments</li>
+<li><code>email()</code>, validates that the value is email address</li>
+<li><code>call(function)</code>, validates / filters the value against custom inline validator / filter</li>
+<li><code>optional([default])</code>, stops validation if the value is empty string <code>""</code> or <code>nil</code> and returns <code>true</code>, and either, <code>default</code> or <code>value</code></li>
+</ul>
+<h4 id="conditional-validation-factory-validators">Conditional Validation Factory Validators</h4>
+<p>For all the Validation Factory Validators there is a conditional version that always validates to true,
+but where you can replace the actual value depending whether the original validator validated. Hey, this
+is easier to show than say:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+
+<span class="c1">-- ok == true, value == &quot;Yes, the value is nil&quot;</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">ifnil</span><span class="p">(</span>
+    <span class="s2">&quot;Yes, the value is nil&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No, you did not supply a nil value&quot;</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">-- ok == true, value == &quot;No, you did not supply a nil value&quot;</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">ifnil</span><span class="p">(</span>
+    <span class="s2">&quot;Yes, the value is nil&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No, you did not supply a nil value&quot;</span><span class="p">)(</span><span class="s2">&quot;non nil&quot;</span><span class="p">)</span>
+
+<span class="c1">-- ok == true, value == &quot;Yes, the number is betweeb 1 and 10&quot;    </span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">ifbetween</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;Yes, the number is between 1 and 10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No, the number is not between 1 and 10&quot;</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1">-- ok == true, value == &quot;No, the number is not between 1 and 10&quot;</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">ifbetween</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;Yes, the number is between 1 and 10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No, the number is not between 1 and 10&quot;</span><span class="p">)(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<p>The last 2 arguments to conditional validation factory validators are the <code>truthy</code> and <code>falsy</code> values.
+Every other argument is passed to the actual validation factory validator.</p>
+<h3 id="group-validators">Group Validators</h3>
+<p><code>lua-resty-validation</code> currently supports a few predefined validators:</p>
+<ul>
+<li><code>compare(comparison)</code>, compares two fields and sets fields invalid or valid according to comparison</li>
+<li><code>requisite{ fields }</code>, at least of of the requisite fields is required, even if they by themselves are optional</li>
+<li><code>requisites({ fields }, number)</code>, at least <code>number</code> of requisites fields are required (by default all of them)</li>
+<li><code>call(function)</code>, calls a custom (or inline) group validation function</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">ispassword</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">ispassword</span><span class="p">,</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">ispassword</span>
+<span class="p">}</span>
+<span class="n">group</span><span class="p">:</span><span class="n">compare</span> <span class="s2">&quot;password1 == password2&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">group</span><span class="p">{</span> <span class="n">password1</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span> <span class="n">password2</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span> <span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">optional</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">optional</span><span class="s2">&quot;&quot;</span><span class="p">.</span><span class="n">trim</span>
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">optional</span><span class="p">,</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">optional</span>
+<span class="p">}</span>
+<span class="n">group</span><span class="p">:</span><span class="n">requisite</span><span class="p">{</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span> <span class="p">}</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">group</span><span class="p">{</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span>
+
+
+<span class="kd">local</span> <span class="n">optional</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">optional</span> <span class="s2">&quot;&quot;</span>
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">optional</span><span class="p">,</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">optional</span>
+<span class="p">}</span>
+<span class="n">group</span><span class="p">:</span><span class="n">requisites</span><span class="p">({</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span> <span class="p">},</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1">-- or group:requisites{ &quot;text&quot;, &quot;html&quot; }</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">group</span><span class="p">{</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span>
+
+
+<span class="n">group</span><span class="p">:</span><span class="n">call</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">fields</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;hello&quot;</span> <span class="kr">then</span>
+        <span class="n">fields</span><span class="p">.</span><span class="n">text</span><span class="p">:</span><span class="n">reject</span> <span class="s2">&quot;text cannot be &#39;hello&#39;&quot;</span>
+        <span class="n">fields</span><span class="p">.</span><span class="n">html</span><span class="p">:</span><span class="n">reject</span> <span class="s2">&quot;because text was &#39;hello&#39;, this field is also invalidated&quot;</span>
+    <span class="kr">end</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<p>You can use normal Lua relational operators in <code>compare</code> group validator:</p>
+<ul>
+<li><code>&lt;</code></li>
+<li><code>&gt;</code></li>
+<li><code>&lt;=</code></li>
+<li><code>&gt;=</code></li>
+<li><code>==</code></li>
+<li><code>~=</code></li>
+</ul>
+<p><code>requisite</code> and <code>requisites</code> check if the field value is <code>nil</code> or <code>""</code>(empty string).
+With <code>requisite</code>, if all the specified fields are <code>nil</code> or <code>""</code> then all the fields are
+invalid (provided they were not by themselves invalid), and if at least one of the fields
+is valid then all the fields are valid. <code>requisites</code> works the same, but there you can
+define the number of how many fields you want to have a value that is not <code>nil</code> and not
+an empty string <code>""</code>. These provide conditional validation in sense of:</p>
+<ol>
+<li>I have (two or more) fields</li>
+<li>All of them are optional</li>
+<li>At least one / defined number of fields should be filled but I don't care which one as long as there is at least one / defined number of fields filled</li>
+</ol>
+<h3 id="stop-validators">Stop Validators</h3>
+<p>Stop validators, like <code>optional</code>, are just like a normal validators, but instead of returning
+<code>true</code> or <code>false</code> as a validation result OR as a filtered value, you can return <code>validation.stop</code>.
+This value can also be used inside conditional validators and in validators that support default values. Here is how
+the <code>optional</code> validator is implemented:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">function</span> <span class="nc">factory</span><span class="p">.</span><span class="nf">optional</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="kr">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="kr">if</span> <span class="n">value</span> <span class="o">==</span> <span class="kc">nil</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="kr">then</span>
+            <span class="kr">return</span> <span class="n">validation</span><span class="p">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">default</span> <span class="o">~=</span> <span class="kc">nil</span> <span class="ow">and</span> <span class="n">default</span> <span class="ow">or</span> <span class="n">value</span>
+        <span class="kr">end</span>
+        <span class="kr">return</span> <span class="kc">true</span><span class="p">,</span> <span class="n">value</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>These are roughly equivalent:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Both return: true, &quot;default&quot; (they stop prosessing :minlen(10) on nil and &quot;&quot; inputs</span>
+<span class="kd">local</span> <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">optional</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">input</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">optional</span><span class="p">(</span><span class="n">input</span><span class="p">):</span><span class="n">minlen</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">input</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">ifoneof</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">validation</span><span class="p">.</span><span class="n">stop</span><span class="p">(</span><span class="n">input</span><span class="p">),</span> <span class="n">input</span><span class="p">):</span><span class="n">minlen</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">input</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="filtering-value-and-setting-the-value-to-nil">Filtering Value and Setting the Value to <code>nil</code></h3>
+<p>Most of the validators, that are not filtering the value, only return <code>true</code> or <code>false</code> as a result.
+That means that there is now no way to signal <code>resty.validation</code> to actually set the value to <code>nil</code>.
+So there is a work-around, you can return <code>validation.nothing</code> as a value, and that will change the
+value to <code>nil</code>, e.g. the built-in <code>tonil</code> validator is actually implemented like this (pseudo):</p>
+<div class="highlight"><pre><span></span><code><span class="kr">function</span><span class="p">()</span>
+    <span class="kr">return</span> <span class="kc">true</span><span class="p">,</span> <span class="n">validation</span><span class="p">.</span><span class="n">nothing</span>
+<span class="kr">end</span>
+</code></pre></div>
+<h3 id="custom-inline-validators-and-filters">Custom (Inline) Validators and Filters</h3>
+<p>Sometimes you may just have one-off validators / filters that you are not using elsewhere, or that you just
+want to supply quickly an additional validator / filter for a specific case. To make that easy and straight
+forward, we introduced <code>call</code> factory method with <code>lua-resty-validation</code> 2.4. Here is an example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">validation</span><span class="p">:</span><span class="n">call</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="c1">-- now validate / filter the value, and return the results</span>
+    <span class="c1">-- here we just return false (aka making validation to fail) </span>
+    <span class="kr">return</span> <span class="kc">false</span>
+<span class="kr">end</span><span class="p">)(</span><span class="s2">&quot;Check this value&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>(of course it doesn't need to be inline function as in Lua all functions are first class citizens and they can 
+be passed around as parameters)</p>
+<h3 id="built-in-validator-extensions">Built-in Validator Extensions</h3>
+<p>Currently <code>lua-resty-validation</code> has support for two extensions or plugins that you can enable:</p>
+<ul>
+<li><code>resty.validation.ngx</code></li>
+<li><code>resty.validation.tz</code></li>
+<li><code>resty.validation.utf8</code></li>
+</ul>
+<p>These are something you can look at if you want to build your own validator extension. If you do
+so, and think that it would be usable for others as well, mind you to send your extension as a pull-request
+for inclusion in this project, thank you very much, ;-).</p>
+<h4 id="restyvalidationngx-extension">resty.validation.ngx extension</h4>
+<p>As the name tells, this set of validator extensions requires OpenResty (or Lua Nginx module at least).
+To use this extension all you need to do is:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.ngx&quot;</span>
+</code></pre></div>
+<p>It will monkey patch the adapters that it will provide in <code>resty.validation</code>, and those are currently:</p>
+<ul>
+<li><code>escapeuri</code></li>
+<li><code>unescapeuri</code></li>
+<li><code>base64enc</code></li>
+<li><code>base64dec</code></li>
+<li><code>crc32short</code></li>
+<li><code>crc32long</code></li>
+<li><code>crc32</code></li>
+<li><code>md5</code></li>
+</ul>
+<p>(there is both factory and argument-less version of these)</p>
+<p>There is also regex matcher in ngx extension that uses <code>ngx.re.match</code>, and parameterized <code>md5</code>:</p>
+<ul>
+<li><code>regex(regex[, options])</code></li>
+<li><code>md5([bin])</code></li>
+</ul>
+<h5 id="example_1">Example</h5>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.ngx&quot;</span>
+<span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">unescapeuri</span><span class="p">.</span><span class="n">crc32</span><span class="p">(</span><span class="s2">&quot;https://github.com/&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">unescapeuri</span><span class="p">():</span><span class="n">crc32</span><span class="p">()(</span><span class="s2">&quot;https://github.com/&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="restyvalidationtz-extension">resty.validation.tz extension</h4>
+<p>This set of validators and filters is based on the great <a href="https://github.com/daurnimator/luatz"><code>luatz</code></a>
+library by <a href="https://github.com/daurnimator">@daurnimator</a>, that is a library for time and date manipulation. To use this extension, all you need
+to do is:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.tz&quot;</span>
+</code></pre></div>
+<p>It will monkey patch the adapters that it will provide in <code>resty.validation</code>, and those are currently:</p>
+<ul>
+<li><code>totimetable</code></li>
+<li><code>totimestamp</code></li>
+</ul>
+<p>(there is both factory and argument-less version of these)</p>
+<p><code>totimestamp</code> and <code>totimetable</code> filters work great with HTML5 date and datetime input fields. As the name
+tells, <code>totimetable</code> returns luatz <code>timetable</code> and <code>totimestamp</code> returns seconds since unix epoch (<code>1970-01-01</code>)
+as a Lua number.</p>
+<h5 id="example_2">Example</h5>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.tz&quot;</span>
+<span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">totimestamp</span><span class="p">(</span><span class="s2">&quot;1990-12-31T23:59:60Z&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">totimestamp</span><span class="p">(</span><span class="s2">&quot;1996-12-19&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="restyvalidationutf8-extension">resty.validation.utf8 extension</h4>
+<p>This set of validators and filters is based on the great <a href="https://bitbucket.org/knight666/utf8rewind"><code>utf8rewind</code></a>
+library by Quinten Lansu - a system library written in C designed to extend the default string handling functions
+with support for UTF-8 encoded text. It needs my LuaJIT FFI wrapper <a href="https://github.com/bungle/lua-resty-utf8rewind"><code>lua-resty-utf8rewind</code></a>
+to work. When the mentioned requirements are installed, the rest is easy. To use this extension, all you need
+to do is:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.utf8&quot;</span>
+</code></pre></div>
+<p>It will monkey patch the adapters that it will provide in <code>resty.validation</code>, and those are currently:</p>
+<ul>
+<li><code>utf8upper</code></li>
+<li><code>utf8lower</code></li>
+<li><code>utf8title</code></li>
+</ul>
+<p>(there is both factory and argument-less version of these)</p>
+<p>There is also a few factory validators / filters:</p>
+<ul>
+<li><code>utf8normalize(form)</code></li>
+<li><code>utf8category(category)</code></li>
+</ul>
+<p>The <code>utf8normalize</code> normalizes the UTF-8 input to one of these normalization formats:</p>
+<ul>
+<li><code>C</code> (or <code>NFC</code>)</li>
+<li><code>D</code> (or <code>NFD</code>)</li>
+<li><code>KC</code> (or <code>NFKC</code>)</li>
+<li><code>KD</code> (or <code>NFKD</code>)</li>
+</ul>
+<p>The <code>utf8category</code> checks that the input string is in one of the following categories (so, you may think it has
+multiple validators built-in to work with UTF-8 string validation):</p>
+<ul>
+<li><code>LETTER_UPPERCASE</code></li>
+<li><code>LETTER_LOWERCASE</code></li>
+<li><code>LETTER_TITLECASE</code></li>
+<li><code>LETTER_MODIFIER</code></li>
+<li><code>CASE_MAPPED</code></li>
+<li><code>LETTER_OTHER</code></li>
+<li><code>LETTER</code></li>
+<li><code>MARK_NON_SPACING</code></li>
+<li><code>MARK_SPACING</code></li>
+<li><code>MARK_ENCLOSING</code></li>
+<li><code>MARK</code></li>
+<li><code>NUMBER_DECIMAL</code></li>
+<li><code>NUMBER_LETTER</code></li>
+<li><code>NUMBER_OTHER</code></li>
+<li><code>NUMBER</code></li>
+<li><code>PUNCTUATION_CONNECTOR</code></li>
+<li><code>PUNCTUATION_DASH</code></li>
+<li><code>PUNCTUATION_OPEN</code></li>
+<li><code>PUNCTUATION_CLOSE</code></li>
+<li><code>PUNCTUATION_INITIAL</code></li>
+<li><code>PUNCTUATION_FINAL</code></li>
+<li><code>PUNCTUATION_OTHER</code></li>
+<li><code>PUNCTUATION</code></li>
+<li><code>SYMBOL_MATH</code></li>
+<li><code>SYMBOL_CURRENCY</code></li>
+<li><code>SYMBOL_MODIFIER</code></li>
+<li><code>SYMBOL_OTHER</code></li>
+<li><code>SYMBOL</code></li>
+<li><code>SEPARATOR_SPACE</code></li>
+<li><code>SEPARATOR_LINE</code></li>
+<li><code>SEPARATOR_PARAGRAPH</code></li>
+<li><code>SEPARATOR</code></li>
+<li><code>CONTROL</code></li>
+<li><code>FORMAT</code></li>
+<li><code>SURROGATE</code></li>
+<li><code>PRIVATE_USE</code></li>
+<li><code>UNASSIGNED</code></li>
+<li><code>COMPATIBILITY</code></li>
+<li><code>ISUPPER</code></li>
+<li><code>ISLOWER</code></li>
+<li><code>ISALPHA</code></li>
+<li><code>ISDIGIT</code></li>
+<li><code>ISALNUM</code></li>
+<li><code>ISPUNCT</code></li>
+<li><code>ISGRAPH</code></li>
+<li><code>ISSPACE</code></li>
+<li><code>ISPRINT</code></li>
+<li><code>ISCNTRL</code></li>
+<li><code>ISXDIGIT</code></li>
+<li><code>ISBLANK</code></li>
+<li><code>IGNORE_GRAPHEME_CLUSTER</code></li>
+</ul>
+<h5 id="example_3">Example</h5>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.utf8&quot;</span>
+<span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">validation</span><span class="p">:</span><span class="n">utf8category</span><span class="p">(</span><span class="s2">&quot;LETTER_UPPERCASE&quot;</span><span class="p">)(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="restyvalidationinjection-extension">resty.validation.injection extension</h4>
+<p>This set of validators and filters is based on the great <a href="https://github.com/client9/libinjection"><code>libinjection</code></a>
+library by Nick Galbreath - a SQL / SQLI / XSS tokenizer parser analyzer. It needs my LuaJIT FFI wrapper
+<a href="https://github.com/bungle/lua-resty-injection"><code>lua-resty-injection</code></a> to work. When the mentioned requirements
+are installed, the rest is easy. To use this extension, all you need to do is:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.injection&quot;</span>
+</code></pre></div>
+<p>It will monkey patch the adapters that it will provide in <code>resty.validation</code>, and those are currently:</p>
+<ul>
+<li><code>sqli</code>, returns <code>false</code> if SQL injection was detected, otherwise returns <code>true</code></li>
+<li><code>xss</code>, returns <code>false</code> if Cross-Site Scripting injection was detected, otherwise returns <code>true</code></li>
+</ul>
+<h5 id="example_4">Example</h5>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;resty.validation.injection&quot;</span>
+<span class="kd">local</span> <span class="n">validation</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">sqli</span><span class="p">(</span><span class="s2">&quot;test&#39;; DELETE FROM users;&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">validation</span><span class="p">.</span><span class="n">xss</span><span class="p">(</span><span class="s2">&quot;test &lt;script&gt;alert(&#39;XSS&#39;);&lt;/script&gt;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="api">API</h2>
+<p>I'm not going here for details for all the different validators and filters there is because they all follow the
+same logic, but I will show some general ways how this works.</p>
+<h3 id="validation_version">validation._VERSION</h3>
+<p>This field contains a version of the validation library, e.g. it's value can be <code>"2.5"</code> for
+the version 2.5 of this library.</p>
+<h3 id="boolean-valueerror-validation">boolean, value/error validation...</h3>
+<p>That <code>...</code> means the validation chain. This is used to define a single validator chain. There is no limit to
+chain length. It will always return boolean (if the validation is valid or not). The second return value will
+be either the name of the filter that didn't return <code>true</code> as a validation result, or the filtered value.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+
+<span class="c1">-- The below means, create validator that checks that the input is:</span>
+<span class="c1">-- 1. string</span>
+<span class="c1">-- If, it is, then trim whitespaces from begin and end of the string:</span>
+<span class="c1">-- 2. trim</span>
+<span class="c1">-- Then check that the trimmed string&#39;s length is at least 5 characters (UTF-8):</span>
+<span class="c1">-- 3. minlen(5)</span>
+<span class="c1">-- And if everything is still okay, convert that string to upper case</span>
+<span class="c1">-- (UTF-8 is not yet supported in upper):</span>
+<span class="c1">-- 4. upper</span>
+<span class="kd">local</span> <span class="n">myvalidator</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="n">upper</span>
+
+<span class="c1">-- This example will return false and &quot;minlen&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">myvalidator</span><span class="p">(</span><span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2"> a </span><span class="se">\t\n</span><span class="s2"> &quot;</span><span class="p">)</span>
+
+<span class="c1">-- This example will return true and &quot;ABCDE&quot;</span>
+<span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">myvalidator</span><span class="p">(</span><span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2"> abcde </span><span class="se">\t\n</span><span class="s2"> &quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Whenever the validator fails and returns <code>false</code>, you should not use the returned value for other purposes than
+error reporting. So, the chain works like that. The <code>lua-resty-validation</code> will not try to do anything if you
+specify chains that will never get used, such as:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="c1">-- The input value can never be both string and number at the same time:</span>
+<span class="kd">local</span> <span class="n">myvalidator</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">number</span><span class="p">:</span><span class="n">max</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">-- But you could write this like this</span>
+<span class="c1">-- (take input as a string, try to convert it to number, and check it is at most 3):</span>
+<span class="kd">local</span> <span class="n">myvalidator</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="nb">tonumber</span><span class="p">:</span><span class="n">max</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<p>As you see, this is a way to define single reusable validators. You can for example predefine your set of basic
+single validator chains and store it in your own module from which you can reuse the same validation logic in
+different parts of your application. It is good idea to start defining single reusable validators, and then reuse
+them in group validators.</p>
+<p>E.g. say you have module called <code>validators</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kr">return</span> <span class="p">{</span>
+    <span class="n">nick</span>     <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">email</span>    <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And now you have <code>register</code> function somewhere in your application:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">validate</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;validators&quot;</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">register</span><span class="p">(</span><span class="n">nick</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">vn</span><span class="p">,</span> <span class="n">nick</span>     <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">nick</span><span class="p">(</span><span class="n">nick</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">ve</span><span class="p">,</span> <span class="n">email</span>    <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">vp</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">vn</span> <span class="ow">and</span> <span class="n">ve</span> <span class="ow">and</span> <span class="n">vp</span> <span class="kr">then</span>
+        <span class="c1">-- input is valid, do something with nick, email, and password</span>
+    <span class="kr">else</span>
+        <span class="c1">-- input is invalid, nick, email, and password contain the error reasons</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>This quickly gets a little bit dirty, and that's why we have Group validators.</p>
+<h3 id="table-validationnewtable-of-validators">table validation.new([table of validators])</h3>
+<p>This function is where the group validation kicks in. Say that you have a registration
+form that asks you nick, email (same twice), and password (same twice).</p>
+<p>We will reuse the single validators, defined in <code>validators</code> module:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kr">return</span> <span class="p">{</span>
+    <span class="n">nick</span>     <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">email</span>    <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trim</span><span class="p">:</span><span class="n">minlen</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now, lets create the reusable group validator in <code>forms</code> module:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">v</span>        <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.validation&quot;</span>
+<span class="kd">local</span> <span class="n">validate</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;validators&quot;</span>
+
+<span class="c1">-- First we create single validators for each form field</span>
+<span class="kd">local</span> <span class="n">register</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="n">nick</span>      <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">nick</span><span class="p">,</span>
+    <span class="n">email</span>     <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+    <span class="n">email2</span>    <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+    <span class="n">password</span>  <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">password</span><span class="p">,</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">validate</span><span class="p">.</span><span class="n">password</span>
+<span class="p">}</span>
+
+<span class="c1">-- Next we create group validators for email and password:</span>
+<span class="n">register</span><span class="p">:</span><span class="n">compare</span> <span class="s2">&quot;email    == email2&quot;</span>
+<span class="n">register</span><span class="p">:</span><span class="n">compare</span> <span class="s2">&quot;password == password2&quot;</span>
+
+<span class="c1">-- And finally we return from this forms module</span>
+
+<span class="kr">return</span> <span class="p">{</span>
+    <span class="n">register</span> <span class="o">=</span> <span class="n">register</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now, somewhere in your application you have this <code>register</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">forms</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;forms&quot;</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">register</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">valid</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">forms</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">valid</span> <span class="kr">then</span>
+        <span class="c1">-- input is valid, do something with fields</span>
+    <span class="kr">else</span>
+        <span class="c1">-- input is invalid, do something with fields and errors</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="c1">-- And you might call it like:</span>
+
+<span class="n">register</span><span class="p">{</span>
+    <span class="n">nick</span>      <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">email</span>     <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+    <span class="n">email2</span>    <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+    <span class="n">password</span>  <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The great thing about group validators is that you can JSON encode the fields and errors
+table and return it to client. This might come handy when building a single page application
+and you need to report server side errors on client. In the above example, the <code>fields</code>
+variable will look like this (<code>valid</code> would be true:, and <code>errors</code> would be <code>nil</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="n">nick</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;nick&quot;</span><span class="p">,</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="n">email2</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;email2&quot;</span><span class="p">,</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is great for further processing and sending the fields as JSON encoded back
+to the client-side Javascript application, but usually this is too heavy construct
+to be send to the backend layer. To get a simple key value table, we can call this
+fields table:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fields</span><span class="p">()</span>
+</code></pre></div>
+<p>The <code>data</code> variable will now contain:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="n">nick</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+    <span class="n">email2</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span><span class="p">,</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now this is something you can send for example in Redis or whatever database (abstraction) layer
+you have. But, well, this doesn't stop here, if say your database layer is only interested in
+<code>nick</code>, <code>email</code> and <code>password</code> (e.g. strip those duplicates), you can even call the <code>data</code> table:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">realdata</span> <span class="o">=</span> <span class="n">data</span><span class="p">(</span><span class="s2">&quot;nick&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>realdata</code> will now contain:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="n">nick</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;test@test.org&quot;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;qwerty123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="fieldacceptvalue">field:accept(value)</h3>
+<p>For field you can call <code>accept</code> that does this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">self</span><span class="p">.</span><span class="n">error</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="n">self</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+<span class="n">self</span><span class="p">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">self</span><span class="p">.</span><span class="n">invalid</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="n">self</span><span class="p">.</span><span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">self</span><span class="p">.</span><span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre></div>
+<h3 id="fieldrejecterror">field:reject(error)</h3>
+<p>For field you can call <code>reject</code> that does this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">self</span><span class="p">.</span><span class="n">error</span> <span class="o">=</span> <span class="nb">error</span>
+<span class="n">self</span><span class="p">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="n">self</span><span class="p">.</span><span class="n">invalid</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">self</span><span class="p">.</span><span class="n">validated</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">self</span><span class="p">.</span><span class="n">unvalidated</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre></div>
+<h3 id="string-fieldstateinvalid-valid-unvalidated">string field:state(invalid, valid, unvalidated)</h3>
+<p>Calling <code>state</code> on field is great when embedding validation results inside say <abbr title="Hyper Text Markup Language">HTML</abbr> template, such as <code>lua-resty-template</code>. Here is an example using <code>lua-resty-template</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;{{ form.email:state(&#39;invalid&#39;, &#39;valid&#39;) }}&quot;</span>
+            <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span>
+            <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+            <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Email&quot;</span>
+            <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{ form.email.input }}&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Join<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>So depending on email field's state this will add a class to input element (e.g. making input's border red or green for example). We don't care about unvalidated (e.g. when the user first loaded the page and form) state here.</p>
+<h2 id="changes">Changes</h2>
+<p>The changes of every release of this module is recorded in <a href="https://github.com/bungle/lua-resty-validation/blob/master/Changes.md">Changes.md</a> file.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://github.com/bungle/lua-resty-route">lua-resty-route</a> — Routing library</li>
+<li><a href="https://github.com/bungle/lua-resty-reqargs">lua-resty-reqargs</a> — Request arguments parser</li>
+<li><a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a> — Session library</li>
+<li><a href="https://github.com/bungle/lua-resty-template">lua-resty-template</a> — Templating Engine</li>
+</ul>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/bungle/lua-resty-validation" target="_blank">GitHub repository for 
+nginx-module-validation</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

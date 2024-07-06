@@ -1,0 +1,5753 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/timer/">
+      
+      
+        <link rel="prev" href="../test/">
+      
+      
+        <link rel="next" href="../tlc/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>timer - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="timer - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/timer.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/timer/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="timer - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/timer.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#timer-extended-timers-for-nginx-module-lua" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              timer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modules/" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/secure-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#releasing-new-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Releasing new versions:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-6-nov-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.0 (6-Nov-2020)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#100-21-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0.0 (21-Sep-2020)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-28-may-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3 (28-May-2018)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-12-feb-2018-bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 (12-Feb-2018) Bug fix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01-22-nov-2017-initial-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 (22-Nov-2017) Initial release
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#releasing-new-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Releasing new versions:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-6-nov-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.0 (6-Nov-2020)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#100-21-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0.0 (21-Sep-2020)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-28-may-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3 (28-May-2018)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-12-feb-2018-bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 (12-Feb-2018) Bug fix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01-22-nov-2017-initial-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 (22-Nov-2017) Initial release
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="timer-extended-timers-for-nginx-module-lua"><em>timer</em>: Extended timers for nginx-module-lua</h1>
+<h2 id="installation">Installation</h2>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-timer
+</code></pre></div>
+<h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-timer
+</code></pre></div>
+<p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
+<p>This document describes lua-resty-timer <a href="https://github.com/Kong/lua-resty-timer/releases/tag/1.1.0" target="_blank">v1.1.0</a> 
+released on Nov 06 2020.</p>
+<hr />
+
+<p>Extended timers for OpenResty. Provided recurring, cancellable, node-wide timers,
+beyond what the basic OpenResty timers do.</p>
+<h2 id="status">Status</h2>
+<p>This library is production ready.</p>
+<h2 id="synopsis">Synopsis</h2>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">lua_shared_dict</span><span class="w"> </span><span class="s">timer_shm</span><span class="w"> </span><span class="mi">1m</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">init_worker_by_lua_block</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">local</span><span class="w"> </span><span class="s">timer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">require(&quot;resty.timer&quot;)</span>
+
+<span class="w">        </span><span class="s">local</span><span class="w"> </span><span class="s">options</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">interval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="s">.1,</span><span class="w">           </span><span class="s">--</span><span class="w"> </span><span class="s">expiry</span><span class="w"> </span><span class="s">interval</span><span class="w"> </span><span class="s">in</span><span class="w"> </span><span class="s">seconds</span>
+<span class="w">            </span><span class="s">recurring</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">true,</span><span class="w">         </span><span class="s">--</span><span class="w"> </span><span class="s">recurring</span><span class="w"> </span><span class="s">or</span><span class="w"> </span><span class="s">single</span><span class="w"> </span><span class="s">timer</span>
+<span class="w">            </span><span class="s">immediate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">true,</span><span class="w">         </span><span class="s">--</span><span class="w"> </span><span class="s">initial</span><span class="w"> </span><span class="s">interval</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="s">detached</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">false,</span><span class="w">         </span><span class="s">--</span><span class="w"> </span><span class="s">run</span><span class="w"> </span><span class="s">detached,</span><span class="w"> </span><span class="s">or</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">garbagecollectible</span>
+<span class="w">            </span><span class="s">jitter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="s">.1,</span><span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">add</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">random</span><span class="w"> </span><span class="s">interval</span>
+<span class="w">            </span><span class="s">expire</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">object.handler,</span><span class="w">  </span><span class="s">--</span><span class="w"> </span><span class="s">callback</span><span class="w"> </span><span class="no">on</span><span class="w"> </span><span class="s">timer</span><span class="w"> </span><span class="s">expiry</span>
+<span class="w">            </span><span class="s">cancel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">function(reason,</span><span class="w"> </span><span class="s">self,</span><span class="w"> </span><span class="s">param1)</span>
+<span class="w">                </span><span class="s">--</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">called</span><span class="w"> </span><span class="s">when</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">timer</span><span class="w"> </span><span class="s">gets</span><span class="w"> </span><span class="s">cancelled</span>
+<span class="w">            </span><span class="s">end,</span>
+<span class="w">            </span><span class="s">shm_name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;timer_shm&quot;,</span><span class="w">   </span><span class="s">--</span><span class="w"> </span><span class="s">shm</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">use</span><span class="w"> </span><span class="s">for</span><span class="w"> </span><span class="s">node-wide</span><span class="w"> </span><span class="s">timers</span>
+<span class="w">            </span><span class="s">key_name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;my_key&quot;,</span><span class="w">      </span><span class="s">--</span><span class="w"> </span><span class="s">key-name</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">use</span><span class="w"> </span><span class="s">for</span><span class="w"> </span><span class="s">node-wide</span><span class="w"> </span><span class="s">timers</span>
+<span class="w">            </span><span class="s">sub_interval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="s">.1,</span><span class="w">       </span><span class="s">--</span><span class="w"> </span><span class="s">max</span><span class="w"> </span><span class="s">cross</span><span class="w"> </span><span class="s">worker</span><span class="w"> </span><span class="s">extra</span><span class="w"> </span><span class="s">delay</span>
+<span class="w">        </span><span class="err">}</span>
+
+<span class="w">        </span><span class="s">local</span><span class="w"> </span><span class="s">object</span>
+<span class="w">        </span><span class="s">object</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w">                            </span><span class="kn">--</span><span class="w"> </span><span class="s">create</span><span class="w"> </span><span class="s">some</span><span class="w"> </span><span class="s">object</span><span class="w"> </span><span class="s">with</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">timer</span>
+<span class="w">            </span><span class="s">count</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="s">,</span>
+<span class="w">            </span><span class="s">handler</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">function(self,</span><span class="w"> </span><span class="s">param1)</span><span class="w">  </span><span class="s">--</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">timer</span><span class="w"> </span><span class="s">callback</span><span class="w"> </span><span class="s">as</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">method</span>
+<span class="w">                </span><span class="s">--</span><span class="w"> </span><span class="s">do</span><span class="w"> </span><span class="s">something</span><span class="w"> </span><span class="s">here</span>
+<span class="w">                </span><span class="s">print(param1)</span><span class="w">                 </span><span class="s">--&gt;</span><span class="w"> </span><span class="s">&quot;Param</span><span class="w"> </span><span class="mi">1</span><span class="s">&quot;</span>
+<span class="w">            </span><span class="s">end,</span>
+
+<span class="w">            </span><span class="s">--</span><span class="w"> </span><span class="s">create</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">add</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">object,</span><span class="w"> </span><span class="s">but</span><span class="w"> </span><span class="s">also</span><span class="w"> </span><span class="s">pass</span><span class="w"> </span><span class="s">it</span><span class="w"> </span><span class="s">as</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">handler</span>
+<span class="w">            </span><span class="s">timer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">timer(options,</span><span class="w"> </span><span class="s">object,</span><span class="w"> </span><span class="s">&quot;Param</span><span class="w"> </span><span class="mi">1</span><span class="s">&quot;),</span>
+<span class="w">        </span><span class="err">}</span>
+
+<span class="w">        </span><span class="s">--</span><span class="w"> </span><span class="s">anchor</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">object</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">timer</span>
+<span class="w">        </span><span class="s">_M.global_object</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">object</span><span class="w">     </span><span class="s">--</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">collected</span><span class="w"> </span><span class="s">if</span><span class="w"> </span><span class="s">not</span><span class="w"> </span><span class="s">anchored</span>
+
+<span class="w">        </span><span class="s">--</span><span class="w"> </span><span class="s">cancel</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">timer</span>
+<span class="w">        </span><span class="s">object.timer:cancel()</span>
+<span class="w">    </span><span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
+<h2 id="description">Description</h2>
+<p>The OpenResty timer is fairly limited, this timer adds a number of common
+options as parameters without having to recode (and retest) them in each
+project.</p>
+<ul>
+<li>
+<p>recurring timers (supported by OR as well through <code>ngx.timer.every</code>)</p>
+</li>
+<li>
+<p>immediate first run for recurring timers</p>
+</li>
+<li>
+<p>cancellable timers</p>
+</li>
+<li>
+<p>cancel callback, called when the timer is cancelled</p>
+</li>
+<li>
+<p>garbage collectible timers, enabling timers to (optionally) be attached to
+  objects and automatically stop when garbage collected.</p>
+</li>
+<li>
+<p>node-wide timers: the same timer started in each worker will still only
+  run once across the system. If the worker running it is removed the
+  timer will automatically be executed on another worker.</p>
+</li>
+</ul>
+<p>See the <a href="https://kong.github.io/lua-resty-timer/topics/README.md.html">online LDoc documentation</a>
+for the complete API.</p>
+<h2 id="history">History</h2>
+<p>Versioning is strictly based on <a href="https://semver.org/">Semantic Versioning</a></p>
+<h3 id="releasing-new-versions">Releasing new versions:</h3>
+<ul>
+<li>update changelog below (PR's should be merged including a changelog entry)</li>
+<li>based on changelog determine new SemVer version</li>
+<li>create a new rockspec</li>
+<li>render the docs using <code>ldoc</code> (don't do this within PR's)</li>
+<li>commit as "release x.x.x" (do not include rockspec revision)</li>
+<li>tag the commit with "x.x.x" (do not include rockspec revision)</li>
+<li>push commit and tag</li>
+<li>upload rock to luarocks: <code>luarocks upload rockspecs/[name] --api-key=abc</code></li>
+</ul>
+<h3 id="110-6-nov-2020">1.1.0 (6-Nov-2020)</h3>
+<ul>
+<li>Feat: add a <code>jitter</code> option. This adds a random interval to distribute the
+  timers (in case of scheduling many timers at once).</li>
+</ul>
+<h3 id="100-21-sep-2020">1.0.0 (21-Sep-2020)</h3>
+<ul>
+<li>Change [BREAKING]: the recurring timers are now implemented as a sleeping
+  thread which is more efficient. Side effect is that the timer only gets
+  rescheduled AFTER executing the handler. So if the handler is long running,
+  then individual runs will be further apart.</li>
+</ul>
+<h3 id="03-28-may-2018">0.3 (28-May-2018)</h3>
+<ul>
+<li>Feat: added cancellation callback invocation on timer being GC'ed. This
+  changes the first argument of the <code>cancel</code> callback, and hence is
+  breaking.</li>
+</ul>
+<h3 id="02-12-feb-2018-bug-fix">0.2 (12-Feb-2018) Bug fix</h3>
+<ul>
+<li>Fix: bugfix in <code>unpack</code> function not honoring table length parameter</li>
+<li>Docs: small fixes and typo's</li>
+</ul>
+<h3 id="01-22-nov-2017-initial-release">0.1 (22-Nov-2017) Initial release</h3>
+<ul>
+<li>Added <code>sub_interval</code> option to reduce delays</li>
+<li>Initial upload</li>
+</ul>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/Kong/lua-resty-timer" target="_blank">GitHub repository for 
+nginx-module-timer</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

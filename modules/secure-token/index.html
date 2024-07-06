@@ -1,0 +1,6938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/secure-token/">
+      
+      
+        <link rel="prev" href="../rtmp/">
+      
+      
+        <link rel="next" href="../security/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>secure-token - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="secure-token - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/secure-token.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/secure-token/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="secure-token - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/secure-token.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#secure-token-secure-token-module-for-nginx" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              secure-token
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lua/" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_avoid_cookies" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_avoid_cookies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_uri_filename_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_uri_filename_prefix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cookie_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cookie_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_query_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_query_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cache_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cache_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_token_cache_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_token_cache_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_last_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_last_modified
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_token_last_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_token_last_modified
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_m3u8" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_m3u8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_mpd" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_mpd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_f4m" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_f4m
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#akamai-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Akamai token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Akamai token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_akamai" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_akamai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      ip_address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudfront-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudFront token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFront token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cloudfront
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private_key_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      private_key_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_pair_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      key_pair_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_address_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ip_address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadpeak-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broadpeak token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Broadpeak token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_broadpeak" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_broadpeak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      session_start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session_end" class="md-nav__link">
+    <span class="md-ellipsis">
+      session_end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional_querylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      additional_querylist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-encryption-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      URI encryption parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URI encryption parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_iv" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_iv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_part" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_part
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_hash_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_hash_size
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sample configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hls-packaging-with-akamai-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      HLS packaging with Akamai tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hds-packaging-with-cloudfront-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      HDS packaging with CloudFront tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypted-hls-with-token-security-on-the-encryption-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypted HLS with token security on the encryption key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-token-security-on-top-of-an-existing-hdshls-live-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding token security on top of an existing HDS/HLS live stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      URI encryption
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nginx variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/timer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_avoid_cookies" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_avoid_cookies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_uri_filename_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_uri_filename_prefix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cookie_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cookie_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_query_token_expires_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_query_token_expires_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cache_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cache_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_token_cache_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_token_cache_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_last_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_last_modified
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_token_last_modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_token_last_modified
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_m3u8" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_m3u8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_mpd" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_mpd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_content_type_f4m" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_content_type_f4m
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#akamai-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Akamai token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Akamai token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_akamai" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_akamai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      ip_address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudfront-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudFront token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFront token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_cloudfront
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private_key_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      private_key_file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_pair_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      key_pair_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_address_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ip_address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadpeak-token-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broadpeak token parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Broadpeak token parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_broadpeak" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_broadpeak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      acl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      session_start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session_end" class="md-nav__link">
+    <span class="md-ellipsis">
+      session_end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional_querylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      additional_querylist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-encryption-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      URI encryption parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URI encryption parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_iv" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_iv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_part" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_part
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure_token_encrypt_uri_hash_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure_token_encrypt_uri_hash_size
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sample configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hls-packaging-with-akamai-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      HLS packaging with Akamai tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hds-packaging-with-cloudfront-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      HDS packaging with CloudFront tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypted-hls-with-token-security-on-the-encryption-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypted HLS with token security on the encryption key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-token-security-on-top-of-an-existing-hdshls-live-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding token security on top of an existing HDS/HLS live stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      URI encryption
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nginx variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="secure-token-secure-token-module-for-nginx"><em>secure-token</em>: Secure token module for NGINX</h1>
+<h2 id="installation">Installation</h2>
+<p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
+<ul>
+<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>CentOS 7, 8, 9</li>
+<li>AlmaLinux 8, 9</li>
+<li>Rocky Linux 8, 9</li>
+<li>Amazon Linux 2 and Amazon Linux 2023</li>
+</ul>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-secure-token
+</code></pre></div>
+<p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_secure_token_filter_module.so</span><span class="p">;</span>
+</code></pre></div>
+<p>This document describes nginx-module-secure-token <a href="https://github.com/kaltura/nginx-secure-token-module/releases/tag/1.5" target="_blank">v1.5</a> 
+released on Jun 27 2022.</p>
+<hr />
+
+<p>Generates CDN tokens, either as a cookie or as a query string parameter (m3u8,mpd,f4m only).
+Currently supports Akamai v2 tokens, and Amazon CloudFront tokens.
+In addition, the module supports the encryption of URIs with a configured key.</p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="generic-token-parameters">Generic token parameters</h3>
+<h4 id="secure_token">secure_token</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token value</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the value of the token that should be embedded in the manifest/returned as a cookie.
+The parameter value can contain variables, and often points to variables set by this module
+(using <code>secure_token_akamai</code> / <code>secure_token_cloudfront</code> blocks)</p>
+<h4 id="secure_token_avoid_cookies">secure_token_avoid_cookies</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_avoid_cookies on/off</code></li>
+<li><strong>default</strong>: <code>on</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>When enabled the module prefers to use a query string token instead of a cookie token.
+A query string token is currently supported only for the following mime types (other mime types return a cookie token):
+* application/vnd.apple.mpegurl
+* application/dash+xml
+* video/f4m</p>
+<h4 id="secure_token_types">secure_token_types</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_types mime_type ...</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Defines a set of mime types that should return a token</p>
+<h4 id="secure_token_uri_filename_prefix">secure_token_uri_filename_prefix</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_uri_filename_prefix prefix</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Defines a set of prefixes that will be matched against the URI file name, only URIs whose file name
+starts with one of the defined prefixes will return a token</p>
+<h4 id="secure_token_expires_time">secure_token_expires_time</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_expires_time time</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the expiration time of responses that are not tokenized 
+(determines the values of the Cache-Control and Expires <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> headers)</p>
+<h4 id="secure_token_cookie_token_expires_time">secure_token_cookie_token_expires_time</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_cookie_token_expires_time time</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the expiration time of responses that are tokenized with a cookie token 
+(determines the values of the Cache-Control and Expires <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> headers)</p>
+<h4 id="secure_token_query_token_expires_time">secure_token_query_token_expires_time</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_query_token_expires_time time</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the expiration time of responses that are tokenized with a query string token 
+(determines the values of the Cache-Control and Expires <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> headers)</p>
+<h4 id="secure_token_cache_scope">secure_token_cache_scope</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_cache_scope scope</code></li>
+<li><strong>default</strong>: <code>public</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the cache scope (public/private) of responses that are not tokenized</p>
+<h4 id="secure_token_token_cache_scope">secure_token_token_cache_scope</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_token_cache_scope scope</code></li>
+<li><strong>default</strong>: <code>private</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the cache scope (public/private) of responses that are tokenized (query / cookie)</p>
+<h4 id="secure_token_last_modified">secure_token_last_modified</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_last_modified time</code></li>
+<li><strong>default</strong>: <code>Sun, 19 Nov 2000 08:52:00 GMT</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the value of the last-modified header of responses that are not tokenized.
+An empty string leaves the value of last-modified unaltered, while the string "now" sets the header to the server current time.</p>
+<h4 id="secure_token_token_last_modified">secure_token_token_last_modified</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_token_last_modified time</code></li>
+<li><strong>default</strong>: <code>now</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the value of the last-modified header of responses that are tokenized (query / cookie)
+An empty string leaves the value of last-modified unaltered, while the string "now" sets the header to the server current time.</p>
+<h4 id="secure_token_content_type_m3u8">secure_token_content_type_m3u8</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_content_type_m3u8 type</code></li>
+<li><strong>default</strong>: <code>application/vnd.apple.mpegurl</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the content type that should be parsed as m3u8 for token insertion</p>
+<h4 id="secure_token_content_type_mpd">secure_token_content_type_mpd</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_content_type_mpd type</code></li>
+<li><strong>default</strong>: <code>application/dash+xml</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the content type that should be parsed as mpd for token insertion</p>
+<h4 id="secure_token_content_type_f4m">secure_token_content_type_f4m</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_content_type_f4m type</code></li>
+<li><strong>default</strong>: <code>video/f4m</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the content type that should be parsed as f4m for token insertion</p>
+<h3 id="akamai-token-parameters">Akamai token parameters</h3>
+<h4 id="secure_token_akamai">secure_token_akamai</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_akamai $variable { ... }</code></li>
+<li><strong>context</strong>: <code>http</code></li>
+</ul>
+<p>Creates a new variable whose value is an Akamai token, created according to the 
+parameters specified within the block.</p>
+<p>The block supports the following parameters:</p>
+<h4 id="key">key</h4>
+<ul>
+<li><strong>syntax</strong>: <code>key key_hex</code></li>
+<li><strong>default</strong>: <code>N/A (mandatory)</code></li>
+</ul>
+<p>Sets the secret key.</p>
+<h4 id="param_name">param_name</h4>
+<ul>
+<li><strong>syntax</strong>: <code>param_name name</code></li>
+<li><strong>default</strong>: <code>__hdnea__</code></li>
+</ul>
+<p>Sets the token parameter name (either the name of the cookie or the query string parameter)</p>
+<h4 id="acl">acl</h4>
+<ul>
+<li><strong>syntax</strong>: <code>acl acl</code></li>
+<li><strong>default</strong>: <code>$secure_token_baseuri_comma</code></li>
+</ul>
+<p>Sets the signed part of the URL (ACL). The parameter value can contain variables.</p>
+<h4 id="start">start</h4>
+<ul>
+<li><strong>syntax</strong>: <code>start time</code></li>
+<li><strong>default</strong>: <code>0</code></li>
+</ul>
+<p>Sets the start time of the token (see <code>Time format</code> below)</p>
+<h4 id="end">end</h4>
+<ul>
+<li><strong>syntax</strong>: <code>end time</code></li>
+<li><strong>default</strong>: <code>86400</code></li>
+</ul>
+<p>Sets the end time of the token (see <code>Time format</code> below)</p>
+<h4 id="ip_address">ip_address</h4>
+<ul>
+<li><strong>syntax</strong>: <code>ip_address address</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+</ul>
+<p>Sets the IP address that should be embedded in the token.
+The parameter value can contain variables, e.g. $remote_addr.</p>
+<h3 id="cloudfront-token-parameters">CloudFront token parameters</h3>
+<h4 id="secure_token_cloudfront">secure_token_cloudfront</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_cloudfront $variable { ... }</code></li>
+<li><strong>context</strong>: <code>http</code></li>
+</ul>
+<p>Creates a new variable whose value is a CloudFront token, created according to the 
+parameters specified within the block.</p>
+<p>The block supports the following parameters:</p>
+<h4 id="private_key_file">private_key_file</h4>
+<ul>
+<li><strong>syntax</strong>: <code>private_key_file filename</code></li>
+<li><strong>default</strong>: <code>N/A (mandatory)</code></li>
+</ul>
+<p>Sets the file name of the private key (PEM file)</p>
+<h4 id="key_pair_id">key_pair_id</h4>
+<ul>
+<li><strong>syntax</strong>: <code>key_pair_id id</code></li>
+<li><strong>default</strong>: <code>N/A (mandatory)</code></li>
+</ul>
+<p>Sets the key pair id</p>
+<h4 id="acl_1">acl</h4>
+<ul>
+<li><strong>syntax</strong>: <code>acl acl</code></li>
+<li><strong>default</strong>: <code>$secure_token_baseuri_comma</code></li>
+</ul>
+<p>Sets the signed part of the URL (ACL). The parameter value can contain variables.</p>
+<h4 id="end_1">end</h4>
+<ul>
+<li><strong>syntax</strong>: <code>end time</code></li>
+<li><strong>default</strong>: <code>86400</code></li>
+</ul>
+<p>Sets the end time of the token (see <code>Time format</code> below)</p>
+<h4 id="ip_address_1">ip_address</h4>
+<ul>
+<li><strong>syntax</strong>: <code>ip_address address</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+</ul>
+<p>Sets the IP address that should be embedded in the token.
+The parameter value can contain variables, e.g. $remote_addr/32 can be used to limit the token to the specific IP of the client.</p>
+<h3 id="broadpeak-token-parameters">Broadpeak token parameters</h3>
+<h4 id="secure_token_broadpeak">secure_token_broadpeak</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_broadpeak $variable { ... }</code></li>
+<li><strong>context</strong>: <code>http</code></li>
+</ul>
+<p>Creates a new variable whose value is a Broadpeak token, created according to the
+parameters specified within the block.</p>
+<p>The block supports the following parameters:</p>
+<h4 id="key_1">key</h4>
+<ul>
+<li><strong>syntax</strong>: <code>key key</code></li>
+<li><strong>default</strong>: <code>N/A (mandatory)</code></li>
+</ul>
+<p>Sets the secret key. The parameter value can contain variables.</p>
+<h4 id="param_name_1">param_name</h4>
+<ul>
+<li><strong>syntax</strong>: <code>param_name name</code></li>
+<li><strong>default</strong>: <code>token</code></li>
+</ul>
+<p>Sets the token parameter name (either the name of the cookie or the query string parameter)</p>
+<h4 id="acl_2">acl</h4>
+<ul>
+<li><strong>syntax</strong>: <code>acl acl</code></li>
+<li><strong>default</strong>: <code>$secure_token_baseuri_comma</code></li>
+</ul>
+<p>Sets the signed part of the URL (ACL). The parameter value can contain variables.</p>
+<h4 id="start_1">start</h4>
+<ul>
+<li><strong>syntax</strong>: <code>start time</code></li>
+<li><strong>default</strong>: <code>0</code></li>
+</ul>
+<p>Sets the start time of the token (see <code>Time format</code> below)</p>
+<h4 id="end_2">end</h4>
+<ul>
+<li><strong>syntax</strong>: <code>end time</code></li>
+<li><strong>default</strong>: <code>86400</code></li>
+</ul>
+<p>Sets the end time of the token (see <code>Time format</code> below)</p>
+<h4 id="session_start">session_start</h4>
+<ul>
+<li><strong>syntax</strong>: <code>session_start time</code></li>
+<li><strong>default</strong>: <code>N/A</code></li>
+</ul>
+<p>Sets the start time of the session, required for catchup. The parameter value can contain variables.</p>
+<h4 id="session_end">session_end</h4>
+<ul>
+<li><strong>syntax</strong>: <code>session_end time</code></li>
+<li><strong>default</strong>: <code>N/A</code></li>
+</ul>
+<p>Sets the end time of the session, required for catchup. The parameter value can contain variables.</p>
+<h4 id="additional_querylist">additional_querylist</h4>
+<ul>
+<li><strong>syntax</strong>: <code>additional_querylist expr</code></li>
+<li><strong>default</strong>: <code>N/A</code></li>
+</ul>
+<p>Sets the primary token value, the value needs to be a list of name=value pairs without any separator.
+For example, "ip=${arg_ip}account=${arg_account}device=${arg_device}".
+The parameter value can contain variables.</p>
+<h3 id="uri-encryption-parameters">URI encryption parameters</h3>
+<h4 id="secure_token_encrypt_uri">secure_token_encrypt_uri</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_encrypt_uri on/off</code></li>
+<li><strong>default</strong>: <code>off</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Enables/disables uri encryption</p>
+<h4 id="secure_token_encrypt_uri_key">secure_token_encrypt_uri_key</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_encrypt_uri_key key_hex</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the encryption key, the key has to be 256 bits (64 hex characters)</p>
+<h4 id="secure_token_encrypt_uri_iv">secure_token_encrypt_uri_iv</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_encrypt_uri_iv iv_hex</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Sets the encryption iv, the iv has to be 128 bits (32 hex characters)</p>
+<h4 id="secure_token_encrypt_uri_part">secure_token_encrypt_uri_part</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_encrypt_uri_part expression</code></li>
+<li><strong>default</strong>: <code>none</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>An expression that calculates the part of the URL that should be encrypted in regular expression locations.
+For non-regular expression locations, the encrypted part is everything following the path defined on the location block.</p>
+<p>Example 1:
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">location</span><span class="w"> </span><span class="s">/secret_param/([^/]+)/some_other_param/.*</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">secure_token_encrypt_uri_part</span><span class="w"> </span><span class="nv">$1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">...</span>
+<span class="w">  </span><span class="err">}</span>
+</code></pre></div>
+  In this configuration, only the value of secret_param will be encrypted/decrypted.</p>
+<p>Example 2:<br />
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">location</span><span class="w"> </span><span class="s">/base/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">...</span>
+<span class="w">  </span><span class="err">}</span>
+</code></pre></div>
+  In this configuration, everything following /base/ will be encrypted/decrypted.</p>
+<h4 id="secure_token_encrypt_uri_hash_size">secure_token_encrypt_uri_hash_size</h4>
+<ul>
+<li><strong>syntax</strong>: <code>secure_token_encrypt_uri_hash_size size</code></li>
+<li><strong>default</strong>: <code>8</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>The size in bytes of hash used to validate the uri after decryption, the value has to be between 0 and 16.</p>
+<h3 id="time-format">Time format</h3>
+<p>Some of the configuration parameters mentioned above, support both absolute timestamps,
+and timestamps relative to <code>now</code>.
+These parameters can be set in the configuration using one of the following formats:
+* <code>epoch</code> - unix timestamp 0 (01/01/1970)
+* <code>max</code> - unix timestamp 2147483647 (18/01/2038)
+* <code>@1481230000</code> - unix timestamp 1481230000 (8/12/2016)
+* <code>10d</code> / <code>+10d</code> - <code>now</code> + 10 days
+* <code>-5m</code> - <code>now</code> - 5 minutes</p>
+<h2 id="sample-configurations">Sample configurations</h2>
+<h3 id="hls-packaging-with-akamai-tokens">HLS packaging with Akamai tokens</h3>
+<div class="highlight"><pre><span></span><code>    secure_token_akamai $token {
+        key 1234;
+        acl &quot;$secure_token_baseuri_comma*&quot;;
+    }
+
+    server {
+
+        location ~ ^/hls/p/\d+/(sp/\d+/)?serveFlavor/ {
+            vod hls;
+
+            g2o        on;
+
+            secure_token $token;
+            secure_token_types application/vnd.apple.mpegurl;
+
+            secure_token_expires_time 100d;
+            secure_token_query_token_expires_time 1h;
+
+            more_set_headers &#39;Access-Control-Allow-Headers: *&#39;;
+            more_set_headers &#39;Access-Control-Expose-Headers: Server,range,Content-Length,Content-Range&#39;;
+            more_set_headers &#39;Access-Control-Allow-Methods: GET, HEAD, OPTIONS&#39;;
+            more_set_headers &#39;Access-Control-Allow-Origin: *&#39;;
+        }
+
+    }
+</code></pre></div>
+<h3 id="hds-packaging-with-cloudfront-tokens">HDS packaging with CloudFront tokens</h3>
+<div class="highlight"><pre><span></span><code>    secure_token_cloudfront $token {
+        private_key_file /path/to/pem;
+        key_pair_id ABCDEF;
+        acl &quot;$scheme://$http_host$secure_token_baseuri_comma*&quot;;
+    }
+
+    server {
+
+        location ~ ^/hds/p/\d+/(sp/\d+/)?serveFlavor/ {
+            vod hds;
+            vod_segment_duration 6000;
+            vod_align_segments_to_key_frames on;
+            vod_segment_count_policy last_rounded;
+
+            secure_token $token;
+            secure_token_types video/f4m;
+
+            secure_token_expires_time 100d;
+            secure_token_query_token_expires_time 1h;
+
+            more_set_headers &#39;Access-Control-Allow-Headers: *&#39;;
+            more_set_headers &#39;Access-Control-Expose-Headers: Server,range,Content-Length,Content-Range&#39;;
+            more_set_headers &#39;Access-Control-Allow-Methods: GET, HEAD, OPTIONS&#39;;
+            more_set_headers &#39;Access-Control-Allow-Origin: *&#39;;
+        }
+
+    }
+</code></pre></div>
+<h3 id="encrypted-hls-with-token-security-on-the-encryption-key">Encrypted HLS with token security on the encryption key</h3>
+<p>This configuration enables token security while having static URLs for the video segments,
+this enables the caching of the segments transparently by proxies.
+<div class="highlight"><pre><span></span><code>    secure_token_akamai $token {
+        key 1234;
+        acl &quot;$secure_token_baseuri_comma*&quot;;
+    }
+
+    server {
+
+        location ~ ^/s/hls/enc/p/\d+/(sp/\d+/)?serveFlavor/ {
+            vod hls;
+            vod_secret_key &quot;password$vod_filepath&quot;;
+
+            secure_token $token;
+            secure_token_types application/vnd.apple.mpegurl;
+
+            secure_token_expires_time 100d;
+            secure_token_query_token_expires_time 1h;
+
+            secure_token_uri_filename_prefix index;
+            secure_token_tokenize_segments off;
+
+            akamai_token_validate $arg___hdnea__;
+            akamai_token_validate_key 1234;
+            akamai_token_validate_uri_filename_prefix encryption;
+            akamai_token_validate_uri_filename_prefix index;
+        }
+
+    }
+</code></pre></div>
+Note: this configuration requires the module <a href="https://github.com/kaltura/nginx-akamai-token-validate-module">https://github.com/kaltura/nginx-akamai-token-validate-module</a>
+in addition to nginx-secure-token-module</p>
+<h3 id="adding-token-security-on-top-of-an-existing-hdshls-live-stream">Adding token security on top of an existing HDS/HLS live stream</h3>
+<p><div class="highlight"><pre><span></span><code>    secure_token_akamai $token {
+        key 1234;
+        acl &quot;$secure_token_baseuri_comma*&quot;;
+    }
+
+    server {
+
+        location /secure-live/ {
+            proxy_pass http://original.live.domain;
+
+            secure_token $token;
+            secure_token_types text/xml application/vnd.apple.mpegurl;      
+            secure_token_content_type_f4m text/xml;
+
+            secure_token_expires_time 100d;
+            secure_token_query_token_expires_time 1h;
+
+            akamai_token_validate $arg___hdnea__;
+            akamai_token_validate_key 1234;
+            akamai_token_validate_strip_token __hdnea__;
+        }
+
+    }
+</code></pre></div>
+Note: this configuration requires the module <a href="https://github.com/kaltura/nginx-akamai-token-validate-module">https://github.com/kaltura/nginx-akamai-token-validate-module</a>
+in addition to nginx-secure-token-module</p>
+<h3 id="uri-encryption">URI encryption</h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/hls/p/\d+/(sp/\d+/)?serveFlavor/entryId/([^/]+)/(.*)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">vod</span><span class="w"> </span><span class="s">hls</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">vod_secret_key</span><span class="w"> </span><span class="s">&quot;password</span><span class="nv">$2&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">secure_token_encrypt_uri</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">secure_token_encrypt_uri_key</span><span class="w"> </span><span class="s">000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">secure_token_encrypt_uri_iv</span><span class="w"> </span><span class="mi">00000000000000000000000000000000</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">secure_token_encrypt_uri_part</span><span class="w"> </span><span class="nv">$3</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">secure_token_types</span><span class="w"> </span><span class="s">application/vnd.apple.mpegurl</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Last-Modified</span><span class="w"> </span><span class="s">&quot;Sun,</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="s">Nov</span><span class="w"> </span><span class="mi">2000</span><span class="w"> </span><span class="n">08</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="s">GMT&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">expires</span><span class="w"> </span><span class="s">100d</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="nginx-variables">Nginx variables</h2>
+<p>The module adds the following nginx variables:
+* <code>$secure_token_baseuri</code> - contains the value of the <code>$uri</code> built in variable truncated up to the last slash (/). 
+    For exmaple, if <code>$uri</code> is /a/b/c.htm then <code>$secure_token_baseuri</code> will be /a/b/.
+* <code>$secure_token_baseuri_comma</code> - same as <code>$secure_token_baseuri</code>, except that if this value contains a comma (,) 
+    the value is truncated up to the comma position.
+    For exmaple, if <code>$uri</code> is /a/b/c.htm then <code>$secure_token_baseuri_comma</code> will be /a/b/; 
+    if <code>$uri</code> is /a/b,c/d.htm then <code>$secure_token_baseuri_comma</code> will be /a/b.
+* <code>$secure_token_original_uri</code> - contains the original (encrypted) uri when using uri encryption.
+    Note that the built in <code>$uri</code> variable contains the modified (decrypted) uri in this case.</p>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/kaltura/nginx-secure-token-module" target="_blank">GitHub 
+repository for 
+nginx-module-secure-token</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
