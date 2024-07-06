@@ -22,12 +22,40 @@ More on those patches in the documentation below.
 
 ## How to install NGINX-MOD
 
-```bash
-sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
-sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
-sudo yum -y install nginx
-sudo systemctl enable --now nginx
-```
+=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
+
+    ```bash
+    sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+    sudo yum -y install dnf-plugins-core
+    sudo dnf config-manager --disable getpagespeed-extras-mainline
+    sudo dnf config-manager --enable getpagespeed-extras-nginx-mod
+    sudo dnf -y install nginx
+    sudo systemctl enable --now nginx
+    ```
+
+=== "CentOS/RHEL 6, 7"
+
+    ```bash
+    sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
+    sudo yum -y install epel-release
+    sudo yum -y install yum-utils
+    sudo yum-config-manager --disable getpagespeed-extras-mainline
+    sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
+    sudo yum -y install nginx
+    sudo systemctl enable --now nginx
+    ``` 
+ 
+=== "Amazon Linux 2"
+
+    ```bash
+    sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    sudo amazon-linux-extras install epel
+    sudo yum -y install yum-utils
+    sudo yum-config-manager --disable getpagespeed-extras-mainline
+    sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
+    sudo yum -y install nginx
+    sudo systemctl enable --now nginx
+    ```
 
 ## How to switch to NGINX-MOD from our regular NGINX
 
@@ -35,6 +63,7 @@ If you were using our regular NGINX build, you can run a series of commands to u
 
 ```bash
 sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
+sudo yum-config-manager --disable getpagespeed-extras-mainline
 sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
 sudo yum -y update nginx
 # importantly, we must re-enable the nginx service after switching packages:
