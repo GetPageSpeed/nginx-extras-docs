@@ -292,6 +292,7 @@ theme:
   - search.suggest
   - content.tooltips
   - content.tabs.link
+  - content.code.copy
   language: en
   logo: assets/nginx-logo.png
   name: material
