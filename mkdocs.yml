@@ -31,7 +31,8 @@ markdown_extensions:
       - overrides/.icons
 - pymdownx.magiclink
 - pymdownx.superfences
-- pymdownx.tabbed
+- pymdownx.tabbed:
+    alternate_style: true
 - pymdownx.tasklist
 - attr_list
 - pymdownx.highlight
@@ -289,6 +290,7 @@ theme:
   - navigation.tabs
   - search.suggest
   - content.tooltips
+  - content.tabs.link
   language: en
   logo: assets/nginx-logo.png
   name: material

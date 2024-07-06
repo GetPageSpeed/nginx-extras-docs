@@ -24,19 +24,27 @@ in a single place.
 
 ## Getting started
 
-### Install repository configuration
+!!! note "Install repository configuration"
 
-    sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
+    === "CentOS/RHEL/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+"
 
-This is all that is needed for most distros. Some distros require explicitly enabling the EPEL repository as well:
+        ``` bash
+        sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+        ```
 
-#### For CentOS 7:
+    === "CentOS 7"
 
-    sudo yum -y install epel-release
+        ``` bash
+        sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
+        sudo yum -y install epel-release
+        ```
 
-#### For AmazonLinux 2:
+    === "Amazon Linux 2"
 
-    sudo amazon-linux-extras install epel
+        ``` bash
+        sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
+        sudo amazon-linux-extras install epel
+        ```
 
 Once the repository configuration is installed, <a href="https://www.getpagespeed.com/repo-subscribe">activate your subscription to the GetPageSpeed repository</a>.
 

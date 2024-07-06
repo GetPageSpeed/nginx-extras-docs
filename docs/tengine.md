@@ -21,7 +21,8 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
 === "CentOS/RHEL 8+, Fedora Linux"
 
     ```bash
-    sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm dnf-plugins-core
+    sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager --enable getpagespeed-extras-tengine
     sudo dnf -y install tengine
     ```
