@@ -19,3 +19,4 @@ update:all
 	git add --all .
 	git commit -m "up"
 	git push
+	./venv/bin/mkdocs gh-deploy
