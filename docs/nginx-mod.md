@@ -23,7 +23,10 @@ More on those patches in the documentation below.
 ## How to install NGINX-MOD
 
 ```bash
-sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
+sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm 
+# Explicitly install EPEL repository, for CentOS 7 only
+sudo yum -y install epel-release
+sudo yum -y install yum-utils
 sudo yum-config-manager --disable getpagespeed-extras-mainline
 sudo yum-config-manager --enable getpagespeed-extras-nginx-mod
 sudo yum -y install nginx

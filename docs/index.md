@@ -28,6 +28,16 @@ in a single place.
 
     sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
 
+This is all that is needed for most distros. Some distros require explicitly enabling the EPEL repository as well:
+
+#### For CentOS 7:
+
+    sudo yum -y install epel-release
+
+#### For AmazonLinux 2:
+
+    sudo amazon-linux-extras install epel
+
 Once the repository configuration is installed, <a href="https://www.getpagespeed.com/repo-subscribe">activate your subscription to the GetPageSpeed repository</a>.
 
 Subscribed? Proceed with installing the modules to build your ultimate high-performance web stack.
