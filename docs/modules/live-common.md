@@ -23,8 +23,8 @@ load_module modules/ngx_http_api_module.so;
 ```
 
 
-This document describes nginx-module-live-common [v1.27](https://github.com/kaltura/media-framework/releases/tag/v1.27-master-debug-packager){target=_blank} 
-released on Jun 27 2024.
+This document describes nginx-module-live-common [v1.28.0](https://github.com/kaltura/media-framework/releases/tag/v1.28.0){target=_blank} 
+released on Jul 15 2024.
 
 <hr />
 
