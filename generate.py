@@ -1,16 +1,12 @@
+from os.path import dirname, basename
+
 import base64
 import glob
 import os
-import re
-from os.path import dirname, basename
-
 import pandoc
-
 import yaml
-from pathlib import Path
 from lastversion import lastversion
-import logging as log
-
+from pathlib import Path
 from tabulate import tabulate
 
 work_dir = os.path.dirname(__file__) or '.'
@@ -141,10 +137,19 @@ You can install this module in any RHEL-based distribution, including, but not l
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
 
-```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install nginx-module-{handle}
-```
+=== "CentOS/RHEL 7 and Amazon Linux 2"
+
+    ```bash
+    yum -y install https://extras.getpagespeed.com/release-latest.rpm
+    yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
+    yum -y install nginx-module-{handle}
+ 
+=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-{handle}
+    ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
@@ -221,20 +226,23 @@ yum -y install lua-resty-{handle}
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-{handle}
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-{handle}
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-{handle}
 ```
 
 """

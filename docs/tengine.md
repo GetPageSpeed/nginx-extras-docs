@@ -8,11 +8,11 @@ websites in the world, including taobao.com and tmall.com.
 
 NGINX Extras provide you with production-grade, SELinux compatible packages for Tengine web server.
 
-=== "CentOS/RHEL 6, 7 and Amazon Linux 2"
+=== "CentOS/RHEL 7 and Amazon Linux 2"
 
     ```bash
     sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install epel-release
+    sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
     sudo yum -y install yum-utils
     sudo yum-config-manager --enable getpagespeed-extras-tengine
     sudo yum -y install tengine

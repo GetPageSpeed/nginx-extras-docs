@@ -33,11 +33,11 @@ More on those patches in the documentation below.
     sudo systemctl enable --now nginx
     ```
 
-=== "CentOS/RHEL 6, 7"
+=== "CentOS/RHEL 7"
 
     ```bash
     sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install epel-release
+    sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
     sudo yum -y install yum-utils
     sudo yum-config-manager --disable getpagespeed-extras-mainline
     sudo yum-config-manager --enable getpagespeed-extras-nginx-mod

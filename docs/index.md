@@ -36,7 +36,7 @@ in a single place.
 
         ``` bash
         sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-        sudo yum -y install epel-release
+        sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
         ```
 
     === "Amazon Linux 2"

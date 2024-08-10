@@ -9,25 +9,14 @@ Angie is a drop-in replacement for nginx, so you can use the existing nginx conf
 
 NGINX Extras provide you with production-grade, SELinux compatible packages for Angie web server.
 
-=== "CentOS/RHEL 7"
+=== "CentOS/RHEL 7 and Amazon Linux 2"
 
     ```bash
     sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install epel-release 
+    sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     sudo yum -y install yum-utils
     sudo yum-config-manager --enable getpagespeed-extras-angie
     sudo yum -y install angie
-    ``` 
-
-=== "Amazon Linux 2"
-
-    ```bash
-    sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo amazon-linux-extras install epel
-    sudo yum -y install yum-utils
-    sudo yum-config-manager --enable getpagespeed-extras-angie
-    sudo yum -y install angie
-    ``` 
  
 === "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
 
