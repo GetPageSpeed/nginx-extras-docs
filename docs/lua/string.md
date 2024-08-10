@@ -3,27 +3,30 @@
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-string
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-string
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-string
 ```
 
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-string [v0.15](https://github.com/openresty/lua-resty-string/releases/tag/v0.15){target=_blank} 
-released on Sep 05 2021.
+This document describes lua-resty-string [v0.16](https://github.com/openresty/lua-resty-string/releases/tag/v0.16){target=_blank} 
+released on Aug 08 2024.
     
 <hr />
 

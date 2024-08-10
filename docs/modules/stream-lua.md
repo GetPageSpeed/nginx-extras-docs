@@ -11,10 +11,19 @@ You can install this module in any RHEL-based distribution, including, but not l
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
 
-```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install nginx-module-stream-lua
-```
+=== "CentOS/RHEL 7 and Amazon Linux 2"
+
+    ```bash
+    yum -y install https://extras.getpagespeed.com/release-latest.rpm
+    yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
+    yum -y install nginx-module-stream-lua
+ 
+=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-stream-lua
+    ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
@@ -23,8 +32,8 @@ load_module modules/ngx_stream_lua_module.so;
 ```
 
 
-This document describes nginx-module-stream-lua [v0.0.14](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.14){target=_blank} 
-released on Dec 27 2023.
+This document describes nginx-module-stream-lua [v0.0.15](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.15){target=_blank} 
+released on Aug 08 2024.
 
 <hr />
 

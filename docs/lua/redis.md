@@ -3,27 +3,30 @@
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-redis
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-redis
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-redis
 ```
 
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-redis [v0.30](https://github.com/openresty/lua-resty-redis/releases/tag/v0.30){target=_blank} 
-released on Dec 10 2021.
+This document describes lua-resty-redis [v0.31](https://github.com/openresty/lua-resty-redis/releases/tag/v0.31){target=_blank} 
+released on Apr 26 2024.
     
 <hr />
 
@@ -51,6 +54,9 @@ Note that at least [ngx_lua 0.5.14](https://github.com/chaoslawful/lua-nginx-mod
     # the OpenResty bundle:
     server {
         location /test {
+            # need to specify the resolver to resolve the hostname
+            resolver 8.8.8.8;
+
             content_by_lua_block {
                 local redis = require "resty.redis"
                 local red = redis:new()
@@ -61,7 +67,12 @@ Note that at least [ngx_lua 0.5.14](https://github.com/chaoslawful/lua-nginx-mod
                 -- by a redis server:
                 --     local ok, err = red:connect("unix:/path/to/redis.sock")
 
+                -- connect via ip address directly
                 local ok, err = red:connect("127.0.0.1", 6379)
+
+                -- or connect via hostname, need to specify resolver just like above
+                local ok, err = red:connect("redis.openresty.com", 6379)
+
                 if not ok then
                     ngx.say("failed to connect: ", err)
                     return
@@ -146,7 +157,7 @@ The Redis command arguments can be directly fed into the corresponding method ca
     local res, err = red:get("key")
 ```
 
-Similarly, the "LRANGE" redis command accepts threee arguments, then you should call the "lrange" method like this:
+Similarly, the "LRANGE" redis command accepts three arguments, then you should call the "lrange" method like this:
 
 ```lua
     local res, err = red:lrange("nokey", 0, 1)
@@ -584,6 +595,53 @@ result in bad race conditions when concurrent requests are trying to use the sam
 You should always initiate `resty.redis` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
+
+## Installation - Build from source
+
+```sh
+## Clone latest release , assuming v0.29
+wget https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz
+
+## Extract
+tar -xvzf v0.29.tar.gz
+
+## go into directory
+cd lua-resty-redis-0.29
+
+export LUA_LIB_DIR=/usr/local/openresty/site/lualib
+
+## Compile and Install
+make install
+
+## Now compiled path will be outputted
+## /usr/local/lib/lua/resty = lua_package_path in nginx conf
+```
+
+## Installation Notes
+
+If you are using the OpenResty bundle (http://openresty.org ), then
+you do not need to do anything because it already includes and enables
+lua-resty-redis by default. And you can just use it in your Lua code,
+as in
+
+```lua
+    local redis = require "resty.redis"
+    ...
+```
+
+If you are using your own nginx + ngx_lua build, then you need to configure
+the lua_package_path directive to add the path of your lua-resty-redis source
+tree to ngx_lua's LUA_PATH search path, as in
+
+```nginx
+    # nginx.conf
+    http {
+        ...
+    }
+```
+
+Ensure that the system account running your Nginx ''worker'' proceses have
+enough permission to read the `.lua` file.
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme

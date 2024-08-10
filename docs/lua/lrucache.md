@@ -3,27 +3,30 @@
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-lrucache
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-lrucache
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-lrucache
 ```
 
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-lrucache [v0.13](https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.13){target=_blank} 
-released on Jan 19 2023.
+This document describes lua-resty-lrucache [v0.14](https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.14){target=_blank} 
+released on Aug 08 2024.
     
 <hr />
 
@@ -247,7 +250,6 @@ Note however that the `flush_all()` method of `resty.lrucache.pureffi` is an
 ## nginx.conf
 
     http {
-        # only if not using an official OpenResty release
         ...
     }
 ```

@@ -3,27 +3,30 @@
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-signal
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-signal
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-signal
 ```
 
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-signal [v0.3](https://github.com/openresty/lua-resty-signal/releases/tag/v0.03){target=_blank} 
-released on May 07 2021.
+This document describes lua-resty-signal [v0.4](https://github.com/openresty/lua-resty-signal/releases/tag/v0.04){target=_blank} 
+released on Aug 08 2024.
     
 <hr />
 

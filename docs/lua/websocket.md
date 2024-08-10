@@ -3,27 +3,30 @@
 
 ## Installation
 
-If you haven't set up RPM repository subscription, [sign up](https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following steps.
+If you haven't set up RPM repository subscription, [sign up](
+https://www.getpagespeed.com/repo-subscribe). Then you can proceed with the following 
+steps.
 
 ### CentOS/RHEL 7 or Amazon Linux 2
 
 ```bash
 yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
 yum -y install lua-resty-websocket
 ```
 
 ### CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
 
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install lua5.1-resty-websocket
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install lua5.1-resty-websocket
 ```
 
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-websocket [v0.11](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.11){target=_blank} 
-released on Aug 07 2023.
+This document describes lua-resty-websocket [v0.12](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.12){target=_blank} 
+released on Aug 08 2024.
     
 <hr />
 
@@ -141,7 +144,13 @@ An optional options table can be specified. The following options are as follows
 
 * `max_payload_len`
 
-    Specifies the maximal length of payload allowed when sending and receiving WebSocket frames.
+    Specifies the maximal length of payload allowed when sending and receiving WebSocket frames. Defaults to `65535`.
+* `max_recv_len`
+
+    Specifies the maximal length of payload allowed when receiving WebSocket frames. Defaults to the value of `max_payload_len`.
+* `max_send_len`
+
+    Specifies the maximal length of payload allowed when sending WebSocket frames. Defaults to the value of `max_payload_len`.
 * `send_masked`
 
     Specifies whether to send out masked WebSocket frames. When it is `true`, masked frames are always sent. Default to `false`.
@@ -249,7 +258,7 @@ A simple example to demonstrate the usage:
     local client = require "resty.websocket.client"
     local wb, err = client:new()
     local uri = "ws://127.0.0.1:" .. ngx.var.server_port .. "/s"
-    local ok, err = wb:connect(uri)
+    local ok, err, res = wb:connect(uri)
     if not ok then
         ngx.say("failed to connect: " .. err)
         return
@@ -291,7 +300,13 @@ An optional options table can be specified. The following options are as follows
 
 * `max_payload_len`
 
-    Specifies the maximal length of payload allowed when sending and receiving WebSocket frames.
+    Specifies the maximal length of payload allowed when sending and receiving WebSocket frames. Defaults to `65536`.
+* `max_recv_len`
+
+    Specifies the maximal length of payload allowed when receiving WebSocket frames. Defaults to the value of `max_payload_len`.
+* `max_send_len`
+
+    Specifies the maximal length of payload allowed when sending WebSocket frames. Defaults to the value of `max_payload_len`.
 * `send_unmasked`
 
     Specifies whether to send out an unmasked WebSocket frames. When it is `true`, unmasked frames are always sent. Default to `false`. RFC 6455 requires, however, that the client MUST send masked frames to the server, so never set this option to `true` unless you know what you are doing.
@@ -300,17 +315,19 @@ An optional options table can be specified. The following options are as follows
     Specifies the default network timeout threshold in milliseconds. You can change this setting later via the `set_timeout` method call.
 
 #### client:connect
-`syntax: ok, err = wb:connect("ws://<host>:<port>/<path>")`
+`syntax: ok, err, res = wb:connect("ws://<host>:<port>/<path>")`
 
-`syntax: ok, err = wb:connect("wss://<host>:<port>/<path>")`
+`syntax: ok, err, res = wb:connect("wss://<host>:<port>/<path>")`
 
-`syntax: ok, err = wb:connect("ws://<host>:<port>/<path>", options)`
+`syntax: ok, err, res = wb:connect("ws://<host>:<port>/<path>", options)`
 
-`syntax: ok, err = wb:connect("wss://<host>:<port>/<path>", options)`
+`syntax: ok, err, res = wb:connect("wss://<host>:<port>/<path>", options)`
 
 Connects to the remote WebSocket service port and performs the websocket handshake process on the client side.
 
 Before actually resolving the host name and connecting to the remote backend, this method will always look up the connection pool for matched idle connections created by previous calls of this method.
+
+The third return value of this method contains the raw, plain-text response (status line and headers) to the handshake request. This allows the caller to perform additional validation and/or extract the response headers. When the connection is reused and no handshake request is sent, the string `"connection reused"` is returned in lieu of the response.
 
 An optional Lua table can be specified as the last argument to this method to specify various connect options:
 
@@ -384,6 +401,18 @@ SSL handshake if the `wss://` scheme is used.
     These objects can be created using 
     [ngx.ssl.parse_pem_priv_key](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_priv_key) 
     function provided by lua-resty-core.
+
+* `host`
+
+    Specifies the value of the `Host` header sent in the handshake request. If not provided, the `Host` header will be derived from the hostname/address and port in the connection URI.
+
+* `server_name`
+
+    Specifies the server name (SNI) to use when performing the TLS handshake with the server. If not provided, the `host` value or the `<host/addr>:<port>` from the connection URI will be used.
+
+* `key`
+
+    Specifies the value of the `Sec-WebSocket-Key` header in the handshake request. The value should be a base64-encoded, 16 byte string conforming to the client handshake requirements of the [WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455#section-4.1). If not provided, a key is randomly generated.
 
 The SSL connection mode (`wss://`) requires at least `ngx_lua` 0.9.11 or OpenResty 1.7.4.1.
 
