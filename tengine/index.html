@@ -5276,11 +5276,11 @@ server and has many advanced features. Tengine has proven to be very stable and 
 websites in the world, including taobao.com and tmall.com.</p>
 <h2 id="installation-and-compatibility">Installation and compatibility</h2>
 <p>NGINX Extras provide you with production-grade, SELinux compatible packages for Tengine web server.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 6, 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>epel-release
+sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
 sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>yum-utils
 sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-tengine
 sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>tengine

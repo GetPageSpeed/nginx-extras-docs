@@ -6040,18 +6040,20 @@
 
 <h1 id="websocket-websocket-support-for-nginx-module-lua-module"><em>websocket</em>: WebSocket support for nginx-module-lua module</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-websocket
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-websocket
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-websocket
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-websocket <a href="https://github.com/openresty/lua-resty-websocket/releases/tag/v0.11" target="_blank">v0.11</a> 
-released on Aug 07 2023.</p>
+<p>This document describes lua-resty-websocket <a href="https://github.com/openresty/lua-resty-websocket/releases/tag/v0.12" target="_blank">v0.12</a> 
+released on Aug 08 2024.</p>
 <hr />
 
 <p>lua-resty-websocket - Lua WebSocket implementation for the ngx_lua module</p>
@@ -6148,7 +6150,11 @@ released on Aug 07 2023.</p>
 <ul>
 <li>
 <p><code>max_payload_len</code></p>
-<p>Specifies the maximal length of payload allowed when sending and receiving WebSocket frames.
+<p>Specifies the maximal length of payload allowed when sending and receiving WebSocket frames. Defaults to <code>65535</code>.
+* <code>max_recv_len</code></p>
+<p>Specifies the maximal length of payload allowed when receiving WebSocket frames. Defaults to the value of <code>max_payload_len</code>.
+* <code>max_send_len</code></p>
+<p>Specifies the maximal length of payload allowed when sending WebSocket frames. Defaults to the value of <code>max_payload_len</code>.
 * <code>send_masked</code></p>
 <p>Specifies whether to send out masked WebSocket frames. When it is <code>true</code>, masked frames are always sent. Default to <code>false</code>.
 * <code>timeout</code></p>
@@ -6210,7 +6216,7 @@ released on Aug 07 2023.</p>
 <div class="highlight"><pre><span></span><code>    <span class="kd">local</span> <span class="n">client</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.websocket.client&quot;</span>
     <span class="kd">local</span> <span class="n">wb</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">client</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
     <span class="kd">local</span> <span class="n">uri</span> <span class="o">=</span> <span class="s2">&quot;ws://127.0.0.1:&quot;</span> <span class="o">..</span> <span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">server_port</span> <span class="o">..</span> <span class="s2">&quot;/s&quot;</span>
-    <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">wb</span><span class="p">:</span><span class="n">connect</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">wb</span><span class="p">:</span><span class="n">connect</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
     <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
         <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;failed to connect: &quot;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
         <span class="kr">return</span>
@@ -6246,7 +6252,11 @@ released on Aug 07 2023.</p>
 <ul>
 <li>
 <p><code>max_payload_len</code></p>
-<p>Specifies the maximal length of payload allowed when sending and receiving WebSocket frames.
+<p>Specifies the maximal length of payload allowed when sending and receiving WebSocket frames. Defaults to <code>65536</code>.
+* <code>max_recv_len</code></p>
+<p>Specifies the maximal length of payload allowed when receiving WebSocket frames. Defaults to the value of <code>max_payload_len</code>.
+* <code>max_send_len</code></p>
+<p>Specifies the maximal length of payload allowed when sending WebSocket frames. Defaults to the value of <code>max_payload_len</code>.
 * <code>send_unmasked</code></p>
 <p>Specifies whether to send out an unmasked WebSocket frames. When it is <code>true</code>, unmasked frames are always sent. Default to <code>false</code>. RFC 6455 requires, however, that the client MUST send masked frames to the server, so never set this option to <code>true</code> unless you know what you are doing.
 * <code>timeout</code></p>
@@ -6254,12 +6264,13 @@ released on Aug 07 2023.</p>
 </li>
 </ul>
 <h4 id="clientconnect">client:connect</h4>
-<p><code>syntax: ok, err = wb:connect("ws://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;")</code></p>
-<p><code>syntax: ok, err = wb:connect("wss://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;")</code></p>
-<p><code>syntax: ok, err = wb:connect("ws://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;", options)</code></p>
-<p><code>syntax: ok, err = wb:connect("wss://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;", options)</code></p>
+<p><code>syntax: ok, err, res = wb:connect("ws://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;")</code></p>
+<p><code>syntax: ok, err, res = wb:connect("wss://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;")</code></p>
+<p><code>syntax: ok, err, res = wb:connect("ws://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;", options)</code></p>
+<p><code>syntax: ok, err, res = wb:connect("wss://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;", options)</code></p>
 <p>Connects to the remote WebSocket service port and performs the websocket handshake process on the client side.</p>
 <p>Before actually resolving the host name and connecting to the remote backend, this method will always look up the connection pool for matched idle connections created by previous calls of this method.</p>
+<p>The third return value of this method contains the raw, plain-text response (status line and headers) to the handshake request. This allows the caller to perform additional validation and/or extract the response headers. When the connection is reused and no handshake request is sent, the string <code>"connection reused"</code> is returned in lieu of the response.</p>
 <p>An optional Lua table can be specified as the last argument to this method to specify various connect options:</p>
 <ul>
 <li>
@@ -6331,6 +6342,18 @@ Note that specifying the <code>client_cert</code> option requires corresponding 
 These objects can be created using 
 <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_priv_key">ngx.ssl.parse_pem_priv_key</a> 
 function provided by lua-resty-core.</p>
+</li>
+<li>
+<p><code>host</code></p>
+<p>Specifies the value of the <code>Host</code> header sent in the handshake request. If not provided, the <code>Host</code> header will be derived from the hostname/address and port in the connection URI.</p>
+</li>
+<li>
+<p><code>server_name</code></p>
+<p>Specifies the server name (SNI) to use when performing the TLS handshake with the server. If not provided, the <code>host</code> value or the <code>&lt;host/addr&gt;:&lt;port&gt;</code> from the connection URI will be used.</p>
+</li>
+<li>
+<p><code>key</code></p>
+<p>Specifies the value of the <code>Sec-WebSocket-Key</code> header in the handshake request. The value should be a base64-encoded, 16 byte string conforming to the client handshake requirements of the <a href="https://datatracker.ietf.org/doc/html/rfc6455#section-4.1">WebSocket RFC</a>. If not provided, a key is randomly generated.</p>
 </li>
 </ul>
 <p>The SSL connection mode (<code>wss://</code>) requires at least <code>ngx_lua</code> 0.9.11 or OpenResty 1.7.4.1.</p>

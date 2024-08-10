@@ -5602,14 +5602,16 @@
 
 <h1 id="requests-yet-another-http-library-for-nginx-module-lua-for-human-beings"><em>requests</em>: Yet Another <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> library for nginx-module-lua - For human beings!</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-requests
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-requests
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-requests
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
 <p>This document describes lua-resty-requests <a href="https://github.com/tokers/lua-resty-requests/releases/tag/v0.7.3" target="_blank">v0.7.3</a> 

@@ -5374,18 +5374,20 @@
 
 <h1 id="string-string-utilities-and-common-hash-functions-for-nginx-module-lua-and-luajit"><em>string</em>: String utilities and common hash functions for nginx-module-lua and LuaJIT</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-string
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-string
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-string
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-string <a href="https://github.com/openresty/lua-resty-string/releases/tag/v0.15" target="_blank">v0.15</a> 
-released on Sep 05 2021.</p>
+<p>This document describes lua-resty-string <a href="https://github.com/openresty/lua-resty-string/releases/tag/v0.16" target="_blank">v0.16</a> 
+released on Aug 08 2024.</p>
 <hr />
 
 <p>lua-resty-string - String utilities and common hash functions for ngx_lua and LuaJIT</p>

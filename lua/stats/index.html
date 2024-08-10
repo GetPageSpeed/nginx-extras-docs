@@ -5464,14 +5464,16 @@
 
 <h1 id="stats-is-a-statistical-module-for-nginx-base-on-nginx-module-lua-statistical-key-and-values-are-configurable-can-use-the-nginx-cores-variables-and-this-modules-variables-the-statistical-result-store-in-mongodb"><em>stats</em>: Is a statistical module for nginx base on nginx-module-lua, Statistical key and values are configurable, can use the nginx core's variables and this module's variables. The statistical result store in mongodb</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-stats
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-stats
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-stats
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
 <p>This document describes lua-resty-stats <a href="https://github.com/jie123108/lua-resty-stats/releases/tag/v1.0.3" target="_blank">v1.0.3</a> 

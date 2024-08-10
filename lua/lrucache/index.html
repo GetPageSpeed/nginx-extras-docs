@@ -5572,18 +5572,20 @@
 
 <h1 id="lrucache-lua-land-lru-cache-based-on-luajit-ffi"><em>lrucache</em>: Lua-land LRU Cache based on LuaJIT FFI</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-lrucache
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-lrucache
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-lrucache
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-lrucache <a href="https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.13" target="_blank">v0.13</a> 
-released on Jan 19 2023.</p>
+<p>This document describes lua-resty-lrucache <a href="https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.14" target="_blank">v0.14</a> 
+released on Aug 08 2024.</p>
 <hr />
 
 <p>lua-resty-lrucache - Lua-land LRU cache based on the LuaJIT FFI.</p>
@@ -5753,7 +5755,6 @@ instance.</p>
 </ul>
 <h2 id="nginxconf">nginx.conf</h2>
 <div class="highlight"><pre><span></span><code>http {
-    # only if not using an official OpenResty release
     ...
 }
 </code></pre></div>

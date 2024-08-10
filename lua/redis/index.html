@@ -4394,6 +4394,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installation-build-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation - Build from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#see-also" class="md-nav__link">
     <span class="md-ellipsis">
       See Also
@@ -5754,6 +5772,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installation-build-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation - Build from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#see-also" class="md-nav__link">
     <span class="md-ellipsis">
       See Also
@@ -5788,18 +5824,20 @@
 
 <h1 id="redis-lua-redis-client-driver-for-nginx-module-lua-based-on-the-cosocket-api"><em>redis</em>: Lua redis client driver for nginx-module-lua based on the cosocket API</h1>
 <h2 id="installation">Installation</h2>
-<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following steps.</p>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-redis
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-redis
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-redis
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-redis <a href="https://github.com/openresty/lua-resty-redis/releases/tag/v0.30" target="_blank">v0.30</a> 
-released on Dec 10 2021.</p>
+<p>This document describes lua-resty-redis <a href="https://github.com/openresty/lua-resty-redis/releases/tag/v0.31" target="_blank">v0.31</a> 
+released on Apr 26 2024.</p>
 <hr />
 
 <p>lua-resty-redis - Lua redis client driver for the ngx_lua based on the cosocket API</p>
@@ -5816,6 +5854,9 @@ released on Dec 10 2021.</p>
     <span class="o">#</span> <span class="n">the</span> <span class="n">OpenResty</span> <span class="n">bundle</span><span class="p">:</span>
     <span class="n">server</span> <span class="p">{</span>
         <span class="n">location</span> <span class="o">/</span><span class="n">test</span> <span class="p">{</span>
+            <span class="o">#</span> <span class="n">need</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">resolver</span> <span class="n">to</span> <span class="n">resolve</span> <span class="n">the</span> <span class="n">hostname</span>
+            <span class="n">resolver</span> <span class="mf">8.8.8.8</span><span class="p">;</span>
+
             <span class="n">content_by_lua_block</span> <span class="p">{</span>
                 <span class="kd">local</span> <span class="n">redis</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.redis&quot;</span>
                 <span class="kd">local</span> <span class="n">red</span> <span class="o">=</span> <span class="n">redis</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
@@ -5826,7 +5867,12 @@ released on Dec 10 2021.</p>
                 <span class="c1">-- by a redis server:</span>
                 <span class="c1">--     local ok, err = red:connect(&quot;unix:/path/to/redis.sock&quot;)</span>
 
+                <span class="c1">-- connect via ip address directly</span>
                 <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">red</span><span class="p">:</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">6379</span><span class="p">)</span>
+
+                <span class="c1">-- or connect via hostname, need to specify resolver just like above</span>
+                <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">red</span><span class="p">:</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;redis.openresty.com&quot;</span><span class="p">,</span> <span class="mi">6379</span><span class="p">)</span>
+
                 <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
                     <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;failed to connect: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
                     <span class="kr">return</span>
@@ -5902,7 +5948,7 @@ released on Dec 10 2021.</p>
 <p>The Redis command arguments can be directly fed into the corresponding method call. For example, the "GET" redis command accepts a single key argument, then you can just call the "get" method like this:</p>
 <div class="highlight"><pre><span></span><code>    <span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">red</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Similarly, the "LRANGE" redis command accepts threee arguments, then you should call the "lrange" method like this:</p>
+<p>Similarly, the "LRANGE" redis command accepts three arguments, then you should call the "lrange" method like this:</p>
 <div class="highlight"><pre><span></span><code>    <span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">red</span><span class="p">:</span><span class="n">lrange</span><span class="p">(</span><span class="s2">&quot;nokey&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <p>For example, "SET", "GET", "LRANGE", and "BLPOP" commands correspond to the methods "set", "get", "lrange", and "blpop".</p>
@@ -6243,6 +6289,42 @@ You should always initiate <code>resty.redis</code> objects in function local
 variables or in the <code>ngx.ctx</code> table. These places all have their own data copies for
 each request.</li>
 </ul>
+<h2 id="installation-build-from-source">Installation - Build from source</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">## Clone latest release , assuming v0.29</span>
+wget<span class="w"> </span>https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz
+
+<span class="c1">## Extract</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>v0.29.tar.gz
+
+<span class="c1">## go into directory</span>
+<span class="nb">cd</span><span class="w"> </span>lua-resty-redis-0.29
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">LUA_LIB_DIR</span><span class="o">=</span>/usr/local/openresty/site/lualib
+
+<span class="c1">## Compile and Install</span>
+make<span class="w"> </span>install
+
+<span class="c1">## Now compiled path will be outputted</span>
+<span class="c1">## /usr/local/lib/lua/resty = lua_package_path in nginx conf</span>
+</code></pre></div>
+<h2 id="installation-notes">Installation Notes</h2>
+<p>If you are using the OpenResty bundle (<a href="http://openresty.org">http://openresty.org</a> ), then
+you do not need to do anything because it already includes and enables
+lua-resty-redis by default. And you can just use it in your Lua code,
+as in</p>
+<div class="highlight"><pre><span></span><code>    <span class="kd">local</span> <span class="n">redis</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.redis&quot;</span>
+    <span class="p">...</span>
+</code></pre></div>
+<p>If you are using your own nginx + ngx_lua build, then you need to configure
+the lua_package_path directive to add the path of your lua-resty-redis source
+tree to ngx_lua's LUA_PATH search path, as in</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># nginx.conf</span>
+<span class="w">    </span><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">...</span>
+<span class="w">    </span><span class="err">}</span>
+</code></pre></div>
+<p>Ensure that the system account running your Nginx ''worker'' proceses have
+enough permission to read the <code>.lua</code> file.</p>
 <h2 id="see-also">See Also</h2>
 <ul>
 <li>the ngx_lua module: <a href="https://github.com/openresty/lua-nginx-module/#readme">https://github.com/openresty/lua-nginx-module/#readme</a></li>

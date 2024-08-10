@@ -5820,9 +5820,21 @@
 <li>Rocky Linux 8, 9</li>
 <li>Amazon Linux 2 and Amazon Linux 2023</li>
 </ul>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-testcookie
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>```bash
+yum -y install <a href="https://extras.getpagespeed.com/release-latest.rpm">https://extras.getpagespeed.com/release-latest.rpm</a>
+yum -y install <a href="https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm">https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm</a> 
+yum -y install nginx-module-testcookie</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-testcookie
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_testcookie_access_module.so</span><span class="p">;</span>
 </code></pre></div>
