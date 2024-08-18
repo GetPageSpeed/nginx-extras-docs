@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-acme
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-acme [v0.14.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.14.0){target=_blank} 
-released on May 28 2024.
+This document describes lua-resty-acme [v0.15.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.15.0){target=_blank} 
+released on Aug 13 2024.
     
 <hr />
 
@@ -770,13 +770,13 @@ storage_config = {
 
 ### etcd
 
-[etcd](https://etcd.io) based storage. Right now only `v2` protocol is supported.
+[etcd](https://etcd.io) based storage. Right now only `v3` protocol is supported, and etcd server
+version should be >= v3.4.0.
 The default config is:
 
 ```lua
 storage_config = {
     http_host = 'http://127.0.0.1:4001',
-    protocol = 'v2',
     key_prefix = '',
     timeout = 60,
     ssl_verify = false,

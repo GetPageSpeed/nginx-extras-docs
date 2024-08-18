@@ -253,6 +253,7 @@ nav:
     waf: lua/waf.md
     weauth: lua/weauth.md
     websocket: lua/websocket.md
+    websocket-proxy: lua/websocket-proxy.md
     woothee: lua/woothee.md
     worker-events: lua/worker-events.md
     xxhash: lua/xxhash.md

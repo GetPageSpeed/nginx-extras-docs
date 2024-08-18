@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-core
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-core [v0.1.28](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.28){target=_blank} 
-released on Dec 20 2023.
+This document describes lua-resty-core [v0.1.29](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.29){target=_blank} 
+released on Aug 08 2024.
     
 <hr />
 
