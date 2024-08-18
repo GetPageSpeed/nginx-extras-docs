@@ -5243,6 +5243,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../websocket-proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket-proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../woothee/" class="md-nav__link">
         
   
@@ -5878,8 +5899,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-acme
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-acme <a href="https://github.com/fffonion/lua-resty-acme/releases/tag/0.14.0" target="_blank">v0.14.0</a> 
-released on May 28 2024.</p>
+<p>This document describes lua-resty-acme <a href="https://github.com/fffonion/lua-resty-acme/releases/tag/0.15.0" target="_blank">v0.15.0</a> 
+released on Aug 13 2024.</p>
 <hr />
 
 <p>Automatic Let's Encrypt certificate serving (RSA + ECC) and pure Lua implementation of the ACMEv2 protocol.</p>
@@ -6491,11 +6512,11 @@ The default config is:</p>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="etcd">etcd</h3>
-<p><a href="https://etcd.io">etcd</a> based storage. Right now only <code>v2</code> protocol is supported.
+<p><a href="https://etcd.io">etcd</a> based storage. Right now only <code>v3</code> protocol is supported, and etcd server
+version should be &gt;= v3.4.0.
 The default config is:</p>
 <div class="highlight"><pre><span></span><code><span class="n">storage_config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">http_host</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:4001&#39;</span><span class="p">,</span>
-    <span class="n">protocol</span> <span class="o">=</span> <span class="s1">&#39;v2&#39;</span><span class="p">,</span>
     <span class="n">key_prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
     <span class="n">timeout</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
     <span class="n">ssl_verify</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>

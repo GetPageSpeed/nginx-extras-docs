@@ -12,13 +12,13 @@
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/feishu-auth/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/websocket-proxy/">
       
       
-        <link rel="prev" href="../exec/">
+        <link rel="prev" href="../websocket/">
       
       
-        <link rel="next" href="../fileinfo/">
+        <link rel="next" href="../woothee/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>feishu-auth - NGINX Extras Documentation</title>
+        <title>websocket-proxy - NGINX Extras Documentation</title>
       
     
     
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="feishu-auth - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="websocket-proxy - NGINX Extras Documentation" >
       
         <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/feishu-auth.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/websocket-proxy.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/feishu-auth/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/websocket-proxy/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="feishu-auth - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="websocket-proxy - NGINX Extras Documentation" >
       
         <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/feishu-auth.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/websocket-proxy.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#feishu-auth-nginx-module-lua" class="md-skip">
+        <a href="#websocket-proxy-reverse-proxying-of-websocket-frames" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              feishu-auth
+              websocket-proxy
             
           </span>
         </div>
@@ -3007,30 +3007,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    feishu-auth
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../feishu-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3039,155 +3019,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      CentOS/RHEL 7 or Amazon Linux 2
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
-    <span class="md-ellipsis">
-      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      下载
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      应用权限说明
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      依赖模块
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      相关项目
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      作者
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      开源协议
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5045,10 +4876,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../websocket-proxy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    websocket-proxy
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -5057,6 +4908,95 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5385,87 +5325,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#status" class="md-nav__link">
     <span class="md-ellipsis">
-      使用
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      下载
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      应用权限说明
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      依赖模块
+      Status
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#synopsis" class="md-nav__link">
     <span class="md-ellipsis">
-      相关项目
+      Synopsis
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
-      作者
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      开源协议
+      Limitations
     </span>
   </a>
   
@@ -5495,88 +5375,94 @@
                   
 
 
-<h1 id="feishu-auth-nginx-module-lua"><em>feishu-auth</em>: 适用于 nginx-module-lua 的基于飞书组织架构的登录认证</h1>
+<h1 id="websocket-proxy-reverse-proxying-of-websocket-frames"><em>websocket-proxy</em>: Reverse-proxying of websocket frames</h1>
 <h2 id="installation">Installation</h2>
 <p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
 steps.</p>
 <h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-feishu-auth
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-websocket-proxy
 </code></pre></div>
 <h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-feishu-auth
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-websocket-proxy
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-feishu-auth <a href="https://github.com/k8scat/lua-resty-feishu-auth/releases/tag/v0.0.1" target="_blank">v0.0.1</a> 
-released on Aug 11 2021.</p>
+<p>This document describes lua-resty-websocket-proxy <a href="https://github.com/Kong/lua-resty-websocket-proxy/releases/tag/0.0.1" target="_blank">v0.0.1</a> 
+released on Apr 04 2022.</p>
 <hr />
 
-<p>适用于 OpenResty / ngx_lua 的基于<a href="https://www.feishu.cn/">飞书</a>组织架构的登录认证</p>
-<h2 id="_1">使用</h2>
-<h3 id="_2">下载</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to
-git<span class="w"> </span>clone<span class="w"> </span>git@github.com:ledgetech/lua-resty-http.git
-git<span class="w"> </span>clone<span class="w"> </span>git@github.com:SkyLothar/lua-resty-jwt.git
-git<span class="w"> </span>clone<span class="w"> </span>git@github.com:k8scat/lua-resty-feishu-auth.git
+<p>Reverse-proxying of websocket frames with in-flight inspection/update/drop and
+frame aggregation support.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC-6455</a></li>
+<li><a href="https://github.com/openresty/lua-resty-websocket">lua-resty-websocket</a></li>
+</ul>
+<h2 id="status">Status</h2>
+<p>This library is usable although still under active development.</p>
+<p>The Lua API may change without notice.</p>
+<h2 id="synopsis">Synopsis</h2>
+<div class="highlight"><pre><span></span><code><span class="n">http</span> <span class="p">{</span>
+    <span class="n">server</span> <span class="p">{</span>
+        <span class="n">listen</span> <span class="mi">9000</span><span class="p">;</span>
+
+        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+            <span class="n">content_by_lua_block</span> <span class="p">{</span>
+                <span class="kd">local</span> <span class="n">ws_proxy</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.websocket.proxy&quot;</span>
+
+                <span class="kd">local</span> <span class="n">proxy</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ws_proxy</span><span class="p">.</span><span class="n">new</span><span class="p">({</span>
+                    <span class="n">aggregate_fragments</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="n">on_frame</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+                        <span class="c1">--  origin: [string]      &quot;client&quot; or &quot;upstream&quot;</span>
+                        <span class="c1">--     typ: [string]      &quot;text&quot;, &quot;binary&quot;, &quot;ping&quot;, &quot;pong&quot;, &quot;close&quot;</span>
+                        <span class="c1">-- payload: [string|nil]  payload if any</span>
+                        <span class="c1">--    last: [boolean]     fin flag for fragmented frames; true if aggregate_fragments is on</span>
+                        <span class="c1">--    code: [number|nil]  code for &quot;close&quot; frames</span>
+
+                        <span class="kr">if</span> <span class="n">update_payload</span> <span class="kr">then</span>
+                            <span class="c1">-- change payload + code before forwarding</span>
+                            <span class="kr">return</span> <span class="s2">&quot;new payload&quot;</span><span class="p">,</span> <span class="mi">1001</span>
+                        <span class="kr">end</span>
+
+                        <span class="c1">-- forward as-is</span>
+                        <span class="kr">return</span> <span class="n">payload</span>
+                    <span class="kr">end</span>
+                <span class="p">})</span>
+                <span class="kr">if</span> <span class="ow">not</span> <span class="n">proxy</span> <span class="kr">then</span>
+                    <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="s2">&quot;failed to create proxy: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+                    <span class="kr">return</span> <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">444</span><span class="p">)</span>
+                <span class="kr">end</span>
+
+                <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">proxy</span><span class="p">:</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;ws://127.0.0.1:9001&quot;</span><span class="p">)</span>
+                <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+                    <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+                    <span class="kr">return</span> <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">444</span><span class="p">)</span>
+                <span class="kr">end</span>
+
+                <span class="c1">-- Start a bi-directional websocket proxy between</span>
+                <span class="c1">-- this client and the upstream</span>
+                <span class="kd">local</span> <span class="n">done</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">proxy</span><span class="p">:</span><span class="n">execute</span><span class="p">()</span>
+                <span class="kr">if</span> <span class="ow">not</span> <span class="n">done</span> <span class="kr">then</span>
+                    <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="s2">&quot;failed proxying: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+                    <span class="kr">return</span> <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">444</span><span class="p">)</span>
+                <span class="kr">end</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<h3 id="_3">配置</h3>
-<div class="highlight"><pre><span></span><code>server {
-    access_by_lua_block {
-        local feishu_auth = require &quot;resty.feishu_auth&quot;
-        feishu_auth.app_id = &quot;&quot;
-        feishu_auth.app_secret = &quot;&quot;
-        feishu_auth.callback_uri = &quot;/feishu_auth_callback&quot;
-        feishu_auth.logout_uri = &quot;/feishu_auth_logout&quot;
-        feishu_auth.app_domain = &quot;feishu-auth.example.com&quot;
-
-        feishu_auth.jwt_secret = &quot;thisisjwtsecret&quot;
-
-        feishu_auth.ip_blacklist = {&quot;47.1.2.3&quot;}
-        feishu_auth.uri_whitelist = {&quot;/&quot;}
-        feishu_auth.department_whitelist = {&quot;0&quot;}
-
-        feishu_auth:auth()
-    }
-}
-</code></pre></div>
-<h3 id="_4">配置说明</h3>
+<h2 id="limitations">Limitations</h2>
 <ul>
-<li><code>app_id</code> 用于设置飞书企业自建应用的 <code>App ID</code></li>
-<li><code>app_secret</code> 用于设置飞书企业自建应用的 <code>App Secret</code></li>
-<li><code>callback_uri</code> 用于设置飞书网页登录后的回调地址（需在飞书企业自建应用的安全设置中设置重定向 URL）</li>
-<li><code>logout_uri</code> 用于设置登出地址</li>
-<li><code>app_domain</code> 用于设置访问域名（需和业务服务的访问域名一致）</li>
-<li><code>jwt_secret</code> 用于设置 JWT secret</li>
-<li><code>ip_blacklist</code> 用于设置 IP 黑名单</li>
-<li><code>uri_whitelist</code> 用于设置地址白名单，例如首页不需要登录认证</li>
-<li><code>department_whitelist</code> 用于设置部门白名单（字符串）</li>
+<li>Built with <a href="https://github.com/openresty/lua-resty-websocket">lua-resty-websocket</a>
+  which only supports <code>Sec-Websocket-Version: 13</code> (no extensions) and denotes
+  its client component a
+  <a href="https://github.com/openresty/lua-resty-websocket/blob/master/lib/resty/websocket/client.lua#L4-L5">work-in-progress</a>.</li>
 </ul>
-<h3 id="_5">应用权限说明</h3>
-<ul>
-<li>获取部门基础信息</li>
-<li>获取部门组织架构信息</li>
-<li>以应用身份读取通讯录</li>
-<li>获取用户组织架构信息</li>
-<li>获取用户基本信息</li>
-</ul>
-<h2 id="_6">依赖模块</h2>
-<ul>
-<li><a href="https://github.com/ledgetech/lua-resty-http">lua-resty-http</a></li>
-<li><a href="https://github.com/SkyLothar/lua-resty-jwt">lua-resty-jwt</a></li>
-</ul>
-<h2 id="_7">相关项目</h2>
-<ul>
-<li><a href="https://github.com/k8scat/lua-resty-weauth">lua-resty-weauth</a> 适用于 OpenResty / ngx_lua 的基于<a href="https://work.weixin.qq.com/">企业微信</a>组织架构的登录认证</li>
-</ul>
-<h2 id="_8">作者</h2>
-<p>K8sCat <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#107;&#56;&#115;&#99;&#97;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#107;&#56;&#115;&#99;&#97;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></p>
-<h2 id="_9">开源协议</h2>
-<p><a href="./LICENSE">MIT</a></p>
 <h2 id="github">GitHub</h2>
-<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/k8scat/lua-resty-feishu-auth" target="_blank">GitHub repository for 
-nginx-module-feishu-auth</a>.</p>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/Kong/lua-resty-websocket-proxy" target="_blank">GitHub repository for 
+nginx-module-websocket-proxy</a>.</p>
 
 
 
