@@ -33,8 +33,8 @@ load_module modules/ngx_http_js_challenge_module.so;
 ```
 
 
-This document describes nginx-module-js-challenge [v0.0.1](https://github.com/dvershinin/ngx_http_js_challenge_module/releases/tag/v0.0.1){target=_blank} 
-released on Jun 27 2022.
+This document describes nginx-module-js-challenge [v0.0.2](https://github.com/dvershinin/ngx_http_js_challenge_module/releases/tag/v0.0.2){target=_blank} 
+released on Aug 21 2024.
 
 A request for stable release exists. Vote up [here](https://github.com/simon987/ngx_http_js_challenge_module/issues/4).
 <hr />

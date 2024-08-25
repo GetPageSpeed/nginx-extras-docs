@@ -34,7 +34,7 @@ load_module modules/ngx_http_lua_module.so;
 
 
 This document describes nginx-module-lua [v0.10.27](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.27){target=_blank} 
-released on Aug 08 2024.
+released on Aug 20 2024.
 
 <hr />
 

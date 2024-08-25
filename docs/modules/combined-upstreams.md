@@ -33,8 +33,8 @@ load_module modules/ngx_http_combined_upstreams_module.so;
 ```
 
 
-This document describes nginx-module-combined-upstreams [v2.2](https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.2){target=_blank} 
-released on Nov 07 2023.
+This document describes nginx-module-combined-upstreams [v2.3](https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.3){target=_blank} 
+released on Aug 18 2024.
 
 <hr />
 
@@ -120,10 +120,9 @@ All colons (*:*) in the server names get replaced with underscores (*_*).
 
 ### Where this can be useful
 
-Hmm, I do not know. Anyway, a singlet upstream is a prominent category because
-it declares a single server with fallback mode. We can use them to provide
-robust HTTP session management when backend servers identify themselves using a
-known mechanism like HTTP cookies.
+A singlet upstream acts like a single server with fallback mode. This can be
+used to manage sticky HTTP sessions when backend servers identify themselves
+with a proper mechanism such as HTTP cookies.
 
 ```nginx
 upstream  uhost {
@@ -264,6 +263,16 @@ upstrand failover has only protection against interceptions by *error_page* and
 must be as simple as possible (e.g. using simple directives like *return* or
 *echo*).
 
+That said, there is a decent solution to the problem with upstrand failover
+locations and internal redirections in them. How exactly do internal
+redirections *break* subrequests? Well, they *erase* subrequest contexts needed
+in response filters of the module. So, if we could make subrequest context
+persistent, would we solve the problem? The answer is yes! Nginx module
+[nginx-easy-context](https://github.com/lyokha/nginx-easy-context) enables
+building persistent request contexts. Upstrands can benefit from them by turning
+on a switch in file *config* and building both modules. See details in section
+[Build and test](#build-and-test).
+
 Directive *order* currently accepts only one value *start_random* which means
 that starting upstreams in normal and backup cycles after worker fired up will
 be chosen randomly. Starting upstreams in further requests will be cycled in
@@ -395,6 +404,63 @@ to an existing upstrand) *proxy_pass* will most likely return HTTP status *500*
 value of *arg_a* that points to a valid destination), otherwise (both *arg_b*
 and *arg_a* are not set or empty) the request will be sent to the upstrand
 *us2*.
+
+## Build and test
+
+The module is built with the standard Nginx build approach from the directory
+with Nginx source files. If you want to link this module with the Nginx
+executable file statically, use *configure* option *--add-module*, e.g.
+
+```ShellSession
+$ ./configure --add-module=/path/to/this/module
+$ make
+$ sudo make install
+```
+
+To use the module as a dynamic library, choose option *--add-dynamic-module*.
+
+```ShellSession
+$ ./configure --add-dynamic-module=/path/to/this/module
+$ make
+$ sudo make install
+```
+
+In the latter case, put directive
+
+```nginx
+load_module modules/ngx_http_combined_upstreams_module.so
+```
+
+in the Nginx configuration file.
+
+To benefit from persistent request contexts and upstrand failover locations with
+internal redirections in them (*try_files*, *error_page* etc.), download module
+[nginx-easy-context](https://github.com/lyokha/nginx-easy-context) in some
+directory, uncomment line
+
+```sh
+## NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=1
+```
+
+in file *config* in directory of this module and then run *configure* with two
+options *--add-module*.
+
+```ShellSession
+$ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
+```
+
+The order of the two options matters. Module *nginx-easy-context* must go first.
+
+With command *prove* from Perl module *Test::Harness* and Perl module
+*Test::Nginx::Socket*, tests can be run by a regular user from directory
+*test/*.
+
+```ShellSession
+$ prove -r t
+```
+
+Add option *-v* for verbose output. Before run, you may need to adjust
+environment variable *PATH* to point to the Nginx installation directory.
 
 ## See also
 
