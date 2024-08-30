@@ -50,6 +50,7 @@ nav:
     auth-digest: modules/auth-digest.md
     auth-ldap: modules/auth-ldap.md
     auth-pam: modules/auth-pam.md
+    auth-totp: modules/auth-totp.md
     aws-auth: modules/aws-auth.md
     bot-verifier: modules/bot-verifier.md
     brotli: modules/brotli.md
