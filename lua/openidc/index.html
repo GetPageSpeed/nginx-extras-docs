@@ -2653,6 +2653,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../ada/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ada
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../auto-ssl/" class="md-nav__link">
         
   
@@ -3351,6 +3372,27 @@
   
   <span class="md-ellipsis">
     jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jq
   </span>
   
 
@@ -5644,8 +5686,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-openidc
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-openidc <a href="https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.7.6" target="_blank">v1.7.6</a> 
-released on Jan 30 2023.</p>
+<p>This document describes lua-resty-openidc <a href="https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.8.0" target="_blank">v1.8.0</a> 
+released on Sep 13 2024.</p>
 <hr />
 <p><a href="https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml"><img alt="CI Status" src="https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml/badge.svg" /></a>
 <a href="https://openid.net/certification"><img width="184" height="96" align="right" src="http://openid.net/wordpress-content/uploads/2016/04/oid-l-certification-mark-l-rgb-150dpi-90mm@2x.png" alt="OpenID Certification"></a></p>
@@ -5806,7 +5848,9 @@ the server itself.</p>
 <span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="err">}</span>
 <span class="w">             </span><span class="s">--</span>
 <span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">where</span><span class="w"> </span><span class="s">`handle_created`,</span><span class="w"> </span><span class="s">`handle_authenticated`,</span><span class="w"> </span><span class="s">`handle_regenerated`</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">`handle_logout`</span><span class="w"> </span><span class="s">are</span><span class="w"> </span><span class="s">callables</span>
-<span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">accepting</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">single</span><span class="w"> </span><span class="s">argument</span><span class="w"> </span><span class="s">`session`</span>
+<span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">accepting</span><span class="w"> </span><span class="s">argument</span><span class="w"> </span><span class="s">`session`.</span><span class="w"> </span><span class="s">`handle_created`</span><span class="w"> </span><span class="s">accepts</span><span class="w"> </span><span class="s">also</span><span class="w"> </span><span class="s">second</span><span class="w"> </span><span class="s">argument</span><span class="w"> </span><span class="s">`params`</span><span class="w"> </span><span class="s">which</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">table</span>
+<span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">containing</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">query</span><span class="w"> </span><span class="s">parameters</span><span class="w"> </span><span class="s">of</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">authorization</span><span class="w"> </span><span class="s">request</span><span class="w"> </span><span class="s">used</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">redirect</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">user</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">OpenID</span>
+<span class="w">             </span><span class="s">--</span><span class="w"> </span><span class="s">Connect</span><span class="w"> </span><span class="s">provider</span><span class="w"> </span><span class="s">endpoint.</span>
 <span class="w">             </span><span class="s">--</span>
 <span class="w">             </span><span class="s">--</span><span class="w">  </span><span class="s">--</span><span class="w"> </span><span class="s">`on_created`</span><span class="w"> </span><span class="s">hook</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">invoked</span><span class="w"> </span><span class="s">*after*</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">session</span><span class="w"> </span><span class="s">has</span><span class="w"> </span><span class="s">been</span><span class="w"> </span><span class="s">created</span><span class="w"> </span><span class="s">in</span>
 <span class="w">             </span><span class="s">--</span><span class="w">     </span><span class="s">`openidc_authorize`</span><span class="w"> </span><span class="s">immediately</span><span class="w"> </span><span class="s">prior</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">saving</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">session</span>
