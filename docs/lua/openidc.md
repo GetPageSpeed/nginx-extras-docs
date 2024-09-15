@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-openidc
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openidc [v1.7.6](https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.7.6){target=_blank} 
-released on Jan 30 2023.
+This document describes lua-resty-openidc [v1.8.0](https://github.com/zmartzone/lua-resty-openidc/releases/tag/v1.8.0){target=_blank} 
+released on Sep 13 2024.
     
 <hr />
 [![CI Status](https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/zmartzone/lua-resty-openidc/actions/workflows/docker-ci.yml)
@@ -198,7 +198,9 @@ h2JHukolz9xf6qN61QMLSd83+kwoBr2drp6xg3eGDLIkQCQLrkY=
              -- }
              --
              -- where `handle_created`, `handle_authenticated`, `handle_regenerated` and `handle_logout` are callables
-             -- accepting a single argument `session`
+             -- accepting argument `session`. `handle_created` accepts also second argument `params` which is a table
+             -- containing the query parameters of the authorization request used to redirect the user to the OpenID
+             -- Connect provider endpoint.
              --
              --  -- `on_created` hook is invoked *after* a session has been created in
              --     `openidc_authorize` immediately prior to saving the session

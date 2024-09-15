@@ -147,6 +147,7 @@ nav:
 - Lua Scripting:
     Overview: lua.md
     acme: lua/acme.md
+    ada: lua/ada.md
     auto-ssl: lua/auto-ssl.md
     aws-auth: lua/aws-auth.md
     aws-sdk: lua/aws-sdk.md
@@ -181,6 +182,7 @@ nav:
     injection: lua/injection.md
     iputils: lua/iputils.md
     jit-uuid: lua/jit-uuid.md
+    jq: lua/jq.md
     jsonrpc-batch: lua/jsonrpc-batch.md
     jump-consistent-hash: lua/jump-consistent-hash.md
     jwt: lua/jwt.md
