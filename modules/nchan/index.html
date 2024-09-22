@@ -6402,8 +6402,8 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_nchan_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-nchan <a href="https://github.com/slact/nchan/releases/tag/v1.3.6" target="_blank">v1.3.6</a> 
-released on Jan 06 2023.</p>
+<p>This document describes nginx-module-nchan <a href="https://github.com/slact/nchan/releases/tag/v1.3.7" target="_blank">v1.3.7</a> 
+released on Sep 20 2024.</p>
 <hr />
 <p><img class="logo" alt="NCHAN" src="https://nchan.io/github-logo.png" /></p>
 <p><a href="https://nchan.io">https://nchan.io</a></p>
@@ -6424,7 +6424,7 @@ released on Jan 06 2023.</p>
 <li>Auto-failover and <a href="#high-availability">high availability</a> with no single point of failure using <a href="#redis-cluster">Redis Cluster</a>.</li>
 </ul>
 <h2 id="status-and-history">Status and History</h2>
-<p>The latest Nchan release is 1.3.6 (January 6, 2023) (<a href="https://nchan.io/changelog">changelog</a>).</p>
+<p>The latest Nchan release is 1.3.7 (September 19, 2024) (<a href="https://nchan.io/changelog">changelog</a>).</p>
 <p>The first iteration of Nchan was written in 2009-2010 as the <a href="https://pushmodule.slact.net">Nginx <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Push Module</a>, and was vastly refactored into its present state in 2014-2016.</p>
 <h4 id="upgrade-from-nginx-http-push-module">Upgrade from Nginx <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Push Module</h4>
 <p>Although Nchan is backwards-compatible with all Push Module configuration directives, some of the more unusual and rarely used settings have been disabled and will be ignored (with a warning). See the <a href="https://nchan.io/upgrade">upgrade page</a> for a detailed list of changes and improvements, as well as a full list of incompatibilities.</p>
@@ -8006,12 +8006,13 @@ Enabling this option packs the entire message id into the <code>Etag</code> head
 </blockquote>
 </li>
 <li>
-<p><strong>nchan_redis_server</strong> <code>&lt;redis-url&gt;</code><br />
-  arguments: 1<br />
+<p><strong>nchan_redis_server</strong> <code>&lt;redis-url&gt; &lt;optional-forced-role&gt;</code><br />
+  arguments: 1 - 2<br />
+  default: <code>&lt;redis-url&gt;</code><br />
   context: upstream  </p>
 <blockquote>
-<p>Used in upstream { } blocks to set redis servers. Redis url is in the form 'redis://:password@hostname:6379/0'. Shorthands 'host:port' or 'host' are permitted.  <br />
-<a href="#connecting-to-a-redis-server">more details</a>  </p>
+<p>Used in upstream { } blocks to set redis servers. Redis url is in the form 'redis://:password@hostname:6379/0'. Shorthands 'host:port' or 'host' are permitted. A role may optionally be provided as well to force a server to be treated as 'master' or 'slave'.<br />
+      uri:     </p>
 </blockquote>
 </li>
 <li>
@@ -8135,7 +8136,7 @@ Enabling this option packs the entire message id into the <code>Etag</code> head
   default: <code>127.0.0.1:6379</code><br />
   context: http, server, location  </p>
 <blockquote>
-<p>Use of this command is discouraged in favor of upstreams blocks with (<code>nchan_redis_server</code>)[#nchan_redis_server]. The path to a redis server, of the form 'redis://:password@hostname:6379/0'. Shorthand of the form 'host:port' or just 'host' is also accepted.  <br />
+<p>Use of this command is discouraged in favor of upstreams blocks with <a href="#nchan_redis_server"><code>nchan_redis_server</code></a>. The path to a redis server, of the form 'redis://:password@hostname:6379/0'. Shorthand of the form 'host:port' or just 'host' is also accepted.  <br />
 <a href="#connecting-to-a-redis-server">more details</a>  </p>
 </blockquote>
 </li>
