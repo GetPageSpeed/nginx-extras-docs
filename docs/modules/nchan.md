@@ -33,8 +33,8 @@ load_module modules/ngx_nchan_module.so;
 ```
 
 
-This document describes nginx-module-nchan [v1.3.6](https://github.com/slact/nchan/releases/tag/v1.3.6){target=_blank} 
-released on Jan 06 2023.
+This document describes nginx-module-nchan [v1.3.7](https://github.com/slact/nchan/releases/tag/v1.3.7){target=_blank} 
+released on Sep 20 2024.
 
 <hr />
 <img class="logo" alt="NCHAN" src="https://nchan.io/github-logo.png" />
@@ -61,7 +61,7 @@ In a web browser, you can use Websocket or EventSource natively, or the [NchanSu
 
 ## Status and History
 
-The latest Nchan release is 1.3.6 (January 6, 2023) ([changelog](https://nchan.io/changelog)).
+The latest Nchan release is 1.3.7 (September 19, 2024) ([changelog](https://nchan.io/changelog)).
 
 The first iteration of Nchan was written in 2009-2010 as the [Nginx HTTP Push Module](https://pushmodule.slact.net), and was vastly refactored into its present state in 2014-2016.
 
@@ -1607,11 +1607,12 @@ Additionally, `nchan_stub_status` data is also exposed as variables. These are a
   context: upstream  
   > When `nchan_redis_retry_commands` is on, the maximum time a command will stayed queued to be retried.    
 
-- **nchan_redis_server** `<redis-url>`  
-  arguments: 1  
+- **nchan_redis_server** `<redis-url> <optional-forced-role>`  
+  arguments: 1 - 2  
+  default: `<redis-url>`  
   context: upstream  
-  > Used in upstream { } blocks to set redis servers. Redis url is in the form 'redis://:password@hostname:6379/0'. Shorthands 'host:port' or 'host' are permitted.    
-  [more details](#connecting-to-a-redis-server)  
+  > Used in upstream { } blocks to set redis servers. Redis url is in the form 'redis://:password@hostname:6379/0'. Shorthands 'host:port' or 'host' are permitted. A role may optionally be provided as well to force a server to be treated as 'master' or 'slave'.  
+  >       uri:     
 
 - **nchan_redis_ssl** `[ on | off ]`  
   arguments: 1  
@@ -1695,7 +1696,7 @@ Additionally, `nchan_stub_status` data is also exposed as variables. These are a
   arguments: 1  
   default: `127.0.0.1:6379`  
   context: http, server, location  
-  > Use of this command is discouraged in favor of upstreams blocks with (`nchan_redis_server`)[#nchan_redis_server]. The path to a redis server, of the form 'redis://:password@hostname:6379/0'. Shorthand of the form 'host:port' or just 'host' is also accepted.    
+  > Use of this command is discouraged in favor of upstreams blocks with [`nchan_redis_server`](#nchan_redis_server). The path to a redis server, of the form 'redis://:password@hostname:6379/0'. Shorthand of the form 'host:port' or just 'host' is also accepted.    
   [more details](#connecting-to-a-redis-server)  
 
 - **nchan_redis_username**  
