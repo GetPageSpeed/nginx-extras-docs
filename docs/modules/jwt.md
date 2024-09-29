@@ -33,8 +33,8 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.4.1](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.1){target=_blank} 
-released on Jun 23 2024.
+This document describes nginx-module-jwt [v3.4.2](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.2){target=_blank} 
+released on Sep 26 2024.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
@@ -44,49 +44,53 @@ released on Jun 23 2024.
 ## Nginx jwt auth module
 [![License](https://img.shields.io/github/license/maxx-t/nginx-jwt-module.svg)][github-license-url]
 
-This is an NGINX module to check for a valid JWT.
-
-Inspired by [TeslaGov](https://github.com/TeslaGov/ngx-http-auth-jwt-module), [ch1bo](https://github.com/ch1bo/nginx-jwt) and [tizpuppi](https://github.com/tizpuppi/ngx_http_auth_jwt_module), this module intend to be as light as possible and to remain simple.
+This is an NGINX module to check for a valid JWT, this module intend to be as light as possible and to remain simple:
  - Docker image based on the [official nginx Dockerfile](https://github.com/nginxinc/docker-nginx) (alpine).
- - Light image (~10MB).
+ - Light image (~400KB more than the official one).
 
-### Module:
+### Module Configuration:
 
 #### Example Configuration:
 ```nginx
 ## nginx.conf
 load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
-```
 
-```nginx
-## server.conf
-server {
-    auth_jwt_key "0123456789abcdef" hex; # Your key as hex string
-    auth_jwt     off;
+http {
+    server {
+        auth_jwt_key "0123456789abcdef" hex; # Your key as hex string
+        auth_jwt     off;
 
-    location /secured-by-cookie/ {
-        auth_jwt $cookie_MyCookieName;
+        # Default auth method is "Authentication" header
+        location /secured-by-auth-header/ {
+            auth_jwt on;
+        }
+
+        # But you can use a cookie instead
+        location /secured-by-cookie/ {
+            auth_jwt $cookie_MyCookieName;
+        }
+
+        # JWT keys are inherited from the previous configuration level
+        # but you can have different keys for different locations
+        location /secured-by-auth-header-too/ {
+            auth_jwt_key "another-secret"; # Your key as utf8 string
+            auth_jwt on;
+        }
+
+        location /secured-by-rsa-key/ {
+            auth_jwt_key /etc/keys/rsa-public.pem file; # Your key from a PEM file
+            auth_jwt on;
+        }
+
+        location /not-secure/ {}
     }
-
-    location /secured-by-auth-header/ {
-        auth_jwt on;
-    }
-
-    location /secured-by-auth-header-too/ {
-        auth_jwt_key "another-secret"; # Your key as utf8 string
-        auth_jwt on;
-    }
-
-    location /secured-by-rsa-key/ {
-        auth_jwt_key /etc/keys/rsa-public.pem file; # Your key from a PEM file
-        auth_jwt on;
-    }
-
-    location /not-secure/ {}
 }
 ```
 
-> Note: don't forget to [load](http://nginx.org/en/docs/ngx_core_module.html#load_module) the module in the main context: <br>`load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;`
+Note: don't forget to [load](http://nginx.org/en/docs/ngx_core_module.html#load_module) the module in the main context: 
+```nginx
+load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
+```
 
 ### Directives:
 
@@ -109,7 +113,7 @@ The `auth_jwt $variable` value can be used to set a custom way to get the JWT, f
     Context: http, server, location
 
 Specifies the key for validating JWT signature (must be hexadecimal).<br>
-The *encoding* otpion may be `hex | utf8 | base64 | file` (default is `utf8`).<br>
+The *encoding* option may be `hex | utf8 | base64 | file` (default is `utf8`).<br>
 The `file` option requires the *value* to be a valid file path (pointing to a PEM encoded key).
 
 <hr>
@@ -197,6 +201,13 @@ STOPSIGNAL SIGTERM
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
+#### Or use the provided one directly
+```bash
+docker run -p 80:80 \
+  -v ./nginx.conf:/etc/nginx/nginx.conf \
+  ghcr.io/max-lt/nginx-jwt-module
+```
+
 ## or
 docker build -f Dockerfile -t jwt-nginx .
 ```
@@ -205,8 +216,44 @@ docker build -f Dockerfile -t jwt-nginx .
 
 #### Default usage:
 ```bash
-make test # Will build a test image & run test suite
+make test # Will build a test image and run the test suite
 ```
+
+### Example configurations:
+
+In this section, we will see some examples of how to use this module.
+
+#### Redirect to login page if JWT is invalid:
+```nginx
+load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;
+
+## ...
+
+http {
+    server {
+        listen 80;
+        server_name _;
+
+        auth_jwt_key "0123456789abcdef" hex; # Your key as hex string
+        auth_jwt     off;
+
+        location @login_err_redirect {
+            return 302 $scheme://$host:$server_port/login?redirect=$request_uri;
+        }
+
+        location /secure/ {
+            auth_jwt on;
+            error_page 401 = @login_err_redirect;
+        }
+
+        location / {
+            return 200 "OK";
+        }
+    }
+}
+```
+
+Trying `curl -i http://localhost/secure/path?param=value` will return a 302 redirect to `/login?redirect=/secure/path?param=value` if the JWT is invalid.
 
 ## GitHub
 
