@@ -1453,13 +1453,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#module" class="md-nav__link">
+  <a href="#module-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Module:
+      Module Configuration:
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Module:">
+    <nav class="md-nav" aria-label="Module Configuration:">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1555,6 +1555,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#or-use-the-provided-one-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use the provided one directly
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1571,6 +1580,36 @@
       or
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="or">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example configurations:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example configurations:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirect-to-login-page-if-jwt-is-invalid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirect to login page if JWT is invalid:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5455,13 +5494,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#module" class="md-nav__link">
+  <a href="#module-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Module:
+      Module Configuration:
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Module:">
+    <nav class="md-nav" aria-label="Module Configuration:">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5557,6 +5596,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#or-use-the-provided-one-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use the provided one directly
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5573,6 +5621,36 @@
       or
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="or">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example configurations:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example configurations:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirect-to-login-page-if-jwt-is-invalid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirect to login page if JWT is invalid:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5628,49 +5706,53 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_auth_jwt_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-jwt <a href="https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.1" target="_blank">v3.4.1</a> 
-released on Jun 23 2024.</p>
+<p>This document describes nginx-module-jwt <a href="https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.2" target="_blank">v3.4.2</a> 
+released on Sep 26 2024.</p>
 <hr />
 <h2 id="nginx-jwt-auth-module">Nginx jwt auth module</h2>
 <p><a href="/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/maxx-t/nginx-jwt-module.svg" /></a></p>
-<p>This is an NGINX module to check for a valid JWT.</p>
-<p>Inspired by <a href="https://github.com/TeslaGov/ngx-http-auth-jwt-module">TeslaGov</a>, <a href="https://github.com/ch1bo/nginx-jwt">ch1bo</a> and <a href="https://github.com/tizpuppi/ngx_http_auth_jwt_module">tizpuppi</a>, this module intend to be as light as possible and to remain simple.
+<p>This is an NGINX module to check for a valid JWT, this module intend to be as light as possible and to remain simple:
  - Docker image based on the <a href="https://github.com/nginxinc/docker-nginx">official nginx Dockerfile</a> (alpine).
- - Light image (~10MB).</p>
-<h3 id="module">Module:</h3>
+ - Light image (~400KB more than the official one).</p>
+<h3 id="module-configuration">Module Configuration:</h3>
 <h4 id="example-configuration">Example Configuration:</h4>
 <div class="highlight"><pre><span></span><code><span class="c1">## nginx.conf</span>
 <span class="k">load_module</span><span class="w"> </span><span class="s">/usr/lib/nginx/modules/ngx_http_auth_jwt_module.so</span><span class="p">;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">## server.conf</span>
-<span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">&quot;0123456789abcdef&quot;</span><span class="w"> </span><span class="s">hex</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key as hex string</span>
-<span class="w">    </span><span class="kn">auth_jwt</span><span class="w">     </span><span class="no">off</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-cookie/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="nv">$cookie_MyCookieName</span><span class="p">;</span>
+<span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">&quot;0123456789abcdef&quot;</span><span class="w"> </span><span class="s">hex</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key as hex string</span>
+<span class="w">        </span><span class="kn">auth_jwt</span><span class="w">     </span><span class="no">off</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1"># Default auth method is &quot;Authentication&quot; header</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-auth-header/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1"># But you can use a cookie instead</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-cookie/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="nv">$cookie_MyCookieName</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1"># JWT keys are inherited from the previous configuration level</span>
+<span class="w">        </span><span class="c1"># but you can have different keys for different locations</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-auth-header-too/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">&quot;another-secret&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key as utf8 string</span>
+<span class="w">            </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-rsa-key/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">/etc/keys/rsa-public.pem</span><span class="w"> </span><span class="s">file</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key from a PEM file</span>
+<span class="w">            </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/not-secure/</span><span class="w"> </span><span class="p">{}</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-auth-header/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-auth-header-too/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">&quot;another-secret&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key as utf8 string</span>
-<span class="w">        </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/secured-by-rsa-key/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">/etc/keys/rsa-public.pem</span><span class="w"> </span><span class="s">file</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key from a PEM file</span>
-<span class="w">        </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/not-secure/</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p>Note: don't forget to <a href="http://nginx.org/en/docs/ngx_core_module.html#load_module">load</a> the module in the main context: <br><code>load_module /usr/lib/nginx/modules/ngx_http_auth_jwt_module.so;</code></p>
-</blockquote>
+<p>Note: don't forget to <a href="http://nginx.org/en/docs/ngx_core_module.html#load_module">load</a> the module in the main context: 
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">/usr/lib/nginx/modules/ngx_http_auth_jwt_module.so</span><span class="p">;</span>
+</code></pre></div></p>
 <h3 id="directives">Directives:</h3>
 <h4 id="auth_jwt">auth_jwt</h4>
 <div class="highlight"><pre><span></span><code>Syntax:  auth_jwt $variable | on | off;
@@ -5687,7 +5769,7 @@ Default: ——
 Context: http, server, location
 </code></pre></div>
 <p>Specifies the key for validating JWT signature (must be hexadecimal).<br>
-The <em>encoding</em> otpion may be <code>hex | utf8 | base64 | file</code> (default is <code>utf8</code>).<br>
+The <em>encoding</em> option may be <code>hex | utf8 | base64 | file</code> (default is <code>utf8</code>).<br>
 The <code>file</code> option requires the <em>value</em> to be a valid file path (pointing to a PEM encoded key).</p>
 <hr>
 
@@ -5762,14 +5844,50 @@ Context: http, server, location
 
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
+<h4 id="or-use-the-provided-one-directly">Or use the provided one directly</h4>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>./nginx.conf:/etc/nginx/nginx.conf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/max-lt/nginx-jwt-module
+</code></pre></div>
 <h2 id="or">or</h2>
 <p>docker build -f Dockerfile -t jwt-nginx .
 <div class="highlight"><pre><span></span><code>### Test:
 
 #### Default usage:
 ```bash
-make test # Will build a test image &amp; run test suite
+make test # Will build a test image and run the test suite
 </code></pre></div></p>
+<h3 id="example-configurations">Example configurations:</h3>
+<p>In this section, we will see some examples of how to use this module.</p>
+<h4 id="redirect-to-login-page-if-jwt-is-invalid">Redirect to login page if JWT is invalid:</h4>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">/usr/lib/nginx/modules/ngx_http_auth_jwt_module.so</span><span class="p">;</span>
+
+<span class="c1">## ...</span>
+
+<span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">_</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">auth_jwt_key</span><span class="w"> </span><span class="s">&quot;0123456789abcdef&quot;</span><span class="w"> </span><span class="s">hex</span><span class="p">;</span><span class="w"> </span><span class="c1"># Your key as hex string</span>
+<span class="w">        </span><span class="kn">auth_jwt</span><span class="w">     </span><span class="no">off</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">@login_err_redirect</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="nv">$scheme://$host:$server_port/login?redirect=$request_uri</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/secure/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">auth_jwt</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">error_page</span><span class="w"> </span><span class="mi">401</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">@login_err_redirect</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Trying <code>curl -i http://localhost/secure/path?param=value</code> will return a 302 redirect to <code>/login?redirect=/secure/path?param=value</code> if the JWT is invalid.</p>
 <h2 id="github">GitHub</h2>
 <p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/max-lt/nginx-jwt-module" target="_blank">GitHub 
 repository for 
