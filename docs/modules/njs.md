@@ -36,10 +36,13 @@ load_module modules/ngx_stream_js_module.so;
 ```
 
 
-This document describes nginx-module-njs [v0.8.5](https://github.com/nginx/njs/releases/tag/0.8.5){target=_blank} 
-released on Jun 25 2024.
+This document describes nginx-module-njs [v0.8.6](https://github.com/nginx/njs/releases/tag/0.8.6){target=_blank} 
+released on Oct 01 2024.
 
 <hr />
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Community Support](https://badgen.net/badge/support/commercial/green?icon=awesome)](/SUPPORT.md)
+
 ![NGINX JavaScript Banner](NGINX-js-1660x332.png "NGINX JavaScript Banner")
 
 ## NGINX JavaScript
