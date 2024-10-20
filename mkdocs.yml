@@ -132,6 +132,7 @@ nav:
     testcookie: modules/testcookie.md
     traffic-accounting: modules/traffic-accounting.md
     ts: modules/ts.md
+    unbrotli: modules/unbrotli.md
     untar: modules/untar.md
     upload: modules/upload.md
     upstream-fair: modules/upstream-fair.md

@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-lrucache
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-lrucache [v0.14](https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.14){target=_blank} 
-released on Aug 08 2024.
+This document describes lua-resty-lrucache [v0.15](https://github.com/openresty/lua-resty-lrucache/releases/tag/v0.15){target=_blank} 
+released on Oct 10 2024.
     
 <hr />
 

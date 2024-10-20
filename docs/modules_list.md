@@ -87,6 +87,7 @@
 | [nginx-module-testcookie](modules/testcookie.md)                 | NGINX testcookie robot mitigation module                                      |
 | [nginx-module-traffic-accounting](modules/traffic-accounting.md) | Monitor the incoming and outgoing traffic metrics in realtime for NGINX       |
 | [nginx-module-ts](modules/ts.md)                                 | NGINX MPEG-TS Live Module                                                     |
+| [nginx-module-unbrotli](modules/unbrotli.md)                     | Decompresses Brotli-encoded responses for clients that do not support it      |
 | [nginx-module-untar](modules/untar.md)                           | NGINX HTTP Untar Module                                                       |
 | [nginx-module-upload](modules/upload.md)                         | NGINX module for handling file uploads                                        |
 | [nginx-module-upstream-fair](modules/upstream-fair.md)           | The fair load balancer module for NGINX                                       |
