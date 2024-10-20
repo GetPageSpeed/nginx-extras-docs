@@ -12,28 +12,28 @@
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/unbrotli/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../ts/">
       
       
-        <link rel="next" href="accept-language/">
+        <link rel="next" href="../untar/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>Overview - NGINX Extras Documentation</title>
+        <title>unbrotli - NGINX Extras Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Overview - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="unbrotli - NGINX Extras Documentation" >
       
         <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/unbrotli.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/unbrotli/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Overview - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="unbrotli - NGINX Extras Documentation" >
       
         <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/unbrotli.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modules" class="md-skip">
+        <a href="#unbrotli-decompresses-brotli-encoded-responses-for-clients-that-do-not-support-it" class="md-skip">
           Skip to content
         </a>
       
@@ -140,9 +140,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
       
-  <img src="../assets/nginx-logo.png" alt="logo">
+  <img src="../../assets/nginx-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              unbrotli
             
           </span>
         </div>
@@ -256,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -277,7 +277,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   Modules
@@ -295,7 +295,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../lua/" class="md-tabs__link">
+        <a href="../../lua/" class="md-tabs__link">
           
   
   Lua Scripting
@@ -313,7 +313,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../branches/" class="md-tabs__link">
+        <a href="../../branches/" class="md-tabs__link">
           
   
   Distributions
@@ -363,9 +363,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
       
-  <img src="../assets/nginx-logo.png" alt="logo">
+  <img src="../../assets/nginx-logo.png" alt="logo">
 
     </a>
     NGINX Extras Documentation
@@ -380,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -440,19 +440,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -461,7 +452,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -474,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="accept-language/" class="md-nav__link">
+      <a href="../accept-language/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ajp/" class="md-nav__link">
+      <a href="../ajp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -516,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="array-var/" class="md-nav__link">
+      <a href="../array-var/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -537,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="auth-digest/" class="md-nav__link">
+      <a href="../auth-digest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -558,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="auth-ldap/" class="md-nav__link">
+      <a href="../auth-ldap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -579,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="auth-pam/" class="md-nav__link">
+      <a href="../auth-pam/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -600,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="auth-totp/" class="md-nav__link">
+      <a href="../auth-totp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -621,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aws-auth/" class="md-nav__link">
+      <a href="../aws-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -642,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="bot-verifier/" class="md-nav__link">
+      <a href="../bot-verifier/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -663,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="brotli/" class="md-nav__link">
+      <a href="../brotli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -684,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cache-purge/" class="md-nav__link">
+      <a href="../cache-purge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="captcha/" class="md-nav__link">
+      <a href="../captcha/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -726,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="combined-upstreams/" class="md-nav__link">
+      <a href="../combined-upstreams/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -747,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="concat/" class="md-nav__link">
+      <a href="../concat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -768,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cookie-flag/" class="md-nav__link">
+      <a href="../cookie-flag/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -789,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cookie-limit/" class="md-nav__link">
+      <a href="../cookie-limit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -810,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coolkit/" class="md-nav__link">
+      <a href="../coolkit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -831,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dav-ext/" class="md-nav__link">
+      <a href="../dav-ext/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -852,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="doh/" class="md-nav__link">
+      <a href="../doh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -873,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dynamic-etag/" class="md-nav__link">
+      <a href="../dynamic-etag/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -894,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dynamic-limit-req/" class="md-nav__link">
+      <a href="../dynamic-limit-req/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -915,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="echo/" class="md-nav__link">
+      <a href="../echo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -936,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypted-session/" class="md-nav__link">
+      <a href="../encrypted-session/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -957,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="execute/" class="md-nav__link">
+      <a href="../execute/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -978,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="f4fhds/" class="md-nav__link">
+      <a href="../f4fhds/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -999,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="fancyindex/" class="md-nav__link">
+      <a href="../fancyindex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1020,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="fips-check/" class="md-nav__link">
+      <a href="../fips-check/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1041,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="flv/" class="md-nav__link">
+      <a href="../flv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1062,7 +1052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="form-input/" class="md-nav__link">
+      <a href="../form-input/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1083,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="geoip/" class="md-nav__link">
+      <a href="../geoip/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1104,7 +1094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="geoip2/" class="md-nav__link">
+      <a href="../geoip2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1125,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="google/" class="md-nav__link">
+      <a href="../google/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1146,7 +1136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="graphite/" class="md-nav__link">
+      <a href="../graphite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1167,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="headers-more/" class="md-nav__link">
+      <a href="../headers-more/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1188,7 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="hmac-secure-link/" class="md-nav__link">
+      <a href="../hmac-secure-link/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1209,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="html-sanitize/" class="md-nav__link">
+      <a href="../html-sanitize/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1230,7 +1220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="iconv/" class="md-nav__link">
+      <a href="../iconv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1251,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="image-filter/" class="md-nav__link">
+      <a href="../image-filter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1272,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="immutable/" class="md-nav__link">
+      <a href="../immutable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1293,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ipscrub/" class="md-nav__link">
+      <a href="../ipscrub/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1314,7 +1304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="jpeg/" class="md-nav__link">
+      <a href="../jpeg/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1335,7 +1325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="js-challenge/" class="md-nav__link">
+      <a href="../js-challenge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1356,7 +1346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="json/" class="md-nav__link">
+      <a href="../json/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1377,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="json-var/" class="md-nav__link">
+      <a href="../json-var/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1398,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="jwt/" class="md-nav__link">
+      <a href="../jwt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1419,7 +1409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="length-hiding/" class="md-nav__link">
+      <a href="../length-hiding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1440,7 +1430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="let/" class="md-nav__link">
+      <a href="../let/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1461,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="live-common/" class="md-nav__link">
+      <a href="../live-common/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1482,7 +1472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="log-zmq/" class="md-nav__link">
+      <a href="../log-zmq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1503,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lua/" class="md-nav__link">
+      <a href="../lua/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1524,7 +1514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="markdown/" class="md-nav__link">
+      <a href="../markdown/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1545,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="memc/" class="md-nav__link">
+      <a href="../memc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1566,7 +1556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="naxsi/" class="md-nav__link">
+      <a href="../naxsi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1587,7 +1577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="nchan/" class="md-nav__link">
+      <a href="../nchan/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1608,7 +1598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ndk/" class="md-nav__link">
+      <a href="../ndk/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1629,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="njs/" class="md-nav__link">
+      <a href="../njs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1650,7 +1640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ntlm/" class="md-nav__link">
+      <a href="../ntlm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1671,7 +1661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pagespeed/" class="md-nav__link">
+      <a href="../pagespeed/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1692,7 +1682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="passenger/" class="md-nav__link">
+      <a href="../passenger/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1713,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="perl/" class="md-nav__link">
+      <a href="../perl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1734,7 +1724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="phantom-token/" class="md-nav__link">
+      <a href="../phantom-token/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1755,7 +1745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="postgres/" class="md-nav__link">
+      <a href="../postgres/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1776,7 +1766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pta/" class="md-nav__link">
+      <a href="../pta/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1797,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="push-stream/" class="md-nav__link">
+      <a href="../push-stream/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1818,7 +1808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rdns/" class="md-nav__link">
+      <a href="../rdns/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1839,7 +1829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="redis2/" class="md-nav__link">
+      <a href="../redis2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1860,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rtmp/" class="md-nav__link">
+      <a href="../rtmp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1881,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="secure-token/" class="md-nav__link">
+      <a href="../secure-token/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1902,7 +1892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security/" class="md-nav__link">
+      <a href="../security/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1923,7 +1913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security-headers/" class="md-nav__link">
+      <a href="../security-headers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1944,7 +1934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="set-misc/" class="md-nav__link">
+      <a href="../set-misc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1965,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="shibboleth/" class="md-nav__link">
+      <a href="../shibboleth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1986,7 +1976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="slowfs/" class="md-nav__link">
+      <a href="../slowfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2007,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="small-light/" class="md-nav__link">
+      <a href="../small-light/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2028,7 +2018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="spnego-http-auth/" class="md-nav__link">
+      <a href="../spnego-http-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2049,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="srcache/" class="md-nav__link">
+      <a href="../srcache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2070,7 +2060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="srt/" class="md-nav__link">
+      <a href="../srt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2091,7 +2081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="statsd/" class="md-nav__link">
+      <a href="../statsd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2112,7 +2102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="sticky/" class="md-nav__link">
+      <a href="../sticky/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2133,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="stream-lua/" class="md-nav__link">
+      <a href="../stream-lua/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2154,7 +2144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="stream-sts/" class="md-nav__link">
+      <a href="../stream-sts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2175,7 +2165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="stream-upsync/" class="md-nav__link">
+      <a href="../stream-upsync/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2196,7 +2186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="sts/" class="md-nav__link">
+      <a href="../sts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2217,7 +2207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="substitutions/" class="md-nav__link">
+      <a href="../substitutions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2238,7 +2228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="sysguard/" class="md-nav__link">
+      <a href="../sysguard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2259,7 +2249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="testcookie/" class="md-nav__link">
+      <a href="../testcookie/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2280,7 +2270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="traffic-accounting/" class="md-nav__link">
+      <a href="../traffic-accounting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2301,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ts/" class="md-nav__link">
+      <a href="../ts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2319,10 +2309,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="unbrotli/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    unbrotli
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -2331,6 +2341,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2343,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="untar/" class="md-nav__link">
+      <a href="../untar/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2364,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upload/" class="md-nav__link">
+      <a href="../upload/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2385,7 +2448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upstream-fair/" class="md-nav__link">
+      <a href="../upstream-fair/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2406,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upstream-jdomain/" class="md-nav__link">
+      <a href="../upstream-jdomain/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2427,7 +2490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upsync/" class="md-nav__link">
+      <a href="../upsync/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2448,7 +2511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="vod/" class="md-nav__link">
+      <a href="../vod/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2469,7 +2532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="vts/" class="md-nav__link">
+      <a href="../vts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2490,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="webp/" class="md-nav__link">
+      <a href="../webp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2511,7 +2574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xslt/" class="md-nav__link">
+      <a href="../xslt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2532,7 +2595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xss/" class="md-nav__link">
+      <a href="../xss/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2553,7 +2616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zip/" class="md-nav__link">
+      <a href="../zip/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2574,7 +2637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zstd/" class="md-nav__link">
+      <a href="../zstd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2642,7 +2705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/" class="md-nav__link">
+      <a href="../../lua/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2663,7 +2726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/acme/" class="md-nav__link">
+      <a href="../../lua/acme/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2684,7 +2747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/ada/" class="md-nav__link">
+      <a href="../../lua/ada/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2705,7 +2768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/auto-ssl/" class="md-nav__link">
+      <a href="../../lua/auto-ssl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2726,7 +2789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/aws-auth/" class="md-nav__link">
+      <a href="../../lua/aws-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2747,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/aws-sdk/" class="md-nav__link">
+      <a href="../../lua/aws-sdk/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2768,7 +2831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/balancer/" class="md-nav__link">
+      <a href="../../lua/balancer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2789,7 +2852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/base-encoding/" class="md-nav__link">
+      <a href="../../lua/base-encoding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2810,7 +2873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/cache/" class="md-nav__link">
+      <a href="../../lua/cache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2831,7 +2894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/checkups/" class="md-nav__link">
+      <a href="../../lua/checkups/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2852,7 +2915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/consul/" class="md-nav__link">
+      <a href="../../lua/consul/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2873,7 +2936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/consul-event/" class="md-nav__link">
+      <a href="../../lua/consul-event/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2894,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/cookie/" class="md-nav__link">
+      <a href="../../lua/cookie/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2915,7 +2978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/core/" class="md-nav__link">
+      <a href="../../lua/core/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2936,7 +2999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/cors/" class="md-nav__link">
+      <a href="../../lua/cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2957,7 +3020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/counter/" class="md-nav__link">
+      <a href="../../lua/counter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2978,7 +3041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/ctxdump/" class="md-nav__link">
+      <a href="../../lua/ctxdump/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2999,7 +3062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/dns/" class="md-nav__link">
+      <a href="../../lua/dns/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3020,7 +3083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/dns-server/" class="md-nav__link">
+      <a href="../../lua/dns-server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3041,7 +3104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/etcd/" class="md-nav__link">
+      <a href="../../lua/etcd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3062,7 +3125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/exec/" class="md-nav__link">
+      <a href="../../lua/exec/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3083,7 +3146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/feishu-auth/" class="md-nav__link">
+      <a href="../../lua/feishu-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3104,7 +3167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/fileinfo/" class="md-nav__link">
+      <a href="../../lua/fileinfo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3125,7 +3188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/ftpclient/" class="md-nav__link">
+      <a href="../../lua/ftpclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3146,7 +3209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/global-throttle/" class="md-nav__link">
+      <a href="../../lua/global-throttle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3167,7 +3230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/healthcheck/" class="md-nav__link">
+      <a href="../../lua/healthcheck/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3188,7 +3251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/hmac/" class="md-nav__link">
+      <a href="../../lua/hmac/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3209,7 +3272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/hoedown/" class="md-nav__link">
+      <a href="../../lua/hoedown/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3230,7 +3293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/http/" class="md-nav__link">
+      <a href="../../lua/http/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3251,7 +3314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/http2/" class="md-nav__link">
+      <a href="../../lua/http2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3272,7 +3335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/httpipe/" class="md-nav__link">
+      <a href="../../lua/httpipe/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3293,7 +3356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/hyperscan/" class="md-nav__link">
+      <a href="../../lua/hyperscan/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3314,7 +3377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/influx/" class="md-nav__link">
+      <a href="../../lua/influx/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3335,7 +3398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/ini/" class="md-nav__link">
+      <a href="../../lua/ini/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3356,7 +3419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/injection/" class="md-nav__link">
+      <a href="../../lua/injection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3377,7 +3440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/iputils/" class="md-nav__link">
+      <a href="../../lua/iputils/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3398,7 +3461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/jit-uuid/" class="md-nav__link">
+      <a href="../../lua/jit-uuid/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3419,7 +3482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/jq/" class="md-nav__link">
+      <a href="../../lua/jq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3440,7 +3503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/jsonrpc-batch/" class="md-nav__link">
+      <a href="../../lua/jsonrpc-batch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3461,7 +3524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/jump-consistent-hash/" class="md-nav__link">
+      <a href="../../lua/jump-consistent-hash/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3482,7 +3545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/jwt/" class="md-nav__link">
+      <a href="../../lua/jwt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3503,7 +3566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/kafka/" class="md-nav__link">
+      <a href="../../lua/kafka/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3524,7 +3587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/libcjson/" class="md-nav__link">
+      <a href="../../lua/libcjson/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3545,7 +3608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/libr3/" class="md-nav__link">
+      <a href="../../lua/libr3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3566,7 +3629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/limit-rate/" class="md-nav__link">
+      <a href="../../lua/limit-rate/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3587,7 +3650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/limit-traffic/" class="md-nav__link">
+      <a href="../../lua/limit-traffic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3608,7 +3671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/lmdb/" class="md-nav__link">
+      <a href="../../lua/lmdb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3629,7 +3692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/locations/" class="md-nav__link">
+      <a href="../../lua/locations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3650,7 +3713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/lock/" class="md-nav__link">
+      <a href="../../lua/lock/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3671,7 +3734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/logger-socket/" class="md-nav__link">
+      <a href="../../lua/logger-socket/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3692,7 +3755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/lrucache/" class="md-nav__link">
+      <a href="../../lua/lrucache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3713,7 +3776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/macaroons/" class="md-nav__link">
+      <a href="../../lua/macaroons/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3734,7 +3797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/mail/" class="md-nav__link">
+      <a href="../../lua/mail/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3755,7 +3818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/maxminddb/" class="md-nav__link">
+      <a href="../../lua/maxminddb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3776,7 +3839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/memcached/" class="md-nav__link">
+      <a href="../../lua/memcached/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3797,7 +3860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/mlcache/" class="md-nav__link">
+      <a href="../../lua/mlcache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3818,7 +3881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/multiplexer/" class="md-nav__link">
+      <a href="../../lua/multiplexer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3839,7 +3902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/murmurhash2/" class="md-nav__link">
+      <a href="../../lua/murmurhash2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3860,7 +3923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/mysql/" class="md-nav__link">
+      <a href="../../lua/mysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3881,7 +3944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/nettle/" class="md-nav__link">
+      <a href="../../lua/nettle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3902,7 +3965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/newrelic/" class="md-nav__link">
+      <a href="../../lua/newrelic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3923,7 +3986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/nsq/" class="md-nav__link">
+      <a href="../../lua/nsq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3944,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/ntlm/" class="md-nav__link">
+      <a href="../../lua/ntlm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3965,7 +4028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/openidc/" class="md-nav__link">
+      <a href="../../lua/openidc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3986,7 +4049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/openssl/" class="md-nav__link">
+      <a href="../../lua/openssl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4007,7 +4070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/perf/" class="md-nav__link">
+      <a href="../../lua/perf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4028,7 +4091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/prettycjson/" class="md-nav__link">
+      <a href="../../lua/prettycjson/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4049,7 +4112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/pubsub/" class="md-nav__link">
+      <a href="../../lua/pubsub/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4070,7 +4133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/qless/" class="md-nav__link">
+      <a href="../../lua/qless/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4091,7 +4154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/qless-web/" class="md-nav__link">
+      <a href="../../lua/qless-web/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4112,7 +4175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/rabbitmqstomp/" class="md-nav__link">
+      <a href="../../lua/rabbitmqstomp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4133,7 +4196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/rack/" class="md-nav__link">
+      <a href="../../lua/rack/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4154,7 +4217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/radixtree/" class="md-nav__link">
+      <a href="../../lua/radixtree/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4175,7 +4238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/redis/" class="md-nav__link">
+      <a href="../../lua/redis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4196,7 +4259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/redis-connector/" class="md-nav__link">
+      <a href="../../lua/redis-connector/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4217,7 +4280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/redis-ratelimit/" class="md-nav__link">
+      <a href="../../lua/redis-ratelimit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4238,7 +4301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/redis-util/" class="md-nav__link">
+      <a href="../../lua/redis-util/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4259,7 +4322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/repl/" class="md-nav__link">
+      <a href="../../lua/repl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4280,7 +4343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/reqargs/" class="md-nav__link">
+      <a href="../../lua/reqargs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4301,7 +4364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/requests/" class="md-nav__link">
+      <a href="../../lua/requests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4322,7 +4385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/riak/" class="md-nav__link">
+      <a href="../../lua/riak/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4343,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/router/" class="md-nav__link">
+      <a href="../../lua/router/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4364,7 +4427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/rsa/" class="md-nav__link">
+      <a href="../../lua/rsa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4385,7 +4448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/scrypt/" class="md-nav__link">
+      <a href="../../lua/scrypt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4406,7 +4469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/session/" class="md-nav__link">
+      <a href="../../lua/session/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4427,7 +4490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/shell/" class="md-nav__link">
+      <a href="../../lua/shell/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4448,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/signal/" class="md-nav__link">
+      <a href="../../lua/signal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4469,7 +4532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/smtp/" class="md-nav__link">
+      <a href="../../lua/smtp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4490,7 +4553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/snappy/" class="md-nav__link">
+      <a href="../../lua/snappy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4511,7 +4574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/sniproxy/" class="md-nav__link">
+      <a href="../../lua/sniproxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4532,7 +4595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/socket/" class="md-nav__link">
+      <a href="../../lua/socket/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4553,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/stats/" class="md-nav__link">
+      <a href="../../lua/stats/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4574,7 +4637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/string/" class="md-nav__link">
+      <a href="../../lua/string/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4595,7 +4658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/t1k/" class="md-nav__link">
+      <a href="../../lua/t1k/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4616,7 +4679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/tags/" class="md-nav__link">
+      <a href="../../lua/tags/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4637,7 +4700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/tarantool/" class="md-nav__link">
+      <a href="../../lua/tarantool/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4658,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/template/" class="md-nav__link">
+      <a href="../../lua/template/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4679,7 +4742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/test/" class="md-nav__link">
+      <a href="../../lua/test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4700,7 +4763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/timer/" class="md-nav__link">
+      <a href="../../lua/timer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4721,7 +4784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/tlc/" class="md-nav__link">
+      <a href="../../lua/tlc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4742,7 +4805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/tsort/" class="md-nav__link">
+      <a href="../../lua/tsort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4763,7 +4826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/txid/" class="md-nav__link">
+      <a href="../../lua/txid/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4784,7 +4847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/upload/" class="md-nav__link">
+      <a href="../../lua/upload/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4805,7 +4868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/upstream/" class="md-nav__link">
+      <a href="../../lua/upstream/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4826,7 +4889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/upstream-healthcheck/" class="md-nav__link">
+      <a href="../../lua/upstream-healthcheck/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4847,7 +4910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/uuid/" class="md-nav__link">
+      <a href="../../lua/uuid/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4868,7 +4931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/validation/" class="md-nav__link">
+      <a href="../../lua/validation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4889,7 +4952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/vhost/" class="md-nav__link">
+      <a href="../../lua/vhost/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4910,7 +4973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/waf/" class="md-nav__link">
+      <a href="../../lua/waf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4931,7 +4994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/weauth/" class="md-nav__link">
+      <a href="../../lua/weauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4952,7 +5015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/websocket/" class="md-nav__link">
+      <a href="../../lua/websocket/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4973,7 +5036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/websocket-proxy/" class="md-nav__link">
+      <a href="../../lua/websocket-proxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4994,7 +5057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/woothee/" class="md-nav__link">
+      <a href="../../lua/woothee/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5015,7 +5078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/worker-events/" class="md-nav__link">
+      <a href="../../lua/worker-events/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5036,7 +5099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lua/xxhash/" class="md-nav__link">
+      <a href="../../lua/xxhash/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5104,7 +5167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../branches/" class="md-nav__link">
+      <a href="../../branches/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5125,7 +5188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nginx-mod/" class="md-nav__link">
+      <a href="../../nginx-mod/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5146,7 +5209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tengine/" class="md-nav__link">
+      <a href="../../tengine/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5167,7 +5230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../plesk/" class="md-nav__link">
+      <a href="../../plesk/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5188,7 +5251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quic/" class="md-nav__link">
+      <a href="../../quic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5209,7 +5272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../angie/" class="md-nav__link">
+      <a href="../../angie/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5270,6 +5333,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5283,419 +5387,49 @@
                   
 
 
-<h1 id="modules">Modules</h1>
-<p>NGINX has superpowers and it has super strength. They are dynamic NGINX modules.
-GetPageSpeed makes them available for you in the form of easy-to-install packages.</p>
-<table>
-<thead>
-<tr>
-<th>Package Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="accept-language/">nginx-module-accept-language</a></td>
-<td>NGINX Accept-Language module</td>
-</tr>
-<tr>
-<td><a href="ajp/">nginx-module-ajp</a></td>
-<td>Support AJP protocol proxy with NGINX</td>
-</tr>
-<tr>
-<td><a href="array-var/">nginx-module-array-var</a></td>
-<td>Array-typed variables for NGINX</td>
-</tr>
-<tr>
-<td><a href="auth-digest/">nginx-module-auth-digest</a></td>
-<td>Digest Authentication for NGINX</td>
-</tr>
-<tr>
-<td><a href="auth-ldap/">nginx-module-auth-ldap</a></td>
-<td>LDAP Authentication module for nginx</td>
-</tr>
-<tr>
-<td><a href="auth-pam/">nginx-module-auth-pam</a></td>
-<td>PAM authentication dynamic module for NGINX</td>
-</tr>
-<tr>
-<td><a href="auth-totp/">nginx-module-auth-totp</a></td>
-<td>Time-based one-time password (TOTP) authentication for NGINX</td>
-</tr>
-<tr>
-<td><a href="aws-auth/">nginx-module-aws-auth</a></td>
-<td>NGINX module to proxy to authenticated AWS services</td>
-</tr>
-<tr>
-<td><a href="bot-verifier/">nginx-module-bot-verifier</a></td>
-<td>A search index bot verification module for NGINX</td>
-</tr>
-<tr>
-<td><a href="brotli/">nginx-module-brotli</a></td>
-<td>NGINX Brotli dynamic modules</td>
-</tr>
-<tr>
-<td><a href="cache-purge/">nginx-module-cache-purge</a></td>
-<td>NGINX Cache Purge module</td>
-</tr>
-<tr>
-<td><a href="captcha/">nginx-module-captcha</a></td>
-<td>NGINX Captcha Module</td>
-</tr>
-<tr>
-<td><a href="combined-upstreams/">nginx-module-combined-upstreams</a></td>
-<td>NGINX Combined Upstreams module</td>
-</tr>
-<tr>
-<td><a href="concat/">nginx-module-concat</a></td>
-<td><abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Concatenation module for NGINX</td>
-</tr>
-<tr>
-<td><a href="cookie-flag/">nginx-module-cookie-flag</a></td>
-<td>NGINX cookie flag module</td>
-</tr>
-<tr>
-<td><a href="cookie-limit/">nginx-module-cookie-limit</a></td>
-<td>NGINX module to limit the number of malicious ip forged cookies</td>
-</tr>
-<tr>
-<td><a href="coolkit/">nginx-module-coolkit</a></td>
-<td>NGINX CoolKit Module</td>
-</tr>
-<tr>
-<td><a href="dav-ext/">nginx-module-dav-ext</a></td>
-<td>NGINX WebDAV PROPFIND,OPTIONS,LOCK,UNLOCK support</td>
-</tr>
-<tr>
-<td><a href="doh/">nginx-module-doh</a></td>
-<td>NGINX module for serving DNS-over-HTTPS (DOH) requests</td>
-</tr>
-<tr>
-<td><a href="dynamic-etag/">nginx-module-dynamic-etag</a></td>
-<td>NGINX module for adding ETag to dynamic content</td>
-</tr>
-<tr>
-<td><a href="dynamic-limit-req/">nginx-module-dynamic-limit-req</a></td>
-<td>NGINX module to dynamically lock IP and release it periodically</td>
-</tr>
-<tr>
-<td><a href="echo/">nginx-module-echo</a></td>
-<td>nginx Echo module</td>
-</tr>
-<tr>
-<td><a href="encrypted-session/">nginx-module-encrypted-session</a></td>
-<td>Encrypt and decrypt NGINX variable values</td>
-</tr>
-<tr>
-<td><a href="execute/">nginx-module-execute</a></td>
-<td>NGINX Execute module</td>
-</tr>
-<tr>
-<td><a href="f4fhds/">nginx-module-f4fhds</a></td>
-<td>NGINX module for Adobe f4f format</td>
-</tr>
-<tr>
-<td><a href="fancyindex/">nginx-module-fancyindex</a></td>
-<td>NGINX Fancy Index module</td>
-</tr>
-<tr>
-<td><a href="flv/">nginx-module-flv</a></td>
-<td>Media streaming server based on nginx-module-rtmp</td>
-</tr>
-<tr>
-<td><a href="form-input/">nginx-module-form-input</a></td>
-<td>NGINX form input module</td>
-</tr>
-<tr>
-<td><a href="geoip2/">nginx-module-geoip2</a></td>
-<td>NGINX GeoIP2 module</td>
-</tr>
-<tr>
-<td><a href="geoip/">nginx-module-geoip</a></td>
-<td>NGINX GeoIP dynamic modules</td>
-</tr>
-<tr>
-<td><a href="google/">nginx-module-google</a></td>
-<td>NGINX Module for Google Mirror creation</td>
-</tr>
-<tr>
-<td><a href="graphite/">nginx-module-graphite</a></td>
-<td>An NGINX module for collecting stats into Graphite</td>
-</tr>
-<tr>
-<td><a href="headers-more/">nginx-module-headers-more</a></td>
-<td>NGINX Headers More dynamic module</td>
-</tr>
-<tr>
-<td><a href="hmac-secure-link/">nginx-module-hmac-secure-link</a></td>
-<td>Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes</td>
-</tr>
-<tr>
-<td><a href="html-sanitize/">nginx-module-html-sanitize</a></td>
-<td>NGINX module to sanitize <abbr title="Hyper Text Markup Language">HTML</abbr> 5 with whitelisted elements, attributes and CSS</td>
-</tr>
-<tr>
-<td><a href="iconv/">nginx-module-iconv</a></td>
-<td>NGINX iconv module</td>
-</tr>
-<tr>
-<td><a href="image-filter/">nginx-module-image-filter</a></td>
-<td>NGINX image filter dynamic module</td>
-</tr>
-<tr>
-<td><a href="immutable/">nginx-module-immutable</a></td>
-<td>NGINX module for setting immutable caching on static assets</td>
-</tr>
-<tr>
-<td><a href="ipscrub/">nginx-module-ipscrub</a></td>
-<td>IP address anonymizer module for NGINX</td>
-</tr>
-<tr>
-<td><a href="jpeg/">nginx-module-jpeg</a></td>
-<td>NGINX JPEG filter module</td>
-</tr>
-<tr>
-<td><a href="js-challenge/">nginx-module-js-challenge</a></td>
-<td>NGINX Javascript challenge module</td>
-</tr>
-<tr>
-<td><a href="json-var/">nginx-module-json-var</a></td>
-<td>NGINX JSON variables module</td>
-</tr>
-<tr>
-<td><a href="json/">nginx-module-json</a></td>
-<td>NGINX JSON module</td>
-</tr>
-<tr>
-<td><a href="jwt/">nginx-module-jwt</a></td>
-<td>NGINX JWT Module</td>
-</tr>
-<tr>
-<td><a href="length-hiding/">nginx-module-length-hiding</a></td>
-<td>NGINX Length Hiding Filter Module</td>
-</tr>
-<tr>
-<td><a href="let/">nginx-module-let</a></td>
-<td>NGINX let module</td>
-</tr>
-<tr>
-<td><a href="live-common/">nginx-module-live-common</a></td>
-<td>Kaltura Media Framework Common NGINX Module</td>
-</tr>
-<tr>
-<td><a href="log-zmq/">nginx-module-log-zmq</a></td>
-<td>ZeroMQ logger module for NGINX</td>
-</tr>
-<tr>
-<td><a href="lua/">nginx-module-lua</a></td>
-<td>Lua scripting support for NGINX</td>
-</tr>
-<tr>
-<td><a href="markdown/">nginx-module-markdown</a></td>
-<td>Markdown-to-html NGINX module</td>
-</tr>
-<tr>
-<td><a href="memc/">nginx-module-memc</a></td>
-<td>Extended version of the standard NGINX memcached module</td>
-</tr>
-<tr>
-<td><a href="naxsi/">nginx-module-naxsi</a></td>
-<td>NGINX Anti XSS &amp; SQL Injection module</td>
-</tr>
-<tr>
-<td><a href="nchan/">nginx-module-nchan</a></td>
-<td>Scalable, flexible pub/sub server for the modern web</td>
-</tr>
-<tr>
-<td><a href="ndk/">nginx-module-ndk</a></td>
-<td>Nginx Development Kit</td>
-</tr>
-<tr>
-<td><a href="njs/">nginx-module-njs</a></td>
-<td>NGINX njs dynamic modules</td>
-</tr>
-<tr>
-<td><a href="ntlm/">nginx-module-ntlm</a></td>
-<td>NTLM NGINX Module</td>
-</tr>
-<tr>
-<td><a href="pagespeed/">nginx-module-pagespeed</a></td>
-<td>PageSpeed dynamic module for NGINX</td>
-</tr>
-<tr>
-<td><a href="passenger/">nginx-module-passenger</a></td>
-<td>Passenger module</td>
-</tr>
-<tr>
-<td><a href="perl/">nginx-module-perl</a></td>
-<td>NGINX Perl dynamic module</td>
-</tr>
-<tr>
-<td><a href="phantom-token/">nginx-module-phantom-token</a></td>
-<td>Phantom Token NGINX Module</td>
-</tr>
-<tr>
-<td><a href="postgres/">nginx-module-postgres</a></td>
-<td>PostgreSQL module for NGINX</td>
-</tr>
-<tr>
-<td><a href="pta/">nginx-module-pta</a></td>
-<td>Period of Time Authentication module for NGINX</td>
-</tr>
-<tr>
-<td><a href="push-stream/">nginx-module-push-stream</a></td>
-<td>NGINX push stream module</td>
-</tr>
-<tr>
-<td><a href="rdns/">nginx-module-rdns</a></td>
-<td>NGINX <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> rDNS module</td>
-</tr>
-<tr>
-<td><a href="redis2/">nginx-module-redis2</a></td>
-<td>NGINX upstream module for the Redis 2.0 protocol</td>
-</tr>
-<tr>
-<td><a href="rtmp/">nginx-module-rtmp</a></td>
-<td>NGINX RTMP module</td>
-</tr>
-<tr>
-<td><a href="secure-token/">nginx-module-secure-token</a></td>
-<td>Secure token module for NGINX</td>
-</tr>
-<tr>
-<td><a href="security-headers/">nginx-module-security-headers</a></td>
-<td>NGINX module for sending security headers</td>
-</tr>
-<tr>
-<td><a href="security/">nginx-module-security</a></td>
-<td>ModSecurity v3 Nginx Connector</td>
-</tr>
-<tr>
-<td><a href="set-misc/">nginx-module-set-misc</a></td>
-<td>NGINX Set-Misc module</td>
-</tr>
-<tr>
-<td><a href="shibboleth/">nginx-module-shibboleth</a></td>
-<td>Shibboleth Auth Request module for NGINX</td>
-</tr>
-<tr>
-<td><a href="slowfs/">nginx-module-slowfs</a></td>
-<td>NGINX SlowFS Cache Module</td>
-</tr>
-<tr>
-<td><a href="small-light/">nginx-module-small-light</a></td>
-<td>Dynamic image transformation module For NGINX</td>
-</tr>
-<tr>
-<td><a href="spnego-http-auth/">nginx-module-spnego-http-auth</a></td>
-<td>Nginx module for <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> SPNEGO auth</td>
-</tr>
-<tr>
-<td><a href="srcache/">nginx-module-srcache</a></td>
-<td>Transparent subrequest-based caching layout for arbitrary NGINX locations</td>
-</tr>
-<tr>
-<td><a href="srt/">nginx-module-srt</a></td>
-<td>Nginx SRT Module</td>
-</tr>
-<tr>
-<td><a href="statsd/">nginx-module-statsd</a></td>
-<td>NGINX module for sending stats to statsd</td>
-</tr>
-<tr>
-<td><a href="sticky/">nginx-module-sticky</a></td>
-<td>NGINX sticky cookie module</td>
-</tr>
-<tr>
-<td><a href="stream-lua/">nginx-module-stream-lua</a></td>
-<td>Lua scripting support for NGINX streams</td>
-</tr>
-<tr>
-<td><a href="stream-sts/">nginx-module-stream-sts</a></td>
-<td>Nginx stream server traffic status core module</td>
-</tr>
-<tr>
-<td><a href="stream-upsync/">nginx-module-stream-upsync</a></td>
-<td>NGINX module for syncing stream backends from consul or etcd</td>
-</tr>
-<tr>
-<td><a href="sts/">nginx-module-sts</a></td>
-<td>Nginx stream server traffic status module</td>
-</tr>
-<tr>
-<td><a href="substitutions/">nginx-module-substitutions</a></td>
-<td>String substitutions module for nginx</td>
-</tr>
-<tr>
-<td><a href="sysguard/">nginx-module-sysguard</a></td>
-<td>NGINX sysguard module</td>
-</tr>
-<tr>
-<td><a href="testcookie/">nginx-module-testcookie</a></td>
-<td>NGINX testcookie robot mitigation module</td>
-</tr>
-<tr>
-<td><a href="traffic-accounting/">nginx-module-traffic-accounting</a></td>
-<td>Monitor the incoming and outgoing traffic metrics in realtime for NGINX</td>
-</tr>
-<tr>
-<td><a href="ts/">nginx-module-ts</a></td>
-<td>NGINX MPEG-TS Live Module</td>
-</tr>
-<tr>
-<td><a href="unbrotli/">nginx-module-unbrotli</a></td>
-<td>Decompresses Brotli-encoded responses for clients that do not support it</td>
-</tr>
-<tr>
-<td><a href="untar/">nginx-module-untar</a></td>
-<td>NGINX <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Untar Module</td>
-</tr>
-<tr>
-<td><a href="upload/">nginx-module-upload</a></td>
-<td>NGINX module for handling file uploads</td>
-</tr>
-<tr>
-<td><a href="upstream-fair/">nginx-module-upstream-fair</a></td>
-<td>The fair load balancer module for NGINX</td>
-</tr>
-<tr>
-<td><a href="upstream-jdomain/">nginx-module-upstream-jdomain</a></td>
-<td>Asynchronous domain name resolution module for NGINX upstream</td>
-</tr>
-<tr>
-<td><a href="upsync/">nginx-module-upsync</a></td>
-<td>NGINX module for syncing upstreams from consul or etcd</td>
-</tr>
-<tr>
-<td><a href="vod/">nginx-module-vod</a></td>
-<td>NGINX-based VOD Packager</td>
-</tr>
-<tr>
-<td><a href="vts/">nginx-module-vts</a></td>
-<td>NGINX virtual host traffic status module</td>
-</tr>
-<tr>
-<td><a href="webp/">nginx-module-webp</a></td>
-<td>NGINX WebP module</td>
-</tr>
-<tr>
-<td><a href="xslt/">nginx-module-xslt</a></td>
-<td>NGINX XSLT dynamic module</td>
-</tr>
-<tr>
-<td><a href="xss/">nginx-module-xss</a></td>
-<td>Native cross-site scripting support in NGINX</td>
-</tr>
-<tr>
-<td><a href="zip/">nginx-module-zip</a></td>
-<td>Streaming ZIP archiver for NGINX</td>
-</tr>
-<tr>
-<td><a href="zstd/">nginx-module-zstd</a></td>
-<td>NGINX module for the Zstandard compression</td>
-</tr>
-</tbody>
-</table>
+<h1 id="unbrotli-decompresses-brotli-encoded-responses-for-clients-that-do-not-support-it"><em>unbrotli</em>: Decompresses Brotli-encoded responses for clients that do not support it</h1>
+<h2 id="installation">Installation</h2>
+<p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
+<ul>
+<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>CentOS 7, 8, 9</li>
+<li>AlmaLinux 8, 9</li>
+<li>Rocky Linux 8, 9</li>
+<li>Amazon Linux 2 and Amazon Linux 2023</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-unbrotli
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-unbrotli
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_unbrotli_filter_module.so</span><span class="p">;</span>
+</code></pre></div>
+<p>This document describes nginx-module-unbrotli <a href="https://github.com/dvershinin/ngx_unbrotli/releases/tag/v0.0.1" target="_blank">v0.0.1</a> 
+released on Oct 13 2024.</p>
+<hr />
+<p>The <code>ngx_unbrotli</code> module is a filter that decompresses responses with <code>Content-Encoding: br</code> for clients that do not support <code>brotli</code> encoding method.</p>
+<h4 id="usage">Usage</h4>
+<p><code>load_module modules/ngx_http_unbrotli_filter_module.so;</code></p>
+<p>Usage is similar to <a href="http://nginx.org/en/docs/http/ngx_http_gunzip_module.html">ngx_http_gunzip_module</a></p>
+<ul>
+<li>Replace <code>gunzip</code> with <code>unbrotli</code></li>
+<li>Replace <code>gunzip_buffers</code> with <code>unbrotli_buffers</code></li>
+</ul>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/dvershinin/ngx_unbrotli" target="_blank">GitHub 
+repository for 
+nginx-module-unbrotli</a>.</p>
 
 
 
@@ -5813,10 +5547,10 @@ GetPageSpeed makes them available for you in the form of easy-to-install package
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
   </body>
