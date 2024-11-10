@@ -33,8 +33,8 @@ load_module modules/ngx_http_security_headers_module.so;
 ```
 
 
-This document describes nginx-module-security-headers [v0.1.0](https://github.com/GetPageSpeed/ngx_security_headers/releases/tag/0.1.0){target=_blank} 
-released on Sep 05 2023.
+This document describes nginx-module-security-headers [v0.1.1](https://github.com/GetPageSpeed/ngx_security_headers/releases/tag/0.1.1){target=_blank} 
+released on Nov 09 2024.
 
 <hr />
 

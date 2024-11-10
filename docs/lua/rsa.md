@@ -25,18 +25,18 @@ dnf -y install lua5.1-resty-rsa
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-rsa [v1.1.0](https://github.com/spacewander/lua-resty-rsa/releases/tag/v1.1.0){target=_blank} 
-released on Aug 24 2020.
+This document describes lua-resty-rsa [v1.1.1](https://github.com/spacewander/lua-resty-rsa/releases/tag/v1.1.1){target=_blank} 
+released on Nov 09 2024.
     
 <hr />
 
-lua-resty-rsa - RSA functions for LuaJIT
+lua-resty-rsa - RSA functions for OpenResty
 
 ## Status
 
 This library is considered production ready.
 
-Build status: [![Travis](https://travis-ci.org/spacewander/lua-resty-rsa.svg?branch=master)](https://travis-ci.org/spacewander/lua-resty-rsa)
+Build status: ![https://github.com/spacewander/lua-resty-rsa/workflows/build/badge.svg?branch=master](https://github.com/spacewander/lua-resty-rsa/actions/workflows/ci.yml/badge.svg?branch=master)
 
 
 ## Description
@@ -171,7 +171,8 @@ To load this library,
 `syntax: public_key, private_key, err = rsa:generate_rsa_keys(bits, in_pkcs8_fmt)`
 
  Generate rsa public key and private key by specifying the number of `bits`.
- The `in_pkcs8_fmt` is optional. If `in_pkcs8_fmt` is true, the generated keys are in PKCS#8 format, which start with `-----BEGIN PUBLIC` or `-----BEGIN PRIVATE`.
+ The `in_pkcs8_fmt` is optional. If `in_pkcs8_fmt` is true, the generated priviate key is in PKCS#8 format and
+ the public key is in PKIX format, which start with `-----BEGIN PUBLIC` or `-----BEGIN PRIVATE`.
  Otherwise the generated keys are in PKCS#1 format, which start with `-----BEGIN RSA`.
 
 ## new
@@ -194,14 +195,14 @@ By default the type will be detected from the value of the key.
 | `key_type` value | meaning |
 | ------------------- | ------ |
 | rsa.KEY_TYPE.PKCS1 | The input key is in PKCS#1 format(usually starts with `-----BEGIN RSA PUBLIC`). |
-| rsa.KEY_TYPE.PKCS8 | The input key is in PKCS#8 format(usually starts with `-----BEGIN PUBLIC`). |
+| rsa.KEY_TYPE.PKIX | The input key is in PKIX format(usually starts with `-----BEGIN PUBLIC`). |
 
 ```lua
--- creates a rsa object with pkcs#8 format of public key
+-- creates a rsa object with PKIX format of public key
 local resty_rsa = require "resty.rsa"
 local pub, err = resty_rsa:new({
     public_key = RSA_PKCS8_PUB_KEY,
-    key_type = resty_rsa.KEY_TYPE.PKCS8,
+    key_type = resty_rsa.KEY_TYPE.PKIX,
 })
 
 -- creates a rsa object with pkcs#8 format of private key

@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-t1k
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-t1k [v1.1.5](https://github.com/chaitin/lua-resty-t1k/releases/tag/v1.1.5){target=_blank} 
-released on Jul 04 2024.
+This document describes lua-resty-t1k [v1.1.6](https://github.com/chaitin/lua-resty-t1k/releases/tag/v1.1.6){target=_blank} 
+released on Nov 04 2024.
     
 <hr />
 
