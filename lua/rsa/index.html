@@ -5653,14 +5653,14 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-rsa
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-rsa <a href="https://github.com/spacewander/lua-resty-rsa/releases/tag/v1.1.0" target="_blank">v1.1.0</a> 
-released on Aug 24 2020.</p>
+<p>This document describes lua-resty-rsa <a href="https://github.com/spacewander/lua-resty-rsa/releases/tag/v1.1.1" target="_blank">v1.1.1</a> 
+released on Nov 09 2024.</p>
 <hr />
 
-<p>lua-resty-rsa - RSA functions for LuaJIT</p>
+<p>lua-resty-rsa - RSA functions for OpenResty</p>
 <h2 id="status">Status</h2>
 <p>This library is considered production ready.</p>
-<p>Build status: <a href="https://travis-ci.org/spacewander/lua-resty-rsa"><img alt="Travis" src="https://travis-ci.org/spacewander/lua-resty-rsa.svg?branch=master" /></a></p>
+<p>Build status: <img alt="https://github.com/spacewander/lua-resty-rsa/workflows/build/badge.svg?branch=master" src="https://github.com/spacewander/lua-resty-rsa/actions/workflows/ci.yml/badge.svg?branch=master" /></p>
 <h2 id="description">Description</h2>
 <p>This library requires an nginx build with OpenSSL,
 the <a href="https://github.com/openresty/lua-nginx-module">ngx_lua module</a>, and <a href="http://luajit.org/luajit.html">LuaJIT</a>.</p>
@@ -5782,7 +5782,8 @@ the <a href="https://github.com/openresty/lua-nginx-module">ngx_lua module</a>, 
 <h2 id="generate_rsa_keys">generate_rsa_keys</h2>
 <p><code>syntax: public_key, private_key, err = rsa:generate_rsa_keys(bits, in_pkcs8_fmt)</code></p>
 <p>Generate rsa public key and private key by specifying the number of <code>bits</code>.
- The <code>in_pkcs8_fmt</code> is optional. If <code>in_pkcs8_fmt</code> is true, the generated keys are in PKCS#8 format, which start with <code>-----BEGIN PUBLIC</code> or <code>-----BEGIN PRIVATE</code>.
+ The <code>in_pkcs8_fmt</code> is optional. If <code>in_pkcs8_fmt</code> is true, the generated priviate key is in PKCS#8 format and
+ the public key is in PKIX format, which start with <code>-----BEGIN PUBLIC</code> or <code>-----BEGIN PRIVATE</code>.
  Otherwise the generated keys are in PKCS#1 format, which start with <code>-----BEGIN RSA</code>.</p>
 <h2 id="new">new</h2>
 <p><code>syntax: obj, err = rsa:new(opts)</code></p>
@@ -5812,16 +5813,16 @@ By default the type will be detected from the value of the key.</li>
 <td>The input key is in PKCS#1 format(usually starts with <code>-----BEGIN RSA PUBLIC</code>).</td>
 </tr>
 <tr>
-<td>rsa.KEY_TYPE.PKCS8</td>
-<td>The input key is in PKCS#8 format(usually starts with <code>-----BEGIN PUBLIC</code>).</td>
+<td>rsa.KEY_TYPE.PKIX</td>
+<td>The input key is in PKIX format(usually starts with <code>-----BEGIN PUBLIC</code>).</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1">-- creates a rsa object with pkcs#8 format of public key</span>
+<div class="highlight"><pre><span></span><code><span class="c1">-- creates a rsa object with PKIX format of public key</span>
 <span class="kd">local</span> <span class="n">resty_rsa</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.rsa&quot;</span>
 <span class="kd">local</span> <span class="n">pub</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">resty_rsa</span><span class="p">:</span><span class="n">new</span><span class="p">({</span>
     <span class="n">public_key</span> <span class="o">=</span> <span class="n">RSA_PKCS8_PUB_KEY</span><span class="p">,</span>
-    <span class="n">key_type</span> <span class="o">=</span> <span class="n">resty_rsa</span><span class="p">.</span><span class="n">KEY_TYPE</span><span class="p">.</span><span class="n">PKCS8</span><span class="p">,</span>
+    <span class="n">key_type</span> <span class="o">=</span> <span class="n">resty_rsa</span><span class="p">.</span><span class="n">KEY_TYPE</span><span class="p">.</span><span class="n">PKIX</span><span class="p">,</span>
 <span class="p">})</span>
 
 <span class="c1">-- creates a rsa object with pkcs#8 format of private key</span>
