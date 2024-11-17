@@ -5635,8 +5635,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-pubsub
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-pubsub <a href="https://github.com/wingify/lua-resty-pubsub/releases/tag/v1.4" target="_blank">v1.4</a> 
-released on Apr 17 2021.</p>
+<p>This document describes lua-resty-pubsub <a href="https://github.com/wingify/lua-resty-pubsub/releases/tag/v1.5" target="_blank">v1.5</a> 
+released on Nov 13 2024.</p>
 <hr />
 
 <p>Lua Pubsub client driver for the <code>ngx_lua</code> based on the cosocket API.</p>
@@ -5715,7 +5715,7 @@ released on Apr 17 2021.</p>
                     <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">send_err</span> <span class="o">=</span> <span class="n">producer</span><span class="p">:</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Some Random Text&quot;</span><span class="p">,</span> <span class="p">{</span>
                         <span class="n">attr1</span> <span class="o">=</span> <span class="s2">&quot;Test1&quot;</span><span class="p">,</span>
                         <span class="n">attr2</span> <span class="o">=</span> <span class="s2">&quot;Test2&quot;</span>
-                    <span class="p">})</span>
+                    <span class="p">},</span> <span class="s2">&quot;optional_ordering_key&quot;</span><span class="p">)</span>
 
                     <span class="c1">-- Also check if there is any error while sending message</span>
                     <span class="kr">if</span> <span class="n">send_err</span> <span class="o">~=</span> <span class="kc">nil</span> <span class="kr">then</span>
@@ -5863,9 +5863,9 @@ released on Apr 17 2021.</p>
 <h4 id="new">new</h4>
 <p><code>syntax: local p, err = producer:new(pubsub_config)</code></p>
 <h4 id="send">send</h4>
-<p><code>syntax: p:send(message, attributes)</code></p>
+<p><code>syntax: p:send(message, attributes[, ordering_key])</code></p>
 <ul>
-<li>Requires a message of type string and attributes of type table</li>
+<li>Requires a message of type string, attributes of type table and an optional ordering_key of type string</li>
 </ul>
 <h2 id="see-also">See Also</h2>
 <ul>
