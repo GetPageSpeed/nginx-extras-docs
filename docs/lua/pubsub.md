@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-pubsub
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-pubsub [v1.4](https://github.com/wingify/lua-resty-pubsub/releases/tag/v1.4){target=_blank} 
-released on Apr 17 2021.
+This document describes lua-resty-pubsub [v1.5](https://github.com/wingify/lua-resty-pubsub/releases/tag/v1.5){target=_blank} 
+released on Nov 13 2024.
     
 <hr />
 
@@ -114,7 +114,7 @@ Note that at least [ngx_lua 0.9.3](https://github.com/openresty/lua-nginx-module
                     local ok, send_err = producer:send("Some Random Text", {
                         attr1 = "Test1",
                         attr2 = "Test2"
-                    })
+                    }, "optional_ordering_key")
 
                     -- Also check if there is any error while sending message
                     if send_err ~= nil then
@@ -174,9 +174,9 @@ To load this module, just do this
 `syntax: local p, err = producer:new(pubsub_config)`
 
 #### send
-`syntax: p:send(message, attributes)`
+`syntax: p:send(message, attributes[, ordering_key])`
 
-* Requires a message of type string and attributes of type table
+* Requires a message of type string, attributes of type table and an optional ordering_key of type string
 
 ## See Also
 
