@@ -83,6 +83,7 @@
 | [nginx-module-stream-upsync](modules/stream-upsync.md)           | NGINX module for syncing stream backends from consul or etcd                  |
 | [nginx-module-sts](modules/sts.md)                               | Nginx stream server traffic status module                                     |
 | [nginx-module-substitutions](modules/substitutions.md)           | String substitutions module for nginx                                         |
+| [nginx-module-sxg](modules/sxg.md)                               | Signed HTTP Exchange(SXG) support for NGINX                                   |
 | [nginx-module-sysguard](modules/sysguard.md)                     | NGINX sysguard module                                                         |
 | [nginx-module-testcookie](modules/testcookie.md)                 | NGINX testcookie robot mitigation module                                      |
 | [nginx-module-traffic-accounting](modules/traffic-accounting.md) | Monitor the incoming and outgoing traffic metrics in realtime for NGINX       |

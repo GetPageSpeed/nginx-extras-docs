@@ -128,6 +128,7 @@ nav:
     stream-upsync: modules/stream-upsync.md
     sts: modules/sts.md
     substitutions: modules/substitutions.md
+    sxg: modules/sxg.md
     sysguard: modules/sysguard.md
     testcookie: modules/testcookie.md
     traffic-accounting: modules/traffic-accounting.md
