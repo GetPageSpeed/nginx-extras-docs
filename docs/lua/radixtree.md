@@ -25,8 +25,8 @@ dnf -y install lua5.1-resty-radixtree
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-radixtree [v2.9.1](https://github.com/api7/lua-resty-radixtree/releases/tag/v2.9.1){target=_blank} 
-released on Jan 21 2024.
+This document describes lua-resty-radixtree [v2.9.2](https://github.com/api7/lua-resty-radixtree/releases/tag/v2.9.2){target=_blank} 
+released on Nov 28 2024.
     
 <hr />
 
