@@ -4,7 +4,7 @@
 | [nginx-module-ajp](modules/ajp.md)                               | Support AJP protocol proxy with NGINX                                         |
 | [nginx-module-array-var](modules/array-var.md)                   | Array-typed variables for NGINX                                               |
 | [nginx-module-auth-digest](modules/auth-digest.md)               | Digest Authentication for NGINX                                               |
-| [nginx-module-auth-ldap](modules/auth-ldap.md)                   | LDAP Authentication module for nginx                                          |
+| [nginx-module-auth-ldap](modules/auth-ldap.md)                   | LDAP Authentication module for NGINX                                          |
 | [nginx-module-auth-pam](modules/auth-pam.md)                     | PAM authentication dynamic module for NGINX                                   |
 | [nginx-module-auth-totp](modules/auth-totp.md)                   | Time-based one-time password (TOTP) authentication for NGINX                  |
 | [nginx-module-aws-auth](modules/aws-auth.md)                     | NGINX module to proxy to authenticated AWS services                           |

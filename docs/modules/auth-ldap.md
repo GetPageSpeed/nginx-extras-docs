@@ -1,4 +1,4 @@
-# *auth-ldap*: LDAP Authentication module for nginx
+# *auth-ldap*: LDAP Authentication module for NGINX
 
 
 ## Installation

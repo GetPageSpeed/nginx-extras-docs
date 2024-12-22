@@ -33,8 +33,8 @@ load_module modules/ngx_http_auth_totp_module.so;
 ```
 
 
-This document describes nginx-module-auth-totp [v1.0.0](https://github.com/61131/nginx-http-auth-totp/releases/tag/1.0.0){target=_blank} 
-released on Aug 26 2024.
+This document describes nginx-module-auth-totp [v1.1.0](https://github.com/61131/nginx-http-auth-totp/releases/tag/1.1.0){target=_blank} 
+released on Dec 18 2024.
 
 <hr />
 
@@ -51,21 +51,38 @@ The nginx-http-auth-totp module provides TOTP authentication for a Nginx server.
 * Configurable secret, time reference, time step and truncation length for TOTP generation
 * Configurable time-skew for TOTP validation
 
+## Packages
+
+For users who prefer pre-built and optimized packages, the nginx-http-auth-totp module can be installed from the [GetPageSpeed repository](https://nginx-extras.getpagespeed.com/modules/auth-totp/):
+
+```bash
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+dnf -y install nginx-module-auth-totp
+```
+
 ## Configuration
 
-    server {
-        listen 80;
+```nginx
+server {
+    listen 80;
 
-        location /protected {
-            auth_totp_realm "Protected";
-            auth_totp_file /etc/nginx/totp.conf;
-            auth_totp_length 8;
-            auth_totp_skew 1;
-            auth_totp_step 1m;
-            auth_totp_cookie "totp-session";
-            auth_totp_expiry 1d;
-        }
+    location /protected {
+        auth_totp_realm "Protected";
+        auth_totp_file /etc/nginx/totp.conf;
+        auth_totp_length 8;
+        auth_totp_skew 1;
+        auth_totp_step 1m;
+        auth_totp_cookie "totp-session";
+        auth_totp_expiry 1d;
     }
+}
+```
+
+Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
+
+```nginx
+load_module modules/ngx_http_auth_totp_module.so;
+```
 
 ## Directives
 
@@ -121,6 +138,14 @@ If the supplied TOTP is of a different length to this value, the authentication 
 * **context:** `http`, `server`, `location`, `limit_except`
 
 Enables validation of user name and Time-based One-Time Password (TOTP) using the "HTTP Basic Authentication" protocol. The specified parameter is used as the `realm` for this authentication. This parameter value can contain variables. The special value of `off` cancels the application of any `auth_totp_realm` directive inherited from a higher configuration level.
+
+### auth_totp_reuse
+
+* **syntax:** `auth_totp_reuse <on>|<off>`
+* **default:** `off`
+* **context:**  `http`, `server`, `location`, `limit_except`
+
+Enables the reuse of a Time-based One-Time Password (TOTP) within a validity window. While this is non-standard behaviour per [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238), it provides a convenient manner to ensure a minimum window of validity for generated TOTP codes, even if the TOTP has already been presented to the validating system.
 
 ### auth_totp_skew
 
