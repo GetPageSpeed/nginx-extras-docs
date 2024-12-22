@@ -654,6 +654,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Configuration
@@ -712,6 +721,15 @@
   <a href="#auth_totp_realm" class="md-nav__link">
     <span class="md-ellipsis">
       auth_totp_realm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth_totp_reuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      auth_totp_reuse
     </span>
   </a>
   
@@ -5478,6 +5496,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Configuration
@@ -5536,6 +5563,15 @@
   <a href="#auth_totp_realm" class="md-nav__link">
     <span class="md-ellipsis">
       auth_totp_realm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth_totp_reuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      auth_totp_reuse
     </span>
   </a>
   
@@ -5634,8 +5670,8 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_auth_totp_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-auth-totp <a href="https://github.com/61131/nginx-http-auth-totp/releases/tag/1.0.0" target="_blank">v1.0.0</a> 
-released on Aug 26 2024.</p>
+<p>This document describes nginx-module-auth-totp <a href="https://github.com/61131/nginx-http-auth-totp/releases/tag/1.1.0" target="_blank">v1.1.0</a> 
+released on Dec 18 2024.</p>
 <hr />
 
 <p>Time-based one-time password (TOTP) authentication for Nginx</p>
@@ -5648,20 +5684,28 @@ released on Aug 26 2024.</p>
 <li>Configurable secret, time reference, time step and truncation length for TOTP generation</li>
 <li>Configurable time-skew for TOTP validation</li>
 </ul>
+<h2 id="packages">Packages</h2>
+<p>For users who prefer pre-built and optimized packages, the nginx-http-auth-totp module can be installed from the <a href="https://nginx-extras.getpagespeed.com/modules/auth-totp/">GetPageSpeed repository</a>:</p>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-auth-totp
+</code></pre></div>
 <h2 id="configuration">Configuration</h2>
-<div class="highlight"><pre><span></span><code>server {
-    listen 80;
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
 
-    location /protected {
-        auth_totp_realm &quot;Protected&quot;;
-        auth_totp_file /etc/nginx/totp.conf;
-        auth_totp_length 8;
-        auth_totp_skew 1;
-        auth_totp_step 1m;
-        auth_totp_cookie &quot;totp-session&quot;;
-        auth_totp_expiry 1d;
-    }
-}
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/protected</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">auth_totp_realm</span><span class="w"> </span><span class="s">&quot;Protected&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_file</span><span class="w"> </span><span class="s">/etc/nginx/totp.conf</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_length</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_skew</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_step</span><span class="w"> </span><span class="mi">1m</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_cookie</span><span class="w"> </span><span class="s">&quot;totp-session&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">auth_totp_expiry</span><span class="w"> </span><span class="s">1d</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_auth_totp_module.so</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="directives">Directives</h2>
 <h3 id="auth_totp_cookie">auth_totp_cookie</h3>
@@ -5708,6 +5752,13 @@ user3:secret3
 <li><strong>context:</strong> <code>http</code>, <code>server</code>, <code>location</code>, <code>limit_except</code></li>
 </ul>
 <p>Enables validation of user name and Time-based One-Time Password (TOTP) using the "<abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Basic Authentication" protocol. The specified parameter is used as the <code>realm</code> for this authentication. This parameter value can contain variables. The special value of <code>off</code> cancels the application of any <code>auth_totp_realm</code> directive inherited from a higher configuration level.</p>
+<h3 id="auth_totp_reuse">auth_totp_reuse</h3>
+<ul>
+<li><strong>syntax:</strong> <code>auth_totp_reuse &lt;on&gt;|&lt;off&gt;</code></li>
+<li><strong>default:</strong> <code>off</code></li>
+<li><strong>context:</strong>  <code>http</code>, <code>server</code>, <code>location</code>, <code>limit_except</code></li>
+</ul>
+<p>Enables the reuse of a Time-based One-Time Password (TOTP) within a validity window. While this is non-standard behaviour per <a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>, it provides a convenient manner to ensure a minimum window of validity for generated TOTP codes, even if the TOTP has already been presented to the validating system.</p>
 <h3 id="auth_totp_skew">auth_totp_skew</h3>
 <ul>
 <li><strong>syntax:</strong> <code>auth_totp_skew &lt;number&gt;</code></li>
