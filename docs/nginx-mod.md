@@ -16,7 +16,7 @@ NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 * Patch that allows ngx_http_limit_req_module to support rates of an hour, minute, day, week, and year
 * [Active Health Checks](https://github.com/yaoweibin/nginx_upstream_check_module)
 * Patch allowing to disable emission of NGINX software name in both the `Server:` header and error pages
-* Patch allowing `CONNECT` request method
+* Supports `CONNECT` request method for proxying SSL requests
 
 More on those patches in the documentation below.
 
@@ -109,13 +109,12 @@ So the rules of thumb are:
 
 HPACK patch implements [full HPACK](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/) in NGINX. In short, this allows for compressing HTTP headers
 
-## What is the `CONNECT` patch
+## What is the `CONNECT` method support
 
-This patch allows `CONNECT` request method. To configure your NGINX to handle such requests, install the supplementary module:
+NGINX-MOD provides support for the `CONNECT` method request. This method is mainly used 
+to tunnel SSL requests through proxy servers. 
 
-    sudo yum -y install nginx-mod-module-proxy-connect
-
-Documentation of this module [can be found here](https://github.com/dvershinin/ngx_http_proxy_connect_module). 
+To enable and configure, please refer to the [`proxy_connect` directives](https://github.com/dvershinin/ngx_http_proxy_connect_module?tab=readme-ov-file#directive). 
 
 ## Configuration Directives of NGINX-MOD
 
