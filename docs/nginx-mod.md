@@ -10,13 +10,15 @@ Its official name is NGINX-MOD.
 
 NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 
-* Latest OpenSSL 1.1.x (allows for TLS 1.3 to be configured)
-* Patch for HTTP/2 HPACK (performance)
-* Patch for dynamic TLS records (performance)
-* Patch that allows ngx_http_limit_req_module to support rates of an hour, minute, day, week, and year
-* [Active Health Checks](https://github.com/yaoweibin/nginx_upstream_check_module)
-* Patch allowing to disable emission of NGINX software name in both the `Server:` header and error pages
-* Supports `CONNECT` request method for proxying SSL requests
+* **Seamless HTTP/3 Support**: Experience faster and more reliable web connections with the cutting-edge HTTP/3 protocol.
+* **Enhanced HTTP/2 HPACK Compression**: Boost your website’s performance through optimized header compression, ensuring quicker data transfer.
+* **Dynamic TLS Record Management**: Improve both security and speed with dynamically handled TLS records, adapting to your site’s needs in real-time.
+* **Advanced Rate Limiting**: Gain precise control over traffic with the extended `ngx_http_limit_req_module`, allowing you to set request limits on an hourly, daily, weekly, or yearly basis.
+* **Active Health Monitoring**: Maintain high uptime and reliability with real-time health checks of your upstream servers. [Learn More](https://github.com/yaoweibin/nginx_upstream_check_module)
+* **Enhanced Security Features**: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.
+* **Secure SSL Proxying with `CONNECT` Method**: Easily handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
+
+Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!
 
 More on those patches in the documentation below.
 
@@ -114,7 +116,7 @@ HPACK patch implements [full HPACK](https://blog.cloudflare.com/hpack-the-silent
 NGINX-MOD provides support for the `CONNECT` method request. This method is mainly used 
 to tunnel SSL requests through proxy servers. 
 
-To enable and configure, please refer to the [`proxy_connect` directives](https://github.com/dvershinin/ngx_http_proxy_connect_module?tab=readme-ov-file#directive). 
+To enable and configure, please refer to the [`proxy_connect` directives](https://github.com/dvershinin/ngx_http_proxy_connect_module?tab=readme-ov-file#directives). 
 
 ## Configuration Directives of NGINX-MOD
 
