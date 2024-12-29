@@ -61,6 +61,7 @@
 | [nginx-module-perl](modules/perl.md)                             | NGINX Perl dynamic module                                                     |
 | [nginx-module-phantom-token](modules/phantom-token.md)           | Phantom Token NGINX Module                                                    |
 | [nginx-module-postgres](modules/postgres.md)                     | PostgreSQL module for NGINX                                                   |
+| [nginx-module-proxy-connect](modules/proxy-connect.md)           | CONNECT method support in NGINX                                               |
 | [nginx-module-pta](modules/pta.md)                               | Period of Time Authentication module for NGINX                                |
 | [nginx-module-push-stream](modules/push-stream.md)               | NGINX push stream module                                                      |
 | [nginx-module-rdns](modules/rdns.md)                             | NGINX HTTP rDNS module                                                        |

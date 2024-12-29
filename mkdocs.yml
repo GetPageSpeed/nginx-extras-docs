@@ -106,6 +106,7 @@ nav:
     perl: modules/perl.md
     phantom-token: modules/phantom-token.md
     postgres: modules/postgres.md
+    proxy-connect: modules/proxy-connect.md
     pta: modules/pta.md
     push-stream: modules/push-stream.md
     rdns: modules/rdns.md
