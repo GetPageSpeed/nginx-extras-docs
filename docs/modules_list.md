@@ -46,6 +46,7 @@
 | [nginx-module-jwt](modules/jwt.md)                               | NGINX JWT Module                                                              |
 | [nginx-module-length-hiding](modules/length-hiding.md)           | NGINX Length Hiding Filter Module                                             |
 | [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
+| [nginx-module-limit-traffic-rate](modules/limit-traffic-rate.md) | NGINX Limiting rate by given variables                                        |
 | [nginx-module-live-common](modules/live-common.md)               | Kaltura Media Framework Common NGINX Module                                   |
 | [nginx-module-log-zmq](modules/log-zmq.md)                       | ZeroMQ logger module for NGINX                                                |
 | [nginx-module-lua](modules/lua.md)                               | Lua scripting support for NGINX                                               |
@@ -65,6 +66,7 @@
 | [nginx-module-pta](modules/pta.md)                               | Period of Time Authentication module for NGINX                                |
 | [nginx-module-push-stream](modules/push-stream.md)               | NGINX push stream module                                                      |
 | [nginx-module-rdns](modules/rdns.md)                             | NGINX HTTP rDNS module                                                        |
+| [nginx-module-redis-rate-limit](modules/redis-rate-limit.md)     | Redis backed rate limit module for Nginx                                      |
 | [nginx-module-redis2](modules/redis2.md)                         | NGINX upstream module for the Redis 2.0 protocol                              |
 | [nginx-module-rtmp](modules/rtmp.md)                             | NGINX RTMP module                                                             |
 | [nginx-module-secure-token](modules/secure-token.md)             | Secure token module for NGINX                                                 |

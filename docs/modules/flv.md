@@ -33,8 +33,8 @@ load_module modules/ngx_http_flv_live_module.so;
 ```
 
 
-This document describes nginx-module-flv [v1.2.11](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.11){target=_blank} 
-released on Mar 19 2023.
+This document describes nginx-module-flv [v1.2.12](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.12){target=_blank} 
+released on Dec 31 2024.
 
 <hr />
 

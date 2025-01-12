@@ -33,8 +33,8 @@ load_module modules/ngx_http_pta_module.so;
 ```
 
 
-This document describes nginx-module-pta [v1.0.1](https://github.com/iij/pta/releases/tag/v1.0.1){target=_blank} 
-released on Jul 04 2022.
+This document describes nginx-module-pta [v1.0.2](https://github.com/iij/pta/releases/tag/v1.0.2){target=_blank} 
+released on Jan 07 2025.
 
 <hr />
 
