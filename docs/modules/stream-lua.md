@@ -33,8 +33,8 @@ load_module modules/ngx_stream_lua_module.so;
 ```
 
 
-This document describes nginx-module-stream-lua [v0.0.15](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.15){target=_blank} 
-released on Aug 20 2024.
+This document describes nginx-module-stream-lua [v0.0.16](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.16){target=_blank} 
+released on Jan 17 2025.
 
 <hr />
 
