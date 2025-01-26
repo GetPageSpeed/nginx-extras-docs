@@ -1,3 +1,10 @@
+---
+
+title: "On the fly (and free) SSL registration and renewal inside nginx-module-lua/nginx with Let's Encrypt"
+description: "RPM package lua-resty-auto-ssl: On the fly (and free) SSL registration and renewal inside nginx-module-lua/nginx with Let's Encrypt"
+
+---
+  
 # *auto-ssl*: On the fly (and free) SSL registration and renewal inside nginx-module-lua/nginx with Let's Encrypt
 
 

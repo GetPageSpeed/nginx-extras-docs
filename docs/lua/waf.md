@@ -1,3 +1,10 @@
+---
+
+title: "High-performance WAF built on nginx-module-lua stack"
+description: "RPM package lua-resty-waf: High-performance WAF built on nginx-module-lua stack"
+
+---
+  
 # *waf*: High-performance WAF built on nginx-module-lua stack
 
 

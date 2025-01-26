@@ -1,3 +1,10 @@
+---
+
+title: "NGINX njs dynamic modules"
+description: "RPM package nginx-module-njs. NGINX njs dynamic modules "
+
+---
+
 # *njs*: NGINX njs dynamic modules
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-njs
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-njs
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-njs
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
@@ -36,8 +43,8 @@ load_module modules/ngx_stream_js_module.so;
 ```
 
 
-This document describes nginx-module-njs [v0.8.8](https://github.com/nginx/njs/releases/tag/0.8.8){target=_blank} 
-released on Dec 10 2024.
+This document describes nginx-module-njs [v0.8.9](https://github.com/nginx/njs/releases/tag/0.8.9){target=_blank} 
+released on Jan 13 2025.
 
 <hr />
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)

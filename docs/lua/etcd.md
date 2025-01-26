@@ -1,3 +1,10 @@
+---
+
+title: "Nonblocking Lua etcd driver library for nginx-module-lua"
+description: "RPM package lua-resty-etcd: Nonblocking Lua etcd driver library for nginx-module-lua"
+
+---
+  
 # *etcd*: Nonblocking Lua etcd driver library for nginx-module-lua
 
 

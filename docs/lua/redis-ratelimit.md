@@ -1,3 +1,10 @@
+---
+
+title: "Limit the request processing rate between multiple NGINX instances backed by Redis"
+description: "RPM package lua-resty-redis-ratelimit: Limit the request processing rate between multiple NGINX instances backed by Redis"
+
+---
+  
 # *redis-ratelimit*: Limit the request processing rate between multiple NGINX instances backed by Redis
 
 

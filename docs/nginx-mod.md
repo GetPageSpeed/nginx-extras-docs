@@ -28,7 +28,7 @@ More on those patches in the documentation below.
 
     ```bash
     sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install dnf-plugins-core
+    sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager --disable getpagespeed-extras-mainline
     sudo dnf config-manager --enable getpagespeed-extras-nginx-mod
     sudo dnf -y install nginx
@@ -97,7 +97,7 @@ Our patch allows for a more fine-grained rate limit configuration. Examples:
 
 It is important to note, that your defined zone memory size should allow retaining old IP entries before the defined rate will apply.
 
-For example: you have defined a `10m` zone and `1r/d` for a particular resource. `10m` can store around 160,000 IP addresses.
+For example, you have defined a `10m` zone and `1r/d` for a particular resource. `10m` can store around 160,000 IP addresses.
 So if someone visits your rate-limited resource, *and your traffic to it exceed 160K unique visitors within 24 hrs*, then the same visitor can theoretically not be rate-limited within the same day, because information about his IP address will be evicted from memory after enough visitors visited the resource.
 
 This note applies to the stock module's configuration as well, but less so.
@@ -137,7 +137,7 @@ ssl_dyn_rec_size_hi: the TLS record size to grow to. Defaults to 4229 bytes (des
 
 The number of records to send before changing the record size.
 
-Because we build with latest OpenSSL:
+Because we build with the latest OpenSSL:
 
 ### `ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
 

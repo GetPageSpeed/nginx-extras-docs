@@ -1,3 +1,10 @@
+---
+
+title: "Lua Pubsub client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-pubsub: Lua Pubsub client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *pubsub*: Lua Pubsub client driver for nginx-module-lua based on the cosocket API
 
 

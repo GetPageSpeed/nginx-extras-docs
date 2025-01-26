@@ -1,3 +1,10 @@
+---
+
+title: "Consul Events HTTP API Wrapper"
+description: "RPM package lua-resty-consul-event: Consul Events HTTP API Wrapper"
+
+---
+  
 # *consul-event*: Consul Events HTTP API Wrapper
 
 

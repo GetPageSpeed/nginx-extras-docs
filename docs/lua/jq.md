@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI bindings to jq"
+description: "RPM package lua-resty-jq: LuaJIT FFI bindings to jq"
+
+---
+  
 # *jq*: LuaJIT FFI bindings to jq
 
 

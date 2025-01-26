@@ -1,3 +1,10 @@
+---
+
+title: "Time-based one-time password (TOTP) authentication for NGINX"
+description: "RPM package nginx-module-auth-totp. The Time-based One-Time Password (TOTP) algorithm, provides a secure mechanism  for short-lived one-time password values, which are desirable for enhanced  security.   This algorithm can be used across a wide range of network applications ranging  from remote Virtual Private Network (VPN) access, Wi-Fi network logon to  transaction-orientated Web applications.  This module provides TOTP authentication for a NGINX server. "
+
+---
+
 # *auth-totp*: Time-based one-time password (TOTP) authentication for NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-auth-totp
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-auth-totp
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-auth-totp
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

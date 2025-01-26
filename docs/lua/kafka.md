@@ -1,3 +1,10 @@
+---
+
+title: "Lua kafka client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-kafka: Lua kafka client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *kafka*: Lua kafka client driver for nginx-module-lua based on the cosocket API
 
 

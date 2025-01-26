@@ -1,3 +1,10 @@
+---
+
+title: "It's the implement of CORS on nginx-module-lua"
+description: "RPM package lua-resty-cors: It's the implement of CORS on nginx-module-lua"
+
+---
+  
 # *cors*: It's the implement of CORS on nginx-module-lua
 
 

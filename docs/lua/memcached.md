@@ -1,3 +1,10 @@
+---
+
+title: "Lua memcached client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-memcached: Lua memcached client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *memcached*: Lua memcached client driver for nginx-module-lua based on the cosocket API
 
 

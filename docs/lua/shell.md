@@ -1,3 +1,10 @@
+---
+
+title: "Lua module for nonblocking system shell command executions"
+description: "RPM package lua-resty-shell: Lua module for nonblocking system shell command executions"
+
+---
+  
 # *shell*: Lua module for nonblocking system shell command executions
 
 

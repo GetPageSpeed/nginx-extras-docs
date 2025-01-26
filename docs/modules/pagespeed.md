@@ -1,3 +1,10 @@
+---
+
+title: "PageSpeed dynamic module for NGINX"
+description: "RPM package nginx-module-pagespeed. PageSpeed dynamic module for NGINX "
+
+---
+
 # *pagespeed*: PageSpeed dynamic module for NGINX
 
 ## Installation
@@ -15,8 +22,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
 ### Other supported operating systems
         
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install nginx-module-pagespeed
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install nginx-module-pagespeed
 ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

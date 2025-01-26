@@ -1,3 +1,10 @@
+---
+
+title: "Session library for nginx-module-lua – flexible and secure"
+description: "RPM package lua-resty-session: Session library for nginx-module-lua – flexible and secure"
+
+---
+  
 # *session*: Session library for nginx-module-lua – flexible and secure
 
 

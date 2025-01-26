@@ -91,6 +91,7 @@ nav:
     jwt: modules/jwt.md
     length-hiding: modules/length-hiding.md
     let: modules/let.md
+    limit-traffic-rate: modules/limit-traffic-rate.md
     live-common: modules/live-common.md
     log-zmq: modules/log-zmq.md
     lua: modules/lua.md
@@ -106,9 +107,11 @@ nav:
     perl: modules/perl.md
     phantom-token: modules/phantom-token.md
     postgres: modules/postgres.md
+    proxy-connect: modules/proxy-connect.md
     pta: modules/pta.md
     push-stream: modules/push-stream.md
     rdns: modules/rdns.md
+    redis-rate-limit: modules/redis-rate-limit.md
     redis2: modules/redis2.md
     rtmp: modules/rtmp.md
     secure-token: modules/secure-token.md
@@ -141,6 +144,7 @@ nav:
     upsync: modules/upsync.md
     vod: modules/vod.md
     vts: modules/vts.md
+    waf: modules/waf.md
     webp: modules/webp.md
     xslt: modules/xslt.md
     xss: modules/xss.md

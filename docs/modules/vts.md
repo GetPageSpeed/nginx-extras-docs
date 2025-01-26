@@ -1,3 +1,10 @@
+---
+
+title: "NGINX virtual host traffic status module"
+description: "RPM package nginx-module-vts. This is an NGINX module that provides access to virtual host status information. It contains the current status such as servers, upstreams, caches.  This is similar to the live activity monitoring of NGINX Plus "
+
+---
+
 # *vts*: NGINX virtual host traffic status module
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-vts
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-vts
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-vts
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
@@ -33,8 +40,8 @@ load_module modules/ngx_http_vhost_traffic_status_module.so;
 ```
 
 
-This document describes nginx-module-vts [v0.2.2](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.2){target=_blank} 
-released on May 26 2023.
+This document describes nginx-module-vts [v0.2.3](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.3){target=_blank} 
+released on Jan 01 2025.
 
 <hr />
 
@@ -1661,7 +1668,7 @@ change the `NGX_HTTP_VHOST_TRAFFIC_STATUS_DEFAULT_BUCKET_LEN` in the `src/ngx_ht
 
 For examples:
 * **vhost_traffic_status_histogram_buckets** `0.005` `0.01` `0.05` `0.1` `0.5` `1` `5` `10`
-  * The observe buckets are [5ms 10ms 50ms 1s 5s 10s].
+  * The observe buckets are [5ms 10ms 50ms 100ms 500ms 1s 5s 10s].
 * **vhost_traffic_status_histogram_buckets** `0.005` `0.01` `0.05` `0.1`
   * The observe buckets are [5ms 10ms 50ms 100ms].
 

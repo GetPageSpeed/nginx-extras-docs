@@ -1,3 +1,10 @@
+---
+
+title: "Simple nonblocking lock API for nginx-module-lua based on shared memory dictionaries"
+description: "RPM package lua-resty-lock: Simple nonblocking lock API for nginx-module-lua based on shared memory dictionaries"
+
+---
+  
 # *lock*: Simple nonblocking lock API for nginx-module-lua based on shared memory dictionaries
 
 

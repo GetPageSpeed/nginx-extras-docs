@@ -1,3 +1,10 @@
+---
+
+title: "A high-level, easy to use, and non-blocking email and SMTP library for nginx-module-lua"
+description: "RPM package lua-resty-mail: A high-level, easy to use, and non-blocking email and SMTP library for nginx-module-lua"
+
+---
+  
 # *mail*: A high-level, easy to use, and non-blocking email and SMTP library for nginx-module-lua
 
 

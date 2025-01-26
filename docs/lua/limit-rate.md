@@ -1,3 +1,10 @@
+---
+
+title: "Lua module for limiting request rate for nginx-module-lua, using the token bucket method"
+description: "RPM package lua-resty-limit-rate: Lua module for limiting request rate for nginx-module-lua, using the token bucket method"
+
+---
+  
 # *limit-rate*: Lua module for limiting request rate for nginx-module-lua, using the "token bucket" method
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "JWT For The Great nginx-module-lua"
+description: "RPM package lua-resty-jwt: JWT For The Great nginx-module-lua"
+
+---
+  
 # *jwt*: JWT For The Great nginx-module-lua
 
 

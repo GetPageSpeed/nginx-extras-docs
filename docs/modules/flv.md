@@ -1,3 +1,10 @@
+---
+
+title: "Media streaming server based on nginx-module-rtmp"
+description: "RPM package nginx-module-flv. Media streaming server based on nginx-module-rtmp. In addtion to the features nginx-rtmp-module provides, HTTP-FLV, GOP cache and VHOST (one IP for multi domain names) are supported now. "
+
+---
+
 # *flv*: Media streaming server based on nginx-module-rtmp
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-flv
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-flv
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-flv
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
@@ -33,8 +40,8 @@ load_module modules/ngx_http_flv_live_module.so;
 ```
 
 
-This document describes nginx-module-flv [v1.2.11](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.11){target=_blank} 
-released on Mar 19 2023.
+This document describes nginx-module-flv [v1.2.12](https://github.com/winshining/nginx-http-flv-module/releases/tag/v1.2.12){target=_blank} 
+released on Dec 31 2024.
 
 <hr />
 

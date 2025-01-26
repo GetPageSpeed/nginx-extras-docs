@@ -1,3 +1,10 @@
+---
+
+title: "A generic consistent hash implementation for nginx-module-lua"
+description: "RPM package lua-resty-balancer: A generic consistent hash implementation for nginx-module-lua"
+
+---
+  
 # *balancer*: A generic consistent hash implementation for nginx-module-lua
 
 

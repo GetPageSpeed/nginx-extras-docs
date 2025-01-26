@@ -1,3 +1,11 @@
+--- 
+
+title: "NGINX Modules provided by GetPageSpeed" 
+
+description: "The list of NGINX module packages provided by GetPageSpeed package repository."
+
+--- 
+
 # Modules
 
 NGINX has superpowers and it has super strength. They are dynamic NGINX modules.

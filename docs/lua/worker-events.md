@@ -1,3 +1,10 @@
+---
+
+title: "Cross Worker Events for NGINX in Pure Lua"
+description: "RPM package lua-resty-worker-events: Cross Worker Events for NGINX in Pure Lua"
+
+---
+  
 # *worker-events*: Cross Worker Events for NGINX in Pure Lua
 
 

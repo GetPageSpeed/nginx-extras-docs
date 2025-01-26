@@ -1,3 +1,10 @@
+---
+
+title: "Fast and dependency-free UUID library for LuaJIT/nginx-module-lua"
+description: "RPM package lua-resty-jit-uuid: Fast and dependency-free UUID library for LuaJIT/nginx-module-lua"
+
+---
+  
 # *jit-uuid*: Fast and dependency-free UUID library for LuaJIT/nginx-module-lua
 
 

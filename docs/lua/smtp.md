@@ -1,3 +1,10 @@
+---
+
+title: "Send mail with NGINX"
+description: "RPM package lua-resty-smtp: Send mail with NGINX"
+
+---
+  
 # *smtp*: Send mail with NGINX
 
 

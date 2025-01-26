@@ -17,6 +17,7 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
     sudo yum -y install yum-utils
     sudo yum-config-manager --enable getpagespeed-extras-angie
     sudo yum -y install angie
+    ```
  
 === "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
 
@@ -29,7 +30,7 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
 
 ## Compatibility notes
 
-Angie is based on mainline NGINX branch, but [does not have 100% compatibility with NGINX ABI](https://github.com/webserver-llc/angie/issues/13#issuecomment-1406843151).
+Angie is based on the mainline NGINX branch but [does not have 100% compatibility with NGINX ABI](https://github.com/webserver-llc/angie/issues/13#issuecomment-1406843151).
 In fact, it has runtime checks when loading a module compiled for NGINX to prevent the loading,
 to avoid unexpected problems.
 

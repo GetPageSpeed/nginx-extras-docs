@@ -1,3 +1,10 @@
+---
+
+title: "Secure token module for NGINX"
+description: "RPM package nginx-module-secure-token. Generates CDN tokens, either as a cookie or as a query string parameter (m3u8,mpd,f4m only).  Currently supports Akamai v2 tokens, and Amazon CloudFront tokens. In addition, the module supports the encryption of URIs with a configured key "
+
+---
+
 # *secure-token*: Secure token module for NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-secure-token
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-secure-token
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-secure-token
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

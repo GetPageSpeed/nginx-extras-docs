@@ -1,3 +1,10 @@
+---
+
+title: "Lua redis client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-redis: Lua redis client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *redis*: Lua redis client driver for nginx-module-lua based on the cosocket API
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "Lock-free counter for nginx-module-lua"
+description: "RPM package lua-resty-counter: Lock-free counter for nginx-module-lua"
+
+---
+  
 # *counter*: Lock-free counter for nginx-module-lua
 
 

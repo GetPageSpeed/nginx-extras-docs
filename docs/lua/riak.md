@@ -1,3 +1,10 @@
+---
+
+title: "Lua riak protocol buffer client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-riak: Lua riak protocol buffer client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *riak*: Lua riak protocol buffer client driver for nginx-module-lua based on the cosocket API
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "FFI-based OpenSSL binding for nginx-module-lua"
+description: "RPM package lua-resty-openssl: FFI-based OpenSSL binding for nginx-module-lua"
+
+---
+  
 # *openssl*: FFI-based OpenSSL binding for nginx-module-lua
 
 

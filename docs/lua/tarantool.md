@@ -1,3 +1,10 @@
+---
+
+title: "Library for working with tarantool from nginx with the embedded Lua module or with nginx-module-lua"
+description: "RPM package lua-resty-tarantool: Library for working with tarantool from nginx with the embedded Lua module or with nginx-module-lua"
+
+---
+  
 # *tarantool*: Library for working with tarantool from nginx with the embedded Lua module or with nginx-module-lua
 
 

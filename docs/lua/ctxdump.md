@@ -1,3 +1,10 @@
+---
+
+title: "Stash and apply the old ngx.ctx for avoiding being destoried after NGINX internal redirect happens"
+description: "RPM package lua-resty-ctxdump: Stash and apply the old ngx.ctx for avoiding being destoried after NGINX internal redirect happens"
+
+---
+  
 # *ctxdump*: Stash and apply the old ngx.ctx for avoiding being destoried after NGINX internal redirect happens
 
 

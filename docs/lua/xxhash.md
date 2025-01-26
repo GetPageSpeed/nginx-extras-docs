@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI-bindings to xxHash, an Extremely fast non-cryptographic hash algorithm"
+description: "RPM package lua-resty-xxhash: LuaJIT FFI-bindings to xxHash, an Extremely fast non-cryptographic hash algorithm"
+
+---
+  
 # *xxhash*: LuaJIT FFI-bindings to xxHash, an Extremely fast non-cryptographic hash algorithm
 
 

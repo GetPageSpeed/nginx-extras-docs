@@ -1,3 +1,10 @@
+---
+
+title: "Templating Engine (HTML) for Lua and nginx-module-lua"
+description: "RPM package lua-resty-template: Templating Engine (HTML) for Lua and nginx-module-lua"
+
+---
+  
 # *template*: Templating Engine (HTML) for Lua and nginx-module-lua
 
 

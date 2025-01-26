@@ -1,3 +1,10 @@
+---
+
+title: "ModSecurity v3 Nginx Connector"
+description: "RPM package nginx-module-security. The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.  The ModSecurity-nginx connector takes the form of an nginx module. The module simply serves as a layer of communication between nginx and ModSecurity. "
+
+---
+
 # *security*: ModSecurity v3 Nginx Connector
 
 ## Installation
@@ -14,8 +21,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
 ### Other supported operating systems
         
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install nginx-module-security
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install nginx-module-security
 ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

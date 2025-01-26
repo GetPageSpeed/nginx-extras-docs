@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI bindings to Hoedown, a standards compliant, fast, secure markdown processing library in C"
+description: "RPM package lua-resty-hoedown: LuaJIT FFI bindings to Hoedown, a standards compliant, fast, secure markdown processing library in C"
+
+---
+  
 # *hoedown*: LuaJIT FFI bindings to Hoedown, a standards compliant, fast, secure markdown processing library in C
 
 

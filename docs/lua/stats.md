@@ -1,3 +1,10 @@
+---
+
+title: "Is a statistical module for nginx base on nginx-module-lua, Statistical key and values are configurable, can use the nginx core's variables and this module's variables. The statistical result store in mongodb"
+description: "RPM package lua-resty-stats: Is a statistical module for nginx base on nginx-module-lua, Statistical key and values are configurable, can use the nginx core's variables and this module's variables. The statistical result store in mongodb"
+
+---
+  
 # *stats*: Is a statistical module for nginx base on nginx-module-lua, Statistical key and values are configurable, can use the nginx core's variables and this module's variables. The statistical result store in mongodb
 
 

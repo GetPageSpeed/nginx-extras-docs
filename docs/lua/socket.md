@@ -1,3 +1,10 @@
+---
+
+title: "Automatic LuaSocket/cosockets compatibility module"
+description: "RPM package lua-resty-socket: Automatic LuaSocket/cosockets compatibility module"
+
+---
+  
 # *socket*: Automatic LuaSocket/cosockets compatibility module
 
 

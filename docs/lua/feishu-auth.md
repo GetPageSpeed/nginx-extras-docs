@@ -1,3 +1,10 @@
+---
+
+title: "适用于 nginx-module-lua 的基于飞书组织架构的登录认证"
+description: "RPM package lua-resty-feishu-auth: 适用于 nginx-module-lua 的基于飞书组织架构的登录认证"
+
+---
+  
 # *feishu-auth*: 适用于 nginx-module-lua 的基于飞书组织架构的登录认证
 
 

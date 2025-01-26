@@ -1,3 +1,10 @@
+---
+
+title: "Opinionated Lua RabbitMQ client library for nginx-module-lua apps based on the cosocket API"
+description: "RPM package lua-resty-rabbitmqstomp: Opinionated Lua RabbitMQ client library for nginx-module-lua apps based on the cosocket API"
+
+---
+  
 # *rabbitmqstomp*: Opinionated Lua RabbitMQ client library for nginx-module-lua apps based on the cosocket API
 
 

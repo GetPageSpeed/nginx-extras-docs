@@ -1,3 +1,10 @@
+---
+
+title: "Interactive console (REPL) for nginx-module-lua and luajit code"
+description: "RPM package lua-resty-repl: Interactive console (REPL) for nginx-module-lua and luajit code"
+
+---
+  
 # *repl*: Interactive console (REPL) for nginx-module-lua and luajit code
 
 

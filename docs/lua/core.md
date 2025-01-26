@@ -1,3 +1,10 @@
+---
+
+title: "New FFI-based API for lua-nginx-module"
+description: "RPM package lua-resty-core: New FFI-based API for lua-nginx-module"
+
+---
+  
 # *core*: New FFI-based API for lua-nginx-module
 
 
@@ -25,8 +32,8 @@ dnf -y install lua5.1-resty-core
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-core [v0.1.30](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.30){target=_blank} 
-released on Oct 10 2024.
+This document describes lua-resty-core [v0.1.31](https://github.com/openresty/lua-resty-core/releases/tag/v0.1.31){target=_blank} 
+released on Jan 17 2025.
     
 <hr />
 
@@ -105,6 +112,7 @@ into serious compatibility issues.
 
 * [ngx.encode_base64](https://github.com/openresty/lua-nginx-module#ngxencode_base64)
 * [ngx.decode_base64](https://github.com/openresty/lua-nginx-module#ngxdecode_base64)
+* [ngx.decode_base64mime](https://github.com/openresty/lua-nginx-module#ngxdecode_base64mime)
 
 ## resty.core.uri
 

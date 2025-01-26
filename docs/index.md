@@ -13,13 +13,13 @@ No longer you have to manually compile anything when you need to update NGINX or
 An update is just a `yum update` that takes seconds and no downtime whatsoever.
 
 We currently support all major RPM-based distros, including CentOS/RHEL,
-as well as Amazon Linux and latest Fedora Linux.
+as well as Amazon Linux and the latest Fedora Linux.
 
-All RHEL derivatives like Oracle Linux, AlmaLinux and Rocky Linux are supported as well.
+All RHEL derivatives like Oracle Linux, AlmaLinux, and Rocky Linux are supported as well.
 
 Due to the extensive nature of our collection, it's easy to get lost in all the goodies and new NGINX directives.
 
-This documentation mini-site brings you each module's installation instructions and added directives
+This documentation site brings you each module's installation instructions and added directives
 in a single place. 
 
 ## Getting started
@@ -56,7 +56,7 @@ Thanks to the nature of dynamic modules, you can install *just the modules* you 
 
 For example, to install NGINX and the PageSpeed module for it, run:
 
-    sudo yum -y install nginx nginx-module-pagespeed
+    sudo dnf -y install nginx nginx-module-pagespeed
 
 Enable the module by adding the `load_module ...` directive that is shown after installation.
 
@@ -65,18 +65,18 @@ required to enable it.
 
 To list available modules for installation, run:
 
-    sudo yum list available | grep nginx-module
+    sudo dnf list available | grep nginx-module
 
 To install the recommended group of modules for performance and security, you may want to run:
 
-    sudo yum -y groupinstall "nginx extras recommended"
+    sudo dnf -y groupinstall "nginx extras recommended"
 
 This installs NGINX, and modules: PageSpeed, Brotli, Dynamic ETag, Immutable (performance); ModSecurity, Security Headers (security).
 
 ## Upgrading modules
 
 New NGINX releases require upgrading its modules. Thanks to the repository, you don't need to worry about recompiling anything.
-We ship updated NGINX and module packages, and you can simply run `yum upgrade` to get to the latest NGINX and module packages.
+We ship updated NGINX and module packages, and you can simply run `dnf upgrade` to get to the latest NGINX and module packages.
 
 After updating a module package, to actually apply it at runtime, you have to run the binary upgrade routine.
 This can be done like this:
@@ -87,12 +87,6 @@ service nginx upgrade
 
 This ensures that NGINX loads the updated module(s).
 
-## How to use this documentation
-
-* Use the search at the top rightmost. It's good for locating whether a feature you are after is available
- via a module
-* Just curious what's there? Look at the complete list of modules below, or in the left-side navigation.
-
 ## Complete module list
 
-{!docs/modules_list.md!}
+Proceed to the [Modules](https://nginx-extras.getpagespeed.com/modules/) page to see all available modules and their documentation.

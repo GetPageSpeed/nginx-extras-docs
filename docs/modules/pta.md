@@ -1,3 +1,10 @@
+---
+
+title: "Period of Time Authentication module for NGINX"
+description: "RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content. "
+
+---
+
 # *pta*: Period of Time Authentication module for NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-pta
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-pta
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-pta
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
@@ -33,8 +40,8 @@ load_module modules/ngx_http_pta_module.so;
 ```
 
 
-This document describes nginx-module-pta [v1.0.1](https://github.com/iij/pta/releases/tag/v1.0.1){target=_blank} 
-released on Jul 04 2022.
+This document describes nginx-module-pta [v1.0.2](https://github.com/iij/pta/releases/tag/v1.0.2){target=_blank} 
+released on Jan 07 2025.
 
 <hr />
 

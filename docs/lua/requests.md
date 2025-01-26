@@ -1,3 +1,10 @@
+---
+
+title: "Yet Another HTTP library for nginx-module-lua - For human beings!"
+description: "RPM package lua-resty-requests: Yet Another HTTP library for nginx-module-lua - For human beings!"
+
+---
+  
 # *requests*: Yet Another HTTP library for nginx-module-lua - For human beings!
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "Lua resty module to calculate AWS signature v4 authorization header"
+description: "RPM package lua-resty-aws-auth: Lua resty module to calculate AWS signature v4 authorization header"
+
+---
+  
 # *aws-auth*: Lua resty module to calculate AWS signature v4 authorization header
 
 
