@@ -29,7 +29,7 @@ You can install this module in any RHEL-based distribution, including, but not l
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 ```nginx
-load_module modules/ngx_http_subs_filter_module.so;
+load_module modules/ngx_http_sxg_filter_module.so;
 ```
 
 
