@@ -1,3 +1,10 @@
+---
+
+title: "Run external programs in nginx-module-lua without spawning a shell or blocking"
+description: "RPM package lua-resty-exec: Run external programs in nginx-module-lua without spawning a shell or blocking"
+
+---
+  
 # *exec*: Run external programs in nginx-module-lua without spawning a shell or blocking
 
 

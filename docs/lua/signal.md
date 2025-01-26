@@ -1,3 +1,10 @@
+---
+
+title: "Lua library for killing or sending signals to UNIX processes"
+description: "RPM package lua-resty-signal: Lua library for killing or sending signals to UNIX processes"
+
+---
+  
 # *signal*: Lua library for killing or sending signals to UNIX processes
 
 

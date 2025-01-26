@@ -1,3 +1,10 @@
+---
+
+title: "Lua nsq client driver for nginx-module-lua based on the cosocket API"
+description: "RPM package lua-resty-nsq: Lua nsq client driver for nginx-module-lua based on the cosocket API"
+
+---
+  
 # *nsq*: Lua nsq client driver for nginx-module-lua based on the cosocket API
 
 

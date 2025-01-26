@@ -1,3 +1,10 @@
+---
+
+title: "Raw-socket-based Logger Library for NGINX (based on nginx-module-lua)"
+description: "RPM package lua-resty-logger-socket: Raw-socket-based Logger Library for NGINX (based on nginx-module-lua)"
+
+---
+  
 # *logger-socket*: Raw-socket-based Logger Library for NGINX (based on nginx-module-lua)
 
 

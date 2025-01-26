@@ -1,3 +1,10 @@
+---
+
+title: "Reverse-proxying of websocket frames"
+description: "RPM package lua-resty-websocket-proxy: Reverse-proxying of websocket frames"
+
+---
+  
 # *websocket-proxy*: Reverse-proxying of websocket frames
 
 

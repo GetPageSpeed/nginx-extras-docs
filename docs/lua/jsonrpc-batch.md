@@ -1,3 +1,10 @@
+---
+
+title: "JSONRPC batch protocol module for nginx-module-lua"
+description: "RPM package lua-resty-jsonrpc-batch: JSONRPC batch protocol module for nginx-module-lua"
+
+---
+  
 # *jsonrpc-batch*: JSONRPC batch protocol module for nginx-module-lua
 
 

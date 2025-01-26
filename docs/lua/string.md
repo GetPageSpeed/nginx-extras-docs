@@ -1,3 +1,10 @@
+---
+
+title: "String utilities and common hash functions for nginx-module-lua and LuaJIT"
+description: "RPM package lua-resty-string: String utilities and common hash functions for nginx-module-lua and LuaJIT"
+
+---
+  
 # *string*: String utilities and common hash functions for nginx-module-lua and LuaJIT
 
 

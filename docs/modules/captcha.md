@@ -1,3 +1,10 @@
+---
+
+title: "NGINX Captcha Module"
+description: "RPM package nginx-module-captcha. NGINX module for generate captcha and validate captcha code "
+
+---
+
 # *captcha*: NGINX Captcha Module
 
 ## Installation
@@ -15,8 +22,8 @@ Fedora Linux is supported free of charge and doesn't require a subscription.
 ### Other supported operating systems
         
 ```bash
-yum -y install https://extras.getpagespeed.com/release-latest.rpm
-yum -y install nginx-module-captcha
+dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+dnf -y install nginx-module-captcha
 ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

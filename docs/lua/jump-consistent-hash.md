@@ -1,3 +1,10 @@
+---
+
+title: "Consistent hash for nginx-module-lua"
+description: "RPM package lua-resty-jump-consistent-hash: Consistent hash for nginx-module-lua"
+
+---
+  
 # *jump-consistent-hash*: Consistent hash for nginx-module-lua
 
 

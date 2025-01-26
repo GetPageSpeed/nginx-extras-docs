@@ -1,3 +1,10 @@
+---
+
+title: "DNS resolver for nginx-module-lua"
+description: "RPM package lua-resty-dns: DNS resolver for nginx-module-lua"
+
+---
+  
 # *dns*: DNS resolver for nginx-module-lua
 
 

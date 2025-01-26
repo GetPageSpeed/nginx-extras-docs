@@ -1,3 +1,10 @@
+---
+
+title: "Library to interface with the consul HTTP API from nginx-module-lua"
+description: "RPM package lua-resty-consul: Library to interface with the consul HTTP API from nginx-module-lua"
+
+---
+  
 # *consul*: Library to interface with the consul HTTP API from nginx-module-lua
 
 

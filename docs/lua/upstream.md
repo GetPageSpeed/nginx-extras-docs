@@ -1,3 +1,10 @@
+---
+
+title: "Upstream connection load balancing and failover module for nginx-module-lua"
+description: "RPM package lua-resty-upstream: Upstream connection load balancing and failover module for nginx-module-lua"
+
+---
+  
 # *upstream*: Upstream connection load balancing and failover module for nginx-module-lua
 
 

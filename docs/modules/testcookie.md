@@ -1,3 +1,10 @@
+---
+
+title: "NGINX testcookie robot mitigation module"
+description: "RPM package nginx-module-testcookie. Simple robot mitigation module using cookie based challenge/response technique. Not supported any more.  Challenge cookies can be set using different methods:  * Set-Cookie + 302/307 HTTP Location redirect * Set-Cookie + HTML meta refresh redirect * Custom template, JavaScript can be used here.  To prevent automatic parsing, challenge cookie value can be encrypted with AES-128 in CBC mode using custom/random key and iv, and then decrypted at client side with JavaScript. "
+
+---
+
 # *testcookie*: NGINX testcookie robot mitigation module
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-testcookie
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-testcookie
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-testcookie
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

@@ -1,3 +1,10 @@
+---
+
+title: "Manage NGINX upstreams in pure Lua"
+description: "RPM package lua-resty-checkups: Manage NGINX upstreams in pure Lua"
+
+---
+  
 # *checkups*: Manage NGINX upstreams in pure Lua
 
 

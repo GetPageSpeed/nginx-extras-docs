@@ -1,3 +1,10 @@
+---
+
+title: "HMAC functions for nginx-module-lua and LuaJIT"
+description: "RPM package lua-resty-hmac: HMAC functions for nginx-module-lua and LuaJIT"
+
+---
+  
 # *hmac*: HMAC functions for nginx-module-lua and LuaJIT
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "String substitutions module for nginx"
+description: "RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package. "
+
+---
+
 # *substitutions*: String substitutions module for nginx
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-substitutions
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-substitutions
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-substitutions
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

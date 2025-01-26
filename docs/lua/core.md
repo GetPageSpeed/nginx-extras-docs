@@ -1,3 +1,10 @@
+---
+
+title: "New FFI-based API for lua-nginx-module"
+description: "RPM package lua-resty-core: New FFI-based API for lua-nginx-module"
+
+---
+  
 # *core*: New FFI-based API for lua-nginx-module
 
 

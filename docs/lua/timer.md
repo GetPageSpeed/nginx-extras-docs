@@ -1,3 +1,10 @@
+---
+
+title: "Extended timers for nginx-module-lua"
+description: "RPM package lua-resty-timer: Extended timers for nginx-module-lua"
+
+---
+  
 # *timer*: Extended timers for nginx-module-lua
 
 

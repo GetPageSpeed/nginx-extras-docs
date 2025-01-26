@@ -1,3 +1,10 @@
+---
+
+title: "Native cross-site scripting support in NGINX"
+description: "RPM package nginx-module-xss. This module adds cross-site AJAX support to NGINX.  Currently only cross-site GET is supported.  But cross-site POST will be added in the future.  The cross-site GET is currently implemented as JSONP (or JSON with padding).  See http://en.wikipedia.org/wiki/JSON#JSONP for more details. "
+
+---
+
 # *xss*: Native cross-site scripting support in NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-xss
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-xss
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-xss
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

@@ -1,3 +1,10 @@
+---
+
+title: "General two level cache (lrucache + shared dict)"
+description: "RPM package lua-resty-tlc: General two level cache (lrucache + shared dict)"
+
+---
+  
 # *tlc*: General two level cache (lrucache + shared dict)
 
 

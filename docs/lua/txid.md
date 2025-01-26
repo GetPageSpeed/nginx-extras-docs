@@ -1,3 +1,10 @@
+---
+
+title: "Generate sortable, unique transaction or request IDs for nginx-module-lua/nginx"
+description: "RPM package lua-resty-txid: Generate sortable, unique transaction or request IDs for nginx-module-lua/nginx"
+
+---
+  
 # *txid*: Generate sortable, unique transaction or request IDs for nginx-module-lua/nginx
 
 

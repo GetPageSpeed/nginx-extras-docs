@@ -1,3 +1,10 @@
+---
+
+title: "Lua DNS server driver for nginx-module-lua"
+description: "RPM package lua-resty-dns-server: Lua DNS server driver for nginx-module-lua"
+
+---
+  
 # *dns-server*: Lua DNS server driver for nginx-module-lua
 
 

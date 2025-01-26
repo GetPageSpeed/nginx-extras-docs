@@ -1,3 +1,10 @@
+---
+
+title: "Scalable, flexible pub/sub server for the modern web"
+description: "RPM package nginx-module-nchan. Nchan is a scalable, flexible pub/sub server for the modern web, built as a module for the NGINX web server. It can be configured as a standalone server, or as a shim between your application and hundreds, thousands, or millions of live subscribers. It can buffer messages in memory, on-disk, or via Redis.  Messages are published to channels with HTTP POST requests or Websocket, and subscribed also through Websocket, long-polling, EventSource (SSE), old-fashioned interval polling, and more.  In a web browser, you can use Websocket or EventSource natively, or the NchanSubscriber.js wrapper library. It supports Long-Polling, EventSource, and resumable Websockets, and has a few other added convenience options. It's also available on NPM. "
+
+---
+
 # *nchan*: Scalable, flexible pub/sub server for the modern web
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-nchan
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-nchan
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-nchan
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

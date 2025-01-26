@@ -1,3 +1,10 @@
+---
+
+title: "Performs a topological sort on input data"
+description: "RPM package lua-resty-tsort: Performs a topological sort on input data"
+
+---
+  
 # *tsort*: Performs a topological sort on input data
 
 

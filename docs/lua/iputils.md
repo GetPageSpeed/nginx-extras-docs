@@ -1,3 +1,10 @@
+---
+
+title: "Utility functions for working with IP addresses in nginx-module-lua"
+description: "RPM package lua-resty-iputils: Utility functions for working with IP addresses in nginx-module-lua"
+
+---
+  
 # *iputils*: Utility functions for working with IP addresses in nginx-module-lua
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI bindings for libuuid, a DCE compatible Universally Unique Identifier library"
+description: "RPM package lua-resty-uuid: LuaJIT FFI bindings for libuuid, a DCE compatible Universally Unique Identifier library"
+
+---
+  
 # *uuid*: LuaJIT FFI bindings for libuuid, a DCE compatible Universally Unique Identifier library
 
 

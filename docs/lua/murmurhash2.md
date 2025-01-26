@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT MurmurHash 2 bindings to NGINX / nginx-module-lua murmurhash2 implementation"
+description: "RPM package lua-resty-murmurhash2: LuaJIT MurmurHash 2 bindings to NGINX / nginx-module-lua murmurhash2 implementation"
+
+---
+  
 # *murmurhash2*: LuaJIT MurmurHash 2 bindings to NGINX / nginx-module-lua murmurhash2 implementation
 
 

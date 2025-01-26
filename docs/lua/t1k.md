@@ -1,3 +1,10 @@
+---
+
+title: "Lua implementation of the T1K protocol for Chaitin/SafeLine WAF"
+description: "RPM package lua-resty-t1k: Lua implementation of the T1K protocol for Chaitin/SafeLine WAF"
+
+---
+  
 # *t1k*: Lua implementation of the T1K protocol for Chaitin/SafeLine WAF
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI-based cJSON library for nginx-module-lua"
+description: "RPM package lua-resty-libcjson: LuaJIT FFI-based cJSON library for nginx-module-lua"
+
+---
+  
 # *libcjson*: LuaJIT FFI-based cJSON library for nginx-module-lua
 
 

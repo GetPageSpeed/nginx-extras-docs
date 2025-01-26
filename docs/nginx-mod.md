@@ -10,13 +10,15 @@ Its official name is NGINX-MOD.
 
 NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 
-* Latest OpenSSL 1.1.x (allows for TLS 1.3 to be configured)
-* Patch for HTTP/2 HPACK (performance)
-* Patch for dynamic TLS records (performance)
-* Patch that allows ngx_http_limit_req_module to support rates of an hour, minute, day, week, and year
-* [Active Health Checks](https://github.com/yaoweibin/nginx_upstream_check_module)
-* Patch allowing to disable emission of NGINX software name in both the `Server:` header and error pages
-* Patch allowing `CONNECT` request method
+* **Seamless HTTP/3 Support**: Experience faster and more reliable web connections with the cutting-edge HTTP/3 protocol.
+* **Enhanced HTTP/2 HPACK Compression**: Boost your website’s performance through optimized header compression, ensuring quicker data transfer.
+* **Dynamic TLS Record Management**: Improve both security and speed with dynamically handled TLS records, adapting to your site’s needs in real-time.
+* **Advanced Rate Limiting**: Gain precise control over traffic with the extended `ngx_http_limit_req_module`, allowing you to set request limits on an hourly, daily, weekly, or yearly basis.
+* **Active Health Monitoring**: Maintain high uptime and reliability with real-time health checks of your upstream servers. [Learn More](https://github.com/yaoweibin/nginx_upstream_check_module)
+* **Enhanced Security Features**: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.
+* **Secure SSL Proxying with `CONNECT` Method**: Easily handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
+
+Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!
 
 More on those patches in the documentation below.
 
@@ -26,7 +28,7 @@ More on those patches in the documentation below.
 
     ```bash
     sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install dnf-plugins-core
+    sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager --disable getpagespeed-extras-mainline
     sudo dnf config-manager --enable getpagespeed-extras-nginx-mod
     sudo dnf -y install nginx
@@ -95,7 +97,7 @@ Our patch allows for a more fine-grained rate limit configuration. Examples:
 
 It is important to note, that your defined zone memory size should allow retaining old IP entries before the defined rate will apply.
 
-For example: you have defined a `10m` zone and `1r/d` for a particular resource. `10m` can store around 160,000 IP addresses.
+For example, you have defined a `10m` zone and `1r/d` for a particular resource. `10m` can store around 160,000 IP addresses.
 So if someone visits your rate-limited resource, *and your traffic to it exceed 160K unique visitors within 24 hrs*, then the same visitor can theoretically not be rate-limited within the same day, because information about his IP address will be evicted from memory after enough visitors visited the resource.
 
 This note applies to the stock module's configuration as well, but less so.
@@ -109,13 +111,12 @@ So the rules of thumb are:
 
 HPACK patch implements [full HPACK](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/) in NGINX. In short, this allows for compressing HTTP headers
 
-## What is the `CONNECT` patch
+## What is the `CONNECT` method support
 
-This patch allows `CONNECT` request method. To configure your NGINX to handle such requests, install the supplementary module:
+NGINX-MOD provides support for the `CONNECT` method request. This method is mainly used 
+to tunnel SSL requests through proxy servers. 
 
-    sudo yum -y install nginx-mod-module-proxy-connect
-
-Documentation of this module [can be found here](https://github.com/dvershinin/ngx_http_proxy_connect_module). 
+To enable and configure, please refer to the [`proxy_connect` directives](https://github.com/dvershinin/ngx_http_proxy_connect_module?tab=readme-ov-file#directives). 
 
 ## Configuration Directives of NGINX-MOD
 
@@ -136,7 +137,7 @@ ssl_dyn_rec_size_hi: the TLS record size to grow to. Defaults to 4229 bytes (des
 
 The number of records to send before changing the record size.
 
-Because we build with latest OpenSSL:
+Because we build with the latest OpenSSL:
 
 ### `ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
 

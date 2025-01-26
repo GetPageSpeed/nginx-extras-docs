@@ -1,3 +1,10 @@
+---
+
+title: "LuaJIT FFI-based scrypt library for nginx-module-lua"
+description: "RPM package lua-resty-scrypt: LuaJIT FFI-based scrypt library for nginx-module-lua"
+
+---
+  
 # *scrypt*: LuaJIT FFI-based scrypt library for nginx-module-lua
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "A small ngx resty lua library to benchmark memory and throughput of a function"
+description: "RPM package lua-resty-perf: A small ngx resty lua library to benchmark memory and throughput of a function"
+
+---
+  
 # *perf*: A small ngx resty lua library to benchmark memory and throughput of a function
 
 

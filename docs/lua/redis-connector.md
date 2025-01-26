@@ -1,3 +1,10 @@
+---
+
+title: "Connection utilities for lua-resty-redis"
+description: "RPM package lua-resty-redis-connector: Connection utilities for lua-resty-redis"
+
+---
+  
 # *redis-connector*: Connection utilities for lua-resty-redis
 
 

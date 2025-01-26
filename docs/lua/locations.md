@@ -1,3 +1,10 @@
+---
+
+title: "Lua library implementing nginx style location uri matching"
+description: "RPM package lua-resty-locations: Lua library implementing nginx style location uri matching"
+
+---
+  
 # *locations*: Lua library implementing nginx style location uri matching
 
 

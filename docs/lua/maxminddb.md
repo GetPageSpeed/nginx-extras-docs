@@ -1,3 +1,10 @@
+---
+
+title: "A Lua library for reading MaxMind's Geolocation database"
+description: "RPM package lua-resty-maxminddb: A Lua library for reading MaxMind's Geolocation database"
+
+---
+  
 # *maxminddb*: A Lua library for reading MaxMind's Geolocation database
 
 

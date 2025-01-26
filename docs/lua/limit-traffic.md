@@ -1,3 +1,10 @@
+---
+
+title: "Lua library for limiting and controlling traffic in nginx-module-lua"
+description: "RPM package lua-resty-limit-traffic: Lua library for limiting and controlling traffic in nginx-module-lua"
+
+---
+  
 # *limit-traffic*: Lua library for limiting and controlling traffic in nginx-module-lua
 
 

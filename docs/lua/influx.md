@@ -1,3 +1,10 @@
+---
+
+title: "Nginx-module-lua client for InfluxDB"
+description: "RPM package lua-resty-influx: Nginx-module-lua client for InfluxDB"
+
+---
+  
 # *influx*: Nginx-module-lua client for InfluxDB
 
 

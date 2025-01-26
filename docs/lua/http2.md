@@ -1,3 +1,10 @@
+---
+
+title: "The HTTP/2 Protocol (Client Side) Implementation for nginx-module-lua"
+description: "RPM package lua-resty-http2: The HTTP/2 Protocol (Client Side) Implementation for nginx-module-lua"
+
+---
+  
 # *http2*: The HTTP/2 Protocol (Client Side) Implementation for nginx-module-lua
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "Make api call to aws services"
+description: "RPM package lua-resty-aws-sdk: Make api call to aws services"
+
+---
+  
 # *aws-sdk*: Make api call to aws services
 
 

@@ -1,3 +1,10 @@
+---
+
+title: "Hyperscan for nginx-module-lua"
+description: "RPM package lua-resty-hyperscan: Hyperscan for nginx-module-lua"
+
+---
+  
 # *hyperscan*: Hyperscan for nginx-module-lua
 
 

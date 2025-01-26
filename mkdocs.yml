@@ -144,6 +144,7 @@ nav:
     upsync: modules/upsync.md
     vod: modules/vod.md
     vts: modules/vts.md
+    waf: modules/waf.md
     webp: modules/webp.md
     xslt: modules/xslt.md
     xss: modules/xss.md

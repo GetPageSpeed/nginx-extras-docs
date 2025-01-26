@@ -1,3 +1,10 @@
+---
+
+title: "Lua http router for nginx-module-lua"
+description: "RPM package lua-resty-router: Lua http router for nginx-module-lua"
+
+---
+  
 # *router*: Lua http router for nginx-module-lua
 
 

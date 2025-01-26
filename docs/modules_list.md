@@ -99,6 +99,7 @@
 | [nginx-module-upsync](modules/upsync.md)                         | NGINX module for syncing upstreams from consul or etcd                        |
 | [nginx-module-vod](modules/vod.md)                               | NGINX-based VOD Packager                                                      |
 | [nginx-module-vts](modules/vts.md)                               | NGINX virtual host traffic status module                                      |
+| [nginx-module-waf](modules/waf.md)                               | A web application firewall module for NGINX                                   |
 | [nginx-module-webp](modules/webp.md)                             | NGINX WebP module                                                             |
 | [nginx-module-xslt](modules/xslt.md)                             | NGINX XSLT dynamic module                                                     |
 | [nginx-module-xss](modules/xss.md)                               | Native cross-site scripting support in NGINX                                  |

@@ -1,3 +1,10 @@
+---
+
+title: "Dynamic image transformation module For NGINX"
+description: "RPM package nginx-module-small-light. A dynamic image transformation module for NGINX. Supports the various image processings below.   * Resize   * Rotate   * Sharpen   * Unsharpen   * Blur   * Border   * Canvas   * Crop   * Composition   * JPEG Hinting(except GD)   * Format convert(e.g. PNG -> JPEG)   * Color-space convert(e.g. CMYK -> sRGB) "
+
+---
+
 # *small-light*: Dynamic image transformation module For NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-small-light
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-small-light
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-small-light
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:

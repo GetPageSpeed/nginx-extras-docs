@@ -1,3 +1,10 @@
+---
+
+title: "A search index bot verification module for NGINX"
+description: "RPM package nginx-module-bot-verifier. [BETA] This module has been tested on a handful of production websites.  This is an NGINX module designed to validate actors claiming to be search engine indexers. It is right to disable security mechanisms for valid search engine bots to ensure your controls do not interfere with page rankings on any of the search providers. The issue is that the User Agent header cannot be trusted. In order to ensure you are allowing only valid search engine indexers, you must validate according to their published standards.  This module performs that validation and caches the results to ensure you do not pay validation penalties on every request. "
+
+---
+
 # *bot-verifier*: A search index bot verification module for NGINX
 
 
@@ -5,11 +12,18 @@
 
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
-* RedHat Enterprise Linux 7, 8, 9
+* RedHat Enterprise Linux 7, 8, 9 and 10
 * CentOS 7, 8, 9
 * AlmaLinux 8, 9
 * Rocky Linux 8, 9
 * Amazon Linux 2 and Amazon Linux 2023
+
+=== "CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023+"
+
+    ```bash
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install nginx-module-bot-verifier
+    ```
 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
@@ -17,13 +31,6 @@ You can install this module in any RHEL-based distribution, including, but not l
     yum -y install https://extras.getpagespeed.com/release-latest.rpm
     yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
     yum -y install nginx-module-bot-verifier
-    ```
- 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
-
-    ```bash
-    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    dnf -y install nginx-module-bot-verifier
     ```
 
 Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
