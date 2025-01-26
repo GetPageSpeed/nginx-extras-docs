@@ -44,29 +44,77 @@ This document describes nginx-module-fancyindex [v0.5.2](https://github.com/aper
 released on Oct 28 2021.
 
 <hr />
+Nginx Fancy Index module
+========================
 
 
-The Fancy Index module makes possible the generation of file listings,
-like the built-in
-[autoindex](http://wiki.nginx.org/NginxHttpAutoindexModule) module does,
-but adding a touch of style. This is possible because the module allows
-a certain degree of customization of the generated content:
+The Fancy Index module makes possible the generation of file listings, like the built-in [autoindex](http://wiki.nginx.org/NginxHttpAutoindexModule) module does, but adding a touch of style. This is possible because the module allows a certain degree of customization of the generated content:
 
 -   Custom headers. Either local or stored remotely.
 -   Custom footers. Either local or stored remotely.
 -   Add you own CSS style rules.
--   Allow choosing to sort elements by name (default), modification
-    time, or size; both ascending (default), or descending.
+-   Allow choosing to sort elements by name (default), modification time, or size; both ascending (default), or descending.
 
-This module is designed to work with [Nginx](https://nginx.org), a high
-performance open source web server written by [Igor
-Sysoev](http://sysoev.ru).
+This module is designed to work with [Nginx](https://nginx.org), a high performance open source web server written by [Igor Sysoev](http://sysoev.ru).
 
-## Example
+Requirements
+------------
 
-You can test the default built-in style by adding the following lines
-into a `server` section in your [Nginx](https://nginx.org) configuration
-file:
+### CentOS 7
+
+For users of the [official stable](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/) Nginx repository, [extra packages repository with dynamic modules](https://www.getpagespeed.com/redhat) is available and fancyindex is included.
+
+Install directly:
+
+    yum install https://extras.getpagespeed.com/redhat/7/x86_64/RPMS/nginx-module-fancyindex-1.12.0.0.4.1-1.el7.gps.x86_64.rpm
+
+Alternatively, add extras repository first (for future updates) and install the module:
+
+    yum install nginx-module-fancyindex
+
+Then load the module in /etc/nginx/nginx.conf using:
+
+    load_module "modules/ngx_http_fancyindex_module.so";
+
+### Other platforms
+
+In most other cases you will need the sources for [Nginx](https://nginx.org). Any version starting from the 0.8 series should work.
+
+In order to use the `fancyindex_header_` and `fancyindex_footer_` directives you will also need the [ngx\_http\_addition\_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html) built into Nginx.
+
+Building
+--------
+
+1.  Unpack the [Nginx](https://nginx.org) sources:
+
+        $ gunzip -c nginx-?.?.?.tar.gz | tar -xvf -
+
+2.  Unpack the sources for the fancy indexing module:
+
+        $ gunzip -c nginx-fancyindex-?.?.?.tar.gz | tar -xvf -
+
+3.  Change to the directory which contains the [Nginx](https://nginx.org) sources, run the configuration script with the desired options and be sure to put an `--add-module` flag pointing to the directory which contains the source of the fancy indexing module:
+
+        $ cd nginx-?.?.?
+        $ ./configure --add-module=../nginx-fancyindex-?.?.? \
+           [--with-http_addition_module] [extra desired options]
+
+    Since version 0.4.0, the module can also be built as a [dynamic module](https://www.nginx.com/resources/wiki/extending/converting/), using `--add-dynamic-module=…` instead and `load_module "modules/ngx_http_fancyindex_module.so";` in the configuration file
+
+4.  Build and install the software:
+
+        $ make
+
+    And then, as `root`:
+
+        # make install
+
+5.  Configure [Nginx](https://nginx.org) by using the modules' configuration directives\_.
+
+Example
+-------
+
+You can test the default built-in style by adding the following lines into a `server` section in your [Nginx](https://nginx.org) configuration file:
 
     location / {
       fancyindex on;              # Enable fancy indexes.
@@ -75,29 +123,20 @@ file:
 
 ### Themes
 
-The following themes demonstrate the level of customization which can be
-achieved using the module:
+The following themes demonstrate the level of customization which can be achieved using the module:
 
--   [Theme](https://github.com/TheInsomniac/Nginx-Fancyindex-Theme) by
-    [@TheInsomniac](https://github.com/TheInsomniac). Uses custom header
-    and footer.
--   [Theme](https://github.com/Naereen/Nginx-Fancyindex-Theme) by
-    [@Naereen](https://github.com/Naereen/). Uses custom header and
-    footer, the header includes search field to filter by filename using
-    JavaScript.
--   [Theme](https://github.com/fraoustin/Nginx-Fancyindex-Theme) by
-    [@fraoustin](https://github.com/fraoustin). Responsive theme using
-    Material Design elements.
--   [Theme](https://github.com/alehaa/nginx-fancyindex-flat-theme) by
-    [@alehaa](https://github.com/alehaa). Simple, flat theme based on
-    Bootstrap 4 and FontAwesome.
+-   [Theme](https://github.com/TheInsomniac/Nginx-Fancyindex-Theme) by [@TheInsomniac](https://github.com/TheInsomniac). Uses custom header and footer.
+-   [Theme](https://github.com/Naereen/Nginx-Fancyindex-Theme) by [@Naereen](https://github.com/Naereen/). Uses custom header and footer, the header includes search field to filter by filename using JavaScript.
+-   [Theme](https://github.com/fraoustin/Nginx-Fancyindex-Theme) by [@fraoustin](https://github.com/fraoustin). Responsive theme using Material Design elements.
+-   [Theme](https://github.com/alehaa/nginx-fancyindex-flat-theme) by [@alehaa](https://github.com/alehaa). Simple, flat theme based on Bootstrap 4 and FontAwesome.
 
-## Directives
+Directives
+----------
 
 ### fancyindex
 
 Syntax  
-*fancyindex* \[*on* \| *off*\]
+*fancyindex* [*on* | *off*]
 
 Default  
 fancyindex off
@@ -108,14 +147,13 @@ http, server, location
 Description  
 Enables or disables fancy directory indexes.
 
-### fancyindex<span id="default_sort">default_sort</span>
+### fancyindex\_default\_sort
 
 Syntax  
-*fancyindex_default_sort* \[*name* \| *size* \| *date* \| *name_desc* \|
-*size_desc* \| *date_desc*\]
+*fancyindex\_default\_sort* [*name* | *size* | *date* | *name\_desc* | *size\_desc* | *date\_desc*]
 
 Default  
-fancyindex<span id="default_sort">default_sort</span> name
+fancyindex\_default\_sort name
 
 Context  
 http, server, location
@@ -123,62 +161,55 @@ http, server, location
 Description  
 Defines sorting criterion by default.
 
-### fancyindex<span id="directories_first">directories_first</span>
+### fancyindex\_directories\_first
 
 Syntax  
-*fancyindex_directories_first* \[*on* \| *off*\]
+*fancyindex\_directories\_first* [*on* | *off*]
 
 Default  
-fancyindex<span id="directories_first">directories_first</span> on
+fancyindex\_directories\_first on
 
 Context  
 http, server, location
 
 Description  
-If enabled (default setting), groups directories together and sorts them
-before all regular files. If disabled, directories are sorted together
-with files.
+If enabled (default setting), groups directories together and sorts them before all regular files. If disabled, directories are sorted together with files.
 
-### fancyindex<span id="css_href">css_href</span>
+### fancyindex\_css\_href
 
 Syntax  
-*fancyindex_css_href uri*
+*fancyindex\_css\_href uri*
 
 Default  
-fancyindex<span id="css_href">css_href</span> ""
+fancyindex\_css\_href ""
 
 Context  
 http, server, location
 
 Description  
-Allows inserting a link to a CSS style sheet in generated listings. The
-provided *uri* parameter will be inserted as-is in a `<link>` HTML tag.
-The link is inserted after the built-in CSS rules, so you can override
-the default styles.
+Allows inserting a link to a CSS style sheet in generated listings. The provided *uri* parameter will be inserted as-is in a `<link>` HTML tag. The link is inserted after the built-in CSS rules, so you can override the default styles.
 
-### fancyindex<span id="exact_size">exact_size</span>
+### fancyindex\_exact\_size
 
 Syntax  
-*fancyindex_exact_size* \[*on* \| *off*\]
+*fancyindex\_exact\_size* [*on* | *off*]
 
 Default  
-fancyindex<span id="exact_size">exact_size</span> on
+fancyindex\_exact\_size on
 
 Context  
 http, server, location
 
 Description  
-Defines how to represent file sizes in the directory listing; either
-accurately, or rounding off to the kilobyte, the megabyte and the
-gigabyte.
+Defines how to represent file sizes in the directory listing; either accurately, or rounding off to the kilobyte, the megabyte and the gigabyte.
 
-### fancyindex<span id="name_length">name_length</span>
+### fancyindex\_name\_length
 
 Syntax  
-*fancyindex_name_length length*
+*fancyindex\_name\_length length*
 
 Default  
-fancyindex<span id="name_length">name_length</span> 50
+fancyindex\_name\_length 50
 
 Context  
 http, server, location
@@ -186,92 +217,70 @@ http, server, location
 Description  
 Defines the maximum file name length limit in bytes.
 
-### fancyindex<span id="footer">footer</span>
+### fancyindex\_footer
 
 Syntax  
-*fancyindex_footer path* \[*subrequest* \| *local*\]
+*fancyindex\_footer path* [*subrequest* | *local*]
 
 Default  
-fancyindex<span id="footer">footer</span> ""
+fancyindex\_footer ""
 
 Context  
 http, server, location
 
 Description  
-Specifies which file should be inserted at the foot of directory
-listings. If set to an empty string, the default footer supplied by the
-module will be sent. The optional parameter indicates whether the *path*
-is to be treated as an URI to load using a *subrequest* (the default),
-or whether it refers to a *local* file.
+Specifies which file should be inserted at the foot of directory listings. If set to an empty string, the default footer supplied by the module will be sent. The optional parameter indicates whether the *path* is to be treated as an URI to load using a *subrequest* (the default), or whether it refers to a *local* file.
 
-> [!NOTE]
-> Using this directive needs the
-> [ngx_http_addition_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html)
-> built into Nginx.
+> **note**
+>
+> Using this directive needs the ngx\_http\_addition\_module\_ built into Nginx.
 
-> [!WARNING]
-> When inserting custom header/footer a subrequest will be issued so
-> potentially any URL can be used as source for them. Although it will
-> work with external URLs, only using internal ones is supported.
-> External URLs are totally untested and using them will make
-> [Nginx](https://nginx.org) block while waiting for the subrequest to
-> complete. If you feel like external header/footer is a must-have for
-> you, please [let me know](mailto:aperez@igalia.com).
+> **warning**
+>
+> When inserting custom header/footer a subrequest will be issued so potentially any URL can be used as source for them. Although it will work with external URLs, only using internal ones is supported. External URLs are totally untested and using them will make [Nginx](https://nginx.org) block while waiting for the subrequest to complete. If you feel like external header/footer is a must-have for you, please [let me know](mailto:aperez@igalia.com).
 
-### fancyindex<span id="header">header</span>
+### fancyindex\_header
 
 Syntax  
-*fancyindex_header path* \[*subrequest* \| *local*\]
+*fancyindex\_header path* [*subrequest* | *local*]
 
 Default  
-fancyindex<span id="header">header</span> ""
+fancyindex\_header ""
 
 Context  
 http, server, location
 
 Description  
-Specifies which file should be inserted at the head of directory
-listings. If set to an empty string, the default header supplied by the
-module will be sent. The optional parameter indicates whether the *path*
-is to be treated as an URI to load using a *subrequest* (the default),
-or whether it refers to a *local* file.
+Specifies which file should be inserted at the head of directory listings. If set to an empty string, the default header supplied by the module will be sent. The optional parameter indicates whether the *path* is to be treated as an URI to load using a *subrequest* (the default), or whether it refers to a *local* file.
 
-> [!NOTE]
-> Using this directive needs the
-> [ngx_http_addition_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html)
-> built into Nginx.
+> **note**
+>
+> Using this directive needs the ngx\_http\_addition\_module\_ built into Nginx.
 
-### fancyindex<span id="show_path">show_path</span>
+### fancyindex\_show\_path
 
 Syntax  
-*fancyindex_show_path* \[*on* \| *off*\]
+*fancyindex\_show\_path* [*on* | *off*]
 
 Default  
-fancyindex<span id="show_path">show_path</span> on
+fancyindex\_show\_path on
 
 Context  
 http, server, location
 
 Description  
-Whether to output or not the path and the closing \</h1\> tag after the
-header. This is useful when you want to handle the path displaying with
-a PHP script for example.
+Whether to output or not the path and the closing \</h1\> tag after the header. This is useful when you want to handle the path displaying with a PHP script for example.
 
-> [!WARNING]
-> This directive can be turned off only if a custom header is provided
-> using fancyindex<span id="header">header</span>.
+> **warning**
+>
+> This directive can be turned off only if a custom header is provided using fancyindex\_header.
 
-fancyindex<span id="show_dotfiles">show_dotfiles</span>
-\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~ :Syntax:
-*fancyindex_show_dotfiles* \[*on* \| *off*\] :Default:
-fancyindex<span id="show_dotfiles">show_dotfiles</span> off :Context:
-http, server, location :Description: Whether to list files that are
-proceeded with a dot. Normal convention is to hide these.
+fancyindex\_show\_dotfiles \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ :Syntax: *fancyindex\_show\_dotfiles* [*on* | *off*] :Default: fancyindex\_show\_dotfiles off :Context: http, server, location :Description: Whether to list files that are proceeded with a dot. Normal convention is to hide these.
 
-### fancyindex<span id="ignore">ignore</span>
+### fancyindex\_ignore
 
 Syntax  
-*fancyindex_ignore string1 \[string2 \[... stringN\]\]*
+*fancyindex\_ignore string1 [string2 [... stringN]]*
 
 Default  
 No default.
@@ -280,17 +289,15 @@ Context
 http, server, location
 
 Description  
-Specifies a list of file names which will be not be shown in generated
-listings. If Nginx was built with PCRE support strings are interpreted
-as regular expressions.
+Specifies a list of file names which will be not be shown in generated listings. If Nginx was built with PCRE support strings are interpreted as regular expressions.
 
-### fancyindex<span id="hide_symlinks">hide_symlinks</span>
+### fancyindex\_hide\_symlinks
 
 Syntax  
-*fancyindex_hide_symlinks* \[*on* \| *off*\]
+*fancyindex\_hide\_symlinks* [*on* | *off*]
 
 Default  
-fancyindex<span id="hide_symlinks">hide_symlinks</span> off
+fancyindex\_hide\_symlinks off
 
 Context  
 http, server, location
@@ -298,20 +305,15 @@ http, server, location
 Description  
 When enabled, generated listings will not contain symbolic links.
 
-fancyindex<span id="hide_parent_dir">hide_parent_dir</span>
-\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~ :Syntax:
-*fancyindex_hide_parent_dir* \[*on* \| *off*\] :Default:
-fancyindex<span id="hide_parent_dir">hide_parent_dir</span> off
-:Context: http, server, location :Description: When enabled, it will not
-show parent directory.
+fancyindex\_hide\_parent\_dir \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ :Syntax: *fancyindex\_hide\_parent\_dir* [*on* | *off*] :Default: fancyindex\_hide\_parent\_dir off :Context: http, server, location :Description: When enabled, it will not show parent directory.
 
-### fancyindex<span id="localtime">localtime</span>
+### fancyindex\_localtime
 
 Syntax  
-*fancyindex_localtime* \[*on* \| *off*\]
+*fancyindex\_localtime* [*on* | *off*]
 
 Default  
-fancyindex<span id="localtime">localtime</span> off
+fancyindex\_localtime off
 
 Context  
 http, server, location
@@ -319,39 +321,31 @@ http, server, location
 Description  
 Enables showing file times as local time. Default is “off” (GMT time).
 
-### fancyindex<span id="time_format">time_format</span>
+### fancyindex\_time\_format
 
 Syntax  
-*fancyindex_time_format* string
+*fancyindex\_time\_format* string
 
 Default  
-fancyindex<span id="time_format">time_format</span> "%Y-%b-%d %H:%M"
+fancyindex\_time\_format "%Y-%b-%d %H:%M"
 
 Context  
 http, server, location
 
 Description  
-Format string used for timestamps. The format specifiers are a subset of
-those supported by the [strftime](https://linux.die.net/man/3/strftime)
-function, and the behavior is locale-independent (for example, day and
-month names are always in English). The supported formats are:
+Format string used for timestamps. The format specifiers are a subset of those supported by the [strftime](https://linux.die.net/man/3/strftime) function, and the behavior is locale-independent (for example, day and month names are always in English). The supported formats are:
 
 -   `%a`: Abbreviated name of the day of the week.
 -   `%A`: Full name of the day of the week.
 -   `%b`: Abbreviated month name.
 -   `%B`: Full month name.
 -   `%d`: Day of the month as a decimal number (range 01 to 31).
--   `%e`: Like `%d`, the day of the month as a decimal number, but a
-    leading zero is replaced by a space.
+-   `%e`: Like `%d`, the day of the month as a decimal number, but a leading zero is replaced by a space.
 -   `%F`: Equivalent to `%Y-%m-%d` (the ISO 8601 date format).
--   `%H`: Hour as a decimal number using a 24-hour clock (range 00 to
-    23).
--   `%I`: Hour as a decimal number using a 12-hour clock (range 01 to
-    12).
--   `%k`: Hour (24-hour clock) as a decimal number (range 0 to 23);
-    single digits are preceded by a blank.
--   `%l`: Hour (12-hour clock) as a decimal number (range 1 to 12);
-    single digits are preceded by a blank.
+-   `%H`: Hour as a decimal number using a 24-hour clock (range 00 to 23).
+-   `%I`: Hour as a decimal number using a 12-hour clock (range 01 to 12).
+-   `%k`: Hour (24-hour clock) as a decimal number (range 0 to 23); single digits are preceded by a blank.
+-   `%l`: Hour (12-hour clock) as a decimal number (range 1 to 12); single digits are preceded by a blank.
 -   `%m`: Month as a decimal number (range 01 to 12).
 -   `%M`: Minute as a decimal number (range 00 to 59).
 -   `%p`: Either "AM" or "PM" according to the given time value.
@@ -364,6 +358,7 @@ month names are always in English). The supported formats are:
 -   `%w`: Day of the week as a decimal, range 0 to 6, Monday being 0.
 -   `%y`: Year as a decimal number without a century (range 00 to 99).
 -   `%Y`: Year as a decimal number including the century.
+
 
 ## GitHub
 
