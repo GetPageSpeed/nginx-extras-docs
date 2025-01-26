@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package nginx-module-spnego-http-auth. This module implements adds SPNEGO support to NGINX.  It currently supports only Kerberos authentication via GSSAPI. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>spnego-http-auth - NGINX Extras Documentation</title>
+        <title>Nginx module for HTTP SPNEGO auth - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="spnego-http-auth - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="Nginx module for HTTP SPNEGO auth - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package nginx-module-spnego-http-auth. This module implements adds SPNEGO support to NGINX.  It currently supports only Kerberos authentication via GSSAPI. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/spnego-http-auth.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="spnego-http-auth - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="Nginx module for HTTP SPNEGO auth - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package nginx-module-spnego-http-auth. This module implements adds SPNEGO support to NGINX.  It currently supports only Kerberos authentication via GSSAPI. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/spnego-http-auth.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              spnego-http-auth
+              Nginx module for HTTP SPNEGO auth
             
           </span>
         </div>
@@ -1451,6 +1451,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../live-common/" class="md-nav__link">
         
   
@@ -1766,6 +1787,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pta/" class="md-nav__link">
         
   
@@ -1813,6 +1855,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -2085,6 +2148,15 @@
   <a href="#configuration-reference" class="md-nav__link">
     <span class="md-ellipsis">
       Configuration reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credential-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credential Delegation
     </span>
   </a>
   
@@ -5502,6 +5574,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#credential-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credential Delegation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#basic-authentication-fallback" class="md-nav__link">
     <span class="md-ellipsis">
       Basic authentication fallback
@@ -5640,23 +5721,23 @@
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
-<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>RedHat Enterprise Linux 7, 8, 9 and 10</li>
 <li>CentOS 7, 8, 9</li>
 <li>AlmaLinux 8, 9</li>
 <li>Rocky Linux 8, 9</li>
 <li>Amazon Linux 2 and Amazon Linux 2023</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-spnego-http-auth
+</code></pre></div>
+</div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-spnego-http-auth
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-spnego-http-auth
 </code></pre></div>
 </div>
 </div>
@@ -5664,8 +5745,8 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_auth_spnego_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-spnego-http-auth <a href="https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.1" target="_blank">v1.1.1</a> 
-released on Feb 26 2021.</p>
+<p>This document describes nginx-module-spnego-http-auth <a href="https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.2" target="_blank">v1.1.2</a> 
+released on Jan 11 2025.</p>
 <hr />
 
 <p>This module implements adds <a href="http://tools.ietf.org/html/rfc4178">SPNEGO</a>
@@ -5701,6 +5782,11 @@ multiple entries, one per line.</p>
 <div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;username&gt;@&lt;realm&gt;
 auth_gss_authorized_principal &lt;username2&gt;@&lt;realm&gt;
 </code></pre></div>
+<p>Users can also be authorized using a regex pattern via the <code>auth_gss_authorized_principal_regex</code>
+ directive. This directive can be used together with the <code>auth_gss_authorized_principal</code> directive.</p>
+<div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;username&gt;@&lt;realm&gt;
+auth_gss_authorized_principal_regex ^(&lt;username&gt;)/(&lt;group&gt;)@&lt;realm&gt;$
+</code></pre></div>
 <p>The remote user header in nginx can only be set by doing basic authentication.
 Thus, this module sets a bogus basic auth header that will reach your backend
 application in order to set this header/nginx variable.  The easiest way to disable
@@ -5711,6 +5797,26 @@ this behavior is to add the following configuration to your location config.</p>
 be a sufficient workaround for now.</p>
 <p>If you would like to enable GSS local name rules to rewrite usernames, you can
 specify the <code>auth_gss_map_to_local</code> option.</p>
+<h2 id="credential-delegation">Credential Delegation</h2>
+<p>User credentials can be delegated to nginx using the <code>auth_gss_delegate_credentials</code> 
+ directive. This directive will enable unconstrained delegation if the user chooses 
+ to delegate their credentials. Constrained delegation (S4U2proxy) can also be enabled using the 
+ <code>auth_gss_constrained_delegation</code> directive together with the <code>auth_gss_delegate_credentials</code> 
+ directive. To specify the ccache file name to store the service ticket used for constrained 
+ delegation, set the <code>auth_gss_service_ccache</code> directive. Otherwise, the default ccache name 
+ will be used.</p>
+<div class="highlight"><pre><span></span><code>auth_gss_service_ccache /tmp/krb5cc_0;
+auth_gss_delegate_credentials on;
+auth_gss_constrained_delegation on;
+</code></pre></div>
+<p>The delegated credentials will be stored within the systems tmp directory. Once the
+ request is completed, the credentials file will be destroyed. The name of the credentials 
+ file will be specified within the nginx variable <code>$krb5_cc_name</code>. Usage of the variable 
+ can include passing it to a fcgi program using the <code>fastcgi_param</code> directive.</p>
+<div class="highlight"><pre><span></span><code>fastcgi_param KRB5CCNAME $krb5_cc_name;
+</code></pre></div>
+<p>Constrained delegation is currently only supported using the negotiate authentication scheme
+ and has only been testing with MIT Kerberos (Use at your own risk if using Heimdal Kerberos).</p>
 <h2 id="basic-authentication-fallback">Basic authentication fallback</h2>
 <p>The module falls back to basic authentication by default if no negotiation is
 attempted by the client.  If you are using SPNEGO without SSL, it is recommended

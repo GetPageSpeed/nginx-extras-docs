@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package lua-resty-core: New FFI-based API for lua-nginx-module">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>core - NGINX Extras Documentation</title>
+        <title>New FFI-based API for lua-nginx-module - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="core - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="New FFI-based API for lua-nginx-module - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package lua-resty-core: New FFI-based API for lua-nginx-module" >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/core.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="core - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="New FFI-based API for lua-nginx-module - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package lua-resty-core: New FFI-based API for lua-nginx-module" >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/core.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              core
+              New FFI-based API for lua-nginx-module
             
           </span>
         </div>
@@ -1448,6 +1448,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/live-common/" class="md-nav__link">
         
   
@@ -1763,6 +1784,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/pta/" class="md-nav__link">
         
   
@@ -1810,6 +1852,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -6088,8 +6151,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-core
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-core <a href="https://github.com/openresty/lua-resty-core/releases/tag/v0.1.30" target="_blank">v0.1.30</a> 
-released on Oct 10 2024.</p>
+<p>This document describes lua-resty-core <a href="https://github.com/openresty/lua-resty-core/releases/tag/v0.1.31" target="_blank">v0.1.31</a> 
+released on Jan 17 2025.</p>
 <hr />
 
 <p>lua-resty-core - New FFI-based Lua API for ngx_http_lua_module and/or ngx_stream_lua_module</p>
@@ -6151,6 +6214,7 @@ into serious compatibility issues.</p>
 <ul>
 <li><a href="https://github.com/openresty/lua-nginx-module#ngxencode_base64">ngx.encode_base64</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#ngxdecode_base64">ngx.decode_base64</a></li>
+<li><a href="https://github.com/openresty/lua-nginx-module#ngxdecode_base64mime">ngx.decode_base64mime</a></li>
 </ul>
 <h2 id="restycoreuri">resty.core.uri</h2>
 <ul>

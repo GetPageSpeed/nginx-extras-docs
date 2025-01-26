@@ -459,15 +459,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-this-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to use this documentation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#complete-module-list" class="md-nav__link">
     <span class="md-ellipsis">
       Complete module list
@@ -1539,6 +1530,27 @@
   
   
     <li class="md-nav__item">
+      <a href="modules/limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="modules/live-common/" class="md-nav__link">
         
   
@@ -1854,6 +1866,27 @@
   
   
     <li class="md-nav__item">
+      <a href="modules/proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="modules/pta/" class="md-nav__link">
         
   
@@ -1901,6 +1934,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="modules/redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5411,15 +5465,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-this-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to use this documentation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#complete-module-list" class="md-nav__link">
     <span class="md-ellipsis">
       Complete module list
@@ -5450,10 +5495,10 @@ Each module can be installed as a separate package.</p>
 No longer you have to manually compile anything when you need to update NGINX or modules.
 An update is just a <code>yum update</code> that takes seconds and no downtime whatsoever.</p>
 <p>We currently support all major RPM-based distros, including CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr>,
-as well as Amazon Linux and latest Fedora Linux.</p>
-<p>All <abbr title="Red Hat Enterprise Linux">RHEL</abbr> derivatives like Oracle Linux, AlmaLinux and Rocky Linux are supported as well.</p>
+as well as Amazon Linux and the latest Fedora Linux.</p>
+<p>All <abbr title="Red Hat Enterprise Linux">RHEL</abbr> derivatives like Oracle Linux, AlmaLinux, and Rocky Linux are supported as well.</p>
 <p>Due to the extensive nature of our collection, it's easy to get lost in all the goodies and new NGINX directives.</p>
-<p>This documentation mini-site brings you each module's installation instructions and added directives
+<p>This documentation site brings you each module's installation instructions and added directives
 in a single place. </p>
 <h2 id="getting-started">Getting started</h2>
 <div class="admonition note">
@@ -5482,447 +5527,28 @@ sudo<span class="w"> </span>amazon-linux-extras<span class="w"> </span>install<s
 <h3 id="install-nginx-modules">Install NGINX modules</h3>
 <p>Thanks to the nature of dynamic modules, you can install <em>just the modules</em> you want instead of using bloatware NGINX installation. </p>
 <p>For example, to install NGINX and the PageSpeed module for it, run:</p>
-<div class="highlight"><pre><span></span><code>sudo yum -y install nginx nginx-module-pagespeed
+<div class="highlight"><pre><span></span><code>sudo dnf -y install nginx nginx-module-pagespeed
 </code></pre></div>
 <p>Enable the module by adding the <code>load_module ...</code> directive that is shown after installation.</p>
 <p>In case you missed it, refer to <a href="https://nginx-extras.getpagespeed.com/modules/">the documentation of respective module</a> and look for <code>load_module</code> directive
 required to enable it.</p>
 <p>To list available modules for installation, run:</p>
-<div class="highlight"><pre><span></span><code>sudo yum list available | grep nginx-module
+<div class="highlight"><pre><span></span><code>sudo dnf list available | grep nginx-module
 </code></pre></div>
 <p>To install the recommended group of modules for performance and security, you may want to run:</p>
-<div class="highlight"><pre><span></span><code>sudo yum -y groupinstall &quot;nginx extras recommended&quot;
+<div class="highlight"><pre><span></span><code>sudo dnf -y groupinstall &quot;nginx extras recommended&quot;
 </code></pre></div>
 <p>This installs NGINX, and modules: PageSpeed, Brotli, Dynamic ETag, Immutable (performance); ModSecurity, Security Headers (security).</p>
 <h2 id="upgrading-modules">Upgrading modules</h2>
 <p>New NGINX releases require upgrading its modules. Thanks to the repository, you don't need to worry about recompiling anything.
-We ship updated NGINX and module packages, and you can simply run <code>yum upgrade</code> to get to the latest NGINX and module packages.</p>
+We ship updated NGINX and module packages, and you can simply run <code>dnf upgrade</code> to get to the latest NGINX and module packages.</p>
 <p>After updating a module package, to actually apply it at runtime, you have to run the binary upgrade routine.
 This can be done like this:</p>
 <div class="highlight"><pre><span></span><code>service<span class="w"> </span>nginx<span class="w"> </span>upgrade
 </code></pre></div>
 <p>This ensures that NGINX loads the updated module(s).</p>
-<h2 id="how-to-use-this-documentation">How to use this documentation</h2>
-<ul>
-<li>Use the search at the top rightmost. It's good for locating whether a feature you are after is available
- via a module</li>
-<li>Just curious what's there? Look at the complete list of modules below, or in the left-side navigation.</li>
-</ul>
 <h2 id="complete-module-list">Complete module list</h2>
-<table>
-<thead>
-<tr>
-<th>Package Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="modules/accept-language/">nginx-module-accept-language</a></td>
-<td>NGINX Accept-Language module</td>
-</tr>
-<tr>
-<td><a href="modules/ajp/">nginx-module-ajp</a></td>
-<td>Support AJP protocol proxy with NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/array-var/">nginx-module-array-var</a></td>
-<td>Array-typed variables for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/auth-digest/">nginx-module-auth-digest</a></td>
-<td>Digest Authentication for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/auth-ldap/">nginx-module-auth-ldap</a></td>
-<td>LDAP Authentication module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/auth-pam/">nginx-module-auth-pam</a></td>
-<td>PAM authentication dynamic module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/auth-totp/">nginx-module-auth-totp</a></td>
-<td>Time-based one-time password (TOTP) authentication for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/aws-auth/">nginx-module-aws-auth</a></td>
-<td>NGINX module to proxy to authenticated AWS services</td>
-</tr>
-<tr>
-<td><a href="modules/bot-verifier/">nginx-module-bot-verifier</a></td>
-<td>A search index bot verification module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/brotli/">nginx-module-brotli</a></td>
-<td>NGINX Brotli dynamic modules</td>
-</tr>
-<tr>
-<td><a href="modules/cache-purge/">nginx-module-cache-purge</a></td>
-<td>NGINX Cache Purge module</td>
-</tr>
-<tr>
-<td><a href="modules/captcha/">nginx-module-captcha</a></td>
-<td>NGINX Captcha Module</td>
-</tr>
-<tr>
-<td><a href="modules/combined-upstreams/">nginx-module-combined-upstreams</a></td>
-<td>NGINX Combined Upstreams module</td>
-</tr>
-<tr>
-<td><a href="modules/concat/">nginx-module-concat</a></td>
-<td><abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Concatenation module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/cookie-flag/">nginx-module-cookie-flag</a></td>
-<td>NGINX cookie flag module</td>
-</tr>
-<tr>
-<td><a href="modules/cookie-limit/">nginx-module-cookie-limit</a></td>
-<td>NGINX module to limit the number of malicious ip forged cookies</td>
-</tr>
-<tr>
-<td><a href="modules/coolkit/">nginx-module-coolkit</a></td>
-<td>NGINX CoolKit Module</td>
-</tr>
-<tr>
-<td><a href="modules/dav-ext/">nginx-module-dav-ext</a></td>
-<td>NGINX WebDAV PROPFIND,OPTIONS,LOCK,UNLOCK support</td>
-</tr>
-<tr>
-<td><a href="modules/doh/">nginx-module-doh</a></td>
-<td>NGINX module for serving DNS-over-HTTPS (DOH) requests</td>
-</tr>
-<tr>
-<td><a href="modules/dynamic-etag/">nginx-module-dynamic-etag</a></td>
-<td>NGINX module for adding ETag to dynamic content</td>
-</tr>
-<tr>
-<td><a href="modules/dynamic-limit-req/">nginx-module-dynamic-limit-req</a></td>
-<td>NGINX module to dynamically lock IP and release it periodically</td>
-</tr>
-<tr>
-<td><a href="modules/echo/">nginx-module-echo</a></td>
-<td>nginx Echo module</td>
-</tr>
-<tr>
-<td><a href="modules/encrypted-session/">nginx-module-encrypted-session</a></td>
-<td>Encrypt and decrypt NGINX variable values</td>
-</tr>
-<tr>
-<td><a href="modules/execute/">nginx-module-execute</a></td>
-<td>NGINX Execute module</td>
-</tr>
-<tr>
-<td><a href="modules/f4fhds/">nginx-module-f4fhds</a></td>
-<td>NGINX module for Adobe f4f format</td>
-</tr>
-<tr>
-<td><a href="modules/fancyindex/">nginx-module-fancyindex</a></td>
-<td>NGINX Fancy Index module</td>
-</tr>
-<tr>
-<td><a href="modules/flv/">nginx-module-flv</a></td>
-<td>Media streaming server based on nginx-module-rtmp</td>
-</tr>
-<tr>
-<td><a href="modules/form-input/">nginx-module-form-input</a></td>
-<td>NGINX form input module</td>
-</tr>
-<tr>
-<td><a href="modules/geoip2/">nginx-module-geoip2</a></td>
-<td>NGINX GeoIP2 module</td>
-</tr>
-<tr>
-<td><a href="modules/geoip/">nginx-module-geoip</a></td>
-<td>NGINX GeoIP dynamic modules</td>
-</tr>
-<tr>
-<td><a href="modules/google/">nginx-module-google</a></td>
-<td>NGINX Module for Google Mirror creation</td>
-</tr>
-<tr>
-<td><a href="modules/graphite/">nginx-module-graphite</a></td>
-<td>An NGINX module for collecting stats into Graphite</td>
-</tr>
-<tr>
-<td><a href="modules/headers-more/">nginx-module-headers-more</a></td>
-<td>NGINX Headers More dynamic module</td>
-</tr>
-<tr>
-<td><a href="modules/hmac-secure-link/">nginx-module-hmac-secure-link</a></td>
-<td>Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes</td>
-</tr>
-<tr>
-<td><a href="modules/html-sanitize/">nginx-module-html-sanitize</a></td>
-<td>NGINX module to sanitize <abbr title="Hyper Text Markup Language">HTML</abbr> 5 with whitelisted elements, attributes and CSS</td>
-</tr>
-<tr>
-<td><a href="modules/iconv/">nginx-module-iconv</a></td>
-<td>NGINX iconv module</td>
-</tr>
-<tr>
-<td><a href="modules/image-filter/">nginx-module-image-filter</a></td>
-<td>NGINX image filter dynamic module</td>
-</tr>
-<tr>
-<td><a href="modules/immutable/">nginx-module-immutable</a></td>
-<td>NGINX module for setting immutable caching on static assets</td>
-</tr>
-<tr>
-<td><a href="modules/ipscrub/">nginx-module-ipscrub</a></td>
-<td>IP address anonymizer module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/jpeg/">nginx-module-jpeg</a></td>
-<td>NGINX JPEG filter module</td>
-</tr>
-<tr>
-<td><a href="modules/js-challenge/">nginx-module-js-challenge</a></td>
-<td>NGINX Javascript challenge module</td>
-</tr>
-<tr>
-<td><a href="modules/json-var/">nginx-module-json-var</a></td>
-<td>NGINX JSON variables module</td>
-</tr>
-<tr>
-<td><a href="modules/json/">nginx-module-json</a></td>
-<td>NGINX JSON module</td>
-</tr>
-<tr>
-<td><a href="modules/jwt/">nginx-module-jwt</a></td>
-<td>NGINX JWT Module</td>
-</tr>
-<tr>
-<td><a href="modules/length-hiding/">nginx-module-length-hiding</a></td>
-<td>NGINX Length Hiding Filter Module</td>
-</tr>
-<tr>
-<td><a href="modules/let/">nginx-module-let</a></td>
-<td>NGINX let module</td>
-</tr>
-<tr>
-<td><a href="modules/live-common/">nginx-module-live-common</a></td>
-<td>Kaltura Media Framework Common NGINX Module</td>
-</tr>
-<tr>
-<td><a href="modules/log-zmq/">nginx-module-log-zmq</a></td>
-<td>ZeroMQ logger module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/lua/">nginx-module-lua</a></td>
-<td>Lua scripting support for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/markdown/">nginx-module-markdown</a></td>
-<td>Markdown-to-html NGINX module</td>
-</tr>
-<tr>
-<td><a href="modules/memc/">nginx-module-memc</a></td>
-<td>Extended version of the standard NGINX memcached module</td>
-</tr>
-<tr>
-<td><a href="modules/naxsi/">nginx-module-naxsi</a></td>
-<td>NGINX Anti XSS &amp; SQL Injection module</td>
-</tr>
-<tr>
-<td><a href="modules/nchan/">nginx-module-nchan</a></td>
-<td>Scalable, flexible pub/sub server for the modern web</td>
-</tr>
-<tr>
-<td><a href="modules/ndk/">nginx-module-ndk</a></td>
-<td>Nginx Development Kit</td>
-</tr>
-<tr>
-<td><a href="modules/njs/">nginx-module-njs</a></td>
-<td>NGINX njs dynamic modules</td>
-</tr>
-<tr>
-<td><a href="modules/ntlm/">nginx-module-ntlm</a></td>
-<td>NTLM NGINX Module</td>
-</tr>
-<tr>
-<td><a href="modules/pagespeed/">nginx-module-pagespeed</a></td>
-<td>PageSpeed dynamic module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/passenger/">nginx-module-passenger</a></td>
-<td>Passenger module</td>
-</tr>
-<tr>
-<td><a href="modules/perl/">nginx-module-perl</a></td>
-<td>NGINX Perl dynamic module</td>
-</tr>
-<tr>
-<td><a href="modules/phantom-token/">nginx-module-phantom-token</a></td>
-<td>Phantom Token NGINX Module</td>
-</tr>
-<tr>
-<td><a href="modules/postgres/">nginx-module-postgres</a></td>
-<td>PostgreSQL module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/pta/">nginx-module-pta</a></td>
-<td>Period of Time Authentication module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/push-stream/">nginx-module-push-stream</a></td>
-<td>NGINX push stream module</td>
-</tr>
-<tr>
-<td><a href="modules/rdns/">nginx-module-rdns</a></td>
-<td>NGINX <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> rDNS module</td>
-</tr>
-<tr>
-<td><a href="modules/redis2/">nginx-module-redis2</a></td>
-<td>NGINX upstream module for the Redis 2.0 protocol</td>
-</tr>
-<tr>
-<td><a href="modules/rtmp/">nginx-module-rtmp</a></td>
-<td>NGINX RTMP module</td>
-</tr>
-<tr>
-<td><a href="modules/secure-token/">nginx-module-secure-token</a></td>
-<td>Secure token module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/security-headers/">nginx-module-security-headers</a></td>
-<td>NGINX module for sending security headers</td>
-</tr>
-<tr>
-<td><a href="modules/security/">nginx-module-security</a></td>
-<td>ModSecurity v3 Nginx Connector</td>
-</tr>
-<tr>
-<td><a href="modules/set-misc/">nginx-module-set-misc</a></td>
-<td>NGINX Set-Misc module</td>
-</tr>
-<tr>
-<td><a href="modules/shibboleth/">nginx-module-shibboleth</a></td>
-<td>Shibboleth Auth Request module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/slowfs/">nginx-module-slowfs</a></td>
-<td>NGINX SlowFS Cache Module</td>
-</tr>
-<tr>
-<td><a href="modules/small-light/">nginx-module-small-light</a></td>
-<td>Dynamic image transformation module For NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/spnego-http-auth/">nginx-module-spnego-http-auth</a></td>
-<td>Nginx module for <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> SPNEGO auth</td>
-</tr>
-<tr>
-<td><a href="modules/srcache/">nginx-module-srcache</a></td>
-<td>Transparent subrequest-based caching layout for arbitrary NGINX locations</td>
-</tr>
-<tr>
-<td><a href="modules/srt/">nginx-module-srt</a></td>
-<td>Nginx SRT Module</td>
-</tr>
-<tr>
-<td><a href="modules/statsd/">nginx-module-statsd</a></td>
-<td>NGINX module for sending stats to statsd</td>
-</tr>
-<tr>
-<td><a href="modules/sticky/">nginx-module-sticky</a></td>
-<td>NGINX sticky cookie module</td>
-</tr>
-<tr>
-<td><a href="modules/stream-lua/">nginx-module-stream-lua</a></td>
-<td>Lua scripting support for NGINX streams</td>
-</tr>
-<tr>
-<td><a href="modules/stream-sts/">nginx-module-stream-sts</a></td>
-<td>Nginx stream server traffic status core module</td>
-</tr>
-<tr>
-<td><a href="modules/stream-upsync/">nginx-module-stream-upsync</a></td>
-<td>NGINX module for syncing stream backends from consul or etcd</td>
-</tr>
-<tr>
-<td><a href="modules/sts/">nginx-module-sts</a></td>
-<td>Nginx stream server traffic status module</td>
-</tr>
-<tr>
-<td><a href="modules/substitutions/">nginx-module-substitutions</a></td>
-<td>String substitutions module for nginx</td>
-</tr>
-<tr>
-<td><a href="modules/sxg/">nginx-module-sxg</a></td>
-<td>Signed <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Exchange(SXG) support for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/sysguard/">nginx-module-sysguard</a></td>
-<td>NGINX sysguard module</td>
-</tr>
-<tr>
-<td><a href="modules/testcookie/">nginx-module-testcookie</a></td>
-<td>NGINX testcookie robot mitigation module</td>
-</tr>
-<tr>
-<td><a href="modules/traffic-accounting/">nginx-module-traffic-accounting</a></td>
-<td>Monitor the incoming and outgoing traffic metrics in realtime for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/ts/">nginx-module-ts</a></td>
-<td>NGINX MPEG-TS Live Module</td>
-</tr>
-<tr>
-<td><a href="modules/unbrotli/">nginx-module-unbrotli</a></td>
-<td>Decompresses Brotli-encoded responses for clients that do not support it</td>
-</tr>
-<tr>
-<td><a href="modules/untar/">nginx-module-untar</a></td>
-<td>NGINX <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Untar Module</td>
-</tr>
-<tr>
-<td><a href="modules/upload/">nginx-module-upload</a></td>
-<td>NGINX module for handling file uploads</td>
-</tr>
-<tr>
-<td><a href="modules/upstream-fair/">nginx-module-upstream-fair</a></td>
-<td>The fair load balancer module for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/upstream-jdomain/">nginx-module-upstream-jdomain</a></td>
-<td>Asynchronous domain name resolution module for NGINX upstream</td>
-</tr>
-<tr>
-<td><a href="modules/upsync/">nginx-module-upsync</a></td>
-<td>NGINX module for syncing upstreams from consul or etcd</td>
-</tr>
-<tr>
-<td><a href="modules/vod/">nginx-module-vod</a></td>
-<td>NGINX-based VOD Packager</td>
-</tr>
-<tr>
-<td><a href="modules/vts/">nginx-module-vts</a></td>
-<td>NGINX virtual host traffic status module</td>
-</tr>
-<tr>
-<td><a href="modules/webp/">nginx-module-webp</a></td>
-<td>NGINX WebP module</td>
-</tr>
-<tr>
-<td><a href="modules/xslt/">nginx-module-xslt</a></td>
-<td>NGINX XSLT dynamic module</td>
-</tr>
-<tr>
-<td><a href="modules/xss/">nginx-module-xss</a></td>
-<td>Native cross-site scripting support in NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/zip/">nginx-module-zip</a></td>
-<td>Streaming ZIP archiver for NGINX</td>
-</tr>
-<tr>
-<td><a href="modules/zstd/">nginx-module-zstd</a></td>
-<td>NGINX module for the Zstandard compression</td>
-</tr>
-</tbody>
-</table>
+<p>Proceed to the <a href="https://nginx-extras.getpagespeed.com/modules/">Modules</a> page to see all available modules and their documentation.</p>
 
 
 

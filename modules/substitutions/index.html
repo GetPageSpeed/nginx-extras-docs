@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>substitutions - NGINX Extras Documentation</title>
+        <title>String substitutions module for nginx - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="substitutions - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="String substitutions module for nginx - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/substitutions.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="substitutions - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="String substitutions module for nginx - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/substitutions.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              substitutions
+              String substitutions module for nginx
             
           </span>
         </div>
@@ -1451,6 +1451,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../live-common/" class="md-nav__link">
         
   
@@ -1766,6 +1787,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pta/" class="md-nav__link">
         
   
@@ -1813,6 +1855,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5382,23 +5445,23 @@
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
-<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>RedHat Enterprise Linux 7, 8, 9 and 10</li>
 <li>CentOS 7, 8, 9</li>
 <li>AlmaLinux 8, 9</li>
 <li>Rocky Linux 8, 9</li>
 <li>Amazon Linux 2 and Amazon Linux 2023</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-substitutions
+</code></pre></div>
+</div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-substitutions
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-substitutions
 </code></pre></div>
 </div>
 </div>

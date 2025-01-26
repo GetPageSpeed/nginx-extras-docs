@@ -1446,6 +1446,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../modules/limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modules/live-common/" class="md-nav__link">
         
   
@@ -1761,6 +1782,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../modules/proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modules/pta/" class="md-nav__link">
         
   
@@ -1808,6 +1850,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5403,12 +5466,12 @@ with intention to extend functionality far beyond the original version.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>```bash
-sudo yum -y install <a href="https://extras.getpagespeed.com/release-latest.rpm">https://extras.getpagespeed.com/release-latest.rpm</a>
-sudo yum -y install <a href="https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm">https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm</a> 
-sudo yum -y install yum-utils
-sudo yum-config-manager --enable getpagespeed-extras-angie
-sudo yum -y install angie</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
+sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>yum-utils
+sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-angie
+sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>angie
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
@@ -5420,7 +5483,7 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span
 </div>
 </div>
 <h2 id="compatibility-notes">Compatibility notes</h2>
-<p>Angie is based on mainline NGINX branch, but <a href="https://github.com/webserver-llc/angie/issues/13#issuecomment-1406843151">does not have 100% compatibility with NGINX ABI</a>.
+<p>Angie is based on the mainline NGINX branch but <a href="https://github.com/webserver-llc/angie/issues/13#issuecomment-1406843151">does not have 100% compatibility with NGINX ABI</a>.
 In fact, it has runtime checks when loading a module compiled for NGINX to prevent the loading,
 to avoid unexpected problems.</p>
 <p>So for the time being, you can't use numerous module packages from NGINX Extras with Angie.</p>

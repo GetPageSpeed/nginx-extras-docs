@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package nginx-module-security. The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.  The ModSecurity-nginx connector takes the form of an nginx module. The module simply serves as a layer of communication between nginx and ModSecurity. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>security - NGINX Extras Documentation</title>
+        <title>ModSecurity v3 Nginx Connector - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="security - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="ModSecurity v3 Nginx Connector - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package nginx-module-security. The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.  The ModSecurity-nginx connector takes the form of an nginx module. The module simply serves as a layer of communication between nginx and ModSecurity. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/security.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="security - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="ModSecurity v3 Nginx Connector - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package nginx-module-security. The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.  The ModSecurity-nginx connector takes the form of an nginx module. The module simply serves as a layer of communication between nginx and ModSecurity. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/security.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              security
+              ModSecurity v3 Nginx Connector
             
           </span>
         </div>
@@ -1451,6 +1451,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../live-common/" class="md-nav__link">
         
   
@@ -1766,6 +1787,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pta/" class="md-nav__link">
         
   
@@ -1813,6 +1855,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5562,8 +5625,8 @@
 <li><a href="https://bit.ly/ngx-security-el8">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8</a></li>
 </ul>
 <h3 id="other-supported-operating-systems">Other supported operating systems</h3>
-<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-security
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-security
 </code></pre></div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_modsecurity_module.so</span><span class="p">;</span>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/pta/">
       
       
-        <link rel="prev" href="../postgres/">
+        <link rel="prev" href="../proxy-connect/">
       
       
         <link rel="next" href="../push-stream/">
@@ -26,7 +26,7 @@
     
     
       
-        <title>pta - NGINX Extras Documentation</title>
+        <title>Period of Time Authentication module for NGINX - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="pta - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="Period of Time Authentication module for NGINX - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/pta.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="pta - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="Period of Time Authentication module for NGINX - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/pta.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pta
+              Period of Time Authentication module for NGINX
             
           </span>
         </div>
@@ -1451,6 +1451,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../live-common/" class="md-nav__link">
         
   
@@ -1763,6 +1784,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2003,6 +2045,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5646,23 +5709,23 @@
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
-<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>RedHat Enterprise Linux 7, 8, 9 and 10</li>
 <li>CentOS 7, 8, 9</li>
 <li>AlmaLinux 8, 9</li>
 <li>Rocky Linux 8, 9</li>
 <li>Amazon Linux 2 and Amazon Linux 2023</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-pta
+</code></pre></div>
+</div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-pta
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-pta
 </code></pre></div>
 </div>
 </div>
@@ -5670,8 +5733,8 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_pta_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-pta <a href="https://github.com/iij/pta/releases/tag/v1.0.1" target="_blank">v1.0.1</a> 
-released on Jul 04 2022.</p>
+<p>This document describes nginx-module-pta <a href="https://github.com/iij/pta/releases/tag/v1.0.2" target="_blank">v1.0.2</a> 
+released on Jan 07 2025.</p>
 <hr />
 
 <h2 id="overview">Overview</h2>

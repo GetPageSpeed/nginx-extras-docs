@@ -1448,6 +1448,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../modules/limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modules/live-common/" class="md-nav__link">
         
   
@@ -1763,6 +1784,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../modules/proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modules/pta/" class="md-nav__link">
         
   
@@ -1810,6 +1852,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -5236,9 +5299,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-the-connect-patch" class="md-nav__link">
+  <a href="#what-is-the-connect-method-support" class="md-nav__link">
     <span class="md-ellipsis">
-      What is the CONNECT patch
+      What is the CONNECT method support
     </span>
   </a>
   
@@ -5547,9 +5610,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-the-connect-patch" class="md-nav__link">
+  <a href="#what-is-the-connect-method-support" class="md-nav__link">
     <span class="md-ellipsis">
-      What is the CONNECT patch
+      What is the CONNECT method support
     </span>
   </a>
   
@@ -5680,21 +5743,22 @@ To save trouble for many people relying on a manual compilation, we build this b
 Its official name is NGINX-MOD.</p>
 <p>NGINX-MOD is based on the latest <em>stable</em> NGINX with the following additions:</p>
 <ul>
-<li>Latest OpenSSL 1.1.x (allows for TLS 1.3 to be configured)</li>
-<li>Patch for <abbr title="Hyper Text Transfer Protocol">HTTP</abbr>/2 HPACK (performance)</li>
-<li>Patch for dynamic TLS records (performance)</li>
-<li>Patch that allows ngx_http_limit_req_module to support rates of an hour, minute, day, week, and year</li>
-<li><a href="https://github.com/yaoweibin/nginx_upstream_check_module">Active Health Checks</a></li>
-<li>Patch allowing to disable emission of NGINX software name in both the <code>Server:</code> header and error pages</li>
-<li>Patch allowing <code>CONNECT</code> request method</li>
+<li><strong>Seamless <abbr title="Hyper Text Transfer Protocol">HTTP</abbr>/3 Support</strong>: Experience faster and more reliable web connections with the cutting-edge <abbr title="Hyper Text Transfer Protocol">HTTP</abbr>/3 protocol.</li>
+<li><strong>Enhanced <abbr title="Hyper Text Transfer Protocol">HTTP</abbr>/2 HPACK Compression</strong>: Boost your website’s performance through optimized header compression, ensuring quicker data transfer.</li>
+<li><strong>Dynamic TLS Record Management</strong>: Improve both security and speed with dynamically handled TLS records, adapting to your site’s needs in real-time.</li>
+<li><strong>Advanced Rate Limiting</strong>: Gain precise control over traffic with the extended <code>ngx_http_limit_req_module</code>, allowing you to set request limits on an hourly, daily, weekly, or yearly basis.</li>
+<li><strong>Active Health Monitoring</strong>: Maintain high uptime and reliability with real-time health checks of your upstream servers. <a href="https://github.com/yaoweibin/nginx_upstream_check_module">Learn More</a></li>
+<li><strong>Enhanced Security Features</strong>: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.</li>
+<li><strong>Secure SSL Proxying with <code>CONNECT</code> Method</strong>: Easily handle and proxy SSL requests using the <code>CONNECT</code> method, ensuring secure and efficient data transmission.</li>
 </ul>
+<p>Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!</p>
 <p>More on those patches in the documentation below.</p>
 <h2 id="how-to-install-nginx-mod">How to install NGINX-MOD</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7</label><label for="__tabbed_1_3">Amazon Linux 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
+sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
 sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--disable<span class="w"> </span>getpagespeed-extras-mainline
 sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-nginx-mod
 sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx
@@ -5749,7 +5813,7 @@ limit_req_zone $binary_remote_addr zone=one:10m rate=1r/M; # 1 request per month
 limit_req_zone $binary_remote_addr zone=one:10m rate=1r/Y; # 1 request per year
 </code></pre></div>
 <p>It is important to note, that your defined zone memory size should allow retaining old IP entries before the defined rate will apply.</p>
-<p>For example: you have defined a <code>10m</code> zone and <code>1r/d</code> for a particular resource. <code>10m</code> can store around 160,000 IP addresses.
+<p>For example, you have defined a <code>10m</code> zone and <code>1r/d</code> for a particular resource. <code>10m</code> can store around 160,000 IP addresses.
 So if someone visits your rate-limited resource, <em>and your traffic to it exceed 160K unique visitors within 24 hrs</em>, then the same visitor can theoretically not be rate-limited within the same day, because information about his IP address will be evicted from memory after enough visitors visited the resource.</p>
 <p>This note applies to the stock module's configuration as well, but less so.</p>
 <p>So the rules of thumb are:</p>
@@ -5759,11 +5823,10 @@ So if someone visits your rate-limited resource, <em>and your traffic to it exce
 </ul>
 <h2 id="what-is-hpack-patch">What is HPACK Patch</h2>
 <p>HPACK patch implements <a href="https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/">full HPACK</a> in NGINX. In short, this allows for compressing <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> headers</p>
-<h2 id="what-is-the-connect-patch">What is the <code>CONNECT</code> patch</h2>
-<p>This patch allows <code>CONNECT</code> request method. To configure your NGINX to handle such requests, install the supplementary module:</p>
-<div class="highlight"><pre><span></span><code>sudo yum -y install nginx-mod-module-proxy-connect
-</code></pre></div>
-<p>Documentation of this module <a href="https://github.com/dvershinin/ngx_http_proxy_connect_module">can be found here</a>. </p>
+<h2 id="what-is-the-connect-method-support">What is the <code>CONNECT</code> method support</h2>
+<p>NGINX-MOD provides support for the <code>CONNECT</code> method request. This method is mainly used 
+to tunnel SSL requests through proxy servers. </p>
+<p>To enable and configure, please refer to the <a href="https://github.com/dvershinin/ngx_http_proxy_connect_module?tab=readme-ov-file#directives"><code>proxy_connect</code> directives</a>. </p>
 <h2 id="configuration-directives-of-nginx-mod">Configuration Directives of NGINX-MOD</h2>
 <p>There are some configuration directives in this build, which are not otherwise available in regular builds. Let's document them here.</p>
 <p>The following set of configuration directives are added by <a href="https://blog.cloudflare.com/optimizing-tls-over-tcp-to-reduce-latency/">dynamic TLS records</a> patch. </p>
@@ -5774,7 +5837,7 @@ So if someone visits your rate-limited resource, <em>and your traffic to it exce
 ssl_dyn_rec_size_hi: the TLS record size to grow to. Defaults to 4229 bytes (designed to fit the entire record in 3 TCP segments)</p>
 <h3 id="ssl_dyn_rec_threshold"><code>ssl_dyn_rec_threshold</code></h3>
 <p>The number of records to send before changing the record size.</p>
-<p>Because we build with latest OpenSSL:</p>
+<p>Because we build with the latest OpenSSL:</p>
 <h3 id="ssl_protocols-sslv2-sslv3-tlsv1-tlsv11-tlsv12-tlsv13"><code>ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];</code></h3>
 <p>Not a new directive. But since we build with the most recent stable OpenSSL, it allows for <code>TLSv1.3</code> value to be used.</p>
 <h2 id="hiding-software-information">Hiding software information</h2>

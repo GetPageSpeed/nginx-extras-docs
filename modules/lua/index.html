@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Automatic documentation from sources, for NGINX Extras.">
+        <meta name="description" content="RPM package nginx-module-lua. Embed the power of Lua into Nginx HTTP Servers. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>lua - NGINX Extras Documentation</title>
+        <title>Lua scripting support for NGINX - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="lua - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="Lua scripting support for NGINX - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  property="og:description"  content="RPM package nginx-module-lua. Embed the power of Lua into Nginx HTTP Servers. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/lua.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="lua - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="Lua scripting support for NGINX - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="Automatic documentation from sources, for NGINX Extras." >
+        <meta  name="twitter:description"  content="RPM package nginx-module-lua. Embed the power of Lua into Nginx HTTP Servers. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/lua.png" >
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              lua
+              Lua scripting support for NGINX
             
           </span>
         </div>
@@ -1435,6 +1435,27 @@
   
   <span class="md-ellipsis">
     let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
   </span>
   
 
@@ -2988,6 +3009,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ngxdecode_base64mime" class="md-nav__link">
+    <span class="md-ellipsis">
+      ngx.decode_base64mime
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ngxcrc32_short" class="md-nav__link">
     <span class="md-ellipsis">
       ngx.crc32_short
@@ -4191,6 +4221,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pta/" class="md-nav__link">
         
   
@@ -4238,6 +4289,27 @@
   
   <span class="md-ellipsis">
     rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
   </span>
   
 
@@ -9162,6 +9234,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ngxdecode_base64mime" class="md-nav__link">
+    <span class="md-ellipsis">
+      ngx.decode_base64mime
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ngxcrc32_short" class="md-nav__link">
     <span class="md-ellipsis">
       ngx.crc32_short
@@ -10116,23 +10197,23 @@
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
-<li>RedHat Enterprise Linux 7, 8, 9</li>
+<li>RedHat Enterprise Linux 7, 8, 9 and 10</li>
 <li>CentOS 7, 8, 9</li>
 <li>AlmaLinux 8, 9</li>
 <li>Rocky Linux 8, 9</li>
 <li>Amazon Linux 2 and Amazon Linux 2023</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8, 9 and Fedora Linux, Amazon Linux 2023, etc.</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-lua
+</code></pre></div>
+</div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-lua
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-lua
 </code></pre></div>
 </div>
 </div>
@@ -10140,8 +10221,8 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_lua_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-lua <a href="https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.27" target="_blank">v0.10.27</a> 
-released on Aug 20 2024.</p>
+<p>This document describes nginx-module-lua <a href="https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.28" target="_blank">v0.10.28</a> 
+released on Jan 17 2025.</p>
 <hr />
 
 <p>ngx_http_lua_module - Embed the power of Lua into Nginx <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Servers.</p>
@@ -10333,7 +10414,7 @@ shared across all the requests in a single Nginx worker process to minimize
 memory use. Request contexts are segregated using lightweight Lua coroutines.</p>
 <p>Loaded Lua modules persist in the Nginx worker process level resulting in a
 small memory footprint in Lua even when under heavy loads.</p>
-<p>This module is plugged into Nginx's "http" subsystem so it can only speaks
+<p>This module is plugged into Nginx's "http" subsystem so it can only speak
 downstream communication protocols in the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> family (<abbr title="Hyper Text Transfer Protocol">HTTP</abbr> 0.9/1.0/1.1/2.0,
 WebSockets, etc...).  If you want to do generic TCP communications with the
 downstream clients, then you should use the
@@ -10342,7 +10423,7 @@ module instead, which offers a compatible Lua API.</p>
 <h2 id="typical-uses">Typical Uses</h2>
 <p>Just to name a few:</p>
 <ul>
-<li>Mashup'ing and processing outputs of various Nginx upstream outputs (proxy, drizzle, postgres, redis, memcached, and etc) in Lua,</li>
+<li>Mashup'ing and processing outputs of various Nginx upstream outputs (proxy, drizzle, postgres, redis, memcached, etc.) in Lua,</li>
 <li>doing arbitrarily complex access control and security checks in Lua before requests actually reach the upstream backends,</li>
 <li>manipulating response headers in an arbitrary way (by Lua)</li>
 <li>fetching backend information from external storage backends (like redis, memcached, mysql, postgresql) and use that information to choose which upstream backend to access on-the-fly,</li>
@@ -10851,7 +10932,7 @@ prove -I/path/to/test-nginx/lib t/002-content.t t/003-errors.t
 </ul>
 <p>The basic building blocks of scripting Nginx with Lua are directives. Directives are used to specify when the user Lua code is run and
 how the result will be used. Below is a diagram showing the order in which directives are executed.</p>
-<p><img alt="Lua Nginx Modules Directives" src="https://cloud.githubusercontent.com/assets/2137369/15272097/77d1c09e-1a37-11e6-97ef-d9767035fc3e.png" /></p>
+<p><img alt="Lua Nginx Modules Directives" src="./doc/images/lua_nginx_modules_directives.drawio.png" /></p>
 <h2 id="lua_load_resty_core">lua_load_resty_core</h2>
 <p><strong>syntax:</strong> <em>lua_load_resty_core on|off</em></p>
 <p><strong>default:</strong> <em>lua_load_resty_core on</em></p>
@@ -12361,6 +12442,7 @@ From version v0.10.25, the default value change from <code>SSLV3 TLSv1 TLSv1.1 T
 <li><a href="#ngxdecode_args">ngx.decode_args</a></li>
 <li><a href="#ngxencode_base64">ngx.encode_base64</a></li>
 <li><a href="#ngxdecode_base64">ngx.decode_base64</a></li>
+<li><a href="#ngxdecode_base64mime">ngx.decode_base64mime</a></li>
 <li><a href="#ngxcrc32_short">ngx.crc32_short</a></li>
 <li><a href="#ngxcrc32_long">ngx.crc32_long</a></li>
 <li><a href="#ngxhmac_sha1">ngx.hmac_sha1</a></li>
@@ -12684,7 +12766,7 @@ interface as well, by writing <code>ngx.var[1]</code>, <code>ngx.var[2]</code>, 
 <span class="w"> </span>main<span class="w"> </span>post:<span class="w"> </span><span class="m">73</span>
 </code></pre></div>
 <p>Here, modification of the <code>ngx.ctx.blah</code> entry in the subrequest does not affect the one in the parent request. This is because they have two separate versions of <code>ngx.ctx.blah</code>.</p>
-<p>Internal redirects (triggered by nginx configuration directives like <code>error_page</code>, <code>try_files</code>, <code>index</code> and etc) will destroy the original request <code>ngx.ctx</code> data (if any) and the new request will have an empty <code>ngx.ctx</code> table. For instance,</p>
+<p>Internal redirects (triggered by nginx configuration directives like <code>error_page</code>, <code>try_files</code>, <code>index</code>, etc.) will destroy the original request <code>ngx.ctx</code> data (if any) and the new request will have an empty <code>ngx.ctx</code> table. For instance,</p>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="k">location</span><span class="w"> </span><span class="s">/new</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="kn">content_by_lua_block</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="kn">ngx.say(ngx.ctx.foo)</span>
@@ -13871,13 +13953,23 @@ alphabetic characters, digits, <code>-</code>, <code>.</code>, <code>_</code>,
 <h2 id="ngxencode_base64">ngx.encode_base64</h2>
 <p><strong>syntax:</strong> <em>newstr = ngx.encode_base64(str, no_padding?)</em></p>
 <p><strong>context:</strong> <em>set_by_lua&#42;, rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, header_filter_by_lua&#42;, body_filter_by_lua&#42;, log_by_lua&#42;, ngx.timer.&#42;, balancer_by_lua&#42;, ssl_certificate_by_lua&#42;, ssl_session_fetch_by_lua&#42;, ssl_session_store_by_lua&#42;, ssl_client_hello_by_lua&#42;</em></p>
-<p>Encodes <code>str</code> to a base64 digest.</p>
+<p>Encodes <code>str</code> to a base64 digest. For base64url encoding use <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/base64.md#encode_base64url"><code>base64.encode_base64url</code></a>.</p>
 <p>Since the <code>0.9.16</code> release, an optional boolean-typed <code>no_padding</code> argument can be specified to control whether the base64 padding should be appended to the resulting digest (default to <code>false</code>, i.e., with padding enabled).</p>
 <p><a href="#nginx-api-for-lua">Back to TOC</a></p>
 <h2 id="ngxdecode_base64">ngx.decode_base64</h2>
 <p><strong>syntax:</strong> <em>newstr = ngx.decode_base64(str)</em></p>
 <p><strong>context:</strong> <em>set_by_lua&#42;, rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, header_filter_by_lua&#42;, body_filter_by_lua&#42;, log_by_lua&#42;, ngx.timer.&#42;, balancer_by_lua&#42;, ssl_certificate_by_lua&#42;, ssl_session_fetch_by_lua&#42;, ssl_session_store_by_lua&#42;, ssl_client_hello_by_lua&#42;</em></p>
-<p>Decodes the <code>str</code> argument as a base64 digest to the raw form. Returns <code>nil</code> if <code>str</code> is not well formed.</p>
+<p>Decodes the <code>str</code> argument as a base64 digest to the raw form. For base64url decoding use <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/base64.md#decode_base64url"><code>base64.decode_base64url</code></a>.</p>
+<p>The <code>str</code> should be standard 'base64' encoding for RFC 3548 or RFC 4648, and will returns <code>nil</code> if is not well formed or any characters not in the base encoding alphabet. Padding may be omitted from the input.</p>
+<p><a href="#nginx-api-for-lua">Back to TOC</a></p>
+<h2 id="ngxdecode_base64mime">ngx.decode_base64mime</h2>
+<p><strong>syntax:</strong> <em>newstr = ngx.decode_base64mime(str)</em></p>
+<p><strong>context:</strong> <em>set_by_lua&#42;, rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, header_filter_by_lua&#42;, body_filter_by_lua&#42;, log_by_lua&#42;, ngx.timer.&#42;, balancer_by_lua&#42;, ssl_certificate_by_lua&#42;, ssl_session_fetch_by_lua&#42;, ssl_session_store_by_lua&#42;</em></p>
+<p><strong>requires:</strong> <code>resty.core.base64</code> or <code>resty.core</code></p>
+<p>Decodes the <code>str</code> argument as a base64 digest to the raw form.
+The <code>str</code> follows base64 transfer encoding for MIME (RFC 2045), and will discard characters outside the base encoding alphabet.
+Returns <code>nil</code> if <code>str</code> is not well formed.</p>
+<p>'''Note:''' This method requires the <code>resty.core.base64</code> or <code>resty.core</code> modules from the <a href="https://github.com/openresty/lua-resty-core">lua-resty-core</a> library.</p>
 <p><a href="#nginx-api-for-lua">Back to TOC</a></p>
 <h2 id="ngxcrc32_short">ngx.crc32_short</h2>
 <p><strong>syntax:</strong> <em>intval = ngx.crc32_short(str)</em></p>
@@ -14896,14 +14988,14 @@ the "closed" error.</p>
 <p><code>backlog</code>
     if specified, this module will limit the total number of opened connections
     for this pool. No more connections than <code>pool_size</code> can be opened
-    for this pool at any time. If the connection pool is full, subsequent
-    connect operations will be queued into a queue equal to this option's
-    value (the "backlog" queue).
+    for this pool at any time. If <code>pool_size</code> number of connections are in use,
+    subsequent connect operations will be queued into a queue equal to this
+    option's value (the "backlog" queue).
     If the number of queued connect operations is equal to <code>backlog</code>,
     subsequent connect operations will fail and return <code>nil</code> plus the
     error string <code>"too many waiting connect operations"</code>.
-    The queued connect operations will be resumed once the number of connections
-    in the pool is less than <code>pool_size</code>.
+    The queued connect operations will be resumed once the number of active
+    connections becomes less than <code>pool_size</code>.
     The queued connect operation will abort once they have been queued for more
     than <code>connect_timeout</code>, controlled by
     <a href="#tcpsocksettimeouts">settimeouts</a>, and will return <code>nil</code> plus
@@ -15623,7 +15715,7 @@ user "light threads" (<a href="#ngxthreadspawn">ngx.thread.*</a>), <a href="#ngx
 (like <a href="#ngxsay">ngx.say</a>, <a href="#ngxprint">ngx.print</a>, and <a href="#ngxflush">ngx.flush</a>) are explicitly disabled in
 this context.</p>
 <p>You must notice that each timer will be based on a fake request (this fake request is also based on a fake connection). Because Nginx's memory release is based on the connection closure, if you run a lot of APIs that apply for memory resources in a timer, such as <a href="#tcpsockconnect">tcpsock:connect</a>, will cause the accumulation of memory resources. So it is recommended to create a new timer after running several times to release memory resources.</p>
-<p>You can pass most of the standard Lua values (nils, booleans, numbers, strings, tables, closures, file handles, and etc) into the timer callback, either explicitly as user arguments or implicitly as upvalues for the callback closure. There are several exceptions, however: you <em>cannot</em> pass any thread objects returned by <a href="#coroutinecreate">coroutine.create</a> and <a href="#ngxthreadspawn">ngx.thread.spawn</a> or any cosocket objects returned by <a href="#ngxsockettcp">ngx.socket.tcp</a>, <a href="#ngxsocketudp">ngx.socket.udp</a>, and <a href="#ngxreqsocket">ngx.req.socket</a> because these objects' lifetime is bound to the request context creating them while the timer callback is detached from the creating request's context (by design) and runs in its own (fake) request context. If you try to share the thread or cosocket objects across the boundary of the creating request, then you will get the "no co ctx found" error (for threads) or "bad request" (for cosockets). It is fine, however, to create all these objects inside your timer callback.</p>
+<p>You can pass most of the standard Lua values (nils, booleans, numbers, strings, tables, closures, file handles, etc.) into the timer callback, either explicitly as user arguments or implicitly as upvalues for the callback closure. There are several exceptions, however: you <em>cannot</em> pass any thread objects returned by <a href="#coroutinecreate">coroutine.create</a> and <a href="#ngxthreadspawn">ngx.thread.spawn</a> or any cosocket objects returned by <a href="#ngxsockettcp">ngx.socket.tcp</a>, <a href="#ngxsocketudp">ngx.socket.udp</a>, and <a href="#ngxreqsocket">ngx.req.socket</a> because these objects' lifetime is bound to the request context creating them while the timer callback is detached from the creating request's context (by design) and runs in its own (fake) request context. If you try to share the thread or cosocket objects across the boundary of the creating request, then you will get the "no co ctx found" error (for threads) or "bad request" (for cosockets). It is fine, however, to create all these objects inside your timer callback.</p>
 <p>Please note that the timer Lua handler has its own copy of the <code>ngx.ctx</code> magic
 table. It won't share the same <code>ngx.ctx</code> with the Lua handler creating the timer.
 If you need to pass data from the timer creator to the timer handler, please
@@ -15913,7 +16005,7 @@ for this <code>ngx.ocsp</code> Lua module for more details.</p>
 <li>nil</li>
 <li>table (the table may be recursive, and contains members of types above.)</li>
 </ul>
-<p>The <code>ok</code> is in boolean type, which indicate the C land error (failed to get thread from thread pool, pcall the module function failed, .etc). If <code>ok</code> is <code>false</code>, the <code>res1</code> is the error string.</p>
+<p>The <code>ok</code> is in boolean type, which indicate the C land error (failed to get thread from thread pool, pcall the module function failed, etc.). If <code>ok</code> is <code>false</code>, the <code>res1</code> is the error string.</p>
 <p>The return values (res1, ...) are returned by invocation of the module function. Normally, the <code>res1</code> should be in boolean type, so that the caller could inspect the error.</p>
 <p>This API is useful when you need to execute the below types of tasks:</p>
 <ul>
