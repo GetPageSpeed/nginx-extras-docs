@@ -82,7 +82,152 @@ So you can install them as usual, for example:
 
 ## Active Health Checks
 
-Please refer [here](https://github.com/yaoweibin/nginx_upstream_check_module) for additional documentation.
+### Key Features of Active Health Checks
+
+- **Multi-Protocol Support**: HTTP, TCP, SSL Hello, MySQL, AJP, FastCGI.  
+- **Customizable Checks**: Interval, timeout, success/failure thresholds.  
+- **Status Dashboard**: Real-time monitoring via HTML, CSV, or JSON.  
+- **Dynamic Adjustments**: Mark servers up/down based on health checks.  
+
+### Configuration Basics for Active Health Checks
+
+#### Example: HTTP Health Check
+
+```nginx
+http {
+  upstream backend {
+    server 192.168.1.10:80; 
+    server 192.168.1.11:80;
+    
+    # Health check configuration
+    check interval=5s rise=2 fall=3 timeout=4s type=http;
+    check_http_send "GET /health HTTP/1.1\r\nHost: example.com\r\n\r\n";
+    check_http_expect_alive http_2xx http_3xx;
+  }
+
+  server {
+    listen 80;
+    location / {
+      proxy_pass http://backend;
+    }
+
+    # Health status dashboard (restricted access)
+    location /status {
+      check_status html;
+      allow 10.0.0.0/8;  # Authorized IPs
+      deny all;
+      access_log off;
+    }
+  }
+}
+```  
+
+#### Explanation:  
+
+- **`check`**:  
+  - `interval=5s`: Check every 5 seconds.  
+  - `rise=2`: Mark server "up" after 2 consecutive successes.  
+  - `fall=3`: Mark server "down" after 3 consecutive failures.  
+  - `type=http`: Use HTTP checks.  
+- **`check_http_send`**: Custom HTTP request sent to upstream servers.  
+- **`check_http_expect_alive`**: Treat HTTP 2xx/3xx responses as healthy.  
+- **`check_status`**: Exposes a dashboard at `/status` in HTML format.  
+
+### Active Health Checks Directives Reference  
+
+####  Core Directives  
+| Directive | Syntax | Default | Description |  
+|-----------|--------|---------|-------------|  
+| **`check`** | `interval=ms [fall=count] [rise=count] [timeout=ms] [type=protocol] [default_down=true\|false] [port=number]` | `interval=30s fall=5 rise=2 timeout=1s type=tcp default_down=true` | Configures health check parameters. |  
+| **`check_http_send`** | `"HTTP_REQUEST"` | `"GET / HTTP/1.0\r\n\r\n"` | Custom HTTP request for `type=http` checks. |  
+| **`check_http_expect_alive`** | `http_2xx \| http_3xx \| ...` | `http_2xx \| http_3xx` | HTTP status codes indicating a healthy server. |  
+
+#### Advanced Directives  
+| Directive | Purpose |  
+|-----------|---------|  
+| **`check_keepalive_requests`** | Number of requests per connection (default: `1`). |  
+| **`check_fastcgi_param`** | Custom FastCGI parameters for `type=fastcgi` checks. |  
+| **`check_shm_size`** | Shared memory size for health checks (default: `1M`). |  
+
+---
+
+### Active Health Check Types  
+
+#### 1. **`type=http`**  
+- **Usage**:  
+  ```nginx
+  check type=http;
+  check_http_send "HEAD /health HTTP/1.1\r\nHost: example.com\r\n\r\n";
+  check_http_expect_alive http_200 http_302;
+  ```  
+- **Response Codes**: Configure acceptable statuses (e.g., `http_2xx`).  
+
+#### 2. **`type=tcp`**  
+- Simple TCP connection check:  
+  ```nginx
+  check interval=10s type=tcp;
+  ```  
+
+#### 3. **`type=mysql`**  
+- Validates MySQL server availability:  
+  ```nginx
+  check type=mysql port=3306;
+  ```  
+
+#### 4. **`type=fastcgi`**  
+- Custom FastCGI parameters:  
+  ```nginx
+  check type=fastcgi;
+  check_fastcgi_param "REQUEST_METHOD" "GET";
+  check_fastcgi_param "SCRIPT_FILENAME" "index.php";
+  ```  
+
+---
+
+### Status Page Setup  
+
+#### Endpoint Configuration  
+```nginx
+location /status {
+  check_status [html|csv|json];  # Default: html
+  allow 192.168.1.0/24;         # Restrict access
+  deny all;
+}
+```  
+
+#### Query Parameters  
+- **`format`**: Override output format (e.g., `/status?format=json`).  
+- **`status`**: Filter servers by status (e.g., `/status?status=down`).  
+
+#### Sample Outputs  
+- **HTML**: Interactive table with server status.  
+- **JSON**: Machine-readable format for automation.  
+- **CSV**: Simplified comma-separated values.  
+
+---
+
+### Troubleshooting & Best Practices for Active Health Checks
+
+#### Common Issues  
+1. **Shared Memory Exhausted**:  
+   - **Fix**: Increase `check_shm_size` in the `http` block:  
+     ```nginx
+     http {
+       check_shm_size 10M;  # Default: 1M
+     }
+     ```  
+
+2. **False Positives/Negatives**:  
+   - Adjust `rise`/`fall` thresholds and validate `check_http_send` requests.  
+
+3. **Timeout Errors**:  
+   - Increase `timeout` if upstream servers respond slowly.  
+
+#### Security Tips  
+- Restrict access to the `/status` endpoint using `allow`/`deny`.  
+- Use HTTPS for the status page if sensitive data is exposed.  
+
+Active checks work seamlessly with `ip_hash`, `least_conn`, and third-party modules like `sticky` or `fair`.  
 
 ## ngx_http_limit_req_module patch
 
