@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-execute. The NginxExecute module executes the shell command through GET and POST to display the result. ">
+        <meta name="description" content="RPM package nginx-module-waf. A web application firewall module for NGINX. ">
       
       
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/execute/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/waf/">
       
       
-        <link rel="prev" href="../encrypted-session/">
+        <link rel="prev" href="../vts/">
       
       
-        <link rel="next" href="../f4fhds/">
+        <link rel="next" href="../webp/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>NGINX Execute module - NGINX Extras Documentation</title>
+        <title>A web application firewall module for NGINX - NGINX Extras Documentation</title>
       
     
     
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="NGINX Execute module - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="A web application firewall module for NGINX - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-execute. The NginxExecute module executes the shell command through GET and POST to display the result. " >
+        <meta  property="og:description"  content="RPM package nginx-module-waf. A web application firewall module for NGINX. " >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/execute.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/waf.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/execute/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/waf/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="NGINX Execute module - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="A web application firewall module for NGINX - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-execute. The NginxExecute module executes the shell command through GET and POST to display the result. " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-waf. A web application firewall module for NGINX. " >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/execute.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/waf.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#execute-nginx-execute-module" class="md-skip">
+        <a href="#waf-a-web-application-firewall-module-for-nginx" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NGINX Execute module
+              A web application firewall module for NGINX
             
           </span>
         </div>
@@ -944,30 +944,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    execute
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../execute/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -976,53 +956,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2628,10 +2561,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../waf/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -2640,6 +2593,107 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-ngx_waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why ngx_waf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sponsor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sponsor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Suite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thanks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thanks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5448,9 +5502,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#why-ngx_waf" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      Why ngx_waf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sponsor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sponsor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Suite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thanks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thanks
     </span>
   </a>
   
@@ -5480,7 +5588,7 @@
                   
 
 
-<h1 id="execute-nginx-execute-module"><em>execute</em>: NGINX Execute module</h1>
+<h1 id="waf-a-web-application-firewall-module-for-nginx"><em>waf</em>: A web application firewall module for NGINX</h1>
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
@@ -5494,62 +5602,117 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-execute
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-waf
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-execute
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-waf
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_execute_module.so</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_waf_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-execute <a href="https://github.com/limithit/NginxExecute/releases/tag/1.6.1" target="_blank">v1.6.1</a> 
-released on May 21 2018.</p>
+<p>This document describes nginx-module-waf <a href="https://github.com/ADD-SP/ngx_waf/releases/tag/v6.1.10" target="_blank">v6.1.10</a> 
+released on Jan 25 2025.</p>
 <hr />
 
-<h2 id="introduction">Introduction</h2>
-<p>The <em>ngx_http_execute_module</em> is used to execute commands remotely and return results.</p>
-<p>Configuration example：</p>
-<div class="highlight"><pre><span></span><code>worker_processes  1;
-events {
-    worker_connections  1024;
-}
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-    sendfile        on;
-    keepalive_timeout  65;
-    server {
-        listen       80;
-        server_name  localhost;
-        location / {
-            root   html;
-            index  index.html index.htm;
-            command on;
-        }
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
-    }
-}
+<p align="center">
+    <img src="https://cdn.jsdelivr.net/gh/ADD-SP/ngx_waf@master/assets/logo.png" width=200 height=200/>
+</p>
+
+<p><a href="https://github.com/ADD-SP/ngx_waf/actions?query=workflow%3Atest"><img alt="test" src="https://github.com/ADD-SP/ngx_waf/workflows/test/badge.svg" /></a></p>
+<p><a href="https://t.me/ngx_waf"><img alt="Notification" src="https://img.shields.io/badge/Notification-Telegram%20Channel-blue" /></a>
+<a href="https://t.me/group_ngx_waf"><img alt="Discussion EN" src="https://img.shields.io/badge/Discussion%20EN-Telegram%20Group-blue" /></a>
+<a href="https://t.me/group_ngx_waf_cn"><img alt="Discussion CN" src="https://img.shields.io/badge/Discussion%20CN-Telegram%20Group-blue" /></a></p>
+<p>English | <a href="README-ZH-CN.md">简体中文</a></p>
+<p>Handy, High performance Nginx firewall module.</p>
+<h2 id="why-ngx_waf">Why ngx_waf</h2>
+<ul>
+<li>Basic protection: such as black and white list of IPs or IP range, uri black and white list, and request body black list, etc.</li>
+<li>Easy to use: configuration files and rule files are easy to write and readable.</li>
+<li>High performance: Efficient algorithms and caching.</li>
+<li>Advanced protection: <a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a> compatible, you can use <a href="https://owasp.org/www-project-modsecurity-core-rule-set/">OWASP(Open Web Application Security Project®) ModSecurity Core Rule Set</a>.</li>
+<li>Friendly crawler verification: Supports verifying Google, Bing, Baidu and Yandex crawlers and allowing them automatically to avoid false positives.</li>
+<li>Captcha: Supports three kinds of captchas: hCaptcha, reCAPTCHAv2 and reCAPTCHAv3.</li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a> compatible. This feature is only available in the latest <code>Current</code> version.</li>
+<li>Rules that are compatible with <a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a>.</li>
+<li>Anti SQL injection (powered by <a href="https://github.com/libinjection/libinjection">libinjection</a>).</li>
+<li>Anti XSS (powered by <a href="https://github.com/libinjection/libinjection">libinjection</a>).</li>
+<li>IPV4 and IPV6 support.</li>
+<li>Support for enabling CAPTCHAs, including <a href="https://www.hcaptcha.com/">hCaptcha</a>, <a href="https://developers.google.com/recaptcha">reCAPTCHAv2</a> and <a href="https://developers.google.com/recaptcha">reCAPTCHAv3</a>. This feature is only available in the latest <code>Current</code> version.</li>
+<li>Support authentication-friendly crawlers (based on user agent and IP identification) to avoid blocking of these crawlers (e.g. GoogleBot). This feature is only available in the latest <code>Current</code> version.</li>
+<li>Anti Challenge Collapsar, it can automatically block malicious IP.</li>
+<li>Exceptional allow on specific IP address.</li>
+<li>Block the specified IP address.</li>
+<li>Block the specified request body.</li>
+<li>Exceptional allow on specific URL.</li>
+<li>Block the specified URL.</li>
+<li>Block the specified query string.</li>
+<li>Block the specified UserAgent.</li>
+<li>Block the specified Cookie.</li>
+<li>Exceptional allow on specific Referer.</li>
+<li>Block the specified Referer.</li>
+</ul>
+<h2 id="docs">Docs</h2>
+<ul>
+<li>Recommended link: <a href="https://docs.addesp.com/ngx_waf/">https://docs.addesp.com/ngx_waf/</a></li>
+<li>Alternate link 1: <a href="https://add-sp.github.io/ngx_waf-docs/">https://add-sp.github.io/ngx_waf-docs/</a></li>
+<li>Alternate link 2: <a href="https://ngx-waf-docs.pages.dev/">https://ngx-waf-docs.pages.dev/</a></li>
+</ul>
+<h2 id="contact">Contact</h2>
+<ul>
+<li>Telegram Channel: <a href="https://t.me/ngx_waf">https://t.me/ngx_waf</a></li>
+<li>Telegram Group (English): <a href="https://t.me/group_ngx_waf">https://t.me/group_ngx_waf</a></li>
+<li>Telegram Group (Chinese): <a href="https://t.me/group_ngx_waf_cn">https://t.me/group_ngx_waf_cn</a></li>
+</ul>
+<h2 id="sponsor">Sponsor</h2>
+<p>Hope you can help promote this project. The more stars got, the better this project is. :)</p>
+<h2 id="test-suite">Test Suite</h2>
+<p>This module comes with a Perl-driven test suite. The test cases are declarative too. 
+Thanks to the <a href="http://search.cpan.org/perldoc?Test::Nginx">Test::Nginx</a> module in the Perl world.</p>
+<p>To run it on your side:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## It will take a lot of time, but it only needs to be run once.</span>
+cpan<span class="w"> </span>Test::Nginx
+
+<span class="c1">## You need to specify a temporary directory.</span>
+<span class="c1">## If the directory does not exist it will be created automatically.</span>
+<span class="c1">## If the directory already exists it will be **removed** first and then created.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODULE_TEST_PATH</span><span class="o">=</span>/path/to/temp/dir
+
+<span class="c1">## You need to specify the absolute path to the dynamic module if you have it installed, </span>
+<span class="c1">## otherwise you do not need to run this line.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODULE_PATH</span><span class="o">=</span>/path/to/ngx_http_waf_module.so
+
+<span class="nb">cd</span><span class="w"> </span>./test/test-nginx
+sh<span class="w"> </span>./init.sh
+sh<span class="w"> </span>./start.sh<span class="w"> </span>./t/*.t
 </code></pre></div>
-<p>Usage:  <code>view-source:http://192.168.18.22/?system.run[command]</code>
-The <code>command</code> can be any system command. The command you will want to use depends on the permissions that nginx runs with.</p>
-<div class="highlight"><pre><span></span><code>view-source:http://192.168.18.22/?system.run[ifconfig]
-</code></pre></div>
-<p>If using browser to send command, make sure to use "view source" if you want to see formatted output.
-Alternatively, you can also use some tools such as Postman, Fiddler.</p>
-<p>The commands which require user interaction or constantly update their output (e.g. <code>top</code>) will not run properly, so do not file a bug for this.</p>
+<p>Some parts of the test suite requires standard modules proxy, rewrite and SSI to be enabled as well when building Nginx.</p>
+<h2 id="thanks">Thanks</h2>
+<ul>
+<li><a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a>: An open source, cross platform web application firewall (WAF) engine.</li>
+<li><a href="https://github.com/troydhanson/uthash">uthash</a>: C macros for hash tables and more.</li>
+<li><a href="https://curl.se/libcurl/">libcurl</a>: The multiprotocol file transfer library .</li>
+<li><a href="https://github.com/DaveGamble/cJSON">cJSON</a>: Ultralightweight JSON parser in ANSI C.</li>
+<li><a href="https://github.com/libinjection/libinjection">libinjection</a>: SQL / SQLI tokenizer parser analyzer.</li>
+<li><a href="https://github.com/jedisct1/libsodium">libsodium</a>: A modern, portable, easy to use crypto library.</li>
+<li><a href="https://github.com/openresty/test-nginx">test-nginx</a>: Data-driven test scaffold for Nginx C module and OpenResty Lua library development.</li>
+<li><a href="https://github.com/dvershinin/lastversion">lastversion</a>: A command line tool that helps you download or install a specific version of a project.</li>
+<li><a href="https://github.com/loveshell/ngx_lua_waf">ngx_lua_waf</a>: A web application firewall based on the lua-nginx-module (openresty).</li>
+<li><a href="https://github.com/taobao/nginx-book">nginx-book</a>: The Chinese language development guide for nginx.</li>
+<li><a href="https://github.com/baishancloud/nginx-development-guide">nginx-development-guide</a>: The Chinese language development guide for nginx.</li>
+</ul>
 <h2 id="github">GitHub</h2>
-<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/limithit/NginxExecute" target="_blank">GitHub 
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/ADD-SP/ngx_waf" target="_blank">GitHub 
 repository for 
-nginx-module-execute</a>.</p>
+nginx-module-waf</a>.</p>
 
 
 
