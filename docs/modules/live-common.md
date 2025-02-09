@@ -40,8 +40,8 @@ load_module modules/ngx_http_api_module.so;
 ```
 
 
-This document describes nginx-module-live-common [v1.29.0](https://github.com/kaltura/media-framework/releases/tag/v1.29.0-PSVAMB-69845-transcoder-6){target=_blank} 
-released on Sep 15 2024.
+This document describes nginx-module-live-common [v1.30.0](https://github.com/kaltura/media-framework/releases/tag/v1.30.0){target=_blank} 
+released on Feb 02 2025.
 
 <hr />
 
