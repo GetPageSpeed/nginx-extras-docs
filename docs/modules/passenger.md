@@ -40,8 +40,8 @@ load_module modules/ngx_http_passenger_module.so;
 ```
 
 
-This document describes nginx-module-passenger [v6.0.24](https://github.com/phusion/passenger/releases/tag/release-6.0.24){target=_blank} 
-released on Dec 09 2024.
+This document describes nginx-module-passenger [v6.0.25](https://github.com/phusion/passenger/releases/tag/release-6.0.25){target=_blank} 
+released on Feb 12 2025.
 
 <hr />
 [![Gem Version](https://badge.fury.io/rb/passenger.svg)](https://badge.fury.io/rb/passenger)
@@ -73,7 +73,7 @@ released on Dec 09 2024.
 
 ## Legal
 
-"Passenger" and "Phusion Passenger" are registered trademarks of Phusion Holding B.V.
+"Passenger" and "Phusion Passenger" are registered trademarks of Asynchronous B.V.
 
 ## GitHub
 

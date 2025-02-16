@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-websocket
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-websocket [v0.12](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.12){target=_blank} 
-released on Aug 08 2024.
+This document describes lua-resty-websocket [v0.13](https://github.com/openresty/lua-resty-websocket/releases/tag/v0.13){target=_blank} 
+released on Feb 11 2025.
     
 <hr />
 

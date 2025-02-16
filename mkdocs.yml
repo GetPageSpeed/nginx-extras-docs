@@ -93,6 +93,7 @@ nav:
     let: modules/let.md
     limit-traffic-rate: modules/limit-traffic-rate.md
     live-common: modules/live-common.md
+    log-sqlite: modules/log-sqlite.md
     log-zmq: modules/log-zmq.md
     lua: modules/lua.md
     markdown: modules/markdown.md
@@ -145,6 +146,7 @@ nav:
     vod: modules/vod.md
     vts: modules/vts.md
     waf: modules/waf.md
+    wasm-wasmtime: modules/wasm-wasmtime.md
     webp: modules/webp.md
     xslt: modules/xslt.md
     xss: modules/xss.md

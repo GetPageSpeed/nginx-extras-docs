@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-redis
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-redis [v0.31](https://github.com/openresty/lua-resty-redis/releases/tag/v0.31){target=_blank} 
-released on Apr 26 2024.
+This document describes lua-resty-redis [v0.32](https://github.com/openresty/lua-resty-redis/releases/tag/v0.32){target=_blank} 
+released on Feb 10 2025.
     
 <hr />
 

@@ -48,6 +48,7 @@
 | [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
 | [nginx-module-limit-traffic-rate](modules/limit-traffic-rate.md) | NGINX Limiting rate by given variables                                        |
 | [nginx-module-live-common](modules/live-common.md)               | Kaltura Media Framework Common NGINX Module                                   |
+| [nginx-module-log-sqlite](modules/log-sqlite.md)                 | SQLite logger module for NGINX                                                |
 | [nginx-module-log-zmq](modules/log-zmq.md)                       | ZeroMQ logger module for NGINX                                                |
 | [nginx-module-lua](modules/lua.md)                               | Lua scripting support for NGINX                                               |
 | [nginx-module-markdown](modules/markdown.md)                     | Markdown-to-html NGINX module                                                 |
@@ -100,6 +101,7 @@
 | [nginx-module-vod](modules/vod.md)                               | NGINX-based VOD Packager                                                      |
 | [nginx-module-vts](modules/vts.md)                               | NGINX virtual host traffic status module                                      |
 | [nginx-module-waf](modules/waf.md)                               | A web application firewall module for NGINX                                   |
+| [nginx-module-wasm-wasmtime](modules/wasm-wasmtime.md)           | Nginx with WebAssembly powered by wasmtime                                    |
 | [nginx-module-webp](modules/webp.md)                             | NGINX WebP module                                                             |
 | [nginx-module-xslt](modules/xslt.md)                             | NGINX XSLT dynamic module                                                     |
 | [nginx-module-xss](modules/xss.md)                               | Native cross-site scripting support in NGINX                                  |
