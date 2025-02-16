@@ -1,0 +1,6105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RPM package nginx-module-log-sqlite. SQLite logger module for NGINX ">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/log-sqlite/">
+      
+      
+        <link rel="prev" href="../live-common/">
+      
+      
+        <link rel="next" href="../log-zmq/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>SQLite logger module for NGINX - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="SQLite logger module for NGINX - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="RPM package nginx-module-log-sqlite. SQLite logger module for NGINX " >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/log-sqlite.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/log-sqlite/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="SQLite logger module for NGINX - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="RPM package nginx-module-log-sqlite. SQLite logger module for NGINX " >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/log-sqlite.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#log-sqlite-sqlite-logger-module-for-nginx" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQLite logger module for NGINX
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lua/" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-totp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-totp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    log-sqlite
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    log-sqlite
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog_format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog_async" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog_async
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inheritance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sxg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sxg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unbrotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    unbrotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wasm-wasmtime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    wasm-wasmtime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ada/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ada
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/timer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/websocket-proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket-proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog_format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlitelog_async" class="md-nav__link">
+    <span class="md-ellipsis">
+      sqlitelog_async
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inheritance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="log-sqlite-sqlite-logger-module-for-nginx"><em>log-sqlite</em>: SQLite logger module for NGINX</h1>
+<h2 id="installation">Installation</h2>
+<p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
+<ul>
+<li>RedHat Enterprise Linux 7, 8, 9 and 10</li>
+<li>CentOS 7, 8, 9</li>
+<li>AlmaLinux 8, 9</li>
+<li>Rocky Linux 8, 9</li>
+<li>Amazon Linux 2 and Amazon Linux 2023</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 and Amazon Linux 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-log-sqlite
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-log-sqlite
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_sqlitelog_module.so</span><span class="p">;</span>
+</code></pre></div>
+<p>This document describes nginx-module-log-sqlite <a href="https://github.com/GetPageSpeed/ngx-sqlite-log/releases/tag/v0.0.1" target="_blank">v0.0.1</a> 
+released on Feb 14 2025.</p>
+<hr />
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#directives">Directives</a><ul>
+<li><a href="#sqlitelog">sqlitelog</a></li>
+<li><a href="#sqlitelog_format">sqlitelog_format</a></li>
+<li><a href="#sqlitelog_async">sqlitelog_async</a></li>
+</ul>
+</li>
+<li><a href="#install">Install</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#errors">Errors</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#locations">Locations</a></li>
+<li><a href="#inheritance">Inheritance</a></li>
+<li><a href="#wal-mode">WAL mode</a></li>
+<li><a href="#logrotate">Logrotate</a></li>
+<li><a href="#column-types">Column types</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>This module uses SQLite format for access logs.
+GitHub fork of <a href="https://git.serope.com/me/ngx-sqlitelog">https://git.serope.com/me/ngx-sqlitelog</a></p>
+<h2 id="directives">Directives</h2>
+<h3 id="sqlitelog">sqlitelog</h3>
+<ul>
+<li>Syntax: <code>sqlitelog</code> <em><code>path</code></em> <code>[<i>format</i>]</code> <code>[buffer=<i>size</i> [max=<i>n</i>] [flush=<i>time</i>]]</code>  <code>[init=<i>script</i>]</code> <code>[if=<i>condition</i>]</code> | <code>off</code></li>
+<li>Default: <code>sqlitelog</code> <code>off</code></li>
+<li>Context: http, server</li>
+</ul>
+<p>This directive defines a logging database.</p>
+<p>The <em><code>path</code></em> parameter is the path of the database file. It must be located in a directory where the user or group that owns Nginx worker processes (defined by the <a href="https://nginx.org/en/docs/ngx_core_module.html#user"><code>user</code> directive</a>) has write permission so that it can create the database file and any possible <a href="https://sqlite.org/tempfiles.html">temporary files</a>.</p>
+<p>The <em><code>format</code></em> parameter is the name of a log format defined by the <code>sqlitelog_format</code> directive. If not given, the default combined format is used.</p>
+<p>The <code>buffer</code> parameter creates a memory zone where log entries are batched together and written to the database in a single <code>BEGIN</code> ... <code>COMMIT</code> transaction. This greatly improves performance as grouped inserts <a href="https://www.sqlite.org/faq.html#q19">are faster</a> than separate ones. The buffer is commited when one of the following happens: its <em><code>size</code></em> is exceeded; it accumulates <em><code>n</code></em> log entries; the flush <em><code>time</code></em> elapses; Nginx reloads or exits.</p>
+<p>The <code>init</code> parameter is a path to a SQL script file which is executed on each database connection. This can be used to run <a href="https://www.sqlite.org/pragma.html#toc">pragma commands</a> or to create additional tables, views, and triggers to complement the logging table; such statements should include <code>IF NOT EXISTS</code> since they can be executed more than once.</p>
+<p>The <code>if</code> parameter sets a logging condition. Like in the standard <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log">log module</a>, if <em><code>condition</code></em> evaluates to 0 or an empty string, logging is skipped for the current request.</p>
+<h3 id="sqlitelog_format">sqlitelog_format</h3>
+<ul>
+<li>Syntax: <code>sqlitelog_format</code> <em><code>table</code></em> <em><code>var1</code></em> <code>[<i>type1</i>]</code> <em><code>var2</code></em> <code>[<i>type2</i>]</code> ... <em><code>varN</code></em> <code>[<i>typeN</i>]</code></li>
+<li>Default: <code>sqlitelog_format</code> <code>combined</code> <code>$remote_addr</code> <code>$remote_user</code> <code>$time_local</code> <code>$request</code> <code>$status</code> <code>$body_bytes_sent</code> <code>$http_referer</code> <code>$http_user_agent</code></li>
+<li>Context: http</li>
+</ul>
+<p>This directive defines a logging table.</p>
+<p>The first argument is the table's name. The remaining arguments are variables with optional column types. Some variables have <a href="#column-types">preset column types</a>, otherwise the default is <code>TEXT</code>. If a variable is <code>BLOB</code> type, its value is written as unescaped bytes.</p>
+<h3 id="sqlitelog_async">sqlitelog_async</h3>
+<ul>
+<li>Syntax: <code>sqlitelog_async</code> <em><code>pool</code></em> | <code>on</code> | <code>off</code></li>
+<li>Default: <code>sqlitelog_async</code> <code>off</code></li>
+<li>Context: http</li>
+</ul>
+<p>This directive enables a <a href="https://nginx.org/en/docs/ngx_core_module.html#thread_pool">thread pool</a>, allowing SQLite file writes to occur without blocking. The argument can be an existing <em><code>pool</code></em> name, <code>on</code> for the default pool, or <code>off</code>. This directive is only available if Nginx is compiled with <code>--with-threads</code>.</p>
+<h2 id="errors">Errors</h2>
+<p>When a SQLite error occurs, the module is disabled (equivalent to <code>sqlitelog off</code>) for the worker process that encountered the error. This is to prevent error.log from being quickly flooded with error messages if the database is unusable (e.g. located in a directory where worker processes don't have write permission).</p>
+<ul>
+<li><a href="https://www.sqlite.org/rescode.html#error">SQLITE_ERROR (1)</a>: This is a generic error code that covers several cases, such as SQL syntax errors in an <code>init</code> script.</li>
+<li><a href="https://www.sqlite.org/rescode.html#busy">SQLITE_BUSY (5)</a>: Multiple worker processes attempted to use the database simultaneously and exceeded the busy timeout (1000 ms by default). This can be solved by creating a <code>buffer</code> to speed up insertions or by setting a longer timeout with <code>PRAGMA busy_timeout</code> in an <code>init</code> script.</li>
+<li><a href="https://www.sqlite.org/rescode.html#readonly">SQLITE_READONLY (8)</a>: Nginx can open the database, but can't write to it. This is likely due to file permissions.</li>
+<li><a href="https://www.sqlite.org/rescode.html#cantopen">SQLITE_CANTOPEN (14)</a>: Nginx can't open or create the database. This is likely due to directory permissions. The user or group that owns worker processes (defined by the <a href="https://nginx.org/en/docs/ngx_core_module.html#user"><code>user</code> directive</a>) must have write permission on the directory.</li>
+<li><a href="https://www.sqlite.org/rescode.html#readonly_dbmoved">SQLITE_READONLY_DBMOVED (1032)</a>: The file was moved, renamed, or deleted at runtime. When this happens, Nginx attempts to recreate the file; if successful, the error is ignored and logging continues normally.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="locations">Locations</h3>
+<p>The <code>sqlitelog</code> directive can't be used in location contexts, but a regex condition can achieve a similar effect. In this example, only requests that start with "/mylocation" are logged.</p>
+<!--
+Don't forget to compile Nginx with `--with-pcre`!
+-->
+
+<div class="highlight"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$request_uri</span><span class="w"> </span><span class="nv">$is_my_loc</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w">            </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">~^/mylocation.*$</span><span class="w">   </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">sqlitelog</span><span class="w"> </span><span class="s">access.db</span><span class="w"> </span><span class="s">if=</span><span class="nv">$is_my_loc</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="inheritance">Inheritance</h3>
+<p>Only one <code>sqlitelog</code> is allowed per context, with lower contexts taking priority. In this example, requests to server A are logged to global.db, while requests to server B are logged to b.db.</p>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">sqlitelog</span><span class="w"> </span><span class="s">global.db</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">...</span>
+
+<span class="w">    </span><span class="s">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">a</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">...</span>
+<span class="w">    </span><span class="err">}</span>
+
+<span class="w">    </span><span class="s">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">b</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">sqlitelog</span><span class="w"> </span><span class="s">b.db</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">....</span>
+<span class="w">    </span><span class="err">}</span>
+<span class="s">````</span>
+
+<span class="c1">### WAL mode</span>
+
+<span class="s">[WAL</span><span class="w"> </span><span class="s">mode](https://www.sqlite.org/wal.html)</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">enabled</span><span class="w"> </span><span class="s">by</span><span class="w"> </span><span class="s">`PRAGMA</span><span class="w"> </span><span class="s">journal_mode=wal`</span><span class="w"> </span><span class="s">in</span><span class="w"> </span><span class="s">an</span><span class="w"> </span><span class="s">`init`</span><span class="w"> </span><span class="s">script.</span><span class="w"> </span><span class="s">[WAL</span><span class="w"> </span><span class="s">checkpointing](https://www.sqlite.org/wal.html</span><span class="c1">#ckpt) occurs when Nginx reloads or exits.</span>
+
+<span class="c1">### Logrotate</span>
+
+<span class="s">[Logrotate](https://man.archlinux.org/man/logrotate.8)</span><span class="w"> </span><span class="s">should</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">configured</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">stop</span><span class="w"> </span><span class="s">Nginx,</span><span class="w"> </span><span class="s">rotate</span><span class="w"> </span><span class="s">logs,</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">start</span><span class="w"> </span><span class="s">Nginx</span><span class="w"> </span><span class="s">again.</span><span class="w"> </span><span class="s">This</span><span class="w"> </span><span class="s">way,</span><span class="w"> </span><span class="s">Nginx</span><span class="w"> </span><span class="s">gracefully</span><span class="w"> </span><span class="s">closes</span><span class="w"> </span><span class="s">its</span><span class="w"> </span><span class="s">connections</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">previous</span><span class="w"> </span><span class="s">day&#39;s</span><span class="w"> </span><span class="s">database(s)</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">opens</span><span class="w"> </span><span class="s">new</span><span class="w"> </span><span class="no">on</span><span class="s">es</span><span class="w"> </span><span class="s">to</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">current</span><span class="w"> </span><span class="s">day&#39;s</span><span class="w"> </span><span class="s">database(s).</span>
+
+<span class="s">Below</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">an</span><span class="w"> </span><span class="s">example</span><span class="w"> </span><span class="s">script</span><span class="w"> </span><span class="s">for</span><span class="w"> </span><span class="s">Debian</span><span class="w"> </span><span class="s">(`/etc/logrotate.d/nginx`).</span><span class="w"> </span><span class="s">It</span><span class="w"> </span><span class="s">assumes</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">worker</span><span class="w"> </span><span class="s">process</span><span class="w"> </span><span class="s">user,</span><span class="w"> </span><span class="s">`www-data`,</span><span class="w"> </span><span class="s">has</span><span class="w"> </span><span class="s">been</span><span class="w"> </span><span class="s">granted</span><span class="w"> </span><span class="s">write</span><span class="w"> </span><span class="s">permission</span><span class="w"> </span><span class="no">on</span><span class="w"> </span><span class="s">`/var/log/nginx`,</span><span class="w"> </span><span class="s">which</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">normally</span><span class="w"> </span><span class="no">on</span><span class="s">ly</span><span class="w"> </span><span class="s">writeable</span><span class="w"> </span><span class="s">by</span><span class="w"> </span><span class="s">`root`.</span>
+
+<span class="s">```sh</span>
+<span class="s">/var/log/nginx/*.log</span>
+<span class="s">/var/log/nginx/*.db</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kn">daily</span>
+<span class="w">    </span><span class="s">missingok</span>
+<span class="w">    </span><span class="s">rotate</span><span class="w"> </span><span class="mi">52</span>
+<span class="w">    </span><span class="s">compress</span>
+<span class="w">    </span><span class="s">delaycompress</span>
+<span class="w">    </span><span class="s">notifempty</span>
+<span class="w">    </span><span class="s">create</span><span class="w"> </span><span class="mi">640</span><span class="w"> </span><span class="s">www-data</span><span class="w"> </span><span class="s">adm</span>
+<span class="w">    </span><span class="s">sharedscripts</span>
+
+<span class="w">    </span><span class="c1"># Force Logrotate to work in this directory even though</span>
+<span class="w">    </span><span class="c1"># its permissions have been modified to allow a non-root</span>
+<span class="w">    </span><span class="c1"># user to write in it</span>
+<span class="w">    </span><span class="s">su</span><span class="w"> </span><span class="s">root</span><span class="w"> </span><span class="s">adm</span>
+
+<span class="w">    </span><span class="c1"># Send a quit signal to Nginx and wait for its PID file</span>
+<span class="w">    </span><span class="c1"># to be destroyed</span>
+<span class="w">    </span><span class="s">firstaction</span>
+<span class="w">        </span><span class="s">systemctl</span><span class="w"> </span><span class="s">stop</span><span class="w"> </span><span class="s">nginx.service</span>
+<span class="w">        </span><span class="s">while</span><span class="w"> </span><span class="s">[</span><span class="w"> </span><span class="s">-f</span><span class="w"> </span><span class="s">/var/run/nginx.pid</span><span class="w"> </span><span class="s">]</span><span class="p">;</span><span class="w"> </span><span class="kn">do</span><span class="w">  </span>
+<span class="w">            </span><span class="s">sleep</span><span class="w"> </span><span class="mi">0</span><span class="s">.1s</span>
+<span class="w">        </span><span class="s">done</span>
+<span class="w">    </span><span class="s">endscript</span>
+
+<span class="w">    </span><span class="c1"># Start Nginx again</span>
+<span class="w">    </span><span class="s">lastaction</span>
+<span class="w">        </span><span class="s">systemctl</span><span class="w"> </span><span class="s">restart</span><span class="w"> </span><span class="s">nginx.service</span>
+<span class="w">    </span><span class="s">endscript</span>
+<span class="err">}</span>
+</code></pre></div>
+<h3 id="column-types">Column types</h3>
+<p>The following variables have preset column types, but can be overridden if needed.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_binary_remote_addr">$binary_remote_addr</a></td>
+<td><code>BLOB</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_body_bytes_sent">$body_bytes_sent</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_bytes_sent">$bytes_sent</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection">$connection</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection_requests">$connection_requests</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection_time">$connection_time</a></td>
+<td><code>REAL</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_stub_status_module.html#var_connections_active">$connections_active</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_stub_status_module.html#var_connections_reading">$connections_reading</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_stub_status_module.html#var_connections_waiting">$connections_waiting</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_stub_status_module.html#var_connections_writing">$connections_writing</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_content_length">$content_length</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#var_gzip_ratio">$gzip_ratio</a></td>
+<td><code>REAL</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate">$limit_rate</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_msec">$msec</a></td>
+<td><code>REAL</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_pid">$pid</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_port">$proxy_port</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_port">$proxy_protocol_port</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_server_port">$proxy_protocol_server_port</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port">$remote_port</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_time">$request_time</a></td>
+<td><code>REAL</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port">$server_port</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_status">$status</a></td>
+<td><code>INTEGER</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/GetPageSpeed/ngx-sqlite-log" target="_blank">GitHub 
+repository for 
+nginx-module-log-sqlite</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
