@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-perl. NGINX Perl dynamic module ">
+        <meta name="description" content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset ">
       
       
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/perl/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/ipset-access/">
       
       
-        <link rel="prev" href="../passenger/">
+        <link rel="prev" href="../ipscrub/">
       
       
-        <link rel="next" href="../phantom-token/">
+        <link rel="next" href="../jpeg/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>NGINX Perl dynamic module - NGINX Extras Documentation</title>
+        <title>NGINX ipset access module - NGINX Extras Documentation</title>
       
     
     
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="NGINX Perl dynamic module - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-perl. NGINX Perl dynamic module " >
+        <meta  property="og:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset " >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/perl.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/perl/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/ipset-access/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="NGINX Perl dynamic module - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-perl. NGINX Perl dynamic module " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset " >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/perl.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#perl-nginx-perl-dynamic-module" class="md-skip">
+        <a href="#ipset-access-nginx-ipset-access-module" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NGINX Perl dynamic module
+              NGINX ipset access module
             
           </span>
         </div>
@@ -1301,10 +1301,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ipset-access/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ipset-access
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1313,6 +1333,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1763,30 +1821,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    perl
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../perl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1795,44 +1833,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#directives" class="md-nav__link">
-    <span class="md-ellipsis">
-      Directives
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5502,9 +5502,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directives" class="md-nav__link">
+  <a href="#github" class="md-nav__link">
     <span class="md-ellipsis">
-      Directives
+      GitHub
     </span>
   </a>
   
@@ -5525,7 +5525,7 @@
                   
 
 
-<h1 id="perl-nginx-perl-dynamic-module"><em>perl</em>: NGINX Perl dynamic module</h1>
+<h1 id="ipset-access-nginx-ipset-access-module"><em>ipset-access</em>: NGINX ipset access module</h1>
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
@@ -5539,27 +5539,50 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-perl
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-ipset-access
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-perl
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-ipset-access
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_perl_module.so</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_ipset_access.so</span><span class="p">;</span>
 </code></pre></div>
+<p>This document describes nginx-module-ipset-access <a href="https://github.com/GetPageSpeed/nginx_ipset_access_module/releases/tag/v1.0.3" target="_blank">v1.0.3</a> 
+released on Feb 21 2025.</p>
 <hr />
-
-<h2 id="directives">Directives</h2>
-<p>You may find information about configuration directives for this module at the following links:        </p>
+<p>== ngx_http_ipset_access</p>
+<p>An nginx module for using netfilter ipsets as a black/white list.
+In comparison to standard nginx access module this allows for dynamic list updating, without nginx reload/restart.</p>
+<p>== Installation</p>
 <ul>
-<li><a href="https://nginx.org/en/docs/http/ngx_http_perl_module.html#directives">https://nginx.org/en/docs/http/ngx_http_perl_module.html#directives</a></li>
+<li>Get youself a linux server with root access</li>
+<li>Get nginx source code, unpack etc.</li>
+<li>Install libipset, libssl-dev, pcre and other nginx requirements</li>
+<li>Configure nginx with this module:
+    ./configure --add-module=/path/to/ngx_http_ipset_access</li>
+<li>Compile, install</li>
+<li>Create yout ipset and add some 'offending' ips to it:
+    sudo ipset -N myblacklist iphash
+    sudo ipset -A myblacklist 127.0.0.1</li>
+<li>Start nginx</li>
+<li>Profit!</li>
 </ul>
+<p>== Installation as dynamic module</p>
+<p>Alternatively, you can compile a dynamic module for nginx with:
+    ./configure --add-dynamic-module=/path/to/ngx_http_ipset_access --with-compat</p>
+<p>After compilation, locate <code>objs/ngx_http_ipset_access.so</code>.</p>
+<p>To load the compiled module into nginx, add the following at the top of nginx.conf:
+    load_module /path/to/ngx_http_ipset_access.so;</p>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/GetPageSpeed/nginx_ipset_access_module" target="_blank">GitHub 
+repository for 
+nginx-module-ipset-access</a>.</p>
 
 
 
