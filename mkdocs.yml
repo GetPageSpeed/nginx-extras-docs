@@ -84,6 +84,7 @@ nav:
     image-filter: modules/image-filter.md
     immutable: modules/immutable.md
     ipscrub: modules/ipscrub.md
+    ipset-access: modules/ipset-access.md
     jpeg: modules/jpeg.md
     js-challenge: modules/js-challenge.md
     json: modules/json.md

@@ -40,8 +40,8 @@ load_module modules/ndk_http_module.so;
 ```
 
 
-This document describes nginx-module-ndk [v0.3.3](https://github.com/vision5/ngx_devel_kit/releases/tag/v0.3.3){target=_blank} 
-released on Nov 15 2023.
+This document describes nginx-module-ndk [v0.3.4](https://github.com/vision5/ngx_devel_kit/releases/tag/v0.3.4){target=_blank} 
+released on Feb 20 2025.
 
 <hr />
 
