@@ -1,7 +1,7 @@
 ---
 
 title: "Media streaming server based on nginx-module-rtmp"
-description: "RPM package nginx-module-flv. Media streaming server based on nginx-module-rtmp. In addtion to the features nginx-rtmp-module provides, HTTP-FLV, GOP cache and VHOST (one IP for multi domain names) are supported now. "
+description: "RPM package nginx-module-flv. Media streaming server based on nginx-module-rtmp. In addition to the features nginx-rtmp-module provides, HTTP-FLV, GOP cache and VHOST (one IP for multi domain names) are supported now. "
 
 ---
 
