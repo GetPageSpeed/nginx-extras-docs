@@ -3252,6 +3252,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#vhost_traffic_status_stats_by_upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      vhost_traffic_status_stats_by_upstream
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6750,6 +6759,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#vhost_traffic_status_stats_by_upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      vhost_traffic_status_stats_by_upstream
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6825,8 +6843,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_vhost_traffic_status_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-vts <a href="https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.3" target="_blank">v0.2.3</a> 
-released on Jan 01 2025.</p>
+<p>This document describes nginx-module-vts <a href="https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.4" target="_blank">v0.2.4</a> 
+released on Mar 12 2025.</p>
 <hr />
 
 <p><a href="https://github.com/vozlt/nginx-module-vts/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/vozlt/nginx-module-vts/actions/workflows/ci.yml/badge.svg" /></a>
@@ -8880,6 +8898,58 @@ This is mostly useful if you want to ignore your request in status web page like
 <span class="w">            </span><span class="kn">vhost_traffic_status_bypass_stats</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">vhost_traffic_status_display</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">vhost_traffic_status_display_format</span><span class="w"> </span><span class="s">html</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="vhost_traffic_status_stats_by_upstream">vhost_traffic_status_stats_by_upstream</h3>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>vhost_traffic_status_stats_by_upstream</strong> \&lt;on|off&gt;</td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td>on</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>http</td>
+</tr>
+</tbody>
+</table>
+<p><code>Description:</code> Enables or disables to stats <code>upstreamZone</code>.
+The <code>upstreamZone</code> in the traffic status stats features is bypassed if this option is disabled.
+In other words, it is excluded from the traffic status stats.
+This is mostly useful if you want to be disable statistics collection for upstream servers to reduce CPU load.</p>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">vhost_traffic_status_zone</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">vhost_traffic_status_stats_by_upstream</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">proxy_cache_path</span><span class="w"> </span><span class="s">/var/cache/nginx</span><span class="w"> </span><span class="s">keys_zone=zone1:1m</span><span class="w"> </span><span class="s">max_size=1g</span><span class="w"> </span><span class="s">inactive=24h</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">upstream</span><span class="w"> </span><span class="s">backend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kn">...</span>
+<span class="w">    </span><span class="err">}</span>
+<span class="w">    </span><span class="s">...</span>
+
+<span class="w">    </span><span class="s">server</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kn">...</span>
+
+<span class="w">        </span><span class="s">location</span><span class="w"> </span><span class="s">/status</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">vhost_traffic_status_display</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">vhost_traffic_status_display_format</span><span class="w"> </span><span class="s">html</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/backend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">proxy_cache</span><span class="w"> </span><span class="s">zone1</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://backend</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
