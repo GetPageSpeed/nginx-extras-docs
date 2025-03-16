@@ -40,8 +40,8 @@ load_module modules/ngx_http_vhost_traffic_status_module.so;
 ```
 
 
-This document describes nginx-module-vts [v0.2.3](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.3){target=_blank} 
-released on Jan 01 2025.
+This document describes nginx-module-vts [v0.2.4](https://github.com/vozlt/nginx-module-vts/releases/tag/v0.2.4){target=_blank} 
+released on Mar 12 2025.
 
 <hr />
 
@@ -1737,6 +1737,46 @@ http {
             vhost_traffic_status_bypass_stats on;
             vhost_traffic_status_display;
             vhost_traffic_status_display_format html;
+        }
+    }
+}
+```
+
+### vhost_traffic_status_stats_by_upstream
+
+| -   | - |
+| --- | --- |
+| **Syntax**  | **vhost_traffic_status_stats_by_upstream** \<on\|off\> |
+| **Default** | on  |
+| **Context** | http|
+
+`Description:` Enables or disables to stats `upstreamZone`.
+The `upstreamZone` in the traffic status stats features is bypassed if this option is disabled.
+In other words, it is excluded from the traffic status stats.
+This is mostly useful if you want to be disable statistics collection for upstream servers to reduce CPU load.
+
+```Nginx
+http {
+    vhost_traffic_status_zone;
+    vhost_traffic_status_stats_by_upstream off;
+
+    proxy_cache_path /var/cache/nginx keys_zone=zone1:1m max_size=1g inactive=24h;
+    upstream backend {
+       ...
+    }
+    ...
+
+    server {
+
+        ...
+
+        location /status {
+            vhost_traffic_status_display;
+            vhost_traffic_status_display_format html;
+        }
+        location /backend {
+            proxy_cache zone1;
+            proxy_pass http://backend;
         }
     }
 }

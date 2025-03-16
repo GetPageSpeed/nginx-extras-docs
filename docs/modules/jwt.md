@@ -40,8 +40,8 @@ load_module modules/ngx_http_auth_jwt_module.so;
 ```
 
 
-This document describes nginx-module-jwt [v3.4.2](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.2){target=_blank} 
-released on Sep 26 2024.
+This document describes nginx-module-jwt [v3.4.3](https://github.com/max-lt/nginx-jwt-module/releases/tag/v3.4.3){target=_blank} 
+released on Mar 14 2025.
 
 <hr />
 [github-license-url]: /blob/master/LICENSE
