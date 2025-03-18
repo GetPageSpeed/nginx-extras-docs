@@ -16,7 +16,8 @@ NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 * **Advanced Rate Limiting**: Gain precise control over traffic with the extended `ngx_http_limit_req_module`, allowing you to set request limits on an hourly, daily, weekly, or yearly basis.
 * **Active Health Monitoring**: Maintain high uptime and reliability with real-time health checks of your upstream servers. [Learn More](https://github.com/yaoweibin/nginx_upstream_check_module)
 * **Enhanced Security Features**: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.
-* **Secure SSL Proxying with `CONNECT` Method**: Easily handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
+* **Secure SSL Proxying with `CONNECT` Method**: Handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
+* **Dark Mode Support**: Automatic Dark Mode Support for NGINX error pages.
 
 Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!
 
