@@ -713,6 +713,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/cgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cgi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/combined-upstreams/" class="md-nav__link">
         
   
@@ -6655,17 +6676,18 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-session
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.0.5" target="_blank">v4.0.5</a> 
-released on Aug 16 2023.</p>
+<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.1.1" target="_blank">v4.1.1</a> 
+released on Apr 16 2025.</p>
 <hr />
 
 <p><strong>lua-resty-session</strong> is a secure, and flexible session library for OpenResty.</p>
 <h2 id="tldr">TL;DR;</h2>
 <ul>
 <li>Sessions are immutable (each save generates a new session), and lockless.</li>
-<li>Session data is AES-256-GCM encrypted with a key derived using HKDF-SHA256.</li>
+<li>Session data is AES-256-GCM encrypted with a key derived using HKDF-SHA256
+  (on FIPS-mode it uses PBKDF2 with SHA-256 instead.</li>
 <li>Session has a fixed size header that is protected with HMAC-SHA256 MAC with
-  a key derived using HKDF-SHA256.</li>
+  a key derived using HKDF-SHA256 (on FIPS-mode it uses PBKDF2 with SHA-256 instead).</li>
 <li>Session data can be stored in a stateless cookie or in various backend storages.</li>
 <li>A single session cookie can maintain multiple sessions across different audiences.</li>
 </ul>
@@ -6890,6 +6912,11 @@ and <a href="#helpers">helper</a> functions.</p>
 <td>Cookie path, e.g. <code>"/"</code>.</td>
 </tr>
 <tr>
+<td><code>cookie_domain</code></td>
+<td style="text-align: center;"><code>nil</code></td>
+<td>Cookie domain, e.g. <code>"example.com"</code></td>
+</tr>
+<tr>
 <td><code>cookie_http_only</code></td>
 <td style="text-align: center;"><code>true</code></td>
 <td>Mark cookie <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> only, use <code>true</code> or <code>false</code>.</td>
@@ -7003,6 +7030,11 @@ and <a href="#helpers">helper</a> functions.</p>
 <td><code>compression_threshold</code></td>
 <td style="text-align: center;"><code>1024</code></td>
 <td>Compression threshold controls when the data is deflated, e.g. <code>1024</code> (a kilobyte) (in bytes), <code>0</code> disables compression.</td>
+</tr>
+<tr>
+<td><code>bind</code></td>
+<td style="text-align: center;"><code>nil</code></td>
+<td>Bind the session to data acquired from the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> request or connection, use <code>ip</code>, <code>scheme</code>, <code>user-agent</code>. E.g. <code>{ "scheme", "user-agent" }</code> will calculate MAC utilizing also <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> request <code>Scheme</code> and <code>User-Agent</code> header.</td>
 </tr>
 <tr>
 <td><code>request_headers</code></td>
@@ -8133,19 +8165,22 @@ You can call this function based on what user selected.</p>
 <span class="kr">end</span>
 </code></pre></div>
 <h3 id="sessionclear_request_cookie">session:clear_request_cookie</h3>
-<p><strong>syntax:</strong> <em>session:clear_request_cookie()</em></p>
+<p><strong>syntax:</strong> <em>ok, err = session:clear_request_cookie()</em></p>
 <p>Modifies the request headers by removing the session related
 cookies. This is useful when you use the session library on
 a proxy server and don't want the session cookies to be forwarded
-to the upstream service.</p>
+to the upstream service. In error case it returns <code>nil</code> and an
+error message, otherwise <code>true</code> (which can be ignored).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">session</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">exists</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.session&quot;</span><span class="p">.</span><span class="n">open</span><span class="p">()</span>
 <span class="kr">if</span> <span class="n">exists</span> <span class="kr">then</span>
   <span class="n">session</span><span class="p">:</span><span class="n">clear_request_cookie</span><span class="p">()</span>
 <span class="kr">end</span>
 </code></pre></div>
 <h3 id="sessionset_headers">session:set_headers</h3>
-<p><strong>syntax:</strong> <em>session:set_headers(arg1, arg2, ...)</em></p>
-<p>Sets request and response headers based on configuration.</p>
+<p><strong>syntax:</strong> <em>ok, err = session:set_headers(arg1, arg2, ...)</em></p>
+<p>Sets request and response headers based on configuration.
+In error case it returns <code>nil</code> and an error message,
+otherwise <code>true</code> (that can be ignored).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">session</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">exists</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.session&quot;</span><span class="p">.</span><span class="n">open</span><span class="p">({</span>
   <span class="n">request_headers</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;audience&quot;</span><span class="p">,</span> <span class="s2">&quot;subject&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span> <span class="p">},</span>
   <span class="n">response_headers</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;idling-timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;rolling-timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;absolute-timeout&quot;</span> <span class="p">},</span>
@@ -8158,8 +8193,9 @@ to the upstream service.</p>
 and response headers configured with <code>response_headers</code>.</p>
 <p>See <a href="#configuration">configuration</a> for possible header names.</p>
 <h3 id="sessionset_request_headers">session:set_request_headers</h3>
-<p><strong>syntax:</strong> <em>session:set_request_headers(arg1, arg2, ...)</em></p>
-<p>Set request headers.</p>
+<p><strong>syntax:</strong> <em>ok, err = session:set_request_headers(arg1, arg2, ...)</em></p>
+<p>Set request headers. In error case it returns <code>nil</code> and an error message,
+otherwise <code>true</code> (that can be ignored).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">session</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">exists</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.session&quot;</span><span class="p">.</span><span class="n">open</span><span class="p">()</span>
 <span class="kr">if</span> <span class="n">exists</span> <span class="kr">then</span>
   <span class="n">session</span><span class="p">:</span><span class="n">set_request_headers</span><span class="p">(</span><span class="s2">&quot;audience&quot;</span><span class="p">,</span> <span class="s2">&quot;subject&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">)</span>
@@ -8168,8 +8204,9 @@ and response headers configured with <code>response_headers</code>.</p>
 <p>When called without arguments it will set request headers configured with <code>request_headers</code>.</p>
 <p>See <a href="#configuration">configuration</a> for possible header names.</p>
 <h3 id="sessionset_response_headers">session:set_response_headers</h3>
-<p><strong>syntax:</strong> <em>session:set_response_headers(arg1, arg2, ...)</em></p>
-<p>Set request headers.</p>
+<p><strong>syntax:</strong> <em>ok, err = session:set_response_headers(arg1, arg2, ...)</em></p>
+<p>Set request headers. In error case it returns <code>nil</code> and an error message,
+otherwise <code>true</code> (that can be ignored).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">session</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">exists</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.session&quot;</span><span class="p">.</span><span class="n">open</span><span class="p">()</span>
 <span class="kr">if</span> <span class="n">exists</span> <span class="kr">then</span>
   <span class="n">session</span><span class="p">:</span><span class="n">set_response_headers</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;idling-timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;rolling-timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;absolute-timeout&quot;</span><span class="p">)</span>
@@ -8203,7 +8240,7 @@ to encrypt value before passing it to thus function.</p>
 <span class="kr">end</span>
 </code></pre></div>
 <h3 id="sessioninfosave">session.info:save</h3>
-<p><strong>syntax:</strong> <em>value = session.info:save()</em></p>
+<p><strong>syntax:</strong> <em>ok, err = session.info:save()</em></p>
 <p>Save information. Only updates backend storage. Does not send a new cookie (except with cookie storage).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">session</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.session&quot;</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
 <span class="n">session</span><span class="p">.</span><span class="n">info</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last-access&quot;</span><span class="p">,</span> <span class="n">ngx</span><span class="p">.</span><span class="n">now</span><span class="p">())</span>
@@ -8229,7 +8266,7 @@ the base64 url-encoded header is concatenated with base64 url-encoded payload.</
 <li>SID: <code>32</code> bytes of crypto random data (Session ID).</li>
 <li>Created at: binary packed secs from epoch in a little endian form, truncated to 5 bytes.</li>
 <li>Rolling Offset: binary packed secs from creation time in a little endian form (integer). </li>
-<li>Size: binary packed data size (short) in a two byte little endian form.</li>
+<li>Size: binary packed data size in a three byte little endian form.</li>
 <li>Tag: <code>16</code> bytes of authentication tag from AES-256-GCM encryption of the data.</li>
 <li>Idling Offset: binary packed secs from creation time + rolling offset in a little endian form, truncated to 3 bytes.</li>
 <li>Mac: <code>16</code> bytes message authentication code of the header.</li>

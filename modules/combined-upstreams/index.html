@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/combined-upstreams/">
       
       
-        <link rel="prev" href="../captcha/">
+        <link rel="prev" href="../cgi/">
       
       
         <link rel="next" href="../concat/">
@@ -700,6 +700,27 @@
   
   <span class="md-ellipsis">
     captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cgi
   </span>
   
 
@@ -5871,8 +5892,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_combined_upstreams_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-combined-upstreams <a href="https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.3" target="_blank">v2.3</a> 
-released on Aug 18 2024.</p>
+<p>This document describes nginx-module-combined-upstreams <a href="https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.3.1" target="_blank">v2.3.1</a> 
+released on Apr 15 2025.</p>
 <hr />
 
 <!--[![Build Status](https://travis-ci.com/lyokha/nginx-combined-upstreams-module.svg?branch=master)](https://travis-ci.com/lyokha/nginx-combined-upstreams-module)-->
@@ -6202,12 +6223,11 @@ $ sudo make install
 <p>To benefit from persistent request contexts and upstrand failover locations with
 internal redirections in them (<em>try_files</em>, <em>error_page</em> etc.), download module
 <a href="https://github.com/lyokha/nginx-easy-context">nginx-easy-context</a> in some
-directory, uncomment line</p>
-<div class="highlight"><pre><span></span><code><span class="c1">## NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=1</span>
-</code></pre></div>
-<p>in file <em>config</em> in directory of this module and then run <em>configure</em> with two
-options <em>--add-module</em>.</p>
-<div class="highlight"><pre><span></span><code>$ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
+directory, set environment variable
+<em>NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX</em> to <em>y</em> or <em>yes</em>,
+and run <em>configure</em> with two options <em>--add-module</em>.</p>
+<div class="highlight"><pre><span></span><code>$ NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=yes
+$ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
 </code></pre></div>
 <p>The order of the two options matters. Module <em>nginx-easy-context</em> must go first.</p>
 <p>With command <em>prove</em> from Perl module <em>Test::Harness</em> and Perl module

@@ -713,6 +713,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/cgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cgi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/combined-upstreams/" class="md-nav__link">
         
   
@@ -4728,6 +4749,15 @@
   <a href="#pkeyget_key_type" class="md-nav__link">
     <span class="md-ellipsis">
       pkey:get_key_type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkeyget_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      pkey:get_size
     </span>
   </a>
   
@@ -8929,6 +8959,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pkeyget_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      pkey:get_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pkeyget_default_digest_type" class="md-nav__link">
     <span class="md-ellipsis">
       pkey:get_default_digest_type
@@ -11323,8 +11362,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-openssl
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-openssl <a href="https://github.com/fffonion/lua-resty-openssl/releases/tag/1.5.2" target="_blank">v1.5.2</a> 
-released on Feb 05 2025.</p>
+<p>This document describes lua-resty-openssl <a href="https://github.com/fffonion/lua-resty-openssl/releases/tag/1.6.1" target="_blank">v1.6.1</a> 
+released on Apr 16 2025.</p>
 <hr />
 
 <p>FFI-based OpenSSL binding for LuaJIT, supporting OpenSSL 3.x, 1.1 series.</p>
@@ -11712,12 +11751,13 @@ in <code>opts.passphrase</code> or <code>opts.passphrase_cb</code>:</p>
 </code></pre></div>
 <p>When loading JWK, there are couple of caveats:
 - Make sure the encoded JSON text is passed in, it must have been base64 decoded.
-- Constraint <code>type</code> on JWK key is not supported, the parameters
-in provided JSON will decide if a private or public key is loaded.
+- When using OpenSSL 1.1.1 or lua-resty-openssl earlier than 1.6.0, constraint <code>type</code>
+on JWK key is only supported on OpenSSL 3.x and lua-resty-openssl 1.6.0.
+Otherwise the parameters in provided JSON will decide if a private or public key is loaded, 
+specifying <code>type</code> will result in an error; also public key part for <code>OKP</code> keys (the <code>x</code> parameter)
+is not honored and derived from private key part (the <code>d</code> parameter) if it's specified.
 - Only key type of <code>RSA</code>, <code>P-256</code>, <code>P-384</code> and <code>P-512</code> <code>EC</code>,
 <code>Ed25519</code>, <code>X25519</code>, <code>Ed448</code> and <code>X448</code> <code>OKP</code> keys are supported.
-- Public key part for <code>OKP</code> keys (the <code>x</code> parameter) is always not honored and derived
-from private key part (the <code>d</code> parameter) if it's specified.
 - Signatures and verification must use <code>ecdsa_use_raw</code> option to work with JWS standards
 for EC keys. See <a href="#pkeysign">pkey:sign</a> and <a href="#pkeyverify">pkey.verify</a> for detail.
 - When running outside of OpenResty, needs to install a JSON library (<code>cjson</code> or <code>dkjson</code>)
@@ -11998,7 +12038,7 @@ of <code>public</code>. Also currently it's only possible to set <code>x</code> 
 <td><a href="#restyopensslbn">bn</a></td>
 </tr>
 <tr>
-<td>p</td>
+<td>g</td>
 <td>base generator</td>
 <td><a href="#restyopensslbn">bn</a></td>
 </tr>
@@ -12031,13 +12071,24 @@ of <code>public</code>. Also currently it's only possible to set <code>x</code> 
 <p>Checks whether <code>pk</code> is a private key. Returns true if it's a private key, returns false if
 it's a public key.</p>
 <h3 id="pkeyget_key_type">pkey:get_key_type</h3>
-<p><strong>syntax</strong>: <em>obj, err = pk:get_key_type()</em></p>
+<p><strong>syntax</strong>: <em>obj, err = pk:get_key_type(nid_only?)</em></p>
 <p>Returns a ASN1_OBJECT of key type of the private key as a table.</p>
+<p>Starting from lua-resty-openssl 1.6.0, an optional argument <code>nid_only</code> can be set to <code>true</code>
+to only return the numeric NID of the key.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">pkey</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.openssl.pkey&quot;</span><span class="p">).</span><span class="n">new</span><span class="p">({</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;X448&quot;</span><span class="p">})</span>
 
 <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="nb">require</span><span class="p">(</span><span class="s2">&quot;cjson&quot;</span><span class="p">).</span><span class="n">encode</span><span class="p">(</span><span class="n">pkey</span><span class="p">:</span><span class="n">get_key_type</span><span class="p">()))</span>
 <span class="c1">-- outputs &#39;{&quot;ln&quot;:&quot;X448&quot;,&quot;nid&quot;:1035,&quot;sn&quot;:&quot;X448&quot;,&quot;id&quot;:&quot;1.3.101.111&quot;}&#39;</span>
+<span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="n">pkey</span><span class="p">:</span><span class="n">get_key_type</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+<span class="c1">-- outputs 1035</span>
 </code></pre></div>
+<h3 id="pkeyget_size">pkey:get_size</h3>
+<p><strong>syntax</strong>: <em>size, err = pk:get_size()</em></p>
+<p>Returns the maximum suitable size for the output buffers for almost all
+operations that can be done with pkey.</p>
+<p>For RSA key, this is the size of the modulus.
+For EC, Ed25519 and Ed448 keys, this is the size of the private key.
+For DH key, this is the size of the prime modulus.</p>
 <h3 id="pkeyget_default_digest_type">pkey:get_default_digest_type</h3>
 <p><strong>syntax</strong>: <em>obj, err = pk:get_default_digest_type()</em></p>
 <p>Returns a ASN1_OBJECT of key type of the private key as a table. An additional field <code>mandatory</code> is also

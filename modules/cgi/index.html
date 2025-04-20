@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-google. NGINX module which makes google mirror much easier to deploy ">
+        <meta name="description" content="RPM package nginx-module-cgi. CGI support for NGINX ">
       
       
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/google/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/cgi/">
       
       
-        <link rel="prev" href="../geoip2/">
+        <link rel="prev" href="../captcha/">
       
       
-        <link rel="next" href="../graphite/">
+        <link rel="next" href="../combined-upstreams/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>NGINX Module for Google Mirror creation - NGINX Extras Documentation</title>
+        <title>CGI support for NGINX - NGINX Extras Documentation</title>
       
     
     
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="NGINX Module for Google Mirror creation - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="CGI support for NGINX - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-google. NGINX module which makes google mirror much easier to deploy " >
+        <meta  property="og:description"  content="RPM package nginx-module-cgi. CGI support for NGINX " >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/google.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/cgi.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/google/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/cgi/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="NGINX Module for Google Mirror creation - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="CGI support for NGINX - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-google. NGINX module which makes google mirror much easier to deploy " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-cgi. CGI support for NGINX " >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/google.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/cgi.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#google-nginx-module-for-google-mirror-creation" class="md-skip">
+        <a href="#cgi-cgi-support-for-nginx" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NGINX Module for Google Mirror creation
+              CGI support for NGINX
             
           </span>
         </div>
@@ -713,10 +713,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../cgi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    cgi
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -725,6 +745,530 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before everything
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-with-debian-12-ubuntu-2404" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start (with Debian 12+, Ubuntu 24.04+)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading plugin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-cgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable cgi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      x permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-by-hop-http-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hop-by-hop http headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tricks-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tricks &amp;&amp; FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tricks && FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-list-all-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to list all environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-root-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want root permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-chroot" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with chroot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-create-a-long-run-background-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want create a long-run background process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-http-request-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      My http request hangs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-kill-my-cgi-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to kill my cgi script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-generate-content-dynamicaly" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to generate content dynamicaly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-dont-like-suffixes-in-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      I don't like suffixes in url
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-response-status-other-than-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I response status other than 200
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-response-a-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I response a redirection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-get-http-request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I get http request body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-send-file-to-the-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can send file to the client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-write-cgi-with-python-ruby-perl-c-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to write CGI with python, ruby, perl, C, C++...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cgi-onoff-or-cgi-pass-script_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_pass-script_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_pass &lt;script_path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_interpreter-interpreter-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_interpreter [interpreter] [args...]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_working_dir-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_working_dir &lt;dir&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_body_only-onoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_body_only &lt;on|off&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_path-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_path &lt;PATH&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_strict-onoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_strict &lt;on|off&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_set_var-name-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_set_var &lt;name&gt; &lt;value&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_stderr-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_stderr &lt;path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_rdns-onoffdouble-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_rdns &lt;on|off|double&gt; [required]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_timeout-t1-t2" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_timeout &lt;t1&gt; [t2]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path_translated-impl-not-accurate" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATH_TRANSLATED impl not accurate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdns-impl-doesnt-access-etchosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDNS impl doesn't access /etc/hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rfc3875" class="md-nav__link">
+    <span class="md-ellipsis">
+      rfc3875
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rfc3875">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-by-hop-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hop-by-hop headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      CGI environments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-cgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache CGI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lighttpd-cgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lighttpd CGI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1133,30 +1677,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    google
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../google/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1165,68 +1689,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    <span class="md-ellipsis">
-      Description
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#demo-site-httpsg2wenlu" class="md-nav__link">
-    <span class="md-ellipsis">
-      Demo site https://g2.wen.lu
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dependency" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependency
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5544,31 +6006,103 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before everything
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-with-debian-12-ubuntu-2404" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start (with Debian 12+, Ubuntu 24.04+)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
+  <a href="#loading-plugin" class="md-nav__link">
     <span class="md-ellipsis">
-      Description
+      Loading plugin
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#demo-site-httpsg2wenlu" class="md-nav__link">
+  <a href="#enable-cgi" class="md-nav__link">
     <span class="md-ellipsis">
-      Demo site https://g2.wen.lu
+      Enable cgi
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#dependency" class="md-nav__link">
+  <a href="#hello-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Dependency
+      Hello script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      x permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-by-hop-http-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hop-by-hop http headers
     </span>
   </a>
   
@@ -5576,6 +6110,396 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tricks-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tricks &amp;&amp; FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tricks && FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-list-all-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to list all environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-root-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want root permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-chroot" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with chroot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-create-a-long-run-background-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want create a long-run background process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-http-request-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      My http request hangs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-kill-my-cgi-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to kill my cgi script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-generate-content-dynamicaly" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to generate content dynamicaly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-dont-like-suffixes-in-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      I don't like suffixes in url
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-response-status-other-than-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I response status other than 200
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-response-a-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I response a redirection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-get-http-request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I get http request body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-send-file-to-the-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can send file to the client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-want-to-write-cgi-with-python-ruby-perl-c-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      I want to write CGI with python, ruby, perl, C, C++...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cgi-onoff-or-cgi-pass-script_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_pass-script_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_pass &lt;script_path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_interpreter-interpreter-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_interpreter [interpreter] [args...]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_working_dir-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_working_dir &lt;dir&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_body_only-onoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_body_only &lt;on|off&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_path-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_path &lt;PATH&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_strict-onoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_strict &lt;on|off&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_set_var-name-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_set_var &lt;name&gt; &lt;value&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_stderr-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_stderr &lt;path&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_rdns-onoffdouble-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_rdns &lt;on|off|double&gt; [required]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi_timeout-t1-t2" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgi_timeout &lt;t1&gt; [t2]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path_translated-impl-not-accurate" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATH_TRANSLATED impl not accurate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdns-impl-doesnt-access-etchosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDNS impl doesn't access /etc/hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rfc3875" class="md-nav__link">
+    <span class="md-ellipsis">
+      rfc3875
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rfc3875">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-by-hop-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hop-by-hop headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgi-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      CGI environments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-cgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache CGI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lighttpd-cgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lighttpd CGI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
   
 </li>
       
@@ -5594,7 +6518,7 @@
                   
 
 
-<h1 id="google-nginx-module-for-google-mirror-creation"><em>google</em>: NGINX Module for Google Mirror creation</h1>
+<h1 id="cgi-cgi-support-for-nginx"><em>cgi</em>: CGI support for NGINX</h1>
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
@@ -5608,240 +6532,779 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-google
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-cgi
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-google
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-cgi
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_google_filter_module.so</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_cgi_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-google <a href="https://github.com/GetPageSpeed/ngx_http_google_filter_module/releases/tag/0.2.4" target="_blank">v0.2.4</a> 
-released on Jun 17 2023.</p>
+<p>This document describes nginx-module-cgi <a href="https://github.com/pjincz/nginx-cgi/releases/tag/v0.12.1" target="_blank">v0.12.1</a> 
+released on Apr 13 2025.</p>
 <hr />
 
-<p><a href="https://gitter.im/cuber/ngx_http_google_filter_module?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img alt="Gitter" src="https://badges.gitter.im/Join%20Chat.svg" /></a></p>
-<h4 id="description">Description</h4>
-<p><code>ngx_http_google_filter_module</code> is a filter module which makes google mirror much easier to deploy.  <br />
-Regular expressions, uri locations and other complex configurations have been built-in already.  <br />
-The native nginx module ensure the efficiency of handling cookies, gstatic scoures and redirections. <br />
-Let's see how <code>easy</code> it is to setup a google mirror.
-<div class="highlight"><pre><span></span><code><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<blockquote>
-<p><em>What? Are you kidding me?</em> <br />
-<em>Yes, it's just that simple!</em></p>
-</blockquote>
-<h4 id="demo-site-httpsg2wenlu">Demo site <a href="https://g2.wen.lu">https://g2.wen.lu</a></h4>
-<p><img alt="Demo Site" src="http://ww2.sinaimg.cn/large/68bd1777gw1f13naidonmj212i0najsy.jpg" /></p>
-<h4 id="dependency">Dependency</h4>
-<ol>
-<li><a href="http://www.pcre.org/"><code>pcre</code></a> <em>regular expression support</em></li>
-<li><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html"><code>ngx_http_proxy_module</code></a> <em>backend proxy support</em></li>
-<li><a href="https://github.com/yaoweibin/ngx_http_substitutions_filter_module"><code>ngx_http_substitutions_filter_module</code></a> <em>mutiple substitutions support</em></li>
-</ol>
-<h1 id="_1"></h1>
-<h2 id="download-the-newest-source">download the newest source</h2>
-<h2 id="see-httpnginxorgendownloadhtml">@see <a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></h2>
-<h1 id="_2"></h1>
-<p>wget <a href="http://nginx.org/download/nginx-1.7.8.tar.gz">http://nginx.org/download/nginx-1.7.8.tar.gz</a></p>
-<h1 id="_3"></h1>
-<h2 id="clone-ngx_http_google_filter_module">clone ngx_http_google_filter_module</h2>
-<h2 id="see-httpsgithubcomcuberngx_http_google_filter_module">@see <a href="https://github.com/cuber/ngx_http_google_filter_module">https://github.com/cuber/ngx_http_google_filter_module</a></h2>
-<h1 id="_4"></h1>
-<p>git clone <a href="https://github.com/cuber/ngx_http_google_filter_module">https://github.com/cuber/ngx_http_google_filter_module</a></p>
-<h1 id="_5"></h1>
-<h2 id="clone-ngx_http_substitutions_filter_module">clone ngx_http_substitutions_filter_module</h2>
-<h2 id="see-httpsgithubcomyaoweibinngx_http_substitutions_filter_module">@see <a href="https://github.com/yaoweibin/ngx_http_substitutions_filter_module">https://github.com/yaoweibin/ngx_http_substitutions_filter_module</a></h2>
-<h1 id="_6"></h1>
-<p>git clone <a href="https://github.com/yaoweibin/ngx_http_substitutions_filter_module">https://github.com/yaoweibin/ngx_http_substitutions_filter_module</a>
-<div class="highlight"><pre><span></span><code>##### Brand new installation #####
-``` bash
-#
-## configure nginx customly
-## replace &lt;/path/to/&gt; with your real path
-#
-./configure \
-  &lt;your configuration&gt; \
-  --add-module=&lt;/path/to/&gt;ngx_http_google_filter_module \
-  --add-module=&lt;/path/to/&gt;ngx_http_substitutions_filter_module
-</code></pre></div></p>
-<h5 id="migrate-from-existed-distribution">Migrate from existed distribution</h5>
-<div class="highlight"><pre><span></span><code><span class="c1">#</span>
-<span class="c1">## get the configuration of existed nginx</span>
-<span class="c1">## replace &lt;/path/to/&gt; with your real path</span>
-<span class="c1">#</span>
-&lt;/path/to/&gt;nginx<span class="w"> </span>-V
-&gt;<span class="w"> </span>nginx<span class="w"> </span>version:<span class="w"> </span>nginx/<span class="w"> </span>&lt;version&gt;
-&gt;<span class="w"> </span>built<span class="w"> </span>by<span class="w"> </span>gcc<span class="w"> </span><span class="m">4</span>.x.x
-&gt;<span class="w"> </span>configure<span class="w"> </span>arguments:<span class="w"> </span>&lt;configuration&gt;
+<p>Brings CGI support to <a href="https://github.com/nginx/nginx">Nginx</a> and
+<a href="https://github.com/webserver-llc/angie">Angie</a> webserver.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Tested with</th>
+<th>Nginx</th>
+<th>Angie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>AlmaLinux 9, Debian 12 and Ubuntu 24.04/20.04</td>
+<td>okay</td>
+<td>okay</td>
+</tr>
+<tr>
+<td>Darwin</td>
+<td>MacOS 15.1</td>
+<td>okay</td>
+<td>okay</td>
+</tr>
+<tr>
+<td>BSD</td>
+<td>FreeBSD 14.2 and OpenBSD 7.6</td>
+<td>okay</td>
+<td>okay</td>
+</tr>
+<tr>
+<td>Solaris</td>
+<td>OmniOS r1510521</td>
+<td>okay</td>
+<td>okay</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>No plan, nginx barely supports Windows</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="before-everything">Before everything</h2>
+<p>CGI is neither a demon nor an angel. It is simply a tool. Just like a chef's
+knife in the hands of a cook or a sword in the hands of a warrior, you won't use
+a sword for cooking, nor you take a chef's knife to the battlefield. The same
+goes for CGI, it has its appropriate scenarios, and it should not be misused or
+demonized.</p>
+<p>CGI is good for:</p>
+<ul>
+<li>Low frequency applications, such as system management</li>
+<li>Resource limited systems, such as embeding system</li>
+<li>Low budget projects, such as personal websites</li>
+<li>Prototyping, for fast iterate</li>
+</ul>
+<p>CGI is bad for:</p>
+<ul>
+<li>High QPS</li>
+<li>High traffic</li>
+<li>High concurrency</li>
+</ul>
+<p>I created a discord channel. If:</p>
+<ul>
+<li>You are also a fun of CGI</li>
+<li>If you have any problem with nginx-cgi</li>
+<li>If you want to get update of nginx-cgi</li>
+<li>If you want to know more friends</li>
+</ul>
+<p>Please join us: <a href="https://discord.gg/DVwbbt9k">https://discord.gg/DVwbbt9k</a>.</p>
+<h2 id="quick-start-with-debian-12-ubuntu-2404">Quick start (with Debian 12+, Ubuntu 24.04+)</h2>
+<p>Build and install:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## checkout source code</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pjincz/nginx-cgi
+<span class="nb">cd</span><span class="w"> </span>nginx-cgi
 
-<span class="c1">#</span>
-<span class="c1">## download the same version of nginx source</span>
-<span class="c1">## @see http://nginx.org/en/download.html</span>
-<span class="c1">## replace &lt;version&gt; with your nginx version</span>
-<span class="c1">#</span>
-wget<span class="w"> </span>http://nginx.org/download/nginx-&lt;version&gt;.tar.gz
+<span class="c1">## build deb package</span>
+./build-deb-package.sh
 
-<span class="c1">#</span>
-<span class="c1">## configure nginx</span>
-<span class="c1">## replace &lt;configuration&gt; with your nginx configuration</span>
-<span class="c1">## replace &lt;/path/to/&gt; with your real path</span>
-<span class="c1">#</span>
-./configure<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>&lt;configuration&gt;<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--add-module<span class="o">=</span>&lt;/path/to/&gt;ngx_http_google_filter_module<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--add-module<span class="o">=</span>&lt;/path/to/&gt;ngx_http_substitutions_filter_module
-<span class="c1">#</span>
-<span class="c1">## if some libraries were missing, you should install them with the package manager</span>
-<span class="c1">## eg. apt-get, pacman, yum ...</span>
-<span class="c1">#</span>
+<span class="c1">## install built package</span>
+dpkg<span class="w"> </span>-i<span class="w"> </span>../libnginx-mod-http-cgi_*_amd64.deb<span class="w"> </span>
 </code></pre></div>
-<h4 id="usage">Usage</h4>
-<h5 id="basic-configuration">Basic Configuration</h5>
-<p><code>resolver</code> is needed to resolve domains.
-<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># ... part of server configuration</span>
-<span class="w">  </span><span class="kn">resolver</span><span class="w"> </span><span class="mi">8</span><span class="s">.8.8.8</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="c1"># ...</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<h5 id="google-scholar">Google Scholar</h5>
-<p><code>google_scholar</code> depends on <code>google</code>, so <code>google_scholar</code> cannot be used independently.  <br />
-Nowadays google scholar has migrate from <code>http</code> to <code>https</code>, and <code>ncr</code> is supported, so the <code>tld</code> of google scholar is no more needed.   <br />
-<div class="highlight"><pre><span></span><code><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">google_scholar</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<h5 id="google-language">Google Language</h5>
-<p>The default language can be set through <code>google_language</code>, if it is not setup, <code>zh-CN</code> will be the default language.
-<div class="highlight"><pre><span></span><code><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">google_scholar</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">  </span><span class="c1"># set language to German</span>
-<span class="w">  </span><span class="kn">google_language</span><span class="w"> </span><span class="s">de</span><span class="p">;</span><span class="w"> </span>
-<span class="p">}</span>
-</code></pre></div></p>
-<p>Supported languages are listed below.
-<div class="highlight"><pre><span></span><code>ar    -&gt; Arabic
-bg    -&gt; Bulgarian
-ca    -&gt; Catalan
-zh-CN -&gt; Chinese (Simplified)
-zh-TW -&gt; Chinese (Traditional)
-hr    -&gt; Croatian
-cs    -&gt; Czech
-da    -&gt; Danish
-nl    -&gt; Dutch
-en    -&gt; English
-tl    -&gt; Filipino
-fi    -&gt; Finnish
-fr    -&gt; French
-de    -&gt; German
-el    -&gt; Greek
-iw    -&gt; Hebrew
-hi    -&gt; Hindi
-hu    -&gt; Hungarian
-id    -&gt; Indonesian
-it    -&gt; Italian
-ja    -&gt; Japanese
-ko    -&gt; Korean
-lv    -&gt; Latvian
-lt    -&gt; Lithuanian
-no    -&gt; Norwegian
-fa    -&gt; Persian
-pl    -&gt; Polish
-pt-BR -&gt; Portuguese (Brazil)
-pt-PT -&gt; Portuguese (Portugal)
-ro    -&gt; Romanian
-ru    -&gt; Russian
-sr    -&gt; Serbian
-sk    -&gt; Slovak
-sl    -&gt; Slovenian
-es    -&gt; Spanish
-sv    -&gt; Swedish
-th    -&gt; Thai
-tr    -&gt; Turkish
-uk    -&gt; Ukrainian
-vi    -&gt; Vietnamese
-</code></pre></div></p>
-<h5 id="spider-exclusion">Spider Exclusion</h5>
-<p>The spiders of any search engines are not allowed to crawl google mirror.  <br />
-Default <code>robots.txt</code> listed below was build-in aleady.
-<div class="highlight"><pre><span></span><code>User-agent: *
-Disallow: /
+<p>Then enable cgi in nginx. If you have a newly installed nginx, you can find a
+default site at <code>/etc/nginx/sites-enabled/default</code>. The default one looks like
+this:</p>
+<div class="highlight"><pre><span></span><code>server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
 </code></pre></div>
-If <code>google_robots_allow</code> set to <code>on</code>, the <code>robots.txt</code> will be replaced with the version of google itself. <br />
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">#...</span>
-<span class="w">  </span><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">google_robots_allow</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="c1">#...</span>
-</code></pre></div></p>
-<h5 id="upstreaming">Upstreaming</h5>
-<p><code>upstream</code> can help you to avoid name resolving cost, decrease the possibility of google robot detection and proxy through some specific servers. <br />
-<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">www.google.com</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="n">173.194.38.1</span><span class="p">:</span><span class="mi">443</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="n">173.194.38.2</span><span class="p">:</span><span class="mi">443</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="n">173.194.38.3</span><span class="p">:</span><span class="mi">443</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="n">173.194.38.4</span><span class="p">:</span><span class="mi">443</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<h5 id="proxy-protocol">Proxy Protocol</h5>
-<p>By default, the proxy will use <code>https</code> to communicate with backend servers.    <br />
-You can use <code>google_ssl_off</code> to force some domains to fall back to <code>http</code> protocol.    <br />
-It is useful, if you want to proxy some domains through another gateway without ssl certificate.
-<div class="highlight"><pre><span></span><code><span class="c1">#</span>
-<span class="c1">## eg. </span>
-<span class="c1">## i want to proxy the domain &#39;www.google.com&#39; like this</span>
-<span class="c1">## vps(hk) -&gt; vps(us) -&gt; google</span>
-<span class="c1">#</span>
+<p>The default <code>root</code> points to <code>/var/www/html</code>, keep it as it as, and add
+following section after <code>location /</code> section.</p>
+<div class="highlight"><pre><span></span><code>    location /cgi-bin {
+        cgi on;
+    }
+</code></pre></div>
+<p>The newly added section means, for all request under <code>/cgi-bin</code>, turns on cgi
+support. Now restart nginx:</p>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</code></pre></div>
+<p>Save following content to /var/www/html/cgi-bin/hello.sh</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-<span class="c1">#</span>
-<span class="c1">## configuration of vps(hk)</span>
-<span class="c1">#</span>
-<span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1"># ...</span>
-<span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">google</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">google_ssl_off</span><span class="w"> </span><span class="s">&quot;www.google.com&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="c1"># ...</span>
-<span class="p">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Content-Type: text/plain&quot;</span>
+<span class="nb">echo</span>
 
-<span class="k">upstream</span><span class="w"> </span><span class="s">www.google.com</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;</span><span class="w"> </span><span class="s">ip</span><span class="w"> </span><span class="s">of</span><span class="w"> </span><span class="s">vps(us)</span><span class="w"> </span><span class="s">&gt;:80</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="nb">echo</span><span class="w"> </span>Hello<span class="w"> </span>CGI
+</code></pre></div>
+<p>Add x perm to cgi script:</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/html/cgi-bin/hello.sh
+</code></pre></div>
+<p>Now, try it:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://127.0.0.1/cgi-bin/hello.sh
+</code></pre></div>
+<p>If you nothing wrong, you will get an output of <code>Hello CGI</code>.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="loading-plugin">Loading plugin</h3>
+<p>If this plugin is installed to nginx's default module path (such as
+<code>/usr/lib/nginx/modules</code>), the plugin will be loaded automatically.
+Otherwise, you need to manually load the plugin by <code>load_module</code>.</p>
+<p>Add following statement to nginx's top level context to load the plugin:</p>
+<div class="highlight"><pre><span></span><code>load_module &lt;dir-of-plugin&gt;/ngx_http_cgi_module.so;
+</code></pre></div>
+<h3 id="enable-cgi">Enable cgi</h3>
+<p>After loading the plugin, you can add <code>cgi on</code> to location contexts to enable
+cgi. Example:</p>
+<div class="highlight"><pre><span></span><code>location /cgi-bin {
+    cgi on;
+}
+</code></pre></div>
+<p>Once cgi turned on on a location, all nested locations will also have cgi turned
+on. If you want to disable cgi for a child location, just use <code>cgi off</code>.</p>
+<p>When the location is accessed, nginx-cgi will find the script under the document
+root (it's specified by <code>root</code> statement). For example, if you have specify the
+document root as <code>/var/www/html</code>, then when you access <code>/cgi-bin/hello.sh</code>,
+<code>/var/www/html/cgi-bin/hello.sh</code> will be executed.</p>
+<p>Nginx-cgi also support <code>alias</code>, it like <code>root</code> statement in nginx, the only
+difference is the location prefix will be removed from uri. For example, if you
+want <code>/cgi/hello.sh</code> also reference to the same script, you can do this:</p>
+<div class="highlight"><pre><span></span><code>location /cgi {
+    alias /var/www/html/cgi-bin;
+    cgi on;
+}
+</code></pre></div>
+<h3 id="hello-script">Hello script</h3>
+<p>A cgi script can be wrotten by any language. Here's an exmaple with shell. You
+can save it to <code>/var/www/html/cgi-bin/hello.sh</code> for testing (if you didn't
+change the default document root):</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 
-<span class="c1">#</span>
-<span class="c1">## configuration of vps(us)</span>
-<span class="c1">#</span>
-<span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
-<span class="w">  </span><span class="kn">server_name</span><span class="w"> </span><span class="s">www.google.com</span><span class="p">;</span>
-<span class="w">  </span><span class="c1"># ...</span>
-<span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://www.google.com</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="c1"># ...</span>
-<span class="p">}</span>
-</code></pre></div></p>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: 200 OK&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Content-Type: text/plain&quot;</span>
+<span class="nb">echo</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello world&quot;</span>
+</code></pre></div>
+<p>The first line of the script is a shebang. If you clearly set <code>cgi_interpreter</code>,
+it's okay to remove this line, otherwise missing of shebang will causes a 500
+error. Some shell allows script be executable even without shebang, but it's not
+allowed here. If a script runable by shell, but return 500 error, check the
+shebang.</p>
+<p>The output of cgi script contains 2 sections: the header section and body
+section. The first 2 <code>echo</code> statements output the header section, and the last
+<code>echo</code> statement outputs the body section. The <code>echo</code> statement in middle
+outputs the separator. Both header section and body section can be empty, but
+the separator is mandatory. Missing of separator will causes an 500 error.</p>
+<p>All lines in header section will be parsed as normal http response header line.
+And then passed to the client side. There's one special header <code>Status</code>, it will
+be passed in response status line. If <code>cgi_strict</code> is on, nginx-cgi will check
+all cgi output headers, and 500 error will be responsed if invalid header found.
+Otherwise, invalid headers will be forwarded to client side too. It's fully
+recommanded to keep <code>cgi_strict</code> on.</p>
+<p>After separator, all output will be sent to client as body as it is.</p>
+<h3 id="x-permission">x permission</h3>
+<p>After all, you need to add the x permission to the file:</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/html/cgi-bin/hello.sh
+</code></pre></div>
+<p>Normally, you need x-permission to make script runable. Missing of x-permission
+can cause 403 error. If can't do this for any reason, <code>cgi_interpreter</code> can
+help.</p>
+<h3 id="request-header">Request header</h3>
+<p>Request headers will be parsed and then translated to environment variables and
+then passed to cgi script.</p>
+<p>For example, you can find the query string in <code>QUERY_STRING</code> environment var.
+And access <code>Http-Accept</code> by <code>HTTP_ACCPET</code>.</p>
+<p>Here's an example:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;query string: </span><span class="nv">$QUERY_STRING</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;http accept: </span><span class="nv">$HTTP_ACCEPT</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>For full list of environment variables, see environment session.</p>
+<h3 id="request-body">Request body</h3>
+<p>The request body will be passed via stdin. Here's an example to read all request
+body and echo it:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="nv">body</span><span class="o">=</span><span class="k">$(</span>cat<span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;request body: </span><span class="nv">$body</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="streaming">Streaming</h3>
+<p>Nginx-cgi has streaming support for both request and response body. For example,
+we can implement a simplest online caculator by <code>bc</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+bc<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+<p>Then we can test our caculator by <code>curl</code>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="m">127</span>.0.0.1/cgi-bin/bc.sh<span class="w"> </span>--no-progress-meter<span class="w"> </span>-T<span class="w"> </span>.
+</code></pre></div>
+<p>The nginx-cgi plugin is smart enough to choose the correct way to return the
+request body. If it got all output soon enough, it will output the body in once.
+If the output is delayed, it will output the body chunkly(<abbr title="Hyper Text Transfer Protocol">HTTP</abbr> 1.1) or
+streamingly (<abbr title="Hyper Text Transfer Protocol">HTTP</abbr> 1.0).</p>
+<h3 id="hop-by-hop-http-headers">Hop-by-hop http headers</h3>
+<p>Hop-by-hop http headers are not allowed in cgi script output. If it appears
+in response here, a 500 error will response to the client.</p>
+<p>For more information:
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#hop-by-hop_headers">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#hop-by-hop_headers</a></p>
+<h2 id="tricks-faq">Tricks &amp;&amp; FAQ</h2>
+<h3 id="i-want-to-list-all-environment-variables">I want to list all environment variables</h3>
+<p>Put following script to your cgi directory, and curl it form your terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;Content-Type: text/plain&#39;</span>
+<span class="nb">echo</span>
+
+printenv
+</code></pre></div>
+<h3 id="i-want-root-permission">I want root permission</h3>
+<p>Put a sudo file to <code>/etc/sudoers.d</code> and run <code>sudo</code> in your script or set
+<code>cgi_interpreter</code> as <code>/usr/bin/sudo</code>.</p>
+<p>Here's an example of sudo config file:</p>
+<div class="highlight"><pre><span></span><code>## allow wwww-data run /var/www/bin/my-danger-script with root account
+www-data ALL=(root) NOPASSWD: /var/www/bin/my-danger-script
+
+## allow all CGI script be luanched with sudo by nginx-cgi directly
+www-data ALL=(root) NOPASSWD: SETENV: /var/www/html/cgi-bin/*
+</code></pre></div>
+<h3 id="how-can-i-run-cgi-scripts-with-chroot">How can I run CGI scripts with chroot</h3>
+<p>Compared to sudo, chroot is much harder. Because chroot was not originally
+designed as a security mechanism. I'd like to use <code>docker</code> or <code>jails</code> for this
+purpose. But that's okay, if you really want <code>chroot</code>. Let me show you how to do
+it.</p>
+<p>In this example, I assume you're using <code>/var/www/html</code> as the document root.</p>
+<p>Prepare a hello.sh CGI script first:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/html/cgi-bin
+cat<span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/cgi-bin/ls.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">#!/bin/sh</span>
+<span class="s">echo &quot;Status: 200&quot;</span>
+<span class="s">echo &quot;Content-Type: text-plain&quot;</span>
+<span class="s">echo</span>
+<span class="s">echo &quot;files under /:&quot;</span>
+<span class="s">ls /</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+
+<span class="c1">## try it</span>
+/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Step 1: prepare a chroot directory.</p>
+<p>That're a lot of ways to do this step. <code>debootstrap</code> is a popular way on debian
+based system. <code>busybox</code> is the most light way. <code>docker</code> is a modern way.</p>
+<p>Let's make a lightest directory with <code>busybox</code> here:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## In this example, I put everything to /var/www/chroot</span>
+<span class="c1">## Be careful, I download x86_64 busybox version here, you may need to change it</span>
+<span class="c1">## You need root permission to run all following commands, I&#39;m too lazy to</span>
+<span class="c1">## prepend sudo to every commands here.</span>
+
+<span class="nv">root_dir</span><span class="o">=</span>/var/www/chroot
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_dir</span><span class="s2">/bin&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_dir</span><span class="s2">/bin&quot;</span>
+wget<span class="w"> </span>https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox
+chmod<span class="w"> </span>+x<span class="w"> </span>busybox
+
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_dir</span><span class="s2">&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="k">$(</span>./bin/busybox<span class="w"> </span>--list-full<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="k">)</span>
+./bin/busybox<span class="w"> </span>--list-full<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/busybox<span class="w"> </span><span class="nv">$line</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1">## try it</span>
+chroot<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_dir</span><span class="s2">&quot;</span><span class="w"> </span>ls
+</code></pre></div>
+<p>Step 2: mount document root into chroot dir</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/chroot/var/www/html
+mount<span class="w"> </span>--bind<span class="w"> </span>/var/www/html<span class="w"> </span>/var/www/chroot/var/www/html
+
+<span class="c1">## try it</span>
+ls<span class="w"> </span>/var/www/chroot/var/www/html
+</code></pre></div>
+<p>Notice:</p>
+<ul>
+<li>
+<p>I use a trick here, after chroot, the document root is still the same. By this
+  we can same some time to do path mapping.</p>
+</li>
+<li>
+<p>The mounting will not persist after a reboot. You may need to add an entry to
+  /etc/fstab. Or move /var/www/html into chroot, and make a symbolic link
+  outside.</p>
+</li>
+</ul>
+<p>Step 3: Add an interpreter to run script with <code>chroot</code></p>
+<p><strong>Important notice</strong>: You may want to allow <code>www-data</code> to run <code>chroot</code> with
+<code>sudo</code> here. <strong>DONT'T DO IT</strong>. It will introduce an serious security issue.
+Every CGI will be able to run <code>sudo chroot / ...</code> to escalate to root.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;/var/www/chroot-run.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">#!/bin/sh</span>
+
+<span class="s">exec chroot /var/www/chroot &quot;\$@&quot;</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/chroot-run.sh
+</code></pre></div>
+<p>Step 4: allow <code>www-data</code> to run <code>chroot-run.sh</code> with root permission.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;/etc/sudoers.d/www-run-with-chroot<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">www-data ALL=(root) NOPASSWD: /var/www/chroot-run.sh</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>Now everything is ready, add following section to your nginx/angie:</p>
+<div class="highlight"><pre><span></span><code>location /cgi-bin {
+    cgi on;
+    cgi_interpreter /usr/bin/sudo /var/www/chroot-run.sh;
+}
+</code></pre></div>
+<p>try it:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="m">127</span>.0.0.1/cgi-bin/ls.sh
+</code></pre></div>
+<p>Notes: It's really complex to setup a chroot environment. And since chroot is
+not really secure, it looks it's really not worth to do it. If you really cares
+about security. Maybe you should run CGI scripts in <code>docker</code> or <code>jails</code>.</p>
+<h3 id="how-can-i-run-cgi-scripts-with-docker">How can I run CGI scripts with docker</h3>
+<p>In this example, I assume you're using <code>/var/www/html</code> as the document root.</p>
+<p>Prepare a hello.sh CGI script first:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/html/cgi-bin
+cat<span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/cgi-bin/ls.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">#!/bin/sh</span>
+<span class="s">echo &quot;Status: 200&quot;</span>
+<span class="s">echo &quot;Content-Type: text-plain&quot;</span>
+<span class="s">echo</span>
+<span class="s">echo &quot;files under /:&quot;</span>
+<span class="s">ls /</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+
+<span class="c1">## try it</span>
+/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Create a container and keep running in the background:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Change -v if necessary</span>
+<span class="c1">## -d: runs background</span>
+<span class="c1">## -i -t: keep a terminal</span>
+<span class="c1">## --restart always: keep container alive</span>
+docker<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>--name<span class="w"> </span>my_cgi_docker<span class="w"> </span>-v<span class="w"> </span>/var/www:/var/www<span class="w"> </span>busybox<span class="w"> </span>sh
+
+<span class="c1">## try it</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>my_cgi_docker<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Allow <code>www-data</code> to run <code>docker</code> commands:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span>www-data
+
+<span class="c1">## try it</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>www-data<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>my_cgi_docker<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Now everything is ready, add following section to your nginx/angie:</p>
+<div class="highlight"><pre><span></span><code>location /cgi-bin {
+    cgi on;
+    cgi_interpreter /usr/bin/docker exec my_cgi_docker;
+}
+</code></pre></div>
+<h3 id="i-want-create-a-long-run-background-process">I want create a long-run background process</h3>
+<p>Just make sure not to inherit <code>stdout</code> when creating the process (ideally, avoid
+inheriting <code>stdin</code> and <code>stderr</code> as well). Here's an example write in shell.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">taskid</span><span class="o">=</span><span class="m">1234</span>
+<span class="nv">logfile</span><span class="o">=</span><span class="s2">&quot;/var/lib/my-project/</span><span class="nv">$taskid</span><span class="s2">&quot;</span>
+./long-run-task.sh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$taskid</span><span class="s2">&quot;</span><span class="w"> </span>&lt;/dev/null<span class="w"> </span>&gt;<span class="s2">&quot;</span><span class="nv">$logfile</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div>
+<p>Or if you are familiar with pipe operation, just close <code>stdout</code> (also, it's
+better to close <code>stdin</code> and <code>stderr</code> as well), http request will finished
+immediently. And you can use the process as background process.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exec</span><span class="w"> </span>&lt;/dev/null<span class="w"> </span>&gt;somewhere<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+
+<span class="c1">## now http response is done, do what every you like</span>
+sleep<span class="w"> </span><span class="m">9999</span>
+</code></pre></div>
+<h3 id="my-http-request-hangs">My http request hangs</h3>
+<p>As you see abvoing. In CGI world, http request's lifecycle depends on pipe's
+(stdout's) lifecycle.</p>
+<p>Each child process might inherit the CGI process's pipe. If any process that
+inherited stdout remains alive, the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> request will never finish.</p>
+<p>This may causes confiusing, when you want a long run background or killing
+CGI process.</p>
+<p>For creating long-run process, see aboving topic.</p>
+<p>For killing CGI process, kill the whole process group rather than CGI process
+itself.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">cgi_pid</span><span class="o">=</span>...
+
+<span class="c1">## don&#39;t do this</span>
+<span class="c1">## kill &quot;$cgi_pid&quot;</span>
+
+<span class="c1">## do this</span>
+<span class="nb">kill</span><span class="w"> </span>--<span class="w"> </span><span class="s2">&quot;-</span><span class="nv">$cgi_pid</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="i-want-to-kill-my-cgi-script">I want to kill my cgi script</h3>
+<p>See aboving topic.</p>
+<h3 id="i-want-to-generate-content-dynamicaly">I want to generate content dynamicaly</h3>
+<p>Traditionally, people use rewriting to archive this. But it's much easier here.
+You can do it with <code>cgi pass</code>. Here's an example to render markdone dynamically:</p>
+<div class="highlight"><pre><span></span><code>{
+    location ~ ^.*\.md$ {
+        cgi_pass /var/www/bin/cgi/render-markdown.sh;
+    }
+}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="nb">set</span><span class="w"> </span>-e
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCUMENT_ROOT</span><span class="si">}${</span><span class="nv">PATH_INFO</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: 404&quot;</span>
+<span class="w">    </span><span class="nb">echo</span>
+<span class="w">    </span><span class="nb">exit</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: 200&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Content-Type: text/html&quot;</span>
+<span class="nb">echo</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;&quot;</span>
+markdown<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCUMENT_ROOT</span><span class="si">}${</span><span class="nv">PATH_INFO</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+</code></pre></div>
+<h3 id="i-dont-like-suffixes-in-url">I don't like suffixes in url</h3>
+<p>Way 1: Removing CGI script's suffix</p>
+<p>Way 2: do rewriting</p>
+<p>Way 3: <code>cgi pass</code></p>
+<h3 id="how-can-i-response-status-other-than-200">How can I response status other than 200</h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: 404&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Content-Type: text/plain&quot;</span>
+<span class="nb">echo</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Welcome to the void&quot;</span>
+</code></pre></div>
+<h3 id="how-can-i-response-a-redirection">How can I response a redirection</h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: 302&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Location: https://theuselessweb.com&quot;</span>
+<span class="nb">echo</span>
+</code></pre></div>
+<h3 id="how-can-i-get-http-request-body">How can I get http request body</h3>
+<p>You can read the request body from <code>stdin</code>. If you're using shell, <code>cat</code> can
+quickly save request body to a file.</p>
+<h3 id="how-can-send-file-to-the-client">How can send file to the client</h3>
+<p>For small files, you can write file to <code>stdout</code> directly.</p>
+<p>For large files, it's much better to send a 302 response. Because CGI response
+is streaming, protocol cannot easily handle caching, chunked downloads, or
+resume support.</p>
+<h3 id="i-want-to-write-cgi-with-python-ruby-perl-c-c">I want to write CGI with python, ruby, perl, C, C++...</h3>
+<p>Go for it. Nginx-cgi don't care what language you use. Just grabs information
+from environment var, and read request body from <code>stdin</code>, and write output to
+<code>stdout</code>.</p>
+<h2 id="manual">Manual</h2>
+<h3 id="options">Options</h3>
+<h4 id="cgi-onoff-or-cgi-pass-script_path"><code>cgi &lt;on|off&gt;</code> or <code>cgi pass &lt;script_path&gt;</code></h4>
+<p>Enable or disable cgi module on giving location block.</p>
+<p>If you specify <code>on</code> here, the plugin will work in traditional mode. It parses
+the request uri first, and then locate the script under document root directory
+with request uri. After all it splits request uri to <code>SCRIPT_NAME</code> and
+<code>PATH_INFO</code>. This is good if you have an old CGI project or you want to strictly
+follow rfc3875.</p>
+<p>I also provided a nginx style syntax here. If you specify <code>cgi pass</code> here, the
+plugin will skip the step to locate the CGI script. It uses the the value you
+provided directly. You can references nginx variables in the second argument,
+eg: <code>cgi pass $document_root$uri</code>. The aboving example do something similar to
+rfc3875, but not equal. In this form, request uri will be assigned to
+<code>PATH_INFO</code> directly. And <code>SCRIPT_NAME</code> will be empty.</p>
+<p>The second form is really good for dynamic content generating. It gets around
+the complex and unnecessary uri re-writing.</p>
+<p>If you specify <code>off</code> here, the plugin will be disabled.</p>
+<p>Default: off</p>
+<h4 id="cgi_pass-script_path"><code>cgi_pass &lt;script_path&gt;</code></h4>
+<p>Alias of <code>cgi pass &lt;script_path&gt;</code>.</p>
+<h4 id="cgi_interpreter-interpreter-args"><code>cgi_interpreter [interpreter] [args...]</code></h4>
+<p>Set interpreter and interpreter args for cgi script.</p>
+<p>When this option is not empty, cgi script will be run with giving interpreter.
+Otherwise, script will be executed directly.</p>
+<p>This option can contains nginx variables, see
+<a href="https://nginx.org/en/docs/varindex.html">https://nginx.org/en/docs/varindex.html</a> for more details.</p>
+<p>This option is extremely useful in a lot of senarios, for example:</p>
+<ul>
+<li>run CGI scripts missing x-perm</li>
+<li>do sudo before executing CGI script</li>
+<li>wrap general binary as CGI script</li>
+<li>filter CGI script output</li>
+<li>...</li>
+</ul>
+<p>Default: empty</p>
+<h4 id="cgi_working_dir-dir"><code>cgi_working_dir &lt;dir&gt;</code></h4>
+<p>Set the working directory of CGI script.</p>
+<p>If this value is set to empty, CGI scripts will inherit nginx' working
+directory.</p>
+<p>If this value is set to an non-empty string, the CGI script will be launched
+with giving working directory.</p>
+<p>The action of changing working directory may failed. For example, giving
+directory doesn't exist, no perm or name too long. In this case, script will
+failed to execute.</p>
+<p>This option doesn't change the way to find interpreter or script (if they are
+specified with related path, they are always related to nginx' working
+directory).</p>
+<p>This option can contain nginx variable. Althrough I don't know what use this is.
+Maybe you can setup different working dir for different server_name by this.</p>
+<p>Default: empty</p>
+<h4 id="cgi_body_only-onoff"><code>cgi_body_only &lt;on|off&gt;</code></h4>
+<p>A standard CGI script should output two parts: header and body. And an empty
+line to split those two parts.</p>
+<p>If you want to simply run a normal program as CGI program. You can turn this on.</p>
+<p>Once this option is enabled, all outout will be treated as response body, and be
+sent to the client.</p>
+<p>Default: off</p>
+<h4 id="cgi_path-path"><code>cgi_path &lt;PATH&gt;</code></h4>
+<p>Change cgi script PATH environment variable.</p>
+<p>Default: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</p>
+<h4 id="cgi_strict-onoff"><code>cgi_strict &lt;on|off&gt;</code></h4>
+<p>Enable or disable strict mode.</p>
+<p>When strict mode turns on, bad cgi header will cause 500 error. When strict mode
+turns off, bad cgi header be forward as it is.</p>
+<p>Default: on</p>
+<h4 id="cgi_set_var-name-value"><code>cgi_set_var &lt;name&gt; &lt;value&gt;</code></h4>
+<p>Add and pass extra environment variables to CGI script. The first argument of
+this command is the name of environment variable. It should contains only
+alphabets, numbers and underscore, and doesn't start with number. The second
+argument of this command is the value express of the var. It can contains nginx
+variables, see <a href="https://nginx.org/en/docs/varindex.html">https://nginx.org/en/docs/varindex.html</a> for more details.</p>
+<p>This option can appears more than 1 time to set multiple variables. If more than
+one option set the same var, then the last one works. These directives are
+inherited from the previous configuration level if and only if there's no
+cgi_set_var directives defined on the current level.</p>
+<p>This option can also be used to override standard CGI vars. This may be useful
+in some case, for example hacking old CGI script or simulate standard vars that
+are not supported by this plugin now (Such as <code>PATH_TRANSLATED</code>,
+<code>REMOTE_IDENT</code>). But it's not recommanded, it may introduce confusing issues to
+your system.</p>
+<h4 id="cgi_stderr-path"><code>cgi_stderr &lt;path&gt;</code></h4>
+<p>Redirect cgi stderr to giving file.</p>
+<p>By default, nginx-cgi grab cgi script's stderr output and dump it to nginx log.
+But this action is somewhat expensive, because it need to create an extra
+connection to listen stderr output. If you want to avoid this, you can use this
+option to redirect cgi script's stderr output to a file. Or you can even discard
+all stderr output by redirect to <code>/dev/null</code>. Also you can use this to redirect
+all stderr output to nginx's stderr by set it as <code>/dev/stderr</code>.</p>
+<h4 id="cgi_rdns-onoffdouble-required"><code>cgi_rdns &lt;on|off|double&gt; [required]</code></h4>
+<p>Enable or disable reverse dns.</p>
+<p><code>off</code>: disable rdns feature.</p>
+<p><code>on</code>: Do reverse dns before launching cgi script, and pass rdns result to cgi
+script via <code>REMOTE_HOST</code> environment variable.</p>
+<p><code>double</code>: After reverse dns, do a forward dns again to check the rdns result. if
+result matches, pass result as <code>REMOTE_HOST</code>.</p>
+<p><code>required</code>: If rdns failed, 403, 503 or 500 returns to the client. Depends on
+the failure reason of rdns.</p>
+<p>If you turns this option on, you need to setup a <code>resolver</code> in nginx too.
+Otherwise you will get an error of <code>no resolver defined to resolve</code>.</p>
+<p><strong>author notes</strong>: do not enable this option, it will makes every request slower.
+this feature can be easily implemented by <code>dig -x</code> or <code>nslookup</code> in script. the
+only reason I implement this is just to make the module fully compliant with the
+rfc3875 standard.</p>
+<h4 id="cgi_timeout-t1-t2"><code>cgi_timeout &lt;t1&gt; [t2]</code></h4>
+<p>Send <code>TERM</code>/<code>KILL</code> signals to the CGI process if it runs too long.</p>
+<p>If both <code>t1</code> and <code>t2</code> equal to <code>0</code>. Timeout feature is disabled.</p>
+<p>If <code>t1</code> or <code>t2</code> doesn't equal to <code>0</code>. A <code>TERM</code> or <code>KILL</code> signal will be sent to
+the process after timeout.</p>
+<p>If both <code>t1</code> and <code>t2</code> not zero. Send <code>TERM</code> at <code>t1</code> timestamp first. And send
+<code>KILL</code> again at <code>t1+t2</code> timestamp (if process still alive at that timestamp).</p>
+<p>If <code>t2</code> doesn't present, it treated as <code>0</code>.</p>
+<p>Default: 0 0</p>
+<h3 id="standard-environment-variables">Standard Environment Variables</h3>
+<p>Nginx-cgi implemented almost all rfc3875 standard variables. If they cannot
+cover all of your usage, you can add your own variable by <code>cgi_set_var</code>. Also
+those variables can be overrided by <code>cgi_set_var</code> if you really want to.</p>
+<ul>
+<li><code>AUTH_TYPE</code>, <code>REMOTE_USER</code> (rfc3875 standard)</li>
+</ul>
+<p>If cgi script is behind an authorization module (such as
+<code>ngx_http_auth_basic_module</code>), and the authorization is succeed, the value is
+set to auth type (such as <code>Basic</code>) and authorized user.</p>
+<p>If no authorization module enabled, no matter client passes autoriazation header
+or not. Those 2 fields are not present.</p>
+<p><code>Authorization</code> header is not visible in cgi script for security reason. If you
+really want to do authorization in CGI script, try <code>cgi_set_var</code>.</p>
+<ul>
+<li><code>CONTENT_LENGTH</code>, <code>CONTENT_TYPE</code> (rfc3875 standard)</li>
+</ul>
+<p>Same to request header's <code>Content-Length</code> and <code>Content-Type</code>.</p>
+<ul>
+<li><code>GATEWAY_INTERFACE</code> (rfc3875 standard)</li>
+</ul>
+<p>Always be <code>CGI/1.1</code> in this plugin.</p>
+<ul>
+<li><code>PATH_INFO</code> (rfc3875 standard)</li>
+</ul>
+<p>Let's say if you have a script under <code>/cgi-bin/hello.sh</code>, and you access
+<code>http://127.0.0.1/cgi-bin/hello.sh/somewhat</code>.</p>
+<p>Then <code>PATH_INFO</code> contains the string <code>/somewhat</code>.</p>
+<p>Combination with url <code>rewrite</code> or <code>cgi pass</code>, this variable can be used for
+dynamic content generating.</p>
+<ul>
+<li><code>PATH_TRANSLATED</code> (rfc3875 standard)</li>
+</ul>
+<p><strong>Note</strong>: this option is not implemented strictly compliant with rfc3875.
+Please avoid this, if you are writing new CGI script.</p>
+<p>This is related to <code>PATH_INFO</code>.</p>
+<p>Let's say if you have a script under <code>/cgi-bin/hello.sh</code>, and you access
+<code>http://127.0.0.1/cgi-bin/hello.sh/somewhat</code>.</p>
+<p>The standard says, the server should try again with <code>http://127.0.0.1/somewhat</code>,
+and found out where the uri should mapped to.</p>
+<p>For technical reason, I just construct this variable by document root and
+<code>PATH_INFO</code>.</p>
+<p>The behaviour may be changed in future version.</p>
+<ul>
+<li><code>QUERY_STRING</code> (rfc3875 standard)</li>
+</ul>
+<p>Contains the query string of the request. For example, if you are accessing
+<code>http://127.0.0.1/cgi-bin/hello.sh?a=1&amp;b=2</code>, <code>QUERY_STRING</code> will contains
+<code>a=1&amp;b=2</code>.</p>
+<ul>
+<li><code>REMOTE_ADDR</code>, (rfc3875 standard)</li>
+</ul>
+<p>Client ip address.</p>
+<ul>
+<li><code>REMOTE_HOST</code> (rfc3875 standard)</li>
+</ul>
+<p>Client host name. Only available if <code>cgi_rdns</code> is turns on.</p>
+<p>If <code>cgi_rdns</code> is on, nginx-cgi will do a reverse DNS, and find a domain matches
+<code>REMOTE_ADDR</code>. If any found, it will be set to <code>REMOTE_HOST</code>.</p>
+<p>If <code>cgi_rdns</code> is double, after the RDNS, nginx-cgi will do a forward DNS again.
+<code>REMOTE_HOST</code> will only be set if the forward DNS result matches the original
+address.</p>
+<p>See <code>cgi_rdns</code> for more information.</p>
+<ul>
+<li><code>REMOTE_IDENT</code> (rfc3875 standard)</li>
+</ul>
+<p>Nginx-cgi plugin doesn't support this for security reason.</p>
+<ul>
+<li><code>REQUEST_METHOD</code> (rfc3875 standard)</li>
+</ul>
+<p>Request method of the request, for example: <code>GET</code>, <code>POST</code>...</p>
+<ul>
+<li><code>SCRIPT_NAME</code> (rfc3875 standard)</li>
+</ul>
+<p>Path to current script. Normally, you don't need this. It doesn't contains the
+full path. See <code>SCRIPT_FILENAME</code>.</p>
+<p>The only reason to use this is construct the URI after rewriting. You can use
+<code>SCRIPT_NAME</code> + <code>PATH_INFO</code> to get the URI after rewriting.</p>
+<ul>
+<li><code>SERVER_NAME</code> (rfc3875 standard)</li>
+</ul>
+<p>Server name, normally it equals to <code>Host</code> header without port part. If <code>Host</code>
+header doesn't appear in the request (<abbr title="Hyper Text Transfer Protocol">HTTP</abbr>/1.0) or contains invalid value, then
+this value is set to the reflect server ip address. If the ip address is an ipv6
+address, it will be quoted with bracket like <code>[::1]</code>.</p>
+<ul>
+<li><code>SERVER_PORT</code> (rfc3875 standard)</li>
+</ul>
+<p>Server listening port, such as <code>80</code>, <code>443</code>...</p>
+<ul>
+<li><code>SERVER_PROTOCOL</code> (rfc3875 standard)</li>
+</ul>
+<p>The protocol used between client and server. Such as <code>HTTP/1.0</code>, <code>HTTP/1.1</code>...</p>
+<ul>
+<li><code>SERVER_SOFTWARE</code> (rfc3875 standard)</li>
+</ul>
+<p>Contains a string of nginx and version, such as <code>nginx/1.27.4</code>.</p>
+<ul>
+<li><code>X_</code> (rfc3875 standard)</li>
+</ul>
+<p>All <code>X-</code> prefixed http request header will be convert to <code>X_</code> variables. For
+example:</p>
+<p>If <code>X-a: 123</code> appears in header, <code>X_A</code> will be set to <code>123</code>.</p>
+<ul>
+<li><code>HTTP_</code> (rfc3875 standard)</li>
+</ul>
+<p>All other http request header will be convert to <code>HTTP_</code> variables, for example:</p>
+<p>If <code>Accept: */*</code> appears in header, <code>HTTP_ACCEPT</code> will be set to <code>*/*</code>.</p>
+<ul>
+<li><code>DOCUMENT_ROOT</code> (non-standard, impled by apache2)</li>
+</ul>
+<p>Document root of current location block, see <code>root</code> stmt in nginx.</p>
+<ul>
+<li><code>REMOTE_PORT</code> (non-standard, impled by apache2)</li>
+</ul>
+<p>Client port number.</p>
+<ul>
+<li><code>REQUEST_SCHEME</code> (non-standard, impled by apache2)</li>
+</ul>
+<p><code>http</code> or <code>https</code>.</p>
+<ul>
+<li><code>REQUEST_URI</code> (non-standard, impled by apache2)</li>
+</ul>
+<p>The raw uri before rewriting. If you want the URL after rewriting, try
+<code>SCRIPT_NAME</code> + <code>PATH_INFO</code>.</p>
+<p>Note: this variable doesn't same to nginx varible <code>$request_uri</code>. You can find
+the document at <a href="https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html">https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html</a>.</p>
+<ul>
+<li><code>SCRIPT_FILENAME</code> (non-standard, impled by apache2)</li>
+</ul>
+<p>The full path to the CGI script.</p>
+<ul>
+<li><code>SERVER_ADDR</code> (non-standard, impled by apache2)</li>
+</ul>
+<p>Server ip address. If the server has multiple ip addresses. The value of this
+variable can be different if requests came from different interfaces.</p>
+<h2 id="known-issues">Known Issues</h2>
+<h3 id="path_translated-impl-not-accurate"><code>PATH_TRANSLATED</code> impl not accurate</h3>
+<p>By rfc3875, <code>PATH_TRANSLATED</code> should point to the file that as if <code>$PATH_INFO</code>
+accessed as <code>uri</code>. But that's really hard to impl on nginx, it need re-trigger
+nginx's location process. And those functions are private, cannot access by
+plugin directly. The another way to impl it is starting a sub-request, but it's
+too expensive, and this var is really rearly used. It's really not worth to do
+it. So I simply construct this var by document root and <code>path_info</code> vars.</p>
+<h3 id="rdns-impl-doesnt-access-etchosts">RDNS impl doesn't access /etc/hosts</h3>
+<p>Nginx's resolver impl doesn't access /etc/hosts. I don't want to impl an extra
+resolver in plugin. So I just ignore this problem.</p>
+<h2 id="reference">Reference</h2>
+<h2 id="rfc3875">rfc3875</h2>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc3875">https://datatracker.ietf.org/doc/html/rfc3875</a></p>
+<h3 id="nginx">nginx</h3>
+<p><a href="https://nginx.org/en/docs/dev/development_guide.html">https://nginx.org/en/docs/dev/development_guide.html</a>
+<a href="https://hg.nginx.org/nginx-tests">https://hg.nginx.org/nginx-tests</a></p>
+<h3 id="hop-by-hop-headers">Hop-by-hop headers</h3>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc2616#section-13.5.1">https://datatracker.ietf.org/doc/html/rfc2616#section-13.5.1</a></p>
+<h3 id="cgi-environments">CGI environments</h3>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc3875#section-4.1">https://datatracker.ietf.org/doc/html/rfc3875#section-4.1</a></p>
+<h3 id="apache-cgi">Apache CGI</h3>
+<p><a href="https://httpd.apache.org/docs/2.4/howto/cgi.html">https://httpd.apache.org/docs/2.4/howto/cgi.html</a></p>
+<h3 id="lighttpd-cgi">Lighttpd CGI</h3>
+<p><a href="https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_cgi">https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_cgi</a></p>
 <h2 id="github">GitHub</h2>
-<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/GetPageSpeed/ngx_http_google_filter_module" target="_blank">GitHub 
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/pjincz/nginx-cgi" target="_blank">GitHub 
 repository for 
-nginx-module-google</a>.</p>
+nginx-module-cgi</a>.</p>
 
 
 
