@@ -56,6 +56,7 @@ nav:
     brotli: modules/brotli.md
     cache-purge: modules/cache-purge.md
     captcha: modules/captcha.md
+    cgi: modules/cgi.md
     combined-upstreams: modules/combined-upstreams.md
     concat: modules/concat.md
     cookie-flag: modules/cookie-flag.md

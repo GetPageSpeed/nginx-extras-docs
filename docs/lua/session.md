@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-session
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-session [v4.0.5](https://github.com/bungle/lua-resty-session/releases/tag/v4.0.5){target=_blank} 
-released on Aug 16 2023.
+This document describes lua-resty-session [v4.1.1](https://github.com/bungle/lua-resty-session/releases/tag/v4.1.1){target=_blank} 
+released on Apr 16 2025.
     
 <hr />
 
@@ -42,9 +42,10 @@ released on Aug 16 2023.
 ## TL;DR;
 
 - Sessions are immutable (each save generates a new session), and lockless.
-- Session data is AES-256-GCM encrypted with a key derived using HKDF-SHA256.
+- Session data is AES-256-GCM encrypted with a key derived using HKDF-SHA256
+  (on FIPS-mode it uses PBKDF2 with SHA-256 instead.
 - Session has a fixed size header that is protected with HMAC-SHA256 MAC with
-  a key derived using HKDF-SHA256.
+  a key derived using HKDF-SHA256 (on FIPS-mode it uses PBKDF2 with SHA-256 instead).
 - Session data can be stored in a stateless cookie or in various backend storages.
 - A single session cookie can maintain multiple sessions across different audiences.
 
@@ -251,6 +252,7 @@ Here are the possible session configuration options:
 | `cookie_prefix`             |    `nil`     | Cookie prefix, use `nil`, `"__Host-"` or `"__Secure-"`.                                                                                                                                                                                                                                              |
 | `cookie_name`               | `"session"`  | Session cookie name, e.g. `"session"`.                                                                                                                                                                                                                                                               |
 | `cookie_path`               |    `"/"`     | Cookie path, e.g. `"/"`.                                                                                                                                                                                                                                                                             |
+| `cookie_domain`             |    `nil`     | Cookie domain, e.g. `"example.com"`                                                                                                                                                                                                                                                                  |
 | `cookie_http_only`          |    `true`    | Mark cookie HTTP only, use `true` or `false`.                                                                                                                                                                                                                                                        |
 | `cookie_secure`             |    `nil`     | Mark cookie secure, use `nil`, `true` or `false`.                                                                                                                                                                                                                                                    |
 | `cookie_priority`           |    `nil`     | Cookie priority, use `nil`, `"Low"`, `"Medium"`, or `"High"`.                                                                                                                                                                                                                                        |
@@ -274,6 +276,7 @@ Here are the possible session configuration options:
 | `store_metadata`            |   `false`    | Whether to also store metadata of sessions, such as collecting data of sessions for a specific audience belonging to a specific subject.                                                                                                                                                             |
 | `touch_threshold`           |     `60`     | Touch threshold controls how frequently or infrequently the `session:refresh` touches the cookie, e.g. `60` (a minute) (in seconds)                                                                                                                                                                  |
 | `compression_threshold`     |    `1024`    | Compression threshold controls when the data is deflated, e.g. `1024` (a kilobyte) (in bytes), `0` disables compression.                                                                                                                                                                             |
+| `bind`                      |    `nil`     | Bind the session to data acquired from the HTTP request or connection, use `ip`, `scheme`, `user-agent`. E.g. `{ "scheme", "user-agent" }` will calculate MAC utilizing also HTTP request `Scheme` and `User-Agent` header.                                                                          |
 | `request_headers`           |    `nil`     | Set of headers to send to upstream, use `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, `absolute-timeout`. E.g. `{ "id", "timeout" }` will set `Session-Id` and `Session-Timeout` request headers when `set_headers` is called.                                        |
 | `response_headers`          |    `nil`     | Set of headers to send to downstream, use `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, `absolute-timeout`. E.g. `{ "id", "timeout" }` will set `Session-Id` and `Session-Timeout` response headers when `set_headers` is called.                                     |
 | `storage`                   |    `nil`     | Storage is responsible of storing session data, use `nil` or `"cookie"` (data is stored in cookie), `"dshm"`, `"file"`, `"memcached"`, `"mysql"`, `"postgres"`, `"redis"`, or `"shm"`, or give a name of custom module (`"custom-storage"`), or a `table` that implements session storage interface. |
@@ -1051,12 +1054,13 @@ end
 
 ### session:clear_request_cookie
 
-**syntax:** *session:clear_request_cookie()*
+**syntax:** *ok, err = session:clear_request_cookie()*
 
 Modifies the request headers by removing the session related
 cookies. This is useful when you use the session library on
 a proxy server and don't want the session cookies to be forwarded
-to the upstream service.
+to the upstream service. In error case it returns `nil` and an
+error message, otherwise `true` (which can be ignored).
 
 ```lua
 local session, err, exists = require "resty.session".open()
@@ -1068,9 +1072,11 @@ end
 
 ### session:set_headers
 
-**syntax:** *session:set_headers(arg1, arg2, ...)*
+**syntax:** *ok, err = session:set_headers(arg1, arg2, ...)*
 
 Sets request and response headers based on configuration.
+In error case it returns `nil` and an error message,
+otherwise `true` (that can be ignored).
 
 ```lua
 local session, err, exists = require "resty.session".open({
@@ -1090,9 +1096,10 @@ See [configuration](#configuration) for possible header names.
 
 ### session:set_request_headers
 
-**syntax:** *session:set_request_headers(arg1, arg2, ...)*
+**syntax:** *ok, err = session:set_request_headers(arg1, arg2, ...)*
 
-Set request headers.
+Set request headers. In error case it returns `nil` and an error message,
+otherwise `true` (that can be ignored).
 
 ```lua
 local session, err, exists = require "resty.session".open()
@@ -1108,9 +1115,10 @@ See [configuration](#configuration) for possible header names.
 
 ### session:set_response_headers
 
-**syntax:** *session:set_response_headers(arg1, arg2, ...)*
+**syntax:** *ok, err = session:set_response_headers(arg1, arg2, ...)*
 
-Set request headers.
+Set request headers. In error case it returns `nil` and an error message,
+otherwise `true` (that can be ignored).
 
 ```lua
 local session, err, exists = require "resty.session".open()
@@ -1164,7 +1172,7 @@ end
 
 ### session.info:save
 
-**syntax:** *value = session.info:save()*
+**syntax:** *ok, err = session.info:save()*
 
 Save information. Only updates backend storage. Does not send a new cookie (except with cookie storage).
 
@@ -1203,7 +1211,7 @@ Header fields explained:
 - SID: `32` bytes of crypto random data (Session ID).
 - Created at: binary packed secs from epoch in a little endian form, truncated to 5 bytes.
 - Rolling Offset: binary packed secs from creation time in a little endian form (integer). 
-- Size: binary packed data size (short) in a two byte little endian form.
+- Size: binary packed data size in a three byte little endian form.
 - Tag: `16` bytes of authentication tag from AES-256-GCM encryption of the data.
 - Idling Offset: binary packed secs from creation time + rolling offset in a little endian form, truncated to 3 bytes.
 - Mac: `16` bytes message authentication code of the header.

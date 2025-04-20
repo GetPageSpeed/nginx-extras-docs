@@ -12,6 +12,7 @@
 | [nginx-module-brotli](modules/brotli.md)                         | NGINX Brotli dynamic modules                                                  |
 | [nginx-module-cache-purge](modules/cache-purge.md)               | NGINX Cache Purge module                                                      |
 | [nginx-module-captcha](modules/captcha.md)                       | NGINX Captcha Module                                                          |
+| [nginx-module-cgi](modules/cgi.md)                               | CGI support for NGINX                                                         |
 | [nginx-module-combined-upstreams](modules/combined-upstreams.md) | NGINX Combined Upstreams module                                               |
 | [nginx-module-concat](modules/concat.md)                         | HTTP Concatenation module for NGINX                                           |
 | [nginx-module-cookie-flag](modules/cookie-flag.md)               | NGINX cookie flag module                                                      |

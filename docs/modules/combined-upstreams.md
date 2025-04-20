@@ -40,8 +40,8 @@ load_module modules/ngx_http_combined_upstreams_module.so;
 ```
 
 
-This document describes nginx-module-combined-upstreams [v2.3](https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.3){target=_blank} 
-released on Aug 18 2024.
+This document describes nginx-module-combined-upstreams [v2.3.1](https://github.com/lyokha/nginx-combined-upstreams-module/releases/tag/2.3.1){target=_blank} 
+released on Apr 15 2025.
 
 <hr />
 
@@ -443,16 +443,12 @@ in the Nginx configuration file.
 To benefit from persistent request contexts and upstrand failover locations with
 internal redirections in them (*try_files*, *error_page* etc.), download module
 [nginx-easy-context](https://github.com/lyokha/nginx-easy-context) in some
-directory, uncomment line
-
-```sh
-## NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=1
-```
-
-in file *config* in directory of this module and then run *configure* with two
-options *--add-module*.
+directory, set environment variable
+*NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX* to *y* or *yes*,
+and run *configure* with two options *--add-module*.
 
 ```ShellSession
+$ NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=yes
 $ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
 ```
 
