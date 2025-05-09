@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-mysql
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-mysql [v0.27](https://github.com/openresty/lua-resty-mysql/releases/tag/v0.27){target=_blank} 
-released on Nov 23 2023.
+This document describes lua-resty-mysql [v0.28](https://github.com/openresty/lua-resty-mysql/releases/tag/v0.28){target=_blank} 
+released on May 08 2025.
     
 <hr />
 
@@ -95,6 +95,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
 
                 if not ok then
                     ngx.say("failed to connect: ", err, ": ", errcode, " ", sqlstate)
+                    db:close()
                     return
                 end
 
@@ -104,6 +105,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
                     db:query("drop table if exists cats")
                 if not res then
                     ngx.say("bad result: ", err, ": ", errcode, ": ", sqlstate, ".")
+                    db:close()
                     return
                 end
 
@@ -113,6 +115,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
                              .. "name varchar(5))")
                 if not res then
                     ngx.say("bad result: ", err, ": ", errcode, ": ", sqlstate, ".")
+                    db:close()
                     return
                 end
 
@@ -123,6 +126,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
                              .. "values (\'Bob\'),(\'\'),(null)")
                 if not res then
                     ngx.say("bad result: ", err, ": ", errcode, ": ", sqlstate, ".")
+                    db:close()
                     return
                 end
 
@@ -135,6 +139,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
                     db:query("select * from cats order by id asc", 10)
                 if not res then
                     ngx.say("bad result: ", err, ": ", errcode, ": ", sqlstate, ".")
+                    db:close()
                     return
                 end
 
@@ -146,6 +151,7 @@ Also, the [bit library](http://bitop.luajit.org/) is also required. If you're us
                 local ok, err = db:set_keepalive(10000, 100)
                 if not ok then
                     ngx.say("failed to set keepalive: ", err)
+                    db:close()
                     return
                 end
 
@@ -370,6 +376,7 @@ Below is a trivial example for this:
     res, err, errcode, sqlstate = db:query("select 1; select 2; select 3;")
     if not res then
         ngx.log(ngx.ERR, "bad result #1: ", err, ": ", errcode, ": ", sqlstate, ".")
+        db:close()
         return ngx.exit(500)
     end
 
@@ -380,6 +387,7 @@ Below is a trivial example for this:
         res, err, errcode, sqlstate = db:read_result()
         if not res then
             ngx.log(ngx.ERR, "bad result #", i, ": ", err, ": ", errcode, ": ", sqlstate, ".")
+            db:close()
             return ngx.exit(500)
         end
 
@@ -390,6 +398,7 @@ Below is a trivial example for this:
     local ok, err = db:set_keepalive(10000, 50)
     if not ok then
         ngx.log(ngx.ERR, "failed to set keepalive: ", err)
+        db:close()
         ngx.exit(500)
     end
 ```
