@@ -24,6 +24,8 @@ in a single place.
 
 ## Getting started
 
+To verify packages' integrity before installation, [install our GPG key](integrity.md).
+
 !!! note "Install repository configuration"
 
     === "CentOS/RHEL/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+"
