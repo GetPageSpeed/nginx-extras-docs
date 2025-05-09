@@ -31,21 +31,21 @@ To verify packages' integrity before installation, [install our GPG key](integri
     === "CentOS/RHEL/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+"
 
         ``` bash
-        sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm
+        dnf -y install https://extras.getpagespeed.com/release-latest.rpm
         ```
 
     === "CentOS 7"
 
         ``` bash
-        sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-        sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
+        yum -y install https://extras.getpagespeed.com/release-latest.rpm
+        yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
         ```
 
     === "Amazon Linux 2"
 
         ``` bash
-        sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-        sudo amazon-linux-extras install epel
+        yum -y install https://extras.getpagespeed.com/release-latest.rpm
+        amazon-linux-extras install epel
         ```
 
 Once the repository configuration is installed, <a href="https://www.getpagespeed.com/repo-subscribe">activate your subscription to the GetPageSpeed repository</a>.
@@ -58,7 +58,7 @@ Thanks to the nature of dynamic modules, you can install *just the modules* you 
 
 For example, to install NGINX and the PageSpeed module for it, run:
 
-    sudo dnf -y install nginx nginx-module-pagespeed
+    dnf -y install nginx nginx-module-pagespeed
 
 Enable the module by adding the `load_module ...` directive that is shown after installation.
 

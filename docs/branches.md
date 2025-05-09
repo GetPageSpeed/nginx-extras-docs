@@ -40,15 +40,15 @@ You can install mainline NGINX module packages easily by enabling the `mainline`
     === "CentOS/RHEL/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+"
 
         ``` bash
-        sudo dnf -y install dnf-plugins-core
-        sudo dnf config-manager --enable getpagespeed-extras-mainline
+        dnf -y install dnf-plugins-core
+        dnf config-manager --enable getpagespeed-extras-mainline
         ```
 
     === "CentOS 7 or Amazon Linux 2"
 
         ``` bash
-        sudo yum -y --disablerepo getpagespeed-extras install yum-utils
-        sudo yum-config-manager --enable getpagespeed-extras-mainline
+        yum -y --disablerepo getpagespeed-extras install yum-utils
+        yum-config-manager --enable getpagespeed-extras-mainline
         ```
 
 Then `dnf upgrade` to ensure all the NGINX modules currently installed are switched to their mainline equivalent.
@@ -56,7 +56,7 @@ Then `dnf upgrade` to ensure all the NGINX modules currently installed are switc
 Then install additional modules as usual, e.g.:
 
 ```
-sudo dnf -y install nginx-module-security
+dnf -y install nginx-module-security
 ```
 
 ## Changed your mind and want to go with stable?
@@ -68,14 +68,14 @@ For reasons mentioned above, you may want to downgrade to the stable branch:
     === "CentOS/RHEL/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+"
 
         ``` bash
-        sudo dnf -y install dnf-plugins-core
-        sudo dnf config-manager --disable getpagespeed-extras-mainline
-        sudo dnf -y downgrade "nginx*"
+        dnf -y install dnf-plugins-core
+        dnf config-manager --disable getpagespeed-extras-mainline
+        dnf -y downgrade "nginx*"
         ```
 
     === "CentOS 7 or Amazon Linux 2"
 
         ``` bash
-        sudo yum-config-manager --disable getpagespeed-extras-mainline
-        sudo yum -y downgrade "nginx*"
+        yum-config-manager --disable getpagespeed-extras-mainline
+        yum -y downgrade "nginx*"
         ```

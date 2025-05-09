@@ -12,20 +12,20 @@ NGINX Extras provide you with production-grade, SELinux compatible packages for 
 === "CentOS/RHEL 7 and Amazon Linux 2"
 
     ```bash
-    sudo yum -y install https://extras.getpagespeed.com/release-latest.rpm
-    sudo yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
-    sudo yum -y install yum-utils
-    sudo yum-config-manager --enable getpagespeed-extras-angie
-    sudo yum -y install angie
+    yum -y install https://extras.getpagespeed.com/release-latest.rpm
+    yum -y install https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm 
+    yum -y install yum-utils
+    yum-config-manager --enable getpagespeed-extras-angie
+    yum -y install angie
     ```
  
 === "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
 
     ```bash
-    sudo dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
-    sudo dnf -y install dnf-plugins-core
-    sudo dnf config-manager --enable getpagespeed-extras-angie
-    sudo dnf -y install angie
+    dnf -y install https://extras.getpagespeed.com/release-latest.rpm 
+    dnf -y install dnf-plugins-core
+    dnf config-manager --enable getpagespeed-extras-angie
+    dnf -y install angie
     ```
 
 ## Compatibility notes
