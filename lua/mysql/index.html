@@ -6004,8 +6004,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-mysql
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-mysql <a href="https://github.com/openresty/lua-resty-mysql/releases/tag/v0.27" target="_blank">v0.27</a> 
-released on Nov 23 2023.</p>
+<p>This document describes lua-resty-mysql <a href="https://github.com/openresty/lua-resty-mysql/releases/tag/v0.28" target="_blank">v0.28</a> 
+released on May 08 2025.</p>
 <hr />
 
 <p>lua-resty-mysql - Lua MySQL client driver for ngx_lua based on the cosocket API</p>
@@ -6054,6 +6054,7 @@ released on Nov 23 2023.</p>
 
 <span class="s1">                if not ok then</span>
 <span class="s1">                    ngx.say(&quot;failed to connect: &quot;, err, &quot;: &quot;, errcode, &quot; &quot;, sqlstate)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6063,6 +6064,7 @@ released on Nov 23 2023.</p>
 <span class="s1">                    db:query(&quot;drop table if exists cats&quot;)</span>
 <span class="s1">                if not res then</span>
 <span class="s1">                    ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errcode, &quot;: &quot;, sqlstate, &quot;.&quot;)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6072,6 +6074,7 @@ released on Nov 23 2023.</p>
 <span class="s1">                             .. &quot;name varchar(5))&quot;)</span>
 <span class="s1">                if not res then</span>
 <span class="s1">                    ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errcode, &quot;: &quot;, sqlstate, &quot;.&quot;)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6082,6 +6085,7 @@ released on Nov 23 2023.</p>
 <span class="s1">                             .. &quot;values (</span><span class="se">\&#39;</span><span class="s1">Bob</span><span class="se">\&#39;</span><span class="s1">),(</span><span class="se">\&#39;\&#39;</span><span class="s1">),(null)&quot;)</span>
 <span class="s1">                if not res then</span>
 <span class="s1">                    ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errcode, &quot;: &quot;, sqlstate, &quot;.&quot;)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6094,6 +6098,7 @@ released on Nov 23 2023.</p>
 <span class="s1">                    db:query(&quot;select * from cats order by id asc&quot;, 10)</span>
 <span class="s1">                if not res then</span>
 <span class="s1">                    ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errcode, &quot;: &quot;, sqlstate, &quot;.&quot;)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6105,6 +6110,7 @@ released on Nov 23 2023.</p>
 <span class="s1">                local ok, err = db:set_keepalive(10000, 100)</span>
 <span class="s1">                if not ok then</span>
 <span class="s1">                    ngx.say(&quot;failed to set keepalive: &quot;, err)</span>
+<span class="s1">                    db:close()</span>
 <span class="s1">                    return</span>
 <span class="s1">                end</span>
 
@@ -6265,6 +6271,7 @@ Here is an example:</p>
     <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">errcode</span><span class="p">,</span> <span class="n">sqlstate</span> <span class="o">=</span> <span class="n">db</span><span class="p">:</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;select 1; select 2; select 3;&quot;</span><span class="p">)</span>
     <span class="kr">if</span> <span class="ow">not</span> <span class="n">res</span> <span class="kr">then</span>
         <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="s2">&quot;bad result #1: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">errcode</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">sqlstate</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">:</span><span class="n">close</span><span class="p">()</span>
         <span class="kr">return</span> <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
     <span class="kr">end</span>
 
@@ -6275,6 +6282,7 @@ Here is an example:</p>
         <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">errcode</span><span class="p">,</span> <span class="n">sqlstate</span> <span class="o">=</span> <span class="n">db</span><span class="p">:</span><span class="n">read_result</span><span class="p">()</span>
         <span class="kr">if</span> <span class="ow">not</span> <span class="n">res</span> <span class="kr">then</span>
             <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="s2">&quot;bad result #&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">errcode</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">sqlstate</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+            <span class="n">db</span><span class="p">:</span><span class="n">close</span><span class="p">()</span>
             <span class="kr">return</span> <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
         <span class="kr">end</span>
 
@@ -6285,6 +6293,7 @@ Here is an example:</p>
     <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">db</span><span class="p">:</span><span class="n">set_keepalive</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
     <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
         <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span> <span class="s2">&quot;failed to set keepalive: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">:</span><span class="n">close</span><span class="p">()</span>
         <span class="n">ngx</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
     <span class="kr">end</span>
 </code></pre></div>
