@@ -5627,13 +5627,13 @@ and/or have the time to deal with potential (although rare) backwards incompatib
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr>/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS 7 or Amazon Linux 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
-sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-mainline
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
+dnf<span class="w"> </span>config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-mainline
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>--disablerepo<span class="w"> </span>getpagespeed-extras<span class="w"> </span>install<span class="w"> </span>yum-utils
-sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-mainline
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>--disablerepo<span class="w"> </span>getpagespeed-extras<span class="w"> </span>install<span class="w"> </span>yum-utils
+yum-config-manager<span class="w"> </span>--enable<span class="w"> </span>getpagespeed-extras-mainline
 </code></pre></div>
 </div>
 </div>
@@ -5641,7 +5641,7 @@ sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--enable<s
 </div>
 <p>Then <code>dnf upgrade</code> to ensure all the NGINX modules currently installed are switched to their mainline equivalent.</p>
 <p>Then install additional modules as usual, e.g.:</p>
-<div class="highlight"><pre><span></span><code>sudo dnf -y install nginx-module-security
+<div class="highlight"><pre><span></span><code>dnf -y install nginx-module-security
 </code></pre></div>
 <h2 id="changed-your-mind-and-want-to-go-with-stable">Changed your mind and want to go with stable?</h2>
 <p>For reasons mentioned above, you may want to downgrade to the stable branch:</p>
@@ -5650,14 +5650,14 @@ sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--enable<s
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr>/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_2_2">CentOS 7 or Amazon Linux 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
-sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--disable<span class="w"> </span>getpagespeed-extras-mainline
-sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>downgrade<span class="w"> </span><span class="s2">&quot;nginx*&quot;</span>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
+dnf<span class="w"> </span>config-manager<span class="w"> </span>--disable<span class="w"> </span>getpagespeed-extras-mainline
+dnf<span class="w"> </span>-y<span class="w"> </span>downgrade<span class="w"> </span><span class="s2">&quot;nginx*&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--disable<span class="w"> </span>getpagespeed-extras-mainline
-sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>downgrade<span class="w"> </span><span class="s2">&quot;nginx*&quot;</span>
+<div class="highlight"><pre><span></span><code>yum-config-manager<span class="w"> </span>--disable<span class="w"> </span>getpagespeed-extras-mainline
+yum<span class="w"> </span>-y<span class="w"> </span>downgrade<span class="w"> </span><span class="s2">&quot;nginx*&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -5705,7 +5705,7 @@ sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+      Copyright &copy; 2014 - 2025 GetPageSpeed LLC
     </div>
   
   

@@ -5612,17 +5612,17 @@ in a single place. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr>/Rocky Linux/AlmaLinux 8+, Fedora Linux, Amazon Linux 2023+</label><label for="__tabbed_1_2">CentOS 7</label><label for="__tabbed_1_3">Amazon Linux 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
-sudo<span class="w"> </span>amazon-linux-extras<span class="w"> </span>install<span class="w"> </span>epel
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+amazon-linux-extras<span class="w"> </span>install<span class="w"> </span>epel
 </code></pre></div>
 </div>
 </div>
@@ -5633,7 +5633,7 @@ sudo<span class="w"> </span>amazon-linux-extras<span class="w"> </span>install<s
 <h3 id="install-nginx-modules">Install NGINX modules</h3>
 <p>Thanks to the nature of dynamic modules, you can install <em>just the modules</em> you want instead of using bloatware NGINX installation. </p>
 <p>For example, to install NGINX and the PageSpeed module for it, run:</p>
-<div class="highlight"><pre><span></span><code>sudo dnf -y install nginx nginx-module-pagespeed
+<div class="highlight"><pre><span></span><code>dnf -y install nginx nginx-module-pagespeed
 </code></pre></div>
 <p>Enable the module by adding the <code>load_module ...</code> directive that is shown after installation.</p>
 <p>In case you missed it, refer to <a href="https://nginx-extras.getpagespeed.com/modules/">the documentation of respective module</a> and look for <code>load_module</code> directive
@@ -5699,7 +5699,7 @@ This can be done like this:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2014 - 2023 GetPageSpeed LLC 2023
+      Copyright &copy; 2014 - 2025 GetPageSpeed LLC
     </div>
   
   
