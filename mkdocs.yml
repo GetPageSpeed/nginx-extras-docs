@@ -17,6 +17,8 @@ extra:
     link: https://t.me/GetPageSpeed
 extra_css:
 - stylesheets/extra.css
+hooks:
+- hooks/copyright_year.py
 markdown_extensions:
 - abbr
 - admonition
@@ -293,8 +295,6 @@ plugins:
     enabled_if_env: ENABLE_PDF_EXPORT
     output_path: NGINX Extras Documentation.pdf
     toc_level: 1
-hooks:
-  - hooks/copyright_year.py
 site_author: Danila Vershinin
 site_description: Automatic documentation from sources, for NGINX Extras.
 site_name: NGINX Extras Documentation
