@@ -40,8 +40,8 @@ load_module modules/ngx_http_auth_spnego_module.so;
 ```
 
 
-This document describes nginx-module-spnego-http-auth [v1.1.2](https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.2){target=_blank} 
-released on Jan 11 2025.
+This document describes nginx-module-spnego-http-auth [v1.1.3](https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.3){target=_blank} 
+released on May 12 2025.
 
 <hr />
 
@@ -49,18 +49,17 @@ This module implements adds [SPNEGO](http://tools.ietf.org/html/rfc4178)
 support to nginx(http://nginx.org).  It currently supports only Kerberos
 authentication via [GSSAPI](http://en.wikipedia.org/wiki/GSSAPI)
 
-
 ## Prerequisites
 
 Authentication has been tested with (at least) the following:
 
-* Nginx 1.2 through 1.7
+* Nginx 1.2 through 1.15
 * Internet Explorer 8 and above
 * Firefox 10 and above
 * Chrome 20 and above
 * Curl 7.x (GSS-Negotiate), 7.x (SPNEGO/fbopenssl)
 
-The underlying kerberos library used for these tests was MIT KRB5 v1.8.
+The underlying kerberos library used for these tests was MIT KRB5 v1.12.
 
 
 ## Configuration reference
@@ -81,18 +80,18 @@ thing.
 * `auth_gss_service_name`: service principal name to use when acquiring
   credentials.
 
-If you would like to authorize only a specific set of users, you can use the
+If you would like to authorize only a specific set of principals, you can use the
 `auth_gss_authorized_principal` directive.  The configuration syntax supports
 multiple entries, one per line.
 
-    auth_gss_authorized_principal <username>@<realm>
-    auth_gss_authorized_principal <username2>@<realm>
+    auth_gss_authorized_principal <primary1>@<realm>
+    auth_gss_authorized_principal <primary2>@<realm>
 
-Users can also be authorized using a regex pattern via the `auth_gss_authorized_principal_regex`
- directive. This directive can be used together with the `auth_gss_authorized_principal` directive.
+Principals can also be authorized using a regex pattern via the `auth_gss_authorized_principal_regex`
+directive. This directive can be used together with the `auth_gss_authorized_principal` directive.
 
-    auth_gss_authorized_principal <username>@<realm>
-    auth_gss_authorized_principal_regex ^(<username>)/(<group>)@<realm>$
+    auth_gss_authorized_principal <primary1>@<realm>
+    auth_gss_authorized_principal_regex ^(<primary2>)/(<instance>)@<realm>$
 
 The remote user header in nginx can only be set by doing basic authentication.
 Thus, this module sets a bogus basic auth header that will reach your backend
@@ -100,7 +99,7 @@ application in order to set this header/nginx variable.  The easiest way to disa
 this behavior is to add the following configuration to your location config.
 
     proxy_set_header Authorization "";
-    
+
 A future version of the module may make this behavior an option, but this should
 be a sufficient workaround for now.
 
@@ -216,9 +215,15 @@ Note that the module does not support [NTLMSSP](http://en.wikipedia.org/wiki/NTL
 in Negotiate. NTLM, both v1 and v2, is an exploitable protocol and should be avoided
 where possible.
 
+
+## Windows
+
+For Windows KDC/AD environments, see the documentation [here](README.Windows.md).
+
+
 ## Help
 
-If you're unable to figure things out, please feel free to open an 
+If you're unable to figure things out, please feel free to open an
 issue on Github and I'll do my best to help you.
 
 ## GitHub
