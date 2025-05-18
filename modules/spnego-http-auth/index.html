@@ -2328,6 +2328,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#help" class="md-nav__link">
     <span class="md-ellipsis">
       Help
@@ -5790,6 +5799,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#help" class="md-nav__link">
     <span class="md-ellipsis">
       Help
@@ -5850,8 +5868,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_auth_spnego_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-spnego-http-auth <a href="https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.2" target="_blank">v1.1.2</a> 
-released on Jan 11 2025.</p>
+<p>This document describes nginx-module-spnego-http-auth <a href="https://github.com/stnoonan/spnego-http-auth-nginx-module/releases/tag/v1.1.3" target="_blank">v1.1.3</a> 
+released on May 12 2025.</p>
 <hr />
 
 <p>This module implements adds <a href="http://tools.ietf.org/html/rfc4178">SPNEGO</a>
@@ -5860,13 +5878,13 @@ authentication via <a href="http://en.wikipedia.org/wiki/GSSAPI">GSSAPI</a></p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Authentication has been tested with (at least) the following:</p>
 <ul>
-<li>Nginx 1.2 through 1.7</li>
+<li>Nginx 1.2 through 1.15</li>
 <li>Internet Explorer 8 and above</li>
 <li>Firefox 10 and above</li>
 <li>Chrome 20 and above</li>
 <li>Curl 7.x (GSS-Negotiate), 7.x (SPNEGO/fbopenssl)</li>
 </ul>
-<p>The underlying kerberos library used for these tests was MIT KRB5 v1.8.</p>
+<p>The underlying kerberos library used for these tests was MIT KRB5 v1.12.</p>
 <h2 id="configuration-reference">Configuration reference</h2>
 <p>You can configure GSS authentication on a per-location and/or a global basis:</p>
 <p>These options are required.
@@ -5881,16 +5899,16 @@ thing.
 * <code>auth_gss_realm</code>: Kerberos realm name.  If this is specified, the realm is only passed to the nginx variable $remote_user if it differs from this default.  To override this behavior, set <em>auth_gss_format_full</em> to 1 in your configuration.
 * <code>auth_gss_service_name</code>: service principal name to use when acquiring
   credentials.</p>
-<p>If you would like to authorize only a specific set of users, you can use the
+<p>If you would like to authorize only a specific set of principals, you can use the
 <code>auth_gss_authorized_principal</code> directive.  The configuration syntax supports
 multiple entries, one per line.</p>
-<div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;username&gt;@&lt;realm&gt;
-auth_gss_authorized_principal &lt;username2&gt;@&lt;realm&gt;
+<div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;primary1&gt;@&lt;realm&gt;
+auth_gss_authorized_principal &lt;primary2&gt;@&lt;realm&gt;
 </code></pre></div>
-<p>Users can also be authorized using a regex pattern via the <code>auth_gss_authorized_principal_regex</code>
- directive. This directive can be used together with the <code>auth_gss_authorized_principal</code> directive.</p>
-<div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;username&gt;@&lt;realm&gt;
-auth_gss_authorized_principal_regex ^(&lt;username&gt;)/(&lt;group&gt;)@&lt;realm&gt;$
+<p>Principals can also be authorized using a regex pattern via the <code>auth_gss_authorized_principal_regex</code>
+directive. This directive can be used together with the <code>auth_gss_authorized_principal</code> directive.</p>
+<div class="highlight"><pre><span></span><code>auth_gss_authorized_principal &lt;primary1&gt;@&lt;realm&gt;
+auth_gss_authorized_principal_regex ^(&lt;primary2&gt;)/(&lt;instance&gt;)@&lt;realm&gt;$
 </code></pre></div>
 <p>The remote user header in nginx can only be set by doing basic authentication.
 Thus, this module sets a bogus basic auth header that will reach your backend
@@ -5986,8 +6004,10 @@ the <code>--with-debug</code> option, and the <code>error_log</code> directive h
 <p>Note that the module does not support <a href="http://en.wikipedia.org/wiki/NTLMSSP">NTLMSSP</a>
 in Negotiate. NTLM, both v1 and v2, is an exploitable protocol and should be avoided
 where possible.</p>
+<h2 id="windows">Windows</h2>
+<p>For Windows KDC/AD environments, see the documentation <a href="README.Windows.md">here</a>.</p>
 <h2 id="help">Help</h2>
-<p>If you're unable to figure things out, please feel free to open an 
+<p>If you're unable to figure things out, please feel free to open an
 issue on Github and I'll do my best to help you.</p>
 <h2 id="github">GitHub</h2>
 <p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/stnoonan/spnego-http-auth-nginx-module" target="_blank">GitHub 
