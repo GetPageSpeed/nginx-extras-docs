@@ -1863,13 +1863,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-directives" class="md-nav__link">
+  <a href="#module-configuration-directives" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration Directives
+      Module Configuration Directives
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration Directives">
+    <nav class="md-nav" aria-label="Module Configuration Directives">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1886,15 +1886,6 @@
   <a href="#phantom_token" class="md-nav__link">
     <span class="md-ellipsis">
       phantom_token
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#phantom_token_client_credential" class="md-nav__link">
-    <span class="md-ellipsis">
-      phantom_token_client_credential
     </span>
   </a>
   
@@ -1981,6 +1972,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nginx-parameters-for-the-introspection-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      NGINX Parameters for the Introspection Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#simple-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Simple Configuration
@@ -2013,18 +2013,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#cacheless-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Status
+      Cacheless Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-setup" class="md-nav__link">
+  <a href="#building-from-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Development Setup
+      Building From Source
     </span>
   </a>
   
@@ -5700,13 +5700,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-directives" class="md-nav__link">
+  <a href="#module-configuration-directives" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration Directives
+      Module Configuration Directives
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration Directives">
+    <nav class="md-nav" aria-label="Module Configuration Directives">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5723,15 +5723,6 @@
   <a href="#phantom_token" class="md-nav__link">
     <span class="md-ellipsis">
       phantom_token
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#phantom_token_client_credential" class="md-nav__link">
-    <span class="md-ellipsis">
-      phantom_token_client_credential
     </span>
   </a>
   
@@ -5818,6 +5809,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nginx-parameters-for-the-introspection-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      NGINX Parameters for the Introspection Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#simple-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Simple Configuration
@@ -5850,18 +5850,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#cacheless-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Status
+      Cacheless Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-setup" class="md-nav__link">
+  <a href="#building-from-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Development Setup
+      Building From Source
     </span>
   </a>
   
@@ -5928,8 +5928,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_curity_http_phantom_token_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-phantom-token <a href="https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.6.0" target="_blank">v1.6.0</a> 
-released on Sep 04 2024.</p>
+<p>This document describes nginx-module-phantom-token <a href="https://github.com/curityio/nginx_phantom_token_module/releases/tag/2.0.0" target="_blank">v2.0.0</a> 
+released on May 22 2025.</p>
 <hr />
 
 <p><a href="https://curity.io/resources/code-examples/status/"><img alt="Quality" src="https://img.shields.io/badge/quality-production-green" /></a>
@@ -5941,41 +5941,23 @@ released on Sep 04 2024.</p>
 <p>Once the NGINX server receives the access token, this module will kick in. Using configuration like that below, this module will interrogate the request, find the token, and make a sideways call to the Curity Identity Server. This web service request will be done using the <em>Token Introspection</em> standard (<a href="https://tools.ietf.org/html/rfc7662">RFC 7662</a>) with an <code>Accept</code> type of <code>application/jwt</code> (as defined in <a href="https://tools.ietf.org/html/rfc7519#section-10.3.1">RFC 7519</a>). This will cause the Curity Identity Server to return not JSON but just a JWT. Then, the module will forward the JWT token to the back-end APIs and microservices. </p>
 <p>If the module is also configured to cache the results of the call to the Curity Identity Server (which it should be for production cases), the phantom token will be used as a cache key for the corresponding JWT token. This will eliminate the need for subsequent calls to the Curity Identity Server for as long as it tells the NGINX module it may cache the JWT for.</p>
 <p>The tl;dr is a very simple API gateway that is blazing fast, highly scalable, and without any bells and whistles to get in the way. All the code is here, so it's easy to change and use with other OAuth servers even!</p>
-<h2 id="configuration-directives">Configuration Directives</h2>
+<h2 id="module-configuration-directives">Module Configuration Directives</h2>
+<p>Version 2.0 introduced a <strong>BREAKING CHANGE</strong> to use updated configuration directives.\
+See <a href="https://github.com/curityio/nginx_phantom_token_module/tree/1.6.0">previous configuration instructions</a> to configure older releases.</p>
 <h3 id="required-configuration-directives">Required Configuration Directives</h3>
-<p>All the directives in this subsection are required; if any of these are omitted, the module will be disabled.</p>
+<p>The directives in this subsection are required; if any of these are omitted, the module will be disabled.</p>
 <h4 id="phantom_token">phantom_token</h4>
 <blockquote>
 <p><strong>Syntax</strong>: <strong><code>phantom_token</code></strong> <code>on</code> | <code>off</code></p>
 <p><strong>Default</strong>: <em><code>off</code></em></p>
 <p><strong>Context</strong>: <code>location</code></p>
 </blockquote>
-<h4 id="phantom_token_client_credential">phantom_token_client_credential</h4>
-<blockquote>
-<p><strong>Syntax</strong>: <strong><code>phantom_token_client_credential</code></strong> <em><code>string</code></em> <em><code>string</code></em> </p>
-<p><strong>Default</strong>: <em><code>—</code></em>                                                                </p>
-<p><strong>Context</strong>: <code>location</code>                                                           </p>
-</blockquote>
-<p>The client ID and secret of the OAuth client which will be used for introspection. The first argument to this directive is the client ID and the second is the secret. The maximum total length of the two arguments must be less than 255 characters. Both should be printable ASCII values; non-ASCII values <em>may</em> work but are untested. If this directive is not configured, then the module will be disabled.</p>
 <h4 id="phantom_token_introspection_endpoint">phantom_token_introspection_endpoint</h4>
 <blockquote>
 <p><strong>Syntax</strong>: <strong><code>phantom_token_introspection_endpoint</code></strong> <em><code>string</code></em></p>
 <p><strong>Default</strong>: <em><code>—</code></em></p>
 <p><strong>Context</strong>: <code>location</code></p>
 </blockquote>
-<p>The name of the location that proxies requests to the Curity Identity Server. Note that this location needs to be in the same server as the one referring to it using this directive.</p>
-<p>Example configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/api</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">...</span>
-<span class="w">        </span><span class="s">phantom_token_introspection_endpoint</span><span class="w"> </span><span class="s">my_good_location_name_for_curity</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">my_good_location_name_for_curity</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">...</span>
-<span class="w">    </span><span class="err">}</span>
-<span class="err">}</span>
-</code></pre></div>
 <h3 id="optional-configuration-directives">Optional Configuration Directives</h3>
 <p>The following directives are optional and do not need to be configured.</p>
 <h4 id="phantom_token_realm">phantom_token_realm</h4>
@@ -6025,19 +6007,66 @@ released on Sep 04 2024.</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_curity_http_phantom_token_module.so</span><span class="p">;</span>
 </code></pre></div>
 <p>The file can be an absolute or relative path. If it is not absolute, it should be relative to the NGINX root directory.</p>
+<h3 id="nginx-parameters-for-the-introspection-endpoint">NGINX Parameters for the Introspection Endpoint</h3>
+<p>You must also configure the following NGINX parameters for the introspection subrequest:</p>
+<div class="highlight"><pre><span></span><code><span class="k">location</span><span class="w"> </span><span class="s">curity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">internal</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_pass_request_headers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Accept</span><span class="w"> </span><span class="s">&quot;application/jwt&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Type</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Authorization</span><span class="w"> </span><span class="s">&quot;Basic</span><span class="w"> </span><span class="s">bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://curity.example.com/oauth/v2/oauth-introspect&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Introspection Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>internal</td>
+<td>Prevent the introspection endpoint being externally available.</td>
+</tr>
+<tr>
+<td>proxy_pass_request_headers</td>
+<td>Set to off to avoid using the main request's headers in the introspection subrequest.</td>
+</tr>
+<tr>
+<td>Accept header</td>
+<td>Configure a fixed value of <code>application/jwt</code>.</td>
+</tr>
+<tr>
+<td>Content-Type header</td>
+<td>Configure a fixed value of <code>application/x-www-form-urlencoded</code>.</td>
+</tr>
+<tr>
+<td>Authorization header</td>
+<td>Configure a basic credential with the introspection client ID and client secret.</td>
+</tr>
+</tbody>
+</table>
+<p>To get the basic credential, concatenate the client ID, a colon character and the client secret, then base64 encode them. The following command provides an example.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;my_client_id:my_client_secret&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
+</code></pre></div>
 <h3 id="simple-configuration">Simple Configuration</h3>
 <p>The following is a simple configuration that might be used in demo or development environments where the NGINX reverse proxy is on the same host as the Curity Identity Server:</p>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/api</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w">         </span><span class="s">https://example.com/api</span><span class="p">;</span>
-
 <span class="w">        </span><span class="kn">phantom_token</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">phantom_token_client_credential</span><span class="w"> </span><span class="s">&quot;client_id&quot;</span><span class="w"> </span><span class="s">&quot;client_secret&quot;</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">phantom_token_introspection_endpoint</span><span class="w"> </span><span class="s">curity</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://example.com/api</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">curity</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://curity.example.com/oauth/v2/introspection&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">internal</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass_request_headers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Accept</span><span class="w"> </span><span class="s">&quot;application/jwt&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Type</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Authorization</span><span class="w"> </span><span class="s">&quot;Basic</span><span class="w"> </span><span class="s">bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://curity.example.com/oauth/v2/oauth-introspect&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6046,18 +6075,20 @@ released on Sep 04 2024.</p>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">server1.example.com</span><span class="p">;</span><span class="kn">n</span>
 <span class="w">    </span><span class="s">location</span><span class="w"> </span><span class="s">/api</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w">         </span><span class="s">https://example.com/api</span><span class="p">;</span>
-
 <span class="w">        </span><span class="kn">phantom_token</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">phantom_token_client_credential</span><span class="w"> </span><span class="s">&quot;client_id&quot;</span><span class="w"> </span><span class="s">&quot;client_secret&quot;</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">phantom_token_introspection_endpoint</span><span class="w"> </span><span class="s">curity</span><span class="p">;</span>
-
 <span class="w">        </span><span class="kn">phantom_token_realm</span><span class="w"> </span><span class="s">&quot;myGoodAPI&quot;</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">phantom_token_scopes</span><span class="w"> </span><span class="s">&quot;scope_a</span><span class="w"> </span><span class="s">scope_b</span><span class="w"> </span><span class="s">scope_c&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://example.com/api</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">curity</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://server2.example.com:8443/oauth/v2/introspection&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">internal</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass_request_headers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Accept</span><span class="w"> </span><span class="s">&quot;application/jwt&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Type</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Authorization</span><span class="w"> </span><span class="s">&quot;Basic</span><span class="w"> </span><span class="s">bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://server2.example.com:8443/oauth/v2/oauth-introspect&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
@@ -6082,22 +6113,26 @@ released on Sep 04 2024.</p>
 <span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">server1.example.com</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/api</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kn">proxy_pass</span><span class="w">         </span><span class="s">https://example.com/api</span><span class="p">;</span>
-
 <span class="w">            </span><span class="kn">phantom_token</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
-<span class="w">            </span><span class="kn">phantom_token_client_credential</span><span class="w"> </span><span class="s">&quot;client_id&quot;</span><span class="w"> </span><span class="s">&quot;client_secret&quot;</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">phantom_token_introspection_endpoint</span><span class="w"> </span><span class="s">curity</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">phantom_token_scopes</span><span class="w"> </span><span class="s">&quot;scope_a</span><span class="w"> </span><span class="s">scope_b</span><span class="w"> </span><span class="s">scope_c&quot;</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">phantom_token_realm</span><span class="w"> </span><span class="s">&quot;myGoodAPI&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://example.com/api</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">curity</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://server2.example.com:8443/oauth/v2/introspection&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">internal</span><span class="p">;</span><span class="w">            </span>
+<span class="w">            </span><span class="kn">proxy_pass_request_headers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Accept</span><span class="w"> </span><span class="s">&quot;application/jwt&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Type</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Authorization</span><span class="w"> </span><span class="s">&quot;Basic</span><span class="w"> </span><span class="s">bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=&quot;</span><span class="p">;</span>
 
 <span class="w">            </span><span class="kn">proxy_cache_methods</span><span class="w"> </span><span class="s">POST</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">proxy_cache</span><span class="w"> </span><span class="s">my_cache</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">proxy_cache_key</span><span class="w"> </span><span class="nv">$request_body</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">proxy_ignore_headers</span><span class="w"> </span><span class="s">Set-Cookie</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://server2.example.com:8443/oauth/v2/oauth-introspect&quot;</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -6110,10 +6145,49 @@ released on Sep 04 2024.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span><span class="w">   </span>
 </code></pre></div>
-<h2 id="status">Status</h2>
-<p>This module is fit for production usage. </p>
-<h2 id="development-setup">Development Setup</h2>
-<p>If you wish to build this module from source, in order to run against other NGINX versions, or to change the module's logic, see the <a href="https://github.com/curityio/nginx_phantom_token_module/wiki">Development Wiki</a> for instructions.</p>
+<h2 id="cacheless-configuration">Cacheless Configuration</h2>
+<p>It is recommended to cache the results of the call to the Curity Identity Server so that you avoid triggering an introspection request for every API request. If you wish to disable caching you should extend the default <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#directives">proxy_buffer_size</a> to ensure that the module can read large JWTs. Do so by updating the configuration of the introspection request as in the following example.</p>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">server1.example.com</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/api</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">phantom_token</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">phantom_token_introspection_endpoint</span><span class="w"> </span><span class="s">curity</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">phantom_token_scopes</span><span class="w"> </span><span class="s">&quot;scope_a</span><span class="w"> </span><span class="s">scope_b</span><span class="w"> </span><span class="s">scope_c&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">phantom_token_realm</span><span class="w"> </span><span class="s">&quot;myGoodAPI&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://example.com/api</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">curity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">internal</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_pass_request_headers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Accept</span><span class="w"> </span><span class="s">&quot;application/jwt&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Type</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Authorization</span><span class="w"> </span><span class="s">&quot;Basic</span><span class="w"> </span><span class="s">bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=&quot;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kn">proxy_ignore_headers</span><span class="w"> </span><span class="s">Set-Cookie</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_buffer_size</span><span class="w"> </span><span class="mi">16k</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_buffers</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">16k</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://server2.example.com:8443/oauth/v2/oauth-introspect&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">listen</span><span class="w"> </span><span class="mi">8443</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">server2.example.com</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">&quot;https://curity.example.com&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w">   </span>
+</code></pre></div>
+<h2 id="building-from-source">Building From Source</h2>
+<p>To build the latest code against older NGINX versions or Linux distributions, follow the instructions in the <a href="https://github.com/curityio/nginx_phantom_token_module/wiki">Development Wiki</a>.</p>
+<ul>
+<li><a href="https://github.com/curityio/nginx_phantom_token_module/wiki/3.-Builds">Build the Module</a></li>
+<li><a href="https://github.com/curityio/nginx_phantom_token_module/wiki/4.-Testing-Deployment">Deploy the Module</a></li>
+</ul>
 <h2 id="more-information">More Information</h2>
 <p>For more information about the Curity Identity Server, its capabilities, and how to use it to issue phantom tokens for microservices, visit <a href="https://curity.io/product/token-service/?=use-cases?tab=microservices">curity.io</a>. For background information on using the Curity Identity Server to secure API access, see our <a href="https://curity.io/resources/api-security">API security resources</a>.</p>
 <h2 id="github">GitHub</h2>
