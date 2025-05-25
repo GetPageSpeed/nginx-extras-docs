@@ -40,8 +40,8 @@ load_module modules/ngx_curity_http_phantom_token_module.so;
 ```
 
 
-This document describes nginx-module-phantom-token [v1.6.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/1.6.0){target=_blank} 
-released on Sep 04 2024.
+This document describes nginx-module-phantom-token [v2.0.0](https://github.com/curityio/nginx_phantom_token_module/releases/tag/2.0.0){target=_blank} 
+released on May 22 2025.
 
 <hr />
 
@@ -62,11 +62,14 @@ If the module is also configured to cache the results of the call to the Curity 
 
 The tl;dr is a very simple API gateway that is blazing fast, highly scalable, and without any bells and whistles to get in the way. All the code is here, so it's easy to change and use with other OAuth servers even!
 
-## Configuration Directives
+## Module Configuration Directives
+
+Version 2.0 introduced a **BREAKING CHANGE** to use updated configuration directives.\
+See [previous configuration instructions](https://github.com/curityio/nginx_phantom_token_module/tree/1.6.0) to configure older releases.
 
 ### Required Configuration Directives
 
-All the directives in this subsection are required; if any of these are omitted, the module will be disabled.
+The directives in this subsection are required; if any of these are omitted, the module will be disabled.
 
 #### phantom_token
 
@@ -76,16 +79,6 @@ All the directives in this subsection are required; if any of these are omitted,
 >
 > **Context**: `location`
 
-#### phantom_token_client_credential
-
-> **Syntax**: **`phantom_token_client_credential`** _`string`_ _`string`_ 
-> 
-> **Default**: *`—`*                                                                
-> 
-> **Context**: `location`                                                           
- 
-The client ID and secret of the OAuth client which will be used for introspection. The first argument to this directive is the client ID and the second is the secret. The maximum total length of the two arguments must be less than 255 characters. Both should be printable ASCII values; non-ASCII values _may_ work but are untested. If this directive is not configured, then the module will be disabled.
-
 #### phantom_token_introspection_endpoint
 
 > **Syntax**: **`phantom_token_introspection_endpoint`** _`string`_
@@ -94,22 +87,6 @@ The client ID and secret of the OAuth client which will be used for introspectio
 >
 > **Context**: `location`
 
-The name of the location that proxies requests to the Curity Identity Server. Note that this location needs to be in the same server as the one referring to it using this directive.
-
-Example configuration:
-
-```nginx
-server {
-    location /api {
-        ...
-        phantom_token_introspection_endpoint my_good_location_name_for_curity;
-    }
-    
-    location my_good_location_name_for_curity {
-        ...
-    }
-}
-```
 
 ### Optional Configuration Directives
 
@@ -177,6 +154,7 @@ location / {
 ## Sample Configuration
 
 ### Loading the Module
+
 If the module is downloaded from GitHub or compiled as a shared library (the default) and not explicitly compiled into NGINX, it will need to be loaded using the [load_module](http://nginx.org/en/docs/ngx_core_module.html#load_module) directive. This needs to be done in the _main_ part of the NGINX configuration:
 
 ```nginx
@@ -185,44 +163,80 @@ load_module modules/ngx_curity_http_phantom_token_module.so;
 
 The file can be an absolute or relative path. If it is not absolute, it should be relative to the NGINX root directory.
 
+### NGINX Parameters for the Introspection Endpoint
+
+You must also configure the following NGINX parameters for the introspection subrequest:
+
+```nginx
+location curity {
+    internal;
+    proxy_pass_request_headers off;
+    proxy_set_header Accept "application/jwt";
+    proxy_set_header Content-Type "application/x-www-form-urlencoded";
+    proxy_set_header Authorization "Basic bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=";
+    proxy_pass "https://curity.example.com/oauth/v2/oauth-introspect";
+}
+```
+
+| Introspection Setting | Description |
+| --------------------- | ----------- |
+| internal | Prevent the introspection endpoint being externally available. |
+| proxy_pass_request_headers | Set to off to avoid using the main request's headers in the introspection subrequest. |
+| Accept header | Configure a fixed value of `application/jwt`. |
+| Content-Type header | Configure a fixed value of `application/x-www-form-urlencoded`. |
+| Authorization header | Configure a basic credential with the introspection client ID and client secret. |
+
+To get the basic credential, concatenate the client ID, a colon character and the client secret, then base64 encode them. The following command provides an example.
+
+```bash
+echo -n "my_client_id:my_client_secret" | base64
+```
+
 ### Simple Configuration
+
 The following is a simple configuration that might be used in demo or development environments where the NGINX reverse proxy is on the same host as the Curity Identity Server:
 
 ```nginx
 server {
     location /api {
-        proxy_pass         https://example.com/api;
-
         phantom_token on;
-        phantom_token_client_credential "client_id" "client_secret";
         phantom_token_introspection_endpoint curity;
+        proxy_pass https://example.com/api;
     }
     
     location curity {
-        proxy_pass "https://curity.example.com/oauth/v2/introspection";
+        internal;
+        proxy_pass_request_headers off;
+        proxy_set_header Accept "application/jwt";
+        proxy_set_header Content-Type "application/x-www-form-urlencoded";
+        proxy_set_header Authorization "Basic bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=";
+        proxy_pass "https://curity.example.com/oauth/v2/oauth-introspect";
     }
 }
 ```
 
 ### Complex Configuration
+
 The following is a more complex configuration where the NGINX reverse proxy is on a separate host to the Curity Identity Server:
 
 ```nginx
 server {
     server_name server1.example.com;n
     location /api {
-        proxy_pass         https://example.com/api;
-
         phantom_token on;
-        phantom_token_client_credential "client_id" "client_secret";
         phantom_token_introspection_endpoint curity;
-        
         phantom_token_realm "myGoodAPI";
         phantom_token_scopes "scope_a scope_b scope_c";
+        proxy_pass https://example.com/api;
     }
     
     location curity {
-        proxy_pass "https://server2.example.com:8443/oauth/v2/introspection";
+        internal;
+        proxy_pass_request_headers off;
+        proxy_set_header Accept "application/jwt";
+        proxy_set_header Content-Type "application/x-www-form-urlencoded";
+        proxy_set_header Authorization "Basic bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=";
+        proxy_pass "https://server2.example.com:8443/oauth/v2/oauth-introspect";
     }
 }
 
@@ -236,6 +250,7 @@ server {
 ```
         
 ### More Advanced Configuration with Separate Servers and Caching
+
 This module takes advantage of NGINX built-in _proxy_cache_ directive. In order to be able to cache the requests made to the introspection endpoint, except of the `proxy_cache_path` in http context and `proxy_cache` in location context, you have to add the following 3 directives in the location context of the introspection endpoint.
 
 - `proxy_cache_methods POST;` POST requests are not cached by default.
@@ -249,22 +264,26 @@ http {
     server {
         server_name server1.example.com;
         location /api {
-            proxy_pass         https://example.com/api;
-
             phantom_token on;
-            phantom_token_client_credential "client_id" "client_secret";
             phantom_token_introspection_endpoint curity;
             phantom_token_scopes "scope_a scope_b scope_c";
             phantom_token_realm "myGoodAPI";
+            proxy_pass https://example.com/api;
         }
         
         location curity {
-            proxy_pass "https://server2.example.com:8443/oauth/v2/introspection";
-            
+            internal;            
+            proxy_pass_request_headers off;
+            proxy_set_header Accept "application/jwt";
+            proxy_set_header Content-Type "application/x-www-form-urlencoded";
+            proxy_set_header Authorization "Basic bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=";
+
             proxy_cache_methods POST;
             proxy_cache my_cache;
             proxy_cache_key $request_body;
             proxy_ignore_headers Set-Cookie;
+
+            proxy_pass "https://server2.example.com:8443/oauth/v2/oauth-introspect";
         }
     }
     
@@ -278,13 +297,56 @@ http {
 }   
 ```
 
-## Status
-This module is fit for production usage. 
+## Cacheless Configuration
 
-## Development Setup
-If you wish to build this module from source, in order to run against other NGINX versions, or to change the module's logic, see the [Development Wiki](https://github.com/curityio/nginx_phantom_token_module/wiki) for instructions.
+It is recommended to cache the results of the call to the Curity Identity Server so that you avoid triggering an introspection request for every API request. If you wish to disable caching you should extend the default [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#directives) to ensure that the module can read large JWTs. Do so by updating the configuration of the introspection request as in the following example.
+
+```nginx
+http {
+    server {
+        server_name server1.example.com;
+        location /api {
+            phantom_token on;
+            phantom_token_introspection_endpoint curity;
+            phantom_token_scopes "scope_a scope_b scope_c";
+            phantom_token_realm "myGoodAPI";
+            proxy_pass https://example.com/api;
+        }
+        
+        location curity {
+            internal;
+            proxy_pass_request_headers off;
+            proxy_set_header Accept "application/jwt";
+            proxy_set_header Content-Type "application/x-www-form-urlencoded";
+            proxy_set_header Authorization "Basic bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=";
+
+            proxy_ignore_headers Set-Cookie;
+            proxy_buffer_size 16k;
+            proxy_buffers 4 16k;
+
+            proxy_pass "https://server2.example.com:8443/oauth/v2/oauth-introspect";
+        }
+    }
+    
+    server {
+        listen 8443;
+        server_name server2.example.com;
+        location / {
+            proxy_pass "https://curity.example.com";
+        }
+    }
+}   
+```
+
+## Building From Source
+
+To build the latest code against older NGINX versions or Linux distributions, follow the instructions in the [Development Wiki](https://github.com/curityio/nginx_phantom_token_module/wiki).
+
+- [Build the Module](https://github.com/curityio/nginx_phantom_token_module/wiki/3.-Builds)
+- [Deploy the Module](https://github.com/curityio/nginx_phantom_token_module/wiki/4.-Testing-Deployment)
 
 ## More Information
+
 For more information about the Curity Identity Server, its capabilities, and how to use it to issue phantom tokens for microservices, visit [curity.io](https://curity.io/product/token-service/?=use-cases?tab=microservices). For background information on using the Curity Identity Server to secure API access, see our [API security resources](https://curity.io/resources/api-security).
 
 ## GitHub
