@@ -5716,8 +5716,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-jq
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-jq <a href="https://github.com/bungle/lua-resty-jq/releases/tag/0.1.0" target="_blank">v0.1.0</a> 
-released on Sep 02 2021.</p>
+<p>This document describes lua-resty-jq <a href="https://github.com/bungle/lua-resty-jq/releases/tag/0.2.0" target="_blank">v0.2.0</a> 
+released on Jun 06 2025.</p>
 <hr />
 
 <p><strong>lua-resty-jq</strong> is a small LuaJIT FFI wrapper to <a href="https://stedolan.github.io/jq/">jq</a></p>
@@ -5786,7 +5786,28 @@ this option, you can force jq to produce pure ASCII output with every non-ASCII
 character replaced with the equivalent escape sequence. Default is <code>false</code>.</li>
 <li><code>sort_keys</code>: Output the fields of each object with the keys in sorted order.
   Default is <code>false</code>.</li>
+<li><code>table_output</code>: Returns a sequence-like table of encoded results instead of
+    concatenating them into a single string. Default is <code>false</code>.</li>
 </ul>
+<p>Additionally, <code>filter()</code> takes a table as an optional 3rd argument. When
+supplied, this table will be used to store results instead of creating a new
+table for each call to <code>filter()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">buf</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jq</span><span class="p">:</span><span class="n">filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">buf</span><span class="p">)</span>
+<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="kr">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="kr">do</span>
+  <span class="c1">-- ...</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>Doing so implies <code>options.table_output = true</code>, so this option must be
+explicitly set to <code>false</code> in order to receive a string result:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">buf</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jq</span><span class="p">:</span><span class="n">filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span> <span class="n">table_output</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">},</span> <span class="n">buf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>NOTE:</strong> <code>filter()</code> adds a trailing <code>nil</code> to the table such that the length
+operator (<code>#buf</code>) and <code>ipairs(buf)</code> return accurate results after execution, but
+it does <em>not</em> clear the table. Callers must clear the table themselves if
+desired.</p>
 <h2 id="see-also">See Also</h2>
 <ul>
 <li><a href="https://github.com/tibbycat/lua-jq">lua-jq</a></li>
