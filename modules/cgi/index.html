@@ -922,6 +922,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-jails" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with jails
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#i-want-create-a-long-run-background-process" class="md-nav__link">
     <span class="md-ellipsis">
       I want create a long-run background process
@@ -1037,9 +1046,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cgi-onoff-or-cgi-pass-script_path" class="md-nav__link">
+  <a href="#cgi-onoff-or-cgi-pass-script_path-script_args" class="md-nav__link">
     <span class="md-ellipsis">
-      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt;
+      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt; [script_args...]
     </span>
   </a>
   
@@ -6160,6 +6169,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-can-i-run-cgi-scripts-with-jails" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can I run CGI scripts with jails
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#i-want-create-a-long-run-background-process" class="md-nav__link">
     <span class="md-ellipsis">
       I want create a long-run background process
@@ -6275,9 +6293,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cgi-onoff-or-cgi-pass-script_path" class="md-nav__link">
+  <a href="#cgi-onoff-or-cgi-pass-script_path-script_args" class="md-nav__link">
     <span class="md-ellipsis">
-      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt;
+      cgi &lt;on|off&gt; or cgi pass &lt;script_path&gt; [script_args...]
     </span>
   </a>
   
@@ -6546,8 +6564,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_cgi_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-cgi <a href="https://github.com/pjincz/nginx-cgi/releases/tag/v0.12.1" target="_blank">v0.12.1</a> 
-released on Apr 13 2025.</p>
+<p>This document describes nginx-module-cgi <a href="https://github.com/pjincz/nginx-cgi/releases/tag/v0.13" target="_blank">v0.13</a> 
+released on Jun 25 2025.</p>
 <hr />
 
 <p>Brings CGI support to <a href="https://github.com/nginx/nginx">Nginx</a> and
@@ -6620,7 +6638,7 @@ demonized.</p>
 <li>If you want to get update of nginx-cgi</li>
 <li>If you want to know more friends</li>
 </ul>
-<p>Please join us: <a href="https://discord.gg/DVwbbt9k">https://discord.gg/DVwbbt9k</a>.</p>
+<p>Please join us: <a href="https://discord.gg/EJSfqHHmaR">https://discord.gg/EJSfqHHmaR</a>.</p>
 <h2 id="quick-start-with-debian-12-ubuntu-2404">Quick start (with Debian 12+, Ubuntu 24.04+)</h2>
 <p>Build and install:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">## checkout source code</span>
@@ -6801,16 +6819,23 @@ printenv
 <div class="highlight"><pre><span></span><code>## allow wwww-data run /var/www/bin/my-danger-script with root account
 www-data ALL=(root) NOPASSWD: /var/www/bin/my-danger-script
 
-## allow all CGI script be luanched with sudo by nginx-cgi directly
+## allow all CGI script be launched with sudo by nginx-cgi directly
 www-data ALL=(root) NOPASSWD: SETENV: /var/www/html/cgi-bin/*
 </code></pre></div>
 <h3 id="how-can-i-run-cgi-scripts-with-chroot">How can I run CGI scripts with chroot</h3>
-<p>Compared to sudo, chroot is much harder. Because chroot was not originally
-designed as a security mechanism. I'd like to use <code>docker</code> or <code>jails</code> for this
-purpose. But that's okay, if you really want <code>chroot</code>. Let me show you how to do
-it.</p>
+<p>It's highly not recommanded to run CGI script with chroot. Because chroot is not
+designed for security purpose. It still shared a lot of kernel spaces with host
+system. For example, run <code>ps -ef</code> in chrooted process, all processes in host
+system will return. That sould not too aweful? No, that's really terrible,
+because you can also do <code>kill</code> in chrooted script for the same reason. And
+people normally run programs with root permission in chrooted environment.
+That's terribly bad. It causes system on high risk than just run script with
+<code>www-data</code>.</p>
+<p>If you want a sandbox environment, <code>lxc</code>, <code>docker</code> and <code>jails</code> are much better
+for this purpose.</p>
+<p>If you still want <code>chroot</code>, okay let me show you how to do it.</p>
 <p>In this example, I assume you're using <code>/var/www/html</code> as the document root.</p>
-<p>Prepare a hello.sh CGI script first:</p>
+<p>Prepare a CGI script first:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/html/cgi-bin
 cat<span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/cgi-bin/ls.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">#!/bin/sh</span>
@@ -6866,37 +6891,24 @@ ls<span class="w"> </span>/var/www/chroot/var/www/html
   outside.</p>
 </li>
 </ul>
-<p>Step 3: Add an interpreter to run script with <code>chroot</code></p>
-<p><strong>Important notice</strong>: You may want to allow <code>www-data</code> to run <code>chroot</code> with
-<code>sudo</code> here. <strong>DONT'T DO IT</strong>. It will introduce an serious security issue.
-Every CGI will be able to run <code>sudo chroot / ...</code> to escalate to root.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;/var/www/chroot-run.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<span class="s">#!/bin/sh</span>
-
-<span class="s">exec chroot /var/www/chroot &quot;\$@&quot;</span>
-<span class="s">EOF</span>
-chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/chroot-run.sh
-</code></pre></div>
-<p>Step 4: allow <code>www-data</code> to run <code>chroot-run.sh</code> with root permission.</p>
+<p>Step 3: allow <code>www-data</code> to run <code>chroot</code> with root permission.</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;/etc/sudoers.d/www-run-with-chroot<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<span class="s">www-data ALL=(root) NOPASSWD: /var/www/chroot-run.sh</span>
+<span class="s">## allow and only allow www-data run chroot with /var/www/chroot</span>
+<span class="s">www-data ALL=(root) NOPASSWD: /usr/sbin/chroot /var/www/chroot *</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Now everything is ready, add following section to your nginx/angie:</p>
 <div class="highlight"><pre><span></span><code>location /cgi-bin {
     cgi on;
-    cgi_interpreter /usr/bin/sudo /var/www/chroot-run.sh;
+    cgi_interpreter /usr/bin/sudo /usr/sbin/chroot /var/www/chroot;
 }
 </code></pre></div>
 <p>try it:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="m">127</span>.0.0.1/cgi-bin/ls.sh
 </code></pre></div>
-<p>Notes: It's really complex to setup a chroot environment. And since chroot is
-not really secure, it looks it's really not worth to do it. If you really cares
-about security. Maybe you should run CGI scripts in <code>docker</code> or <code>jails</code>.</p>
 <h3 id="how-can-i-run-cgi-scripts-with-docker">How can I run CGI scripts with docker</h3>
 <p>In this example, I assume you're using <code>/var/www/html</code> as the document root.</p>
-<p>Prepare a hello.sh CGI script first:</p>
+<p>Prepare a CGI script first:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/html/cgi-bin
 cat<span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/cgi-bin/ls.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">#!/bin/sh</span>
@@ -6932,6 +6944,90 @@ sudo<span class="w"> </span>-u<span class="w"> </span>www-data<span class="w"> <
     cgi on;
     cgi_interpreter /usr/bin/docker exec my_cgi_docker;
 }
+</code></pre></div>
+<h3 id="how-can-i-run-cgi-scripts-with-jails">How can I run CGI scripts with jails</h3>
+<p>Okay, you're a fan of FreeBSD? Me too.</p>
+<p>It's really similar to running scripts with <code>chroot</code>.</p>
+<p>Here I assume you're using <code>/var/www/html</code> as the document root too.</p>
+<p>Prepare a CGI script first:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/html/cgi-bin
+cat<span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/cgi-bin/ls.sh<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">#!/bin/sh</span>
+<span class="s">echo &quot;Status: 200&quot;</span>
+<span class="s">echo &quot;Content-Type: text-plain&quot;</span>
+<span class="s">echo</span>
+<span class="s">echo &quot;files under /:&quot;</span>
+<span class="s">ls /</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+
+<span class="c1">## try it</span>
+/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Step 1: create a jail</p>
+<p>Let's put the jail to <code>/var/www/jail</code>.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/jail<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/jail
+fetch<span class="w"> </span>https://download.freebsd.org/ftp/releases/<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>/<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>/<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>/base.txz
+tar<span class="w"> </span>-xvf<span class="w"> </span>base.txz<span class="w"> </span>-C<span class="w"> </span>.
+
+<span class="c1">## create mount points</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/jail/var/www/html
+touch<span class="w"> </span>/var/www/jail/etc/resolv.conf
+</code></pre></div>
+<p>Put following config to <code>/etc/jail.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>www-jail {
+    path = &quot;/var/www/jail&quot;;
+    host.hostname = &quot;www-jail.local&quot;;
+
+    exec.clean;
+    exec.start = &quot;/bin/sh /etc/rc&quot;;
+    exec.stop = &quot;/bin/sh /etc/rc.shutdown&quot;;
+
+    # mount /var/www/html =&gt; /var/www/jail/var/www/html
+    exec.prestart += &quot;mount_nullfs /var/www/html /var/www/jail/var/www/html || true&quot;;
+    mount.devfs;
+
+    # uncomment following lines, if you want to allow network access in jail
+    # ip4 = inherit;
+    # ip6 = inherit;
+    # exec.prestart += &quot;mount_nullfs /etc/resolv.conf /var/www/jail/etc/resolv.conf || true&quot;;
+
+    # uncomment fowlling lines, if you also want `ping` available in jail
+    # allow.raw_sockets = 1;
+
+    persist; # keep jail if no process runs
+}
+</code></pre></div>
+<p>And ensure that following line appears in <code>/etc/rc.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>jail_enable=&quot;YES&quot;
+</code></pre></div>
+<p>And start the jail:</p>
+<div class="highlight"><pre><span></span><code>service<span class="w"> </span>jail<span class="w"> </span>start<span class="w"> </span>www-jail
+
+<span class="c1">## try it</span>
+jexec<span class="w"> </span>www-jail<span class="w"> </span>ls<span class="w"> </span>/
+jexec<span class="w"> </span>www-jail<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Step 2: allow <code>www</code> to run <code>jexec</code> with root permission.</p>
+<p>I uses <code>sudo</code> here. I'm not familiar with <code>doas</code>, if you prefer <code>doas</code> you can
+try it yourself. Anyhow, neither <code>sudo</code> nor <code>doas</code> preloaded with FreeBSD. You
+need to manually install one of them.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;/usr/local/etc/sudoers.d/www-jexec<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">## allow and only allow `www` run `jexec` with `www-jail`</span>
+<span class="s">www ALL=(root) NOPASSWD: /usr/sbin/jexec www-jail *</span>
+<span class="s">EOF</span>
+
+<span class="c1">## try it</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>www<span class="w"> </span>sudo<span class="w"> </span>jexec<span class="w"> </span>www-jail<span class="w"> </span>/var/www/html/cgi-bin/ls.sh
+</code></pre></div>
+<p>Now everything is ready, add following section to your nginx/angie:</p>
+<div class="highlight"><pre><span></span><code>location /cgi-bin {
+    cgi on;
+    cgi_interpreter /usr/local/bin/sudo /usr/sbin/jexec www-jail;
+}
+</code></pre></div>
+<p>try it:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="m">127</span>.0.0.1/cgi-bin/ls.sh
 </code></pre></div>
 <h3 id="i-want-create-a-long-run-background-process">I want create a long-run background process</h3>
 <p>Just make sure not to inherit <code>stdout</code> when creating the process (ideally, avoid
@@ -7029,7 +7125,7 @@ from environment var, and read request body from <code>stdin</code>, and write o
 <code>stdout</code>.</p>
 <h2 id="manual">Manual</h2>
 <h3 id="options">Options</h3>
-<h4 id="cgi-onoff-or-cgi-pass-script_path"><code>cgi &lt;on|off&gt;</code> or <code>cgi pass &lt;script_path&gt;</code></h4>
+<h4 id="cgi-onoff-or-cgi-pass-script_path-script_args"><code>cgi &lt;on|off&gt;</code> or <code>cgi pass &lt;script_path&gt; [script_args...]</code></h4>
 <p>Enable or disable cgi module on giving location block.</p>
 <p>If you specify <code>on</code> here, the plugin will work in traditional mode. It parses
 the request uri first, and then locate the script under document root directory
@@ -7041,9 +7137,12 @@ plugin will skip the step to locate the CGI script. It uses the the value you
 provided directly. You can references nginx variables in the second argument,
 eg: <code>cgi pass $document_root$uri</code>. The aboving example do something similar to
 rfc3875, but not equal. In this form, request uri will be assigned to
-<code>PATH_INFO</code> directly. And <code>SCRIPT_NAME</code> will be empty.</p>
-<p>The second form is really good for dynamic content generating. It gets around
-the complex and unnecessary uri re-writing.</p>
+<code>PATH_INFO</code> directly. And <code>SCRIPT_NAME</code> will be empty. This form is really good
+for dynamic content generating. It gets around the complex and unnecessary uri
+re-writing.</p>
+<p>Additionally, the second form also provides you the ability to pass additional
+args to script, eg: <code>cgi pass my_script.sh $uri</code>. With this, you can totally
+avoid confusing rfc3875 environment variables.</p>
 <p>If you specify <code>off</code> here, the plugin will be disabled.</p>
 <p>Default: off</p>
 <h4 id="cgi_pass-script_path"><code>cgi_pass &lt;script_path&gt;</code></h4>
