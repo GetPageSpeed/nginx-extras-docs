@@ -40,8 +40,8 @@ load_module modules/ngx_http_cgi_module.so;
 ```
 
 
-This document describes nginx-module-cgi [v0.12.1](https://github.com/pjincz/nginx-cgi/releases/tag/v0.12.1){target=_blank} 
-released on Apr 13 2025.
+This document describes nginx-module-cgi [v0.13](https://github.com/pjincz/nginx-cgi/releases/tag/v0.13){target=_blank} 
+released on Jun 25 2025.
 
 <hr />
 
@@ -84,7 +84,7 @@ I created a discord channel. If:
 * If you want to get update of nginx-cgi
 * If you want to know more friends
 
-Please join us: <https://discord.gg/DVwbbt9k>.
+Please join us: <https://discord.gg/EJSfqHHmaR>.
 
 ## Quick start (with Debian 12+, Ubuntu 24.04+)
 
@@ -348,20 +348,29 @@ Here's an example of sudo config file:
 ## allow wwww-data run /var/www/bin/my-danger-script with root account
 www-data ALL=(root) NOPASSWD: /var/www/bin/my-danger-script
 
-## allow all CGI script be luanched with sudo by nginx-cgi directly
+## allow all CGI script be launched with sudo by nginx-cgi directly
 www-data ALL=(root) NOPASSWD: SETENV: /var/www/html/cgi-bin/*
 ```
 
 ### How can I run CGI scripts with chroot
 
-Compared to sudo, chroot is much harder. Because chroot was not originally
-designed as a security mechanism. I'd like to use `docker` or `jails` for this
-purpose. But that's okay, if you really want `chroot`. Let me show you how to do
-it.
+It's highly not recommanded to run CGI script with chroot. Because chroot is not
+designed for security purpose. It still shared a lot of kernel spaces with host
+system. For example, run `ps -ef` in chrooted process, all processes in host
+system will return. That sould not too aweful? No, that's really terrible,
+because you can also do `kill` in chrooted script for the same reason. And
+people normally run programs with root permission in chrooted environment.
+That's terribly bad. It causes system on high risk than just run script with
+`www-data`.
+
+If you want a sandbox environment, `lxc`, `docker` and `jails` are much better
+for this purpose.
+
+If you still want `chroot`, okay let me show you how to do it.
 
 In this example, I assume you're using `/var/www/html` as the document root.
 
-Prepare a hello.sh CGI script first:
+Prepare a CGI script first:
 
 ```sh
 mkdir -p /var/www/html/cgi-bin
@@ -425,26 +434,12 @@ Notice:
   /etc/fstab. Or move /var/www/html into chroot, and make a symbolic link
   outside.
 
-Step 3: Add an interpreter to run script with `chroot`
-
-**Important notice**: You may want to allow `www-data` to run `chroot` with
-`sudo` here. **DONT'T DO IT**. It will introduce an serious security issue.
-Every CGI will be able to run `sudo chroot / ...` to escalate to root.
-
-```sh
-cat >/var/www/chroot-run.sh <<EOF
-#!/bin/sh
-
-exec chroot /var/www/chroot "\$@"
-EOF
-chmod +x /var/www/chroot-run.sh
-```
-
-Step 4: allow `www-data` to run `chroot-run.sh` with root permission.
+Step 3: allow `www-data` to run `chroot` with root permission.
 
 ```sh
 cat >/etc/sudoers.d/www-run-with-chroot <<EOF
-www-data ALL=(root) NOPASSWD: /var/www/chroot-run.sh
+## allow and only allow www-data run chroot with /var/www/chroot
+www-data ALL=(root) NOPASSWD: /usr/sbin/chroot /var/www/chroot *
 EOF
 ```
 
@@ -453,7 +448,7 @@ Now everything is ready, add following section to your nginx/angie:
 ```conf
 location /cgi-bin {
     cgi on;
-    cgi_interpreter /usr/bin/sudo /var/www/chroot-run.sh;
+    cgi_interpreter /usr/bin/sudo /usr/sbin/chroot /var/www/chroot;
 }
 ```
 
@@ -463,15 +458,11 @@ try it:
 curl 127.0.0.1/cgi-bin/ls.sh
 ```
 
-Notes: It's really complex to setup a chroot environment. And since chroot is
-not really secure, it looks it's really not worth to do it. If you really cares
-about security. Maybe you should run CGI scripts in `docker` or `jails`.
-
 ### How can I run CGI scripts with docker
 
 In this example, I assume you're using `/var/www/html` as the document root.
 
-Prepare a hello.sh CGI script first:
+Prepare a CGI script first:
 
 ```sh
 mkdir -p /var/www/html/cgi-bin
@@ -518,6 +509,120 @@ location /cgi-bin {
     cgi on;
     cgi_interpreter /usr/bin/docker exec my_cgi_docker;
 }
+```
+
+### How can I run CGI scripts with jails
+
+Okay, you're a fan of FreeBSD? Me too.
+
+It's really similar to running scripts with `chroot`.
+
+Here I assume you're using `/var/www/html` as the document root too.
+
+Prepare a CGI script first:
+
+```sh
+mkdir -p /var/www/html/cgi-bin
+cat > /var/www/html/cgi-bin/ls.sh <<EOF
+#!/bin/sh
+echo "Status: 200"
+echo "Content-Type: text-plain"
+echo
+echo "files under /:"
+ls /
+EOF
+chmod +x /var/www/html/cgi-bin/ls.sh
+
+## try it
+/var/www/html/cgi-bin/ls.sh
+```
+
+Step 1: create a jail
+
+Let's put the jail to `/var/www/jail`.
+
+```sh
+mkdir -p /var/www/jail && cd /var/www/jail
+fetch https://download.freebsd.org/ftp/releases/$(uname -m)/$(uname -m)/$(uname -r)/base.txz
+tar -xvf base.txz -C .
+
+## create mount points
+mkdir -p /var/www/jail/var/www/html
+touch /var/www/jail/etc/resolv.conf
+```
+
+Put following config to `/etc/jail.conf`:
+
+```conf
+www-jail {
+    path = "/var/www/jail";
+    host.hostname = "www-jail.local";
+
+    exec.clean;
+    exec.start = "/bin/sh /etc/rc";
+    exec.stop = "/bin/sh /etc/rc.shutdown";
+
+    # mount /var/www/html => /var/www/jail/var/www/html
+    exec.prestart += "mount_nullfs /var/www/html /var/www/jail/var/www/html || true";
+    mount.devfs;
+
+    # uncomment following lines, if you want to allow network access in jail
+    # ip4 = inherit;
+    # ip6 = inherit;
+    # exec.prestart += "mount_nullfs /etc/resolv.conf /var/www/jail/etc/resolv.conf || true";
+
+    # uncomment fowlling lines, if you also want `ping` available in jail
+    # allow.raw_sockets = 1;
+
+    persist; # keep jail if no process runs
+}
+```
+
+And ensure that following line appears in `/etc/rc.conf`:
+
+```conf
+jail_enable="YES"
+```
+
+And start the jail:
+
+```sh
+service jail start www-jail
+
+## try it
+jexec www-jail ls /
+jexec www-jail /var/www/html/cgi-bin/ls.sh
+```
+
+Step 2: allow `www` to run `jexec` with root permission.
+
+I uses `sudo` here. I'm not familiar with `doas`, if you prefer `doas` you can
+try it yourself. Anyhow, neither `sudo` nor `doas` preloaded with FreeBSD. You
+need to manually install one of them.
+
+```sh
+cat >/usr/local/etc/sudoers.d/www-jexec <<EOF
+## allow and only allow `www` run `jexec` with `www-jail`
+www ALL=(root) NOPASSWD: /usr/sbin/jexec www-jail *
+EOF
+
+## try it
+sudo -u www sudo jexec www-jail /var/www/html/cgi-bin/ls.sh
+```
+
+Now everything is ready, add following section to your nginx/angie:
+
+```conf
+location /cgi-bin {
+    cgi on;
+    cgi_interpreter /usr/local/bin/sudo /usr/sbin/jexec www-jail;
+}
+```
+
+try it:
+
+```sh
+curl 127.0.0.1/cgi-bin/ls.sh
 ```
 
 ### I want create a long-run background process
@@ -659,7 +764,7 @@ from environment var, and read request body from `stdin`, and write output to
 
 ### Options
 
-#### `cgi <on|off>` or `cgi pass <script_path>`
+#### `cgi <on|off>` or `cgi pass <script_path> [script_args...]`
 
 Enable or disable cgi module on giving location block.
 
@@ -674,10 +779,13 @@ plugin will skip the step to locate the CGI script. It uses the the value you
 provided directly. You can references nginx variables in the second argument,
 eg: `cgi pass $document_root$uri`. The aboving example do something similar to
 rfc3875, but not equal. In this form, request uri will be assigned to
-`PATH_INFO` directly. And `SCRIPT_NAME` will be empty.
+`PATH_INFO` directly. And `SCRIPT_NAME` will be empty. This form is really good
+for dynamic content generating. It gets around the complex and unnecessary uri
+re-writing.
 
-The second form is really good for dynamic content generating. It gets around
-the complex and unnecessary uri re-writing.
+Additionally, the second form also provides you the ability to pass additional
+args to script, eg: `cgi pass my_script.sh $uri`. With this, you can totally
+avoid confusing rfc3875 environment variables.
 
 If you specify `off` here, the plugin will be disabled.
 
