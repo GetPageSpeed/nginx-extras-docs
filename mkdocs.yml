@@ -93,6 +93,7 @@ nav:
     json: modules/json.md
     json-var: modules/json-var.md
     jwt: modules/jwt.md
+    keyval: modules/keyval.md
     length-hiding: modules/length-hiding.md
     let: modules/let.md
     limit-traffic-rate: modules/limit-traffic-rate.md

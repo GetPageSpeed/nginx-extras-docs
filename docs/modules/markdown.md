@@ -40,8 +40,8 @@ load_module modules/ngx_markdown_filter_module.so;
 ```
 
 
-This document describes nginx-module-markdown [v0.1.3](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.3){target=_blank} 
-released on Feb 07 2024.
+This document describes nginx-module-markdown [v0.1.5](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.5){target=_blank} 
+released on Jul 05 2025.
 
 <hr />
 
@@ -72,6 +72,18 @@ Syntax:  markdown_template html/template.html;
 Context: location
 ```
 
+```
+## enable `unsafe` mode for cmark
+Syntax:  markdown_unsafe on;
+Context: location;
+```
+
+```
+## enable `tagfilter` extension for cmark-gfm
+Syntax:  markdown_gfm_tagfilter on;
+Context: location;
+```
+
 ### Build with cmark-gfm (tables support)
 
 Original cmark library doesn't support tables. But there is [cmark-gfm](https://github.com/github/cmark-gfm)
@@ -81,18 +93,18 @@ fork with table extension, supported by Github.
 
 2. Rename `config_gfm` to `config`
 
-2. Install `cmark-gfm` lib
+3. Install `cmark-gfm` lib
 
-3. Download [nginx src archive](http://nginx.org/en/download.html) and unpack it
+4. Download [nginx src archive](http://nginx.org/en/download.html) and unpack it
 
-4. Run `configure` script (see nginx src) and build nginx
+5. Run `configure` script (see nginx src) and build nginx
 
 ```
 > ./configure --add-module=/path/to/ngx_markdown_filter_module --with-cc-opt=-DWITH_CMARK_GFM=1
 > make
 ```
 
-5. Apply markdown directives to nginx conf and run it
+6. Apply markdown directives to nginx conf and run it
 
 ## GitHub
 

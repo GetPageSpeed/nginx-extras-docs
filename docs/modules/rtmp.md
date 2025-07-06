@@ -40,8 +40,8 @@ load_module modules/ngx_rtmp_module.so;
 ```
 
 
-This document describes nginx-module-rtmp [v1.2.1](https://github.com/dvershinin/nginx-rtmp-module/releases/tag/v1.2.1){target=_blank} 
-released on Mar 10 2021.
+This document describes nginx-module-rtmp [v1.2.2](https://github.com/dvershinin/nginx-rtmp-module/releases/tag/v1.2.2){target=_blank} 
+released on Jul 05 2025.
 
 <hr />
 ## nginx-rtmp-module

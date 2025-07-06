@@ -46,6 +46,7 @@
 | [nginx-module-json-var](modules/json-var.md)                     | NGINX JSON variables module                                                   |
 | [nginx-module-json](modules/json.md)                             | NGINX JSON module                                                             |
 | [nginx-module-jwt](modules/jwt.md)                               | NGINX JWT Module                                                              |
+| [nginx-module-keyval](modules/keyval.md)                         | Nginx module for the key-value store                                          |
 | [nginx-module-length-hiding](modules/length-hiding.md)           | NGINX Length Hiding Filter Module                                             |
 | [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
 | [nginx-module-limit-traffic-rate](modules/limit-traffic-rate.md) | NGINX Limiting rate by given variables                                        |
