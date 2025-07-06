@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-ntlm. NGINX NTLM module allows proxying requests with NTLM Authentication ">
+        <meta name="description" content="RPM package nginx-module-keyval. This nginx module creates variables with values taken from key-value pairs. ">
       
       
         <meta name="author" content="Danila Vershinin">
       
       
-        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/ntlm/">
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/modules/keyval/">
       
       
-        <link rel="prev" href="../njs/">
+        <link rel="prev" href="../jwt/">
       
       
-        <link rel="next" href="../pagespeed/">
+        <link rel="next" href="../length-hiding/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>NTLM NGINX Module - NGINX Extras Documentation</title>
+        <title>Nginx module for the key-value store - NGINX Extras Documentation</title>
       
     
     
@@ -73,11 +73,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="NTLM NGINX Module - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="Nginx module for the key-value store - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-ntlm. NGINX NTLM module allows proxying requests with NTLM Authentication " >
+        <meta  property="og:description"  content="RPM package nginx-module-keyval. This nginx module creates variables with values taken from key-value pairs. " >
       
-        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ntlm.png" >
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/keyval.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -85,15 +85,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/ntlm/" >
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/modules/keyval/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="NTLM NGINX Module - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="Nginx module for the key-value store - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-ntlm. NGINX NTLM module allows proxying requests with NTLM Authentication " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-keyval. This nginx module creates variables with values taken from key-value pairs. " >
       
-        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ntlm.png" >
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/keyval.png" >
       
     
     
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ntlm-ntlm-nginx-module" class="md-skip">
+        <a href="#keyval-nginx-module-for-the-key-value-store" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NTLM NGINX Module
+              Nginx module for the key-value store
             
           </span>
         </div>
@@ -1448,10 +1448,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../keyval/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    keyval
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1460,6 +1480,128 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-ngx_http_keyval_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration: ngx_http_keyval_module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration: ngx_http_keyval_module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-ngx_stream_keyval_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration: ngx_stream_keyval_module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration: ngx_stream_keyval_module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directives_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1742,30 +1884,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    ntlm
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1774,62 +1896,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to use
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tests
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5562,18 +5628,84 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use" class="md-nav__link">
+  <a href="#dependency" class="md-nav__link">
     <span class="md-ellipsis">
-      How to use
+      Dependency
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tests" class="md-nav__link">
+  <a href="#configuration-ngx_http_keyval_module" class="md-nav__link">
     <span class="md-ellipsis">
-      Tests
+      Configuration: ngx_http_keyval_module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration: ngx_http_keyval_module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-ngx_stream_keyval_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration: ngx_stream_keyval_module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration: ngx_stream_keyval_module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directives_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
     </span>
   </a>
   
@@ -5603,7 +5735,7 @@
                   
 
 
-<h1 id="ntlm-ntlm-nginx-module"><em>ntlm</em>: NTLM NGINX Module</h1>
+<h1 id="keyval-nginx-module-for-the-key-value-store"><em>keyval</em>: Nginx module for the key-value store</h1>
 <h2 id="installation">Installation</h2>
 <p>You can install this module in any <abbr title="Red Hat Enterprise Linux">RHEL</abbr>-based distribution, including, but not limited to:</p>
 <ul>
@@ -5617,72 +5749,145 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm<span class="w"> </span>
-dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-ntlm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-keyval
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
 yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
-yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-ntlm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>nginx-module-keyval
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_upstream_ntlm_module.so</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_keyval_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-ntlm <a href="https://github.com/dvershinin/nginx-ntlm-module/releases/tag/v1.19.4" target="_blank">v1.19.4</a> 
-released on May 04 2024.</p>
+<p>This document describes nginx-module-keyval <a href="https://github.com/kjdev/nginx-keyval/releases/tag/0.3.0" target="_blank">v0.3.0</a> 
+released on Mar 31 2024.</p>
 <hr />
 
-<p>The NTLM module allows proxying requests with <a href="https://en.wikipedia.org/wiki/Integrated_Windows_Authentication">NTLM Authentication</a>. The upstream connection is bound to the client connection once the client sends a request with the "Authorization" header field value starting with "Negotiate" or "NTLM". Further client requests will be proxied through the same upstream connection, keeping the authentication context.</p>
-<h2 id="how-to-use">How to use</h2>
+<p>This nginx module creates variables with values taken from key-value pairs.</p>
 <blockquote>
-<p>Syntax:  ntlm [connections];<br />
-Default: ntlm 100;<br />
-Context: upstream </p>
+<p>This module is heavily inspired by the nginx original
+<a href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html">http_keyval_module</a>.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">http_backend</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kn">ntlm</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<h2 id="dependency">Dependency</h2>
+<p>Using the Redis store.</p>
+<ul>
+<li><a href="https://github.com/redis/hiredis">hiredis</a></li>
+</ul>
+<h2 id="configuration-ngx_http_keyval_module">Configuration: <code>ngx_http_keyval_module</code></h2>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kn">keyval_zone</span><span class="w"> </span><span class="s">zone=one:32k</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">keyval</span><span class="w"> </span><span class="nv">$arg_text</span><span class="w"> </span><span class="nv">$text</span><span class="w"> </span><span class="s">zone=one</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">...</span>
+<span class="w">  </span><span class="s">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">...</span>
-
-<span class="w">    </span><span class="s">location</span><span class="w"> </span><span class="s">/http/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://http_backend</span><span class="p">;</span>
-<span class="w">        </span><span class="c1"># next 2 settings are required for the keepalive to work properly</span>
-<span class="w">        </span><span class="kn">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="s">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="nv">$text</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The connections parameter sets the maximum number of connections to the upstream servers that are preserved in the cache.</p>
-<blockquote>
-<p>Syntax:  ntlm_timeout timeout;<br />
-Default: ntlm_timeout 60s;<br />
-Context: upstream  </p>
-</blockquote>
-<p>Sets the timeout during which an idle connection to an upstream server will stay open.</p>
-<h2 id="tests">Tests</h2>
-<p>In order to run the tests you need nodejs and perl installed on your system</p>
-<div class="highlight"><pre><span></span><code><span class="c1">## install the backend packages</span>
-npm<span class="w"> </span>install<span class="w"> </span>-C<span class="w"> </span>t/backend
-
-<span class="c1">## instal the test framework</span>
-cpan<span class="w"> </span>Test::Nginx
-
-<span class="c1">## set the path to your nginx location</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/local/nginx/sbin:<span class="nv">$PATH</span>
-
-prove<span class="w"> </span>-r<span class="w"> </span>t
+<h3 id="directives">Directives</h3>
+<div class="highlight"><pre><span></span><code>Syntax: keyval key $variable zone=name;
+Default: -
+Context: http
 </code></pre></div>
+<p>Creates a new <code>$variable</code> whose value is looked up by the <code>key</code>
+in the key-value database.</p>
+<p>The database is stored in shared memory or Redis as specified
+by the zone parameter.</p>
+<p>In <code>key</code>, you can use a mix of variables and text or just variables.</p>
+<blockquote>
+<p>For example:
+- <code>$remote_addr:$http_user_agent</code>
+- <code>'$remote_addr    $http_user_agent   $host "a random text"'</code></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>Syntax: keyval_zone zone=name:size [timeout=time] [ttl=time];
+Default: -
+Context: http
+</code></pre></div>
+<p>Sets the <code>name</code> and <code>size</code> of the shared memory zone that
+keeps the key-value database.</p>
+<p>The optional <code>timeout</code> or <code>ttl</code> parameter sets the time to live
+which key-value pairs are removed (default value is <code>0</code> seconds).</p>
+<div class="highlight"><pre><span></span><code>Syntax: keyval_zone_redis zone=name [hostname=name] [port=number] [database=number] [connect_timeout=time] [ttl=time];
+Default: -
+Context: http
+</code></pre></div>
+<blockquote>
+<p>Using the Redis store</p>
+</blockquote>
+<p>Sets the <code>name</code> of the Redis zone that keeps the key-value database.</p>
+<p>The optional <code>hostname</code> parameter sets the Redis hostname
+(default value is <code>127.0.0.1</code>).</p>
+<p>The optional <code>port</code> parameter sets the Redis port
+(default value is <code>6379</code>).</p>
+<p>The optional <code>database</code> parameter sets the Redis database number
+(default value is <code>0</code>).</p>
+<p>The optional <code>connect_timeout</code> parameter sets the Redis connection
+timeout seconds (default value is <code>3</code>).</p>
+<p>The optional <code>ttl</code> parameter sets the time to live
+which key-value pairs are removed (default value is <code>0</code> seconds).</p>
+<h2 id="configuration-ngx_stream_keyval_module">Configuration: <code>ngx_stream_keyval_module</code></h2>
+<h3 id="example_1">Example</h3>
+<div class="highlight"><pre><span></span><code><span class="k">stream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kn">keyval_zone</span><span class="w"> </span><span class="s">zone=one:32k</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">keyval</span><span class="w"> </span><span class="nv">$ssl_server_name</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="s">zone=one</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">12345</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/usr/share/nginx/conf/cert.pem</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/usr/share/nginx/conf/cert.key</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="directives_1">Directives</h3>
+<div class="highlight"><pre><span></span><code>Syntax: keyval key $variable zone=name;
+Default: -
+Context: http
+</code></pre></div>
+<p>Creates a new <code>$variable</code> whose value is looked up by the <code>key</code>
+in the key-value database.</p>
+<p>The database is stored in shared memory or Redis as specified
+by the zone parameter.</p>
+<div class="highlight"><pre><span></span><code>Syntax: keyval_zone zone=name:size [timeout=time] [ttl=time];
+Default: -
+Context: http
+</code></pre></div>
+<p>Sets the <code>name</code> and <code>size</code> of the shared memory zone that
+keeps the key-value database.</p>
+<p>The optional <code>timeout</code> or <code>ttl</code> parameter sets the time to live which key-value pairs are removed (default value is 0 seconds).</p>
+<div class="highlight"><pre><span></span><code>Syntax: keyval_zone_redis zone=name [hostname=name] [port=number] [database=number] [connect_timeout=time] [ttl=time];
+Default: -
+Context: http
+</code></pre></div>
+<blockquote>
+<p>Using the Redis store</p>
+</blockquote>
+<p>Sets the <code>name</code> of the Redis zone that keeps the key-value database.</p>
+<p>The optional <code>hostname</code> parameter sets the Redis hostname
+(default value is <code>127.0.0.1</code>).</p>
+<p>The optional <code>port</code> parameter sets the Redis port
+(default value is <code>6379</code>).</p>
+<p>The optional <code>database</code> parameter sets the Redis database number
+(default value is <code>0</code>).</p>
+<p>The optional <code>connect_timeout</code> parameter sets the Redis connection
+timeout seconds (default value is <code>3</code>).</p>
+<p>The optional <code>ttl</code> parameter sets the time to live
+which key-value pairs are removed (default value is <code>0</code> seconds).</p>
+<h2 id="example_2">Example</h2>
+<ul>
+<li><a href="example/README.md">OpenID Connect Authentication</a></li>
+</ul>
 <h2 id="github">GitHub</h2>
-<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/dvershinin/nginx-ntlm-module" target="_blank">GitHub 
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/kjdev/nginx-keyval" target="_blank">GitHub 
 repository for 
-nginx-module-ntlm</a>.</p>
+nginx-module-keyval</a>.</p>
 
 
 

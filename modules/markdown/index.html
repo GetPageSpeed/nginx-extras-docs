@@ -1451,6 +1451,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../keyval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    keyval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../length-hiding/" class="md-nav__link">
         
   
@@ -5640,8 +5661,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_markdown_filter_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-markdown <a href="https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.3" target="_blank">v0.1.3</a> 
-released on Feb 07 2024.</p>
+<p>This document describes nginx-module-markdown <a href="https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.5" target="_blank">v0.1.5</a> 
+released on Jul 05 2025.</p>
 <hr />
 
 <p>The <code>ngx_markdown_filter_module</code> module is a filter that transforms markdown files to html format.</p>
@@ -5659,6 +5680,14 @@ Context: location
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Syntax:  markdown_template html/template.html;
 Context: location
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## enable `unsafe` mode for cmark
+Syntax:  markdown_unsafe on;
+Context: location;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## enable `tagfilter` extension for cmark-gfm
+Syntax:  markdown_gfm_tagfilter on;
+Context: location;
 </code></pre></div>
 <h3 id="build-with-cmark-gfm-tables-support">Build with cmark-gfm (tables support)</h3>
 <p>Original cmark library doesn't support tables. But there is <a href="https://github.com/github/cmark-gfm">cmark-gfm</a>
