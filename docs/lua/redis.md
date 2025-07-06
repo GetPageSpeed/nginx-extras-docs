@@ -603,9 +603,6 @@ You should always initiate `resty.redis` objects in function local
 variables or in the `ngx.ctx` table. These places all have their own data copies for
 each request.
 
-## Installation - Build from source
-
-```sh
 ## Clone latest release , assuming v0.29
 wget https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz
 
@@ -623,32 +620,6 @@ make install
 ## Now compiled path will be outputted
 ## /usr/local/lib/lua/resty = lua_package_path in nginx conf
 ```
-
-## Installation Notes
-
-If you are using the OpenResty bundle (http://openresty.org ), then
-you do not need to do anything because it already includes and enables
-lua-resty-redis by default. And you can just use it in your Lua code,
-as in
-
-```lua
-    local redis = require "resty.redis"
-    ...
-```
-
-If you are using your own nginx + ngx_lua build, then you need to configure
-the lua_package_path directive to add the path of your lua-resty-redis source
-tree to ngx_lua's LUA_PATH search path, as in
-
-```nginx
-    # nginx.conf
-    http {
-        ...
-    }
-```
-
-Ensure that the system account running your Nginx ''worker'' proceses have
-enough permission to read the `.lua` file.
 
 ## See Also
 * the ngx_lua module: https://github.com/openresty/lua-nginx-module/#readme

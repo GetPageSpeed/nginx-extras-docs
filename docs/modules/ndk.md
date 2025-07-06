@@ -176,13 +176,6 @@ The following 3rd-party modules make use of NDK.
 If you would like to add your module to this list, please let us know.
 
 
-## Contributing / Feedback
-
-If you are an Nginx module developer, and have developed some functions that are
-generic in nature (or would be easily adapted to be so), then please send them to
-me at the address below, and I'll addmclyne to the kit.
-
-
 ## Special Thanks
 
 A special thanks goes to [Yichun Zhang](https://github.com/agentzh) for helping to maintain

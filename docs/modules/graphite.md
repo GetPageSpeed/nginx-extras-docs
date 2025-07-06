@@ -332,13 +332,6 @@ lua\_time               | ms    | avg  | time spent on lua code
 
 To calculate percentile value for any parameter, set percentile level via `/`. E.g. `request_time/50|request_time/90|request_time/99`.
 
-#### Build nginx with graphite module
-```bash
-
-wget 'http://nginx.org/download/nginx-1.9.2.tar.gz'
-tar -xzf nginx-1.9.2.tar.gz
-cd nginx-1.9.2/
-
 ## patch to add api for sending metrics from lua code (optional)
 patch -p1 < /path/to/graphite-nginx-module/lua_module_v0_9_11.patch
 cd ..

@@ -105,30 +105,6 @@ server {
 * `js_challenge_title "title"` Will be inserted in the `<title>` tag of the interstitial page. DEFAULT: "Verifying your browser..."
 * `js_challenge_bucket_duration time` Interval to prompt js challenge, in seconds. DEFAULT: 3600
 
-### Build from source
-
-These steps have to be performed on machine with compatible configuration (same nginx, glibc, openssl version etc.)
-
-1. Install dependencies
-    ```bash
-    apt install libperl-dev libgeoip-dev libgd-dev libxslt1-dev libpcre3-dev
-    ```
-2. Download nginx tarball corresponding to your current version (Check with `nginx -v`)
-    ```bash
-   wget https://nginx.org/download/nginx-1.16.1.tar.gz
-   tar -xzf nginx-1.16.1.tar.gz
-   export NGINX_PATH=$(pwd)/nginx-1.16.1/
-    ```
-3. Compile the module
-    ```bash
-    git clone https://github.com/simon987/ngx_http_js_challenge_module
-    cd ngx_http_js_challenge_module
-    ./build.sh
-    ```
-4. The dynamic module can be found at `${NGINX_PATH}/objs/ngx_http_js_challenge_module.so`
-
-
-
 ### Known limitations / TODO
 
 * Users with cookies disabled will be stuck in an infinite refresh loop (TODO: redirect with a known query param, if no cookie is specified but the query arg is set, display an error page)

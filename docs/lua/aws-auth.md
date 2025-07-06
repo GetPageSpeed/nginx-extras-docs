@@ -38,9 +38,6 @@ released on Jan 13 2017.
 <hr />
 Simple lua resty utilities to generate amazon v4 authorization and signature headers.
 
-#luarocks install lua-resty-aws-auth
-```
-
 ## Usage
 
 ```lua

@@ -86,9 +86,6 @@ Sets the timeout during which an idle connection to an upstream server will stay
 In order to run the tests you need nodejs and perl installed on your system
 
 ```bash
-## install the backend packages
-npm install -C t/backend
-
 ## instal the test framework
 cpan Test::Nginx
 

@@ -83,44 +83,6 @@ Follow these steps to download and install precompiled NGINX and NGINX JavaScrip
 ## Provisioning the NGINX package repository
 Follow [this guide](https://nginx.org/en/linux_packages.html) to add the official NGINX package repository to your system and install NGINX Open Source. If you already have NGINX Open Source or NGINX Plus installed, skip the NGINX installation portion in the last step.
 
-## Installing the NGINX JavaScript modules
-Once the repository has been provisioned, you may install NJS by issuing the following command:
-
-### Ubuntu or Debian based systems
-```bash
-sudo apt install nginx-module-njs
-```
-
-### RHEL, RedHat and its derivatives
-```bash
-sudo yum install nginx-module-njs
-```
-
-### Alpine or similar systems
-```bash
-sudo apk add nginx-module-njs@nginx
-```
-
-### SuSE, SLES or similar systems
-```bash
-sudo zypper install nginx-module-njs
-```
-
-> [!TIP] 
-> The package repository includes an alternate module that enables debug symbols. Although not recommended for production environments, this module may be helpful when developing NJS-based configurations. To download and install the debug version of the module, replace the module name in the previous command with `nginx-module-njs-dbg`.
-
-## Installed files and locations
-The package installation scripts install two modules, supporting NGINX [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) contexts.
-
-- [ngx_http_js_module](https://nginx.org/en/docs/http/ngx_http_js_module.html)
-
-    This NJS module enables manipulation of data transmitted over HTTP.
-- [ngx_stream_js_module](https://nginx.org/en/docs/stream/ngx_stream_js_module.html)
-
-    This NJS module enables manipulation of data transmitted via stream protocols such as TCP and UDP.
-
-By default, both modules are installed into the `/etc/nginx/modules` directory.
-
 ## Getting started with NGINX JavaScript
 Usage of NJS involves enabling the module, adding JavaScript files with defined functions, and invoking exported functions in NGINX configuration files.
 
@@ -258,53 +220,11 @@ $ echo "2**3" | njs -q
 8
 ```
 
-## Building from source
-The following steps can be used to build NGINX JavaScript as a dynamic module to be integrated into NGINX or a standalone binary for use as a command line interface utility.
-
-> [!IMPORTANT]
-> To build the module for use with NGINX, you will also need to clone, configure and build NGINX by following the steps outlined in this document.
-
-## Installing dependencies
-Most Linux distributions will require several dependencies to be installed in order to build NGINX and NGINX JavaScript. The following instructions are specific to the `apt` package manager, widely available on most Ubuntu/Debian distributions and their derivatives.
-
-### Installing compiler and make utility
-
-```bash
-sudo apt install gcc make
-```
-
-### Installing dependency libraries
-
-```bash
-sudo apt install libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt-dev
-```
-
-For building with [QuickJS](https://nginx.org/en/docs/njs/engine.html), you will also need to build the QuickJS library:
-
-```bash
-git clone https://github.com/bellard/quickjs
-cd quickjs
-CFLAGS='-fPIC' make libquickjs.a
-```
-
-> [!WARNING]
-> This is the minimal set of dependency libraries needed to build NGINX and NJS. Other dependencies may be required if you choose to build NGINX with additional modules. Monitor the output of the `configure` command discussed in the following sections for information on which modules may be missing.
-
 ## Cloning the NGINX JavaScript GitHub repository
 Using your preferred method, clone the NGINX JavaScript repository into your development directory. See [Cloning a GitHub Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) for additional help.
 
 ```bash
 https://github.com/nginx/njs.git
-```
-
-## Building the standalone command line interface utility (Optional)
-The following steps are optional and only needed if you choose to build NJS as a standalone utility.
-
-### Install dependencies
-To use the NJS interactive shell, you will need to install the libedit-dev library
-
-```bash
-sudo apt install libedit-dev
 ```
 
 ### Configure and build
@@ -327,51 +247,6 @@ Clone the NGINX source code repository in a directory outside of the previously 
 ```bash
 https://github.com/nginx/nginx.git
 ```
-
-## Building NGINX JavaScript as a module of NGINX
-To build NGINX JavaScript as a dynamic module, execute the following commands from the NGINX source code repository's root directory:
-
-```bash
-auto/configure --add-dynamic-module=<NJS_SRC_ROOT_DIR>/nginx
-```
-
-To build with [QuickJS](https://nginx.org/en/docs/njs/engine.html) support, provide include and library path using `--with-cc-opt=` and `--with-ld-opt=` options:
-```bash
-auto/configure --add-dynamic-module=<NJS_SRC_ROOT_DIR>/nginx \
-    --with-cc-opt="-I<QUICKJS_SRC_ROOT_DIR>" --with-ld-opt="-L<QUICKJS_SRC_ROOT_DIR>"
-```
-
-> [!WARNING]
-> By default, this method will only build the `ngx_http_js_module` module. To use NJS with the NGINX Stream module, you'll need to enable it during the `configure` step so it builds with the NGINX binary. Doing so will automatically compile the `ngx_stream_js_module` module when NJS is added to the build. One way of accomplishing this is to alter the `configure` step to:
-> ```bash
-> auto/configure --with-stream --add-dynamic-module=<NJS_SRC_ROOT_DIR>/nginx
-> ```
-
-Compile the module
-```bash
-make
-```
-
-> [!TIP]
-> To build NGINX with NGINX JavaScript embedded into a single binary, alter the `configure` step to the following:
-> ```bash
-> auto/configure --add-module=<NJS_SRC_ROOT_DIR>/nginx
-> ```
-
-### Install module
-If built as a dynamic module(s), the NGINX JavaScript module(s) will be available in the `<NGINX_SRC_ROOT_DIR>/objs/` directory. The module(s) can then be copied to an existing NGINX installation and enabled. See [Enabling the NGINX JavaScript Modules](#enabling-the-nginx-javascipt-modules) for details.
-
-### Install compiled NGINX and NGINX JavaScript binaries
-Alternatively, you may choose to install the built NGINX and NGINX JavaScript binaries by issuing the following command:
-
-> [!IMPORTANT]
-> If built into the NGINX binary as a standard (not dynamic) module, this will be the easiest method of installation
-
-```bash
-make install
-```
-
-By default, the NGINX binary will be installed into `/usr/local/nginx/sbin/nginx`. The NGINX JavaScript module(s) will be copied to `/usr/local/nginx/modules/`.
 
 ## NGINX JavaScript technical specifications
 Technical specifications for NJS are identical to those of NGINX.

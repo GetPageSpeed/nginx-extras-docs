@@ -657,49 +657,6 @@ Optional fields:
 
 ### Security
 
-#### Authorization
-
-##### CDN-based delivery
-
-Media packaged by nginx-vod-module can be protected using CDN tokens, this works as follows:
-* Some application authenticates the user and decides whether the user should be allowed 
-	to watch a specific video. If the user is allowed, the application generates a tokenized
-	URL for the manifest of the video.
-* The CDN validates the token, and if found to be valid, forwards the request to nginx-vod-module 
-	on the origin. 
-* The nginx server builds the manifest response and generates tokens for the segment URLs
-	contained inside it. The module https://github.com/kaltura/nginx-secure-token-module can
-	be used to accomplish this task, it currently support Akamai tokens and CloudFront tokens.
-	See the readme of this module for more details.
-* The CDN validates the token on each segment that is requested.
-
-In this setup it also highly recommended to block direct access to the origin server by
-authenticating the CDN requests. Without this protection, a user who somehow gets the address
-of the origin will be able to bypass the CDN token enforcement. If using Akamai, this can
-be accomplished using https://github.com/refractalize/nginx_mod_akamai_g2o.
-For other CDNs, it may be possible to configure the CDN to send a secret header to the origin
-and then simply enforce the header using an nginx if statement:
-```c
-		if ($http_x_secret_origin_header != "secret value") {
-			return 403;
-		}
-```
-
-In addition to the above, most CDNs support other access control settings, such as geo-location.
-These restrictions are completely transparent to the origin and should work well. 
-
-##### Direct delivery
-
-Deployments in which the media is pulled directly from nginx-vod-module can protect the media
-using nginx access control directives, such `allow`, `deny`, or `access_by_lua` (for more complex
-scenarios).
-
-In addition, it is possible to build a token based solution (as detailed in the previous section) 
-without a CDN, by having the nginx server validate the token. 
-The module https://github.com/kaltura/nginx-akamai-token-validate-module can be used
-to validate Akamai tokens. Locations on which the module is enabled will return 403 unless the 
-request contains a valid Akamai token. See the readme of this module for more details.
-
 #### URL encryption
 
 As an alternative to tokenization, URL encryption can be used to prevent an attacker from being

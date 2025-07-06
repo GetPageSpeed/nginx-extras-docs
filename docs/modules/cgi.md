@@ -95,53 +95,6 @@ Build and install:
 git clone https://github.com/pjincz/nginx-cgi
 cd nginx-cgi
 
-## build deb package
-./build-deb-package.sh
-
-## install built package
-dpkg -i ../libnginx-mod-http-cgi_*_amd64.deb 
-```
-
-Then enable cgi in nginx. If you have a newly installed nginx, you can find a
-default site at `/etc/nginx/sites-enabled/default`. The default one looks like
-this:
-
-```text
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-```
-
-The default `root` points to `/var/www/html`, keep it as it as, and add
-following section after `location /` section.
-
-```text
-    location /cgi-bin {
-        cgi on;
-    }
-```
-
-The newly added section means, for all request under `/cgi-bin`, turns on cgi
-support. Now restart nginx:
-
-```sh
-systemctl restart nginx
-```
-
-Save following content to /var/www/html/cgi-bin/hello.sh
-
-```sh
 #!/bin/bash
 
 echo "Content-Type: text/plain"

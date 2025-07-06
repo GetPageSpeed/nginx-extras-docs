@@ -338,13 +338,6 @@ http {
 }   
 ```
 
-## Building From Source
-
-To build the latest code against older NGINX versions or Linux distributions, follow the instructions in the [Development Wiki](https://github.com/curityio/nginx_phantom_token_module/wiki).
-
-- [Build the Module](https://github.com/curityio/nginx_phantom_token_module/wiki/3.-Builds)
-- [Deploy the Module](https://github.com/curityio/nginx_phantom_token_module/wiki/4.-Testing-Deployment)
-
 ## More Information
 
 For more information about the Curity Identity Server, its capabilities, and how to use it to issue phantom tokens for microservices, visit [curity.io](https://curity.io/product/token-service/?=use-cases?tab=microservices). For background information on using the Curity Identity Server to secure API access, see our [API security resources](https://curity.io/resources/api-security).

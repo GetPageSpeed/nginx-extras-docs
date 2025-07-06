@@ -84,28 +84,6 @@ Syntax:  markdown_gfm_tagfilter on;
 Context: location;
 ```
 
-### Build with cmark-gfm (tables support)
-
-Original cmark library doesn't support tables. But there is [cmark-gfm](https://github.com/github/cmark-gfm)
-fork with table extension, supported by Github.
-
-1. Clone this repo
-
-2. Rename `config_gfm` to `config`
-
-3. Install `cmark-gfm` lib
-
-4. Download [nginx src archive](http://nginx.org/en/download.html) and unpack it
-
-5. Run `configure` script (see nginx src) and build nginx
-
-```
-> ./configure --add-module=/path/to/ngx_markdown_filter_module --with-cc-opt=-DWITH_CMARK_GFM=1
-> make
-```
-
-6. Apply markdown directives to nginx conf and run it
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

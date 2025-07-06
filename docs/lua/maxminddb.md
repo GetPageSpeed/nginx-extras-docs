@@ -69,7 +69,6 @@ lua-resty-maxminddb - A Lua library for reading [MaxMind's Geolocation database 
 ## e.g. apk --no-cache add perl libmaxminddb && ln -s /usr/lib/libmaxminddb.so.0  /usr/lib/libmaxminddb.so
 opm get anjia0532/lua-resty-maxminddb
 
-## luarocks (manual download GeoLite2-City.mmdb)
 ## openresty/openresty:alpine-fat docker image
 luarocks install lua-resty-maxminddb
 

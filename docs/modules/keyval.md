@@ -56,6 +56,16 @@ Using the Redis store.
 
 - [hiredis](https://github.com/redis/hiredis)
 
+### Docker
+
+``` sh
+$ docker build -t nginx-keyval .
+$ : "app.conf: Create nginx configuration"
+$ docker run -p 80:80 -v $PWD/app.conf:/etc/nginx/http.d/default.conf nginx-keyval
+```
+
+> Github package: ghcr.io/kjdev/nginx-keyval
+
 ## Configuration: `ngx_http_keyval_module`
 
 ### Example

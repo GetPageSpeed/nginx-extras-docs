@@ -551,16 +551,6 @@ export LUAJIT_INC=/path/to/luajit/include/luajit-2.1
         --with-stream_ssl_module \
         --add-module=/path/to/stream-lua-nginx-module
 
-## Build and install
-make -j4
-make install
-```
-
-You may use `--without-http` if you do not wish to use this module with the
-"http" subsystem. ngx_stream_lua will work perfectly fine without the "http"
-subsystem.
-
-
 ## Code Repository
 
 The code repository of this project is hosted on GitHub at

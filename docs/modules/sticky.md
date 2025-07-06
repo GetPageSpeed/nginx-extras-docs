@@ -155,16 +155,6 @@ Cookie settings:
 - tarballs are available via tags from the repo: https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/downloads
 
 
-## Authors & Credits
-
-- Jerome Loyet, initial module
-- Markus Linnala, httponly/secure-cookies-patch
-- Peter Bowey, Nginx 1.5.8 API-Change 
-- Michael Chernyak for Max-Age-Patch 
-- anybody who suggested a patch, created an issue on bitbucket or helped improving this module 
-
-
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub 

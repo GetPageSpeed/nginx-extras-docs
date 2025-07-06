@@ -412,59 +412,6 @@ value of *arg_a* that points to a valid destination), otherwise (both *arg_b*
 and *arg_a* are not set or empty) the request will be sent to the upstrand
 *us2*.
 
-## Build and test
-
-The module is built with the standard Nginx build approach from the directory
-with Nginx source files. If you want to link this module with the Nginx
-executable file statically, use *configure* option *--add-module*, e.g.
-
-```ShellSession
-$ ./configure --add-module=/path/to/this/module
-$ make
-$ sudo make install
-```
-
-To use the module as a dynamic library, choose option *--add-dynamic-module*.
-
-```ShellSession
-$ ./configure --add-dynamic-module=/path/to/this/module
-$ make
-$ sudo make install
-```
-
-In the latter case, put directive
-
-```nginx
-load_module modules/ngx_http_combined_upstreams_module.so
-```
-
-in the Nginx configuration file.
-
-To benefit from persistent request contexts and upstrand failover locations with
-internal redirections in them (*try_files*, *error_page* etc.), download module
-[nginx-easy-context](https://github.com/lyokha/nginx-easy-context) in some
-directory, set environment variable
-*NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX* to *y* or *yes*,
-and run *configure* with two options *--add-module*.
-
-```ShellSession
-$ NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=yes
-$ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
-```
-
-The order of the two options matters. Module *nginx-easy-context* must go first.
-
-With command *prove* from Perl module *Test::Harness* and Perl module
-*Test::Nginx::Socket*, tests can be run by a regular user from directory
-*test/*.
-
-```ShellSession
-$ prove -r t
-```
-
-Add option *-v* for verbose output. Before run, you may need to adjust
-environment variable *PATH* to point to the Nginx installation directory.
-
 ## See also
 
 There are several articles about the module in my blog, in chronological order:

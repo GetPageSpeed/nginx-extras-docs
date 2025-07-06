@@ -45,10 +45,6 @@ released on Feb 11 2022.
 
 <hr />
 
-Adds the ability to group Nginx variable expressions as json.
-
-## Configuration
-
 ### json_var
 * **syntax**: `json_var $variable { ... }`
 * **default**: `none`

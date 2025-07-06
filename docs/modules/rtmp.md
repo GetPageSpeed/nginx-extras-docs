@@ -61,10 +61,6 @@ released on Jul 05 2025.
 
   https://groups.google.com/group/nginx-rtmp-ru (Russian)
 
-### Donation page (Paypal etc)
-
-  http://arut.github.com/nginx-rtmp-module/
-
 ### Features
 
 * RTMP/HLS/MPEG-DASH live streaming
