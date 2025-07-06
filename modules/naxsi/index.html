@@ -1761,15 +1761,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-naxsi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build naxsi
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#support" class="md-nav__link">
     <span class="md-ellipsis">
       Support
@@ -5661,15 +5652,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-naxsi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build naxsi
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#support" class="md-nav__link">
     <span class="md-ellipsis">
       Support
@@ -5771,16 +5753,6 @@ and free (as in free beer) to use.</p>
 <p><em>The original project is (unofficially) abandoned</em>, but you can fully ask for support here as i'm willing to keep the project working as last remaining developer.</p>
 <h2 id="documentation">Documentation</h2>
 <p><a href="docs/index">docs</a></p>
-<h2 id="build-naxsi">Build naxsi</h2>
-<p><strong>Be sure when you clone the repository to fetch all the submodules.</strong></p>
-<div class="highlight"><pre><span></span><code>$ git clone --recurse-submodules https://github.com/wargio/naxsi.git
-$ wget --no-clobber -O nginx.tar.gz &quot;https://nginx.org/download/nginx-1.22.0.tar.gz&quot;
-$ mkdir nginx-source
-$ tar -C nginx-source -xzf nginx.tar.gz --strip-components=1
-$ cd nginx-source
-$ ./configure  --prefix=/etc/nginx --add-dynamic-module=../naxsi/naxsi_src
-$ make
-</code></pre></div>
 <h2 id="support">Support</h2>
 <p>You can ask for support regarding NAXSI here or on the original repository <a href="https://github.com/nbs-system/naxsi">https://github.com/nbs-system/naxsi</a></p>
 <h2 id="future-plans">Future plans</h2>

@@ -933,15 +933,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-and-test" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build and test
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#see-also" class="md-nav__link">
     <span class="md-ellipsis">
       See also
@@ -5844,15 +5835,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-and-test" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build and test
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#see-also" class="md-nav__link">
     <span class="md-ellipsis">
       See also
@@ -6224,40 +6206,6 @@ to an existing upstrand) <em>proxy_pass</em> will most likely return <abbr title
 value of <em>arg_a</em> that points to a valid destination), otherwise (both <em>arg_b</em>
 and <em>arg_a</em> are not set or empty) the request will be sent to the upstrand
 <em>us2</em>.</p>
-<h2 id="build-and-test">Build and test</h2>
-<p>The module is built with the standard Nginx build approach from the directory
-with Nginx source files. If you want to link this module with the Nginx
-executable file statically, use <em>configure</em> option <em>--add-module</em>, e.g.</p>
-<div class="highlight"><pre><span></span><code>$ ./configure --add-module=/path/to/this/module
-$ make
-$ sudo make install
-</code></pre></div>
-<p>To use the module as a dynamic library, choose option <em>--add-dynamic-module</em>.</p>
-<div class="highlight"><pre><span></span><code>$ ./configure --add-dynamic-module=/path/to/this/module
-$ make
-$ sudo make install
-</code></pre></div>
-<p>In the latter case, put directive</p>
-<div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_combined_upstreams_module.so</span>
-</code></pre></div>
-<p>in the Nginx configuration file.</p>
-<p>To benefit from persistent request contexts and upstrand failover locations with
-internal redirections in them (<em>try_files</em>, <em>error_page</em> etc.), download module
-<a href="https://github.com/lyokha/nginx-easy-context">nginx-easy-context</a> in some
-directory, set environment variable
-<em>NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX</em> to <em>y</em> or <em>yes</em>,
-and run <em>configure</em> with two options <em>--add-module</em>.</p>
-<div class="highlight"><pre><span></span><code>$ NGX_HTTP_COMBINED_UPSTREAMS_PERSISTENT_UPSTRAND_INTERCEPT_CTX=yes
-$ ./configure --add-module=/path/to/module/nginx-easy-context --add-module=/path/to/this/module
-</code></pre></div>
-<p>The order of the two options matters. Module <em>nginx-easy-context</em> must go first.</p>
-<p>With command <em>prove</em> from Perl module <em>Test::Harness</em> and Perl module
-<em>Test::Nginx::Socket</em>, tests can be run by a regular user from directory
-<em>test/</em>.</p>
-<div class="highlight"><pre><span></span><code>$ prove -r t
-</code></pre></div>
-<p>Add option <em>-v</em> for verbose output. Before run, you may need to adjust
-environment variable <em>PATH</em> to point to the Nginx installation directory.</p>
 <h2 id="see-also">See also</h2>
 <p>There are several articles about the module in my blog, in chronological order:</p>
 <ol>

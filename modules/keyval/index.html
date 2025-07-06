@@ -1512,6 +1512,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Dependency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5634,6 +5649,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Dependency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5777,6 +5807,14 @@ released on Mar 31 2024.</p>
 <ul>
 <li><a href="https://github.com/redis/hiredis">hiredis</a></li>
 </ul>
+<h3 id="docker">Docker</h3>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>nginx-keyval<span class="w"> </span>.
+$<span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;app.conf: Create nginx configuration&quot;</span>
+$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>/app.conf:/etc/nginx/http.d/default.conf<span class="w"> </span>nginx-keyval
+</code></pre></div>
+<blockquote>
+<p>Github package: ghcr.io/kjdev/nginx-keyval</p>
+</blockquote>
 <h2 id="configuration-ngx_http_keyval_module">Configuration: <code>ngx_http_keyval_module</code></h2>
 <h3 id="example">Example</h3>
 <div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>

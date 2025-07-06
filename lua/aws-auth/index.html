@@ -3004,6 +3004,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5582,6 +5600,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5615,33 +5651,29 @@ dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 released on Jan 13 2017.</p>
 <hr />
 <p>Simple lua resty utilities to generate amazon v4 authorization and signature headers.</p>
-<h1 id="luarocks-install-lua-resty-aws-auth">luarocks install lua-resty-aws-auth</h1>
-<div class="highlight"><pre><span></span><code>## Usage
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">aws_auth</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.aws-auth&quot;</span>
+<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">aws_host</span>       <span class="o">=</span> <span class="s2">&quot;email.us-east-1.amazonaws.com&quot;</span><span class="p">,</span>
+  <span class="n">aws_key</span>        <span class="o">=</span> <span class="s2">&quot;AKIDEXAMPLE&quot;</span><span class="p">,</span>
+  <span class="n">aws_secret</span>     <span class="o">=</span> <span class="s2">&quot;xxxsecret&quot;</span><span class="p">,</span>
+  <span class="n">aws_region</span>     <span class="o">=</span> <span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+  <span class="n">aws_service</span>    <span class="o">=</span> <span class="s2">&quot;ses&quot;</span><span class="p">,</span>
+  <span class="n">content_type</span>   <span class="o">=</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">,</span>
+  <span class="n">request_method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+  <span class="n">request_path</span>   <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+  <span class="n">request_body</span>   <span class="o">=</span> <span class="p">{</span> <span class="n">hello</span><span class="o">=</span><span class="s2">&quot;world&quot;</span> <span class="p">}</span> <span class="c1">-- table of all request params</span>
+<span class="p">}</span>
 
-```lua
+<span class="kd">local</span> <span class="n">aws</span> <span class="o">=</span> <span class="n">aws_auth</span><span class="p">:</span><span class="n">new</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-local aws_auth = require &quot;resty.aws-auth&quot;
-local config = {
-  aws_host       = &quot;email.us-east-1.amazonaws.com&quot;,
-  aws_key        = &quot;AKIDEXAMPLE&quot;,
-  aws_secret     = &quot;xxxsecret&quot;,
-  aws_region     = &quot;us-east-1&quot;,
-  aws_service    = &quot;ses&quot;,
-  content_type   = &quot;application/x-www-form-urlencoded&quot;,
-  request_method = &quot;POST&quot;,
-  request_path   = &quot;/&quot;,
-  request_body   = { hello=&quot;world&quot; } -- table of all request params
-}
+<span class="c1">-- get the generated authorization header</span>
+<span class="c1">-- eg: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/iam/aws4_request,</span>
+<span class="c1">---    SignedHeaders=content-type;host;x-amz-date, Signature=xxx</span>
+<span class="kd">local</span> <span class="n">auth</span> <span class="o">=</span> <span class="n">aws</span><span class="p">:</span><span class="n">get_authorization_header</span><span class="p">()</span>
 
-local aws = aws_auth:new(config)
-
--- get the generated authorization header
--- eg: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/iam/aws4_request,
----    SignedHeaders=content-type;host;x-amz-date, Signature=xxx
-local auth = aws:get_authorization_header()
-
--- get the x-amz-date header
-local amz_date = aws:get_amz_date_header()
+<span class="c1">-- get the x-amz-date header</span>
+<span class="kd">local</span> <span class="n">amz_date</span> <span class="o">=</span> <span class="n">aws</span><span class="p">:</span><span class="n">get_amz_date_header</span><span class="p">()</span>
 </code></pre></div>
 <p>Add <em>Authorization</em> and <em>x-amz-date</em> header to ngx.req.headers</p>
 <div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="p">:</span><span class="n">set_ngx_auth_headers</span><span class="p">()</span>

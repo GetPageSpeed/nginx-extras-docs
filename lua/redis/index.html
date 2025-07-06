@@ -4688,18 +4688,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-build-from-source" class="md-nav__link">
+  <a href="#clone-latest-release-assuming-v029" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation - Build from source
+      Clone latest release , assuming v0.29
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-notes" class="md-nav__link">
+  <a href="#extract" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation Notes
+      Extract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#go-into-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      go into directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile and Install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#now-compiled-path-will-be-outputted" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now compiled path will be outputted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usrlocallibluaresty-lua_package_path-in-nginx-conf" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/lib/lua/resty = lua_package_path in nginx conf
     </span>
   </a>
   
@@ -6087,18 +6123,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-build-from-source" class="md-nav__link">
+  <a href="#clone-latest-release-assuming-v029" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation - Build from source
+      Clone latest release , assuming v0.29
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-notes" class="md-nav__link">
+  <a href="#extract" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation Notes
+      Extract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#go-into-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      go into directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile and Install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#now-compiled-path-will-be-outputted" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now compiled path will be outputted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usrlocallibluaresty-lua_package_path-in-nginx-conf" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/lib/lua/resty = lua_package_path in nginx conf
     </span>
   </a>
   
@@ -6604,42 +6676,18 @@ You should always initiate <code>resty.redis</code> objects in function local
 variables or in the <code>ngx.ctx</code> table. These places all have their own data copies for
 each request.</li>
 </ul>
-<h2 id="installation-build-from-source">Installation - Build from source</h2>
-<div class="highlight"><pre><span></span><code><span class="c1">## Clone latest release , assuming v0.29</span>
-wget<span class="w"> </span>https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz
-
-<span class="c1">## Extract</span>
-tar<span class="w"> </span>-xvzf<span class="w"> </span>v0.29.tar.gz
-
-<span class="c1">## go into directory</span>
-<span class="nb">cd</span><span class="w"> </span>lua-resty-redis-0.29
-
-<span class="nb">export</span><span class="w"> </span><span class="nv">LUA_LIB_DIR</span><span class="o">=</span>/usr/local/openresty/site/lualib
-
-<span class="c1">## Compile and Install</span>
-make<span class="w"> </span>install
-
-<span class="c1">## Now compiled path will be outputted</span>
-<span class="c1">## /usr/local/lib/lua/resty = lua_package_path in nginx conf</span>
-</code></pre></div>
-<h2 id="installation-notes">Installation Notes</h2>
-<p>If you are using the OpenResty bundle (<a href="http://openresty.org">http://openresty.org</a> ), then
-you do not need to do anything because it already includes and enables
-lua-resty-redis by default. And you can just use it in your Lua code,
-as in</p>
-<div class="highlight"><pre><span></span><code>    <span class="kd">local</span> <span class="n">redis</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;resty.redis&quot;</span>
-    <span class="p">...</span>
-</code></pre></div>
-<p>If you are using your own nginx + ngx_lua build, then you need to configure
-the lua_package_path directive to add the path of your lua-resty-redis source
-tree to ngx_lua's LUA_PATH search path, as in</p>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># nginx.conf</span>
-<span class="w">    </span><span class="k">http</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">...</span>
-<span class="w">    </span><span class="err">}</span>
-</code></pre></div>
-<p>Ensure that the system account running your Nginx ''worker'' proceses have
-enough permission to read the <code>.lua</code> file.</p>
+<h2 id="clone-latest-release-assuming-v029">Clone latest release , assuming v0.29</h2>
+<p>wget <a href="https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz">https://github.com/openresty/lua-resty-redis/archive/refs/tags/v0.29.tar.gz</a></p>
+<h2 id="extract">Extract</h2>
+<p>tar -xvzf v0.29.tar.gz</p>
+<h2 id="go-into-directory">go into directory</h2>
+<p>cd lua-resty-redis-0.29</p>
+<p>export LUA_LIB_DIR=/usr/local/openresty/site/lualib</p>
+<h2 id="compile-and-install">Compile and Install</h2>
+<p>make install</p>
+<h2 id="now-compiled-path-will-be-outputted">Now compiled path will be outputted</h2>
+<h2 id="usrlocallibluaresty-lua_package_path-in-nginx-conf">/usr/local/lib/lua/resty = lua_package_path in nginx conf</h2>
+<p>```</p>
 <h2 id="see-also">See Also</h2>
 <ul>
 <li>the ngx_lua module: <a href="https://github.com/openresty/lua-nginx-module/#readme">https://github.com/openresty/lua-nginx-module/#readme</a></li>

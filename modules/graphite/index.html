@@ -1329,21 +1329,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Percentiles">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#build-nginx-with-graphite-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build nginx with graphite module
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -5805,21 +5790,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Percentiles">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#build-nginx-with-graphite-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build nginx with graphite module
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -6322,11 +6292,6 @@ If module's shared memory is exhausted while nginx is running, no new graphs wil
 </table>
 <h2 id="percentiles">Percentiles</h2>
 <p>To calculate percentile value for any parameter, set percentile level via <code>/</code>. E.g. <code>request_time/50|request_time/90|request_time/99</code>.</p>
-<h4 id="build-nginx-with-graphite-module">Build nginx with graphite module</h4>
-<p>```bash</p>
-<p>wget '<a href="http://nginx.org/download/nginx-1.9.2.tar.gz">http://nginx.org/download/nginx-1.9.2.tar.gz</a>'
-tar -xzf nginx-1.9.2.tar.gz
-cd nginx-1.9.2/</p>
 <h2 id="patch-to-add-api-for-sending-metrics-from-lua-code-optional">patch to add api for sending metrics from lua code (optional)</h2>
 <p>patch -p1 &lt; /path/to/graphite-nginx-module/lua_module_v0_9_11.patch
 cd ..</p>

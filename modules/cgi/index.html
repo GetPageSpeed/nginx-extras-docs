@@ -6666,42 +6666,7 @@ demonized.</p>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pjincz/nginx-cgi
 <span class="nb">cd</span><span class="w"> </span>nginx-cgi
 
-<span class="c1">## build deb package</span>
-./build-deb-package.sh
-
-<span class="c1">## install built package</span>
-dpkg<span class="w"> </span>-i<span class="w"> </span>../libnginx-mod-http-cgi_*_amd64.deb<span class="w"> </span>
-</code></pre></div>
-<p>Then enable cgi in nginx. If you have a newly installed nginx, you can find a
-default site at <code>/etc/nginx/sites-enabled/default</code>. The default one looks like
-this:</p>
-<div class="highlight"><pre><span></span><code>server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-</code></pre></div>
-<p>The default <code>root</code> points to <code>/var/www/html</code>, keep it as it as, and add
-following section after <code>location /</code> section.</p>
-<div class="highlight"><pre><span></span><code>    location /cgi-bin {
-        cgi on;
-    }
-</code></pre></div>
-<p>The newly added section means, for all request under <code>/cgi-bin</code>, turns on cgi
-support. Now restart nginx:</p>
-<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
-</code></pre></div>
-<p>Save following content to /var/www/html/cgi-bin/hello.sh</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#!/bin/bash</span>
 
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Content-Type: text/plain&quot;</span>
 <span class="nb">echo</span>

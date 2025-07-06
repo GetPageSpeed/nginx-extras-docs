@@ -4505,66 +4505,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="resty.openssl.version">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version_num" class="md-nav__link">
-    <span class="md-ellipsis">
-      version_num
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version_text" class="md-nav__link">
-    <span class="md-ellipsis">
-      version_text
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionversion" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.version
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versioninfo" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.info
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionopenssl_3x" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.OPENSSL_3X
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionopenssl_111" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.OPENSSL_111
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -8709,66 +8649,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="resty.openssl.version">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version_num" class="md-nav__link">
-    <span class="md-ellipsis">
-      version_num
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version_text" class="md-nav__link">
-    <span class="md-ellipsis">
-      version_text
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionversion" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.version
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versioninfo" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.info
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionopenssl_3x" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.OPENSSL_3X
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#versionopenssl_111" class="md-nav__link">
-    <span class="md-ellipsis">
-      version.OPENSSL_111
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -11580,56 +11460,6 @@ corresponding to provided error code instead.</p>
 corresponding to provided error code instead.</p>
 <h2 id="restyopensslversion">resty.openssl.version</h2>
 <p>A module to provide version info.</p>
-<h3 id="version_num">version_num</h3>
-<p>The OpenSSL version number.</p>
-<h3 id="version_text">version_text</h3>
-<p>The OpenSSL version text.</p>
-<h3 id="versionversion">version.version</h3>
-<p><strong>syntax</strong>: <em>text = version.version(types)</em></p>
-<p>Returns various OpenSSL version information. Available values for <code>types</code> are:</p>
-<div class="highlight"><pre><span></span><code>VERSION
-CFLAGS
-BUILT_ON
-PLATFORM
-DIR
-ENGINES_DIR
-VERSION_STRING
-FULL_VERSION_STRING
-MODULES_DIR
-CPU_INFO
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.openssl.version&quot;</span><span class="p">)</span>
-<span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;%x&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">.</span><span class="n">version_num</span><span class="p">))</span>
-<span class="c1">-- outputs &quot;101000bf&quot;</span>
-<span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">version_text</span><span class="p">)</span>
-<span class="c1">-- outputs &quot;OpenSSL 1.1.0k  28 May 2019&quot;</span>
-<span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">version</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">PLATFORM</span><span class="p">))</span>
-<span class="c1">-- outputs &quot;darwin64-x86_64-cc&quot;</span>
-</code></pre></div>
-<h3 id="versioninfo">version.info</h3>
-<p><strong>syntax</strong>: <em>text = version.info(types)</em></p>
-<p>Returns various OpenSSL information. Available values for <code>types</code> are:</p>
-<div class="highlight"><pre><span></span><code>INFO_ENGINES_DIR
-INFO_DSO_EXTENSION
-INFO_CPU_SETTINGS
-INFO_LIST_SEPARATOR
-INFO_DIR_FILENAME_SEPARATOR
-INFO_CONFIG_DIR
-INFO_SEED_SOURCE
-INFO_MODULES_DIR
-</code></pre></div>
-<p>This function is only available on OpenSSL 3.0.
-Please refer to
-<a href="https://www.openssl.org/docs/manmaster/man3/OPENSSL_VERSION_NUMBER.html">OPENSSL_VERSION_NUMBER(3)</a>
-for explanation of each type.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.openssl.version&quot;</span><span class="p">)</span>
-<span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">INFO_DSO_EXTENSION</span><span class="p">))</span>
-<span class="c1">-- outputs &quot;.so&quot;</span>
-</code></pre></div>
-<h3 id="versionopenssl_3x">version.OPENSSL_3X</h3>
-<p>A boolean indicates whether the linked OpenSSL is 3.x series.</p>
-<h3 id="versionopenssl_111">version.OPENSSL_111</h3>
-<p>A boolean indicates whether the linked OpenSSL is 1.1.1 series.</p>
 <h2 id="restyopensslprovider">resty.openssl.provider</h2>
 <p>Module to interact with providers. This module only work on OpenSSL &gt;= 3.0.0.</p>
 <h3 id="providerload">provider.load</h3>

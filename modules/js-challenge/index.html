@@ -1441,15 +1441,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build from source
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#known-limitations-todo" class="md-nav__link">
     <span class="md-ellipsis">
       Known limitations / TODO
@@ -5605,15 +5596,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build from source
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#known-limitations-todo" class="md-nav__link">
     <span class="md-ellipsis">
       Known limitations / TODO
@@ -5732,24 +5714,6 @@ released on Aug 21 2024.</p>
 <li><code>js_challenge_title "title"</code> Will be inserted in the <code>&lt;title&gt;</code> tag of the interstitial page. DEFAULT: "Verifying your browser..."</li>
 <li><code>js_challenge_bucket_duration time</code> Interval to prompt js challenge, in seconds. DEFAULT: 3600</li>
 </ul>
-<h3 id="build-from-source">Build from source</h3>
-<p>These steps have to be performed on machine with compatible configuration (same nginx, glibc, openssl version etc.)</p>
-<ol>
-<li>Install dependencies
-    <div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>libperl-dev<span class="w"> </span>libgeoip-dev<span class="w"> </span>libgd-dev<span class="w"> </span>libxslt1-dev<span class="w"> </span>libpcre3-dev
-</code></pre></div></li>
-<li>Download nginx tarball corresponding to your current version (Check with <code>nginx -v</code>)
-    <code>bash
-   wget https://nginx.org/download/nginx-1.16.1.tar.gz
-   tar -xzf nginx-1.16.1.tar.gz
-   export NGINX_PATH=$(pwd)/nginx-1.16.1/</code></li>
-<li>Compile the module
-    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simon987/ngx_http_js_challenge_module
-<span class="nb">cd</span><span class="w"> </span>ngx_http_js_challenge_module
-./build.sh
-</code></pre></div></li>
-<li>The dynamic module can be found at <code>${NGINX_PATH}/objs/ngx_http_js_challenge_module.so</code></li>
-</ol>
 <h3 id="known-limitations-todo">Known limitations / TODO</h3>
 <ul>
 <li>Users with cookies disabled will be stuck in an infinite refresh loop (TODO: redirect with a known query param, if no cookie is specified but the query arg is set, display an error page)</li>

@@ -1692,15 +1692,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#build-with-cmark-gfm-tables-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build with cmark-gfm (tables support)
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -5595,15 +5586,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#build-with-cmark-gfm-tables-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build with cmark-gfm (tables support)
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -5689,32 +5671,6 @@ Context: location;
 Syntax:  markdown_gfm_tagfilter on;
 Context: location;
 </code></pre></div>
-<h3 id="build-with-cmark-gfm-tables-support">Build with cmark-gfm (tables support)</h3>
-<p>Original cmark library doesn't support tables. But there is <a href="https://github.com/github/cmark-gfm">cmark-gfm</a>
-fork with table extension, supported by Github.</p>
-<ol>
-<li>
-<p>Clone this repo</p>
-</li>
-<li>
-<p>Rename <code>config_gfm</code> to <code>config</code></p>
-</li>
-<li>
-<p>Install <code>cmark-gfm</code> lib</p>
-</li>
-<li>
-<p>Download <a href="http://nginx.org/en/download.html">nginx src archive</a> and unpack it</p>
-</li>
-<li>
-<p>Run <code>configure</code> script (see nginx src) and build nginx</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code>&gt; ./configure --add-module=/path/to/ngx_markdown_filter_module --with-cc-opt=-DWITH_CMARK_GFM=1
-&gt; make
-</code></pre></div>
-<ol>
-<li>Apply markdown directives to nginx conf and run it</li>
-</ol>
 <h2 id="github">GitHub</h2>
 <p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/ukarim/ngx_markdown_filter_module" target="_blank">GitHub 
 repository for 

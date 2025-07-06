@@ -2957,39 +2957,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authorization
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authorization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cdn-based-delivery" class="md-nav__link">
-    <span class="md-ellipsis">
-      CDN-based delivery
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#direct-delivery" class="md-nav__link">
-    <span class="md-ellipsis">
-      Direct delivery
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#url-encryption" class="md-nav__link">
     <span class="md-ellipsis">
       URL encryption
@@ -7574,39 +7541,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authorization
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authorization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cdn-based-delivery" class="md-nav__link">
-    <span class="md-ellipsis">
-      CDN-based delivery
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#direct-delivery" class="md-nav__link">
-    <span class="md-ellipsis">
-      Direct delivery
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#url-encryption" class="md-nav__link">
     <span class="md-ellipsis">
       URL encryption
@@ -9628,40 +9562,6 @@ have one of the following values: <code>CC1</code>, <code>CC3</code>, <code>CC3<
 <p>Optional fields:
 * <code>language</code> - a 3-letter (ISO-639-2) language code that indicates the language of the closed caption track.</p>
 <h3 id="security">Security</h3>
-<h4 id="authorization">Authorization</h4>
-<h5 id="cdn-based-delivery">CDN-based delivery</h5>
-<p>Media packaged by nginx-vod-module can be protected using CDN tokens, this works as follows:
-* Some application authenticates the user and decides whether the user should be allowed 
-    to watch a specific video. If the user is allowed, the application generates a tokenized
-    URL for the manifest of the video.
-* The CDN validates the token, and if found to be valid, forwards the request to nginx-vod-module 
-    on the origin. 
-* The nginx server builds the manifest response and generates tokens for the segment URLs
-    contained inside it. The module <a href="https://github.com/kaltura/nginx-secure-token-module">https://github.com/kaltura/nginx-secure-token-module</a> can
-    be used to accomplish this task, it currently support Akamai tokens and CloudFront tokens.
-    See the readme of this module for more details.
-* The CDN validates the token on each segment that is requested.</p>
-<p>In this setup it also highly recommended to block direct access to the origin server by
-authenticating the CDN requests. Without this protection, a user who somehow gets the address
-of the origin will be able to bypass the CDN token enforcement. If using Akamai, this can
-be accomplished using <a href="https://github.com/refractalize/nginx_mod_akamai_g2o">https://github.com/refractalize/nginx_mod_akamai_g2o</a>.
-For other CDNs, it may be possible to configure the CDN to send a secret header to the origin
-and then simply enforce the header using an nginx if statement:
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">$http_x_secret_origin_header</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;secret value&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">403</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-</code></pre></div></p>
-<p>In addition to the above, most CDNs support other access control settings, such as geo-location.
-These restrictions are completely transparent to the origin and should work well. </p>
-<h5 id="direct-delivery">Direct delivery</h5>
-<p>Deployments in which the media is pulled directly from nginx-vod-module can protect the media
-using nginx access control directives, such <code>allow</code>, <code>deny</code>, or <code>access_by_lua</code> (for more complex
-scenarios).</p>
-<p>In addition, it is possible to build a token based solution (as detailed in the previous section) 
-without a CDN, by having the nginx server validate the token. 
-The module <a href="https://github.com/kaltura/nginx-akamai-token-validate-module">https://github.com/kaltura/nginx-akamai-token-validate-module</a> can be used
-to validate Akamai tokens. Locations on which the module is enabled will return 403 unless the 
-request contains a valid Akamai token. See the readme of this module for more details.</p>
 <h4 id="url-encryption">URL encryption</h4>
 <p>As an alternative to tokenization, URL encryption can be used to prevent an attacker from being
 able to craft a playable URL. URL encryption can be implemented with 
