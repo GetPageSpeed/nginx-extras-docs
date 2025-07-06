@@ -46,6 +46,8 @@ REMOVABLE_SECTIONS = [
     "copyright and license",
     "license",
     "licence",
+    "copyright",
+    "licensing",
     "todo",
     "not yet implemented",
     "author",
@@ -338,12 +340,13 @@ def remove_md_sections(md, titles):
             else:
                 cur_sec_title = cur_sec_title + c
         cur_sec_title = cur_sec_title.strip().rstrip(":")
-        if (
-            cur_sec_title.lower() in titles
-            or "copyright" in cur_sec_title.lower()
-            or "license" in cur_sec_title.lower()
-            or "licensing" in cur_sec_title.lower()
-        ):
+        cur_sec_title_lower = cur_sec_title.lower()
+        # Check if heading starts with any of the removable section texts
+        should_remove = (
+            cur_sec_title_lower in titles
+            or any(cur_sec_title_lower.startswith(title.lower()) for title in titles)
+        )
+        if should_remove:
             section_level = cur_sec_level
             # do not add this target section title
         elif section_level:
