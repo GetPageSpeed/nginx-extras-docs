@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-redis
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-redis [v0.32](https://github.com/openresty/lua-resty-redis/releases/tag/v0.32){target=_blank} 
-released on Feb 10 2025.
+This document describes lua-resty-redis [v0.33](https://github.com/openresty/lua-resty-redis/releases/tag/v0.33){target=_blank} 
+released on Jul 09 2025.
     
 <hr />
 
@@ -393,7 +393,7 @@ Running this example gives the output like this:
     2: publish: 1
     1: receive: ["message","dog","Hello"]
 
-The following class methods are provieded:
+The following class methods are provided:
 
 ## add_commands
 `syntax: hash = redis.add_commands(cmd_name1, cmd_name2, ...)`
