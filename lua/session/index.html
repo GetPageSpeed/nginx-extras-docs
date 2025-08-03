@@ -6697,8 +6697,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-session
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.1.2" target="_blank">v4.1.2</a> 
-released on Jun 10 2025.</p>
+<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.1.3" target="_blank">v4.1.3</a> 
+released on Jul 29 2025.</p>
 <hr />
 
 <p><strong>lua-resty-session</strong> is a secure, and flexible session library for OpenResty.</p>
@@ -6858,9 +6858,9 @@ during the years. If you still use older version, please refer
 <span class="w">          </span><span class="s">err</span><span class="w"> </span><span class="s">or</span><span class="w"> </span><span class="s">&quot;no</span><span class="w"> </span><span class="s">error&quot;</span>
 <span class="w">        </span><span class="s">))</span>
 <span class="w">      </span><span class="err">}</span>
-<span class="w">    </span><span class="err">}</span><span class="w">    </span>
+<span class="w">    </span><span class="err">}</span>
 <span class="w">  </span><span class="err">}</span>
-<span class="err">}</span><span class="w">  </span>
+<span class="err">}</span>
 </code></pre></div>
 <h2 id="configuration">Configuration</h2>
 <p>The configuration can be divided to generic session configuration and the server
@@ -8274,7 +8274,7 @@ to encrypt value before passing it to thus function.</p>
 </code></pre></div>
 <p>and</p>
 <div class="highlight"><pre><span></span><code>[ PAYLOAD --]
-[ Data  *B  ]   
+[ Data  *B  ]
 </code></pre></div>
 <p>Both the <code>HEADER</code> and <code>PAYLOAD</code> are base64 url-encoded before putting in a <code>Set-Cookie</code> header.
 When using a server side storage, the <code>PAYLOAD</code> is not put in the cookie. With cookie storage
@@ -8286,7 +8286,7 @@ the base64 url-encoded header is concatenated with base64 url-encoded payload.</
 <li>Flags: binary packed flags (short) in a two byte little endian form.</li>
 <li>SID: <code>32</code> bytes of crypto random data (Session ID).</li>
 <li>Created at: binary packed secs from epoch in a little endian form, truncated to 5 bytes.</li>
-<li>Rolling Offset: binary packed secs from creation time in a little endian form (integer). </li>
+<li>Rolling Offset: binary packed secs from creation time in a little endian form (integer).</li>
 <li>Size: binary packed data size in a three byte little endian form.</li>
 <li>Tag: <code>16</code> bytes of authentication tag from AES-256-GCM encryption of the data.</li>
 <li>Idling Offset: binary packed secs from creation time + rolling offset in a little endian form, truncated to 3 bytes.</li>
@@ -8297,7 +8297,7 @@ the base64 url-encoded header is concatenated with base64 url-encoded payload.</
 <li>Initial keying material (IKM):</li>
 <li>derive IKM from <code>secret</code> by hashing <code>secret</code> with SHA-256, or</li>
 <li>use 32 byte IKM when passed to library with <code>ikm</code></li>
-<li>Generate 32 bytes of crypto random session id (<code>sid</code>) </li>
+<li>Generate 32 bytes of crypto random session id (<code>sid</code>)</li>
 <li>Derive 32 byte encryption key and 12 byte initialization vector with HKDF using SHA-256 (on FIPS-mode it uses PBKDF2 with SHA-256 instead)</li>
 <li>Use HKDF extract to derive a new key from <code>ikm</code> to get <code>key</code> (this step can be done just once per <code>ikm</code>):<ul>
 <li>output length: <code>32</code></li>
@@ -8342,9 +8342,11 @@ The <code>PBKDF2</code> settings:</p>
 <li>password: <code>&lt;key&gt;</code></li>
 <li>salt: <code>"encryption:&lt;sid&gt;"</code></li>
 <li>iterations: <code>&lt;1000|10000|100000|1000000&gt;</code></li>
+<li>pkcs5: <code>1</code> (FIPS compliant in our use case, but is needed to disable <code>SP800-132</code> based verifications, such as iteration count, see: <a href="https://docs.openssl.org/master/man7/provider-kdf/#kdf-parameters">https://docs.openssl.org/master/man7/provider-kdf/#kdf-parameters</a>)</li>
 </ul>
 <p>Iteration counts are based on <code>remember_safety</code> setting (<code>"Low"</code>, <code>"Medium"</code>, <code>"High"</code>, <code>"Very High"</code>),
 if <code>remember_safety</code> is set to <code>"None"</code>, we will use the HDKF as above.</p>
+<p><em>Note:</em> For backwards compatibility, we disabled the SP800-132 compliance checks on FIPS-mode. This checks that the salt length is at least 128 bits, the derived key length is at least 112 bits, and that the iteration count is at least 1000. These checks are disabled by default in OpenSSL's default provider, but are enabled by default in the FIPS provider.</p>
 <h2 id="cookie-header-authentication">Cookie Header Authentication</h2>
 <ol>
 <li>Derive 32 byte authentication key (<code>mac_key</code>) with HKDF using SHA-256  (on FIPS-mode it uses PBKDF2 with SHA-256 instead):<ol>
