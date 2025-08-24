@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-session
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-session [v4.1.3](https://github.com/bungle/lua-resty-session/releases/tag/v4.1.3){target=_blank} 
-released on Jul 29 2025.
+This document describes lua-resty-session [v4.1.4](https://github.com/bungle/lua-resty-session/releases/tag/v4.1.4){target=_blank} 
+released on Aug 11 2025.
     
 <hr />
 
