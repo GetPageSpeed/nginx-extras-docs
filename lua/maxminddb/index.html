@@ -5809,10 +5809,11 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-maxminddb
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-maxminddb <a href="https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.4" target="_blank">v1.3.4</a> 
-released on Oct 28 2024.</p>
+<p>This document describes lua-resty-maxminddb <a href="https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.5" target="_blank">v1.3.5</a> 
+released on Aug 28 2025.</p>
 <hr />
 <p>lua-resty-maxminddb - A Lua library for reading <a href="https://maxmind.github.io/MaxMind-DB/">MaxMind's Geolocation database format</a>  (aka mmdb or geoip2).</p>
+<p><a href="https://github.com/linuxgemini/lua-resty-maxminddb/">Original multi database support</a></p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p><strong>Note</strong>
 - [maxmind/libmaxminddb][]</p>
@@ -5826,6 +5827,12 @@ released on Oct 28 2024.</p>
 <li>
 <p>[maxmind/geoipupdate][]</p>
 </li>
+</ul>
+<p><strong>New Features</strong></p>
+<ul>
+<li><strong>Multiple Database Support</strong>: Initialize and use multiple MaxMind databases simultaneously</li>
+<li><strong>Profile Selection</strong>: Choose which database to query using profile names</li>
+<li><strong>Automatic Fallback</strong>: Uses first available database if no profile specified</li>
 </ul>
 <p><strong>Bug fixed</strong></p>
 <ul>
@@ -5842,6 +5849,13 @@ released on Oct 28 2024.</p>
 <p><a href="https://github.com/anjia0532/lua-resty-maxminddb/issues/7">Multiple subdivisions</a></p>
 </li>
 </ul>
+<p><strong>API Reference</strong></p>
+<p><strong>Functions:</strong>
+- <code>geo.init(profiles)</code>: Initialize databases with profile names and file paths
+- <code>geo.lookup(ip, lookup_path, profile)</code>: Lookup IP address, optionally specify profile
+- <code>geo.initted()</code>: Check if databases are initialized
+- <code>geo.get_profiles()</code>: Get list of available profile names
+- <code>geo.has_profile(profile)</code>: Check if a specific profile exists</p>
 <p><strong>Apology for infringement</strong>
 - <a href="https://github.com/anjia0532/lua-resty-maxminddb/issues/25">https://github.com/anjia0532/lua-resty-maxminddb/issues/25</a></p>
 <h2 id="opm-manual-install-libmaxminddb-and-download-geolite2-citymmdb">opm (manual install libmaxminddb and download GeoLite2-City.mmdb)</h2>
@@ -5855,32 +5869,66 @@ released on Oct 28 2024.</p>
 <h2 id="eg-apk-no-cache-add-perl-alpine-sdk-luarocks-install-lua-resty-maxminddb-unzipusrbinunzip">e.g. apk --no-cache add perl alpine-sdk &amp;&amp; luarocks install lua-resty-maxminddb UNZIP=/usr/bin/unzip</h2>
 <div class="highlight"><pre><span></span><code>## Synopsis
 
-```nginx
-server {
-    listen 80;
-    server_name localhost;
-    location / {
-        content_by_lua_block{
-            local cjson = require &#39;cjson&#39;
-            local geo = require &#39;resty.maxminddb&#39;
-            if not geo.initted() then
-                geo.init(&quot;/path/to/GeoLite2-City.mmdb&quot;)
-            end
-            local res,err = geo.lookup(ngx.var.arg_ip or ngx.var.remote_addr) --support ipv6 e.g. 2001:4860:0:1001::3004:ef68
-
-            if not res then
-                ngx.log(ngx.ERR,&#39;failed to lookup by ip ,reason:&#39;,err)
-            end
-            ngx.say(&quot;full :&quot;,cjson.encode(res))
-            if ngx.var.arg_node then
-               ngx.say(&quot;node name:&quot;,ngx.var.arg_node,&quot; ,value:&quot;, cjson.encode(res[ngx.var.arg_node] or {}))
-            end
-        }
-    }
-}
+**Basic Usage (Single Database)**
+```lua
+local geo = require &#39;resty.maxminddb&#39;
+if not geo.initted() then
+    geo.init(&quot;/path/to/GeoLite2-City.mmdb&quot;)
+end
+local res, err = geo.lookup(&quot;8.8.8.8&quot;)
 </code></pre></div>
+<p><strong>Multiple Database Support</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">geo</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;resty.maxminddb&#39;</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">geo</span><span class="p">.</span><span class="n">initted</span><span class="p">()</span> <span class="kr">then</span>
+    <span class="n">geo</span><span class="p">.</span><span class="n">init</span><span class="p">({</span>
+        <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;/path/to/GeoLite2-City.mmdb&quot;</span><span class="p">,</span>
+        <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;/path/to/GeoLite2-Country.mmdb&quot;</span><span class="p">,</span>
+        <span class="n">asn</span> <span class="o">=</span> <span class="s2">&quot;/path/to/GeoLite2-ASN.mmdb&quot;</span>
+    <span class="p">})</span>
+<span class="kr">end</span>
+
+<span class="c1">-- Lookup using default profile (first one)</span>
+<span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">geo</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">)</span>
+
+<span class="c1">-- Or specify a specific profile</span>
+<span class="kd">local</span> <span class="n">city_data</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">geo</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">country_data</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">geo</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;country&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">asn_data</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">geo</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;asn&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Complete Nginx Example</strong>
+<div class="highlight"><pre><span></span><code><span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">localhost</span><span class="p">;</span>
+    <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+        <span class="n">content_by_lua_block</span><span class="p">{</span>
+            <span class="kd">local</span> <span class="n">cjson</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;cjson&#39;</span>
+            <span class="kd">local</span> <span class="n">geo</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;resty.maxminddb&#39;</span>
+            <span class="kr">if</span> <span class="ow">not</span> <span class="n">geo</span><span class="p">.</span><span class="n">initted</span><span class="p">()</span> <span class="kr">then</span>
+                <span class="n">geo</span><span class="p">.</span><span class="n">init</span><span class="p">({</span>
+                    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;/path/to/GeoLite2-City.mmdb&quot;</span><span class="p">,</span>
+                    <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;/path/to/GeoLite2-Country.mmdb&quot;</span>
+                <span class="p">})</span>
+            <span class="kr">end</span>
+
+            <span class="c1">-- Lookup using default profile (first one)</span>
+            <span class="kd">local</span> <span class="n">res</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">geo</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">arg_ip</span> <span class="ow">or</span> <span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">remote_addr</span><span class="p">)</span>
+
+            <span class="c1">-- Multi database support</span>
+            <span class="c1">-- local res,err = geo.lookup(ngx.var.arg_ip or ngx.var.remote_addr, nil, ngx.var.arg_type or &#39;city&#39;)</span>
+
+            <span class="kr">if</span> <span class="ow">not</span> <span class="n">res</span> <span class="kr">then</span>
+                <span class="n">ngx</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">ngx</span><span class="p">.</span><span class="n">ERR</span><span class="p">,</span><span class="s1">&#39;failed to lookup by ip ,reason:&#39;</span><span class="p">,</span><span class="n">err</span><span class="p">)</span>
+            <span class="kr">end</span>
+            <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;full :&quot;</span><span class="p">,</span><span class="n">cjson</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+            <span class="kr">if</span> <span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">arg_node</span> <span class="kr">then</span>
+               <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;node name:&quot;</span><span class="p">,</span><span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">arg_node</span><span class="p">,</span><span class="s2">&quot; ,value:&quot;</span><span class="p">,</span> <span class="n">cjson</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">ngx</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">arg_node</span><span class="p">]</span> <span class="ow">or</span> <span class="p">{}))</span>
+            <span class="kr">end</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">#ipv4</span>
-<span class="w">  </span>$<span class="w"> </span>curl<span class="w"> </span>localhost/?ip<span class="o">=</span><span class="m">114</span>.114.114.114<span class="p">&amp;</span><span class="nv">node</span><span class="o">=</span>city
+<span class="w">  </span>$<span class="w"> </span>curl<span class="w"> </span>localhost/?ip<span class="o">=</span><span class="m">114</span>.114.114.114<span class="p">&amp;</span><span class="nv">node</span><span class="o">=</span>city<span class="p">&amp;</span><span class="nv">type</span><span class="o">=</span>city
 
 <span class="w">  </span><span class="c1">#ipv6</span>
 <span class="w">  </span><span class="c1">#$ curl localhost/?ip=2001:4860:0:1001::3004:ef68&amp;node=country</span>
