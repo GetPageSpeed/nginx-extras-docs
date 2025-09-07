@@ -6193,8 +6193,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-acme
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-acme <a href="https://github.com/fffonion/lua-resty-acme/releases/tag/0.15.0" target="_blank">v0.15.0</a> 
-released on Aug 13 2024.</p>
+<p>This document describes lua-resty-acme <a href="https://github.com/fffonion/lua-resty-acme/releases/tag/0.16.0" target="_blank">v0.16.0</a> 
+released on Sep 01 2025.</p>
 <hr />
 
 <p>Automatic Let's Encrypt certificate serving (RSA + ECC) and pure Lua implementation of the ACMEv2 protocol.</p>
@@ -6745,7 +6745,7 @@ If <code>dir</code> is omitted, the OS temporary directory will be used.</p>
     <span class="n">namespace</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Redis &gt;= 2.6.0 is required as this storage requires <a href="https://redis.io/commands/pexpire">PEXPIRE</a>.</p>
+<p>Redis &gt;= 2.6.12 is required as this storage requires <a href="https://redis.io/commands/set">SET EX</a>.</p>
 <h3 id="vault">vault</h3>
 <p>Hashicorp <a href="https://www.vaultproject.io/">Vault</a> based storage.
 Only <a href="https://www.vaultproject.io/api/secret/kv/kv-v2.html">KV V2</a> backend is supported.
