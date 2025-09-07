@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-acme
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-acme [v0.15.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.15.0){target=_blank} 
-released on Aug 13 2024.
+This document describes lua-resty-acme [v0.16.0](https://github.com/fffonion/lua-resty-acme/releases/tag/0.16.0){target=_blank} 
+released on Sep 01 2025.
     
 <hr />
 
@@ -702,7 +702,7 @@ storage_config = {
 }
 ```
 
-Redis >= 2.6.0 is required as this storage requires [PEXPIRE](https://redis.io/commands/pexpire).
+Redis >= 2.6.12 is required as this storage requires [SET EX](https://redis.io/commands/set).
 
 ### vault
 
