@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-maxminddb
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-maxminddb [v1.3.5](https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.5){target=_blank} 
-released on Aug 28 2025.
+This document describes lua-resty-maxminddb [v1.3.6](https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.6){target=_blank} 
+released on Sep 09 2025.
     
 <hr />
 lua-resty-maxminddb - A Lua library for reading [MaxMind's Geolocation database format](https://maxmind.github.io/MaxMind-DB/)  (aka mmdb or geoip2).
