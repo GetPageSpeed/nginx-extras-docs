@@ -6585,8 +6585,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_cgi_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-cgi <a href="https://github.com/pjincz/nginx-cgi/releases/tag/v0.13" target="_blank">v0.13</a> 
-released on Jun 25 2025.</p>
+<p>This document describes nginx-module-cgi <a href="https://github.com/pjincz/nginx-cgi/releases/tag/v0.14.1" target="_blank">v0.14.1</a> 
+released on Sep 15 2025.</p>
 <hr />
 
 <p>Brings CGI support to <a href="https://github.com/nginx/nginx">Nginx</a> and
@@ -6757,7 +6757,7 @@ And access <code>Http-Accept</code> by <code>HTTP_ACCPET</code>.</p>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;query string: </span><span class="nv">$QUERY_STRING</span><span class="s2">&quot;</span>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;http accept: </span><span class="nv">$HTTP_ACCEPT</span><span class="s2">&quot;</span>
 </code></pre></div>
-<p>For full list of environment variables, see environment session.</p>
+<p>For full list of environment variables, see environment section.</p>
 <h3 id="request-body">Request body</h3>
 <p>The request body will be passed via stdin. Here's an example to read all request
 body and echo it:</p>

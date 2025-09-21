@@ -984,6 +984,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dynamic_etag_strength" class="md-nav__link">
+    <span class="md-ellipsis">
+      dynamic_etag_strength
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5658,6 +5667,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dynamic_etag_strength" class="md-nav__link">
+    <span class="md-ellipsis">
+      dynamic_etag_strength
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5733,10 +5751,12 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_dynamic_etag_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-dynamic-etag <a href="https://github.com/dvershinin/ngx_dynamic_etag/releases/tag/0.2.1" target="_blank">v0.2.1</a> 
-released on Aug 11 2019.</p>
+<p>This document describes nginx-module-dynamic-etag <a href="https://github.com/dvershinin/ngx_dynamic_etag/releases/tag/0.2.3" target="_blank">v0.2.3</a> 
+released on Sep 18 2025.</p>
 <hr />
 
+<p><a href="https://scan.coverity.com/projects/dvershinin-ngx_dynamic_etag"><img alt="Coverity Scan" src="https://img.shields.io/coverity/scan/dvershinin-ngx_dynamic_etag" /></a>
+<a href="https://www.buymeacoffee.com/dvershinin"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/dynamic/json?color=blue&amp;label=Buy%20me%20a%20Coffee&amp;prefix=%23&amp;query=next_time_total&amp;url=https%3A%2F%2Fwww.getpagespeed.com%2Fbuymeacoffee.json&amp;logo=buymeacoffee" /></a></p>
 <p>This NGINX module empowers your dynamic content with automatic <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag"><code>ETag</code></a>
 header. It allows client browsers to issue conditional <code>GET</code> requests to 
 dynamic pages. And thus saves bandwidth and ensures better performance! </p>
@@ -5747,7 +5767,7 @@ dynamic pages. And thus saves bandwidth and ensures better performance! </p>
 <p>It never really worked.</p>
 </blockquote>
 <p>I largely rewrote it to deal with existing obvious faults, but the key part with buffers, 
-which, myself being old, I probably will never understand, is untouched.</p>
+which, myself being old, I probably wil l never understand, is untouched.</p>
 <p>To be reliable, the module has to read entire response and take a hash of it. 
 Reading entire response is against NGINX lightweight design.
 I am not sure whether the buffer part waits for the entire response.</p>
@@ -5757,20 +5777,22 @@ since NGINX rightfully discards body for this request method.</p>
 <p>Consider this as a feature or a bug :-) If we remove this, then all <code>HEAD</code> requests end up having same <code>ETag</code> (hash on emptiness),
 which is definitely worse.</p>
 <p>Thus, be sure you check headers like this:</p>
-<div class="highlight"><pre><span></span><code>curl -IL -X GET https://www.example.com/
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-IL<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>https://www.example.com/
 </code></pre></div>
 <p>And not like this:</p>
-<div class="highlight"><pre><span></span><code> curl -IL https://www.example.com/
-</code></pre></div>
-<p>Another worthy thing to mention is that it makes little to no sense applying dynamic <code>ETag</code> on a page that changes on 
-each reload. E.g. I found I wasn't using the dynamic <code>ETag</code> with benefits, because of <code>&lt;?= antispambot(get_option('admin_email')) ?&gt;</code>,
-in my Wordpress theme's <code>header.php</code>, since in this function:</p>
-<blockquote>
-<p>the selection is random and changes each time the function is called </p>
-</blockquote>
-<p>To quickly check if your page is changing on reload, use:</p>
-<div class="highlight"><pre><span></span><code>diff &lt;(curl http://www.example.com&quot;) &lt;(curl http://www.example.com&quot;)
-</code></pre></div>
+<p>```bash
+curl -IL <a href="https://www.example.com/">https://www.example.com/</a>
+<div class="highlight"><pre><span></span><code>Another worthy thing to mention is that it makes little to no sense applying dynamic `ETag` on a page that changes on 
+each reload. E.g. I found I wasn&#39;t using the dynamic `ETag` with benefits, because of `&lt;?= antispambot(get_option(&#39;admin_email&#39;)) ?&gt;`,
+in my WordPress theme&#39;s `header.php`, since in this function:
+
+&gt; the selection is random and changes each time the function is called 
+
+To quickly check if your page is changing on reload, use:
+
+```bash
+diff &lt;(curl http://www.example.com&quot;) &lt;(curl http://www.example.com&quot;)
+</code></pre></div></p>
 <p>Now that we're done with the "now you know" yada-yada, you can proceed with trying out this stuff :)    </p>
 <h2 id="synopsis">Synopsis</h2>
 <div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
@@ -5787,7 +5809,7 @@ in my Wordpress theme's <code>header.php</code>, since in this function:</p>
 <ul>
 <li><strong>syntax</strong>: <code>dynamic_etag on|off|$var</code></li>
 <li><strong>default</strong>: <code>off</code></li>
-<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code>, <code>if</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
 </ul>
 <p>Enables or disables applying ETag automatically.</p>
 <h3 id="dynamic_etag_types"><code>dynamic_etag_types</code></h3>
@@ -5799,20 +5821,45 @@ in my Wordpress theme's <code>header.php</code>, since in this function:</p>
 <p>Enables applying ETag automatically for the specified MIME types
 in addition to <code>text/html</code>. The special value <code>*</code> matches any MIME type.
 Responses with the <code>text/html</code> MIME type are always included.</p>
+<h3 id="dynamic_etag_strength"><code>dynamic_etag_strength</code></h3>
+<ul>
+<li><strong>syntax</strong>: <code>dynamic_etag_strength strong|weak|$var</code></li>
+<li><strong>default</strong>: <code>strong</code></li>
+<li><strong>context</strong>: <code>http</code>, <code>server</code>, <code>location</code></li>
+</ul>
+<p>Controls whether generated ETags are strong or weak. Weak ETags are useful for
+dynamic content where semantic equality should be considered even if the
+bytes differ (e.g., timestamps, randomized attributes). When using <code>$var</code>, map
+to values <code>strong</code> or <code>weak</code>.</p>
+<p>Note: These directives are not valid in the <code>if</code> context. Prefer using <code>$var</code>
+with <code>map</code> to achieve conditional behavior.</p>
+<p>Example with <code>map</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$arg_w</span><span class="w"> </span><span class="nv">$etag_strength</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="s">strong</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">1</span><span class="w">       </span><span class="s">weak</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">location</span><span class="w"> </span><span class="s">/example</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">dynamic_etag</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">dynamic_etag_types</span><span class="w"> </span><span class="s">text/html</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">dynamic_etag_strength</span><span class="w"> </span><span class="nv">$etag_strength</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://backend</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="tips">Tips</h2>
 <p>You can use <code>map</code> directive for conditionally enabling dynamic <code>ETag</code> based on URLs, e.g.:</p>
-<div class="highlight"><pre><span></span><code>map $request_uri $dyn_etag {
-    default &quot;off&quot;;
-    /foo &quot;on&quot;;
-    /bar &quot;on&quot;;
-}
-server { 
-   ...
-   location / {
-       dynamic_etag $dyn_etag;
-       fastcgi_pass ...
-   }
-}
+<div class="highlight"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$request_uri</span><span class="w"> </span><span class="nv">$dyn_etag</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="s">&quot;off&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">/foo</span><span class="w"> </span><span class="s">&quot;on&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">/bar</span><span class="w"> </span><span class="s">&quot;on&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">server</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">   </span><span class="kn">...</span>
+<span class="w">   </span><span class="s">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kn">dynamic_etag</span><span class="w"> </span><span class="nv">$dyn_etag</span><span class="p">;</span>
+<span class="w">       </span><span class="kn">fastcgi_pass</span><span class="w"> </span><span class="s">...</span>
+<span class="w">   </span><span class="err">}</span>
+<span class="err">}</span><span class="w">       </span>
 </code></pre></div>
 <h2 id="original-authors-readme">Original author's README</h2>
 <p>Attempt at handling ETag / If-None-Match on proxied content.</p>
