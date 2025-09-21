@@ -40,11 +40,13 @@ load_module modules/ngx_http_dynamic_etag_module.so;
 ```
 
 
-This document describes nginx-module-dynamic-etag [v0.2.1](https://github.com/dvershinin/ngx_dynamic_etag/releases/tag/0.2.1){target=_blank} 
-released on Aug 11 2019.
+This document describes nginx-module-dynamic-etag [v0.2.3](https://github.com/dvershinin/ngx_dynamic_etag/releases/tag/0.2.3){target=_blank} 
+released on Sep 18 2025.
 
 <hr />
 
+[![Coverity Scan](https://img.shields.io/coverity/scan/dvershinin-ngx_dynamic_etag)](https://scan.coverity.com/projects/dvershinin-ngx_dynamic_etag)
+[![Buy Me a Coffee](https://img.shields.io/badge/dynamic/json?color=blue&label=Buy%20me%20a%20Coffee&prefix=%23&query=next_time_total&url=https%3A%2F%2Fwww.getpagespeed.com%2Fbuymeacoffee.json&logo=buymeacoffee)](https://www.buymeacoffee.com/dvershinin)
 
 This NGINX module empowers your dynamic content with automatic [`ETag`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)
 header. It allows client browsers to issue conditional `GET` requests to 
@@ -59,7 +61,7 @@ The original author abandoned it, [having to say](https://github.com/kali/nginx-
  > It never really worked.
 
 I largely rewrote it to deal with existing obvious faults, but the key part with buffers, 
-which, myself being old, I probably will never understand, is untouched.
+which, myself being old, I probably wil l never understand, is untouched.
 
 To be reliable, the module has to read entire response and take a hash of it. 
 Reading entire response is against NGINX lightweight design.
@@ -75,21 +77,27 @@ which is definitely worse.
 
 Thus, be sure you check headers like this:
 
-    curl -IL -X GET https://www.example.com/
+```bash
+curl -IL -X GET https://www.example.com/
+```
     
  And not like this:
- 
-     curl -IL https://www.example.com/
+
+ ```bash
+curl -IL https://www.example.com/
+```
      
 Another worthy thing to mention is that it makes little to no sense applying dynamic `ETag` on a page that changes on 
 each reload. E.g. I found I wasn't using the dynamic `ETag` with benefits, because of `<?= antispambot(get_option('admin_email')) ?>`,
-in my Wordpress theme's `header.php`, since in this function:
+in my WordPress theme's `header.php`, since in this function:
 
 > the selection is random and changes each time the function is called 
 
 To quickly check if your page is changing on reload, use:
 
-    diff <(curl http://www.example.com") <(curl http://www.example.com")
+```bash
+diff <(curl http://www.example.com") <(curl http://www.example.com")
+```
 
 Now that we're done with the "now you know" yada-yada, you can proceed with trying out this stuff :)    
 
@@ -113,7 +121,7 @@ http {
 
 - **syntax**: `dynamic_etag on|off|$var`
 - **default**: `off`
-- **context**: `http`, `server`, `location`, `if`
+- **context**: `http`, `server`, `location`
 
 Enables or disables applying ETag automatically.
 
@@ -127,23 +135,54 @@ Enables applying ETag automatically for the specified MIME types
 in addition to `text/html`. The special value `*` matches any MIME type.
 Responses with the `text/html` MIME type are always included.
 
+### `dynamic_etag_strength`
+
+- **syntax**: `dynamic_etag_strength strong|weak|$var`
+- **default**: `strong`
+- **context**: `http`, `server`, `location`
+
+Controls whether generated ETags are strong or weak. Weak ETags are useful for
+dynamic content where semantic equality should be considered even if the
+bytes differ (e.g., timestamps, randomized attributes). When using `$var`, map
+to values `strong` or `weak`.
+
+Note: These directives are not valid in the `if` context. Prefer using `$var`
+with `map` to achieve conditional behavior.
+
+Example with `map`:
+
+```nginx
+map $arg_w $etag_strength {
+    default strong;
+    1       weak;
+}
+
+location /example {
+    dynamic_etag on;
+    dynamic_etag_types text/html;
+    dynamic_etag_strength $etag_strength;
+    proxy_pass http://backend;
+}
+```
+
 ## Tips
 
 You can use `map` directive for conditionally enabling dynamic `ETag` based on URLs, e.g.:
 
-    map $request_uri $dyn_etag {
-        default "off";
-        /foo "on";
-        /bar "on";
-    }
-    server { 
-       ...
-       location / {
-           dynamic_etag $dyn_etag;
-           fastcgi_pass ...
-       }
-    }       
-        
+```nginx
+map $request_uri $dyn_etag {
+    default "off";
+    /foo "on";
+    /bar "on";
+}
+server { 
+   ...
+   location / {
+       dynamic_etag $dyn_etag;
+       fastcgi_pass ...
+   }
+}       
+```        
 
 ## Original author's README
 

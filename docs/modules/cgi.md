@@ -40,8 +40,8 @@ load_module modules/ngx_http_cgi_module.so;
 ```
 
 
-This document describes nginx-module-cgi [v0.13](https://github.com/pjincz/nginx-cgi/releases/tag/v0.13){target=_blank} 
-released on Jun 25 2025.
+This document describes nginx-module-cgi [v0.14.1](https://github.com/pjincz/nginx-cgi/releases/tag/v0.14.1){target=_blank} 
+released on Sep 15 2025.
 
 <hr />
 
@@ -228,7 +228,7 @@ echo "query string: $QUERY_STRING"
 echo "http accept: $HTTP_ACCEPT"
 ```
 
-For full list of environment variables, see environment session.
+For full list of environment variables, see environment section.
 
 ### Request body
 

@@ -40,8 +40,8 @@ load_module modules/ngx_http_api_module.so;
 ```
 
 
-This document describes nginx-module-live-common [v1.30.1](https://github.com/kaltura/media-framework/releases/tag/v1.30.1){target=_blank} 
-released on May 05 2025.
+This document describes nginx-module-live-common [v2.0.0](https://github.com/kaltura/media-framework/releases/tag/v2.0.0){target=_blank} 
+released on Sep 14 2025.
 
 <hr />
 
