@@ -18,6 +18,7 @@ NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 * **Enhanced Security Features**: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.
 * **Secure SSL Proxying with `CONNECT` Method**: Handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
 * **Dark Mode Support**: Automatic Dark Mode Support for NGINX error pages.
+* **Host header emulation for HTTP/3**: The `$http_host` is initialized from authority, providing better compatibility with applications that rely on the `Host` header.
 
 Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!
 
