@@ -10,7 +10,7 @@ Each module can be installed as a separate package.
 
 The major benefit of packaged installations is security, maintainability, and reproducibility.
 No longer you have to manually compile anything when you need to update NGINX or modules.
-An update is just a `yum update` that takes seconds and no downtime whatsoever.
+An update is just a `dnf update` that takes seconds and no downtime whatsoever.
 
 We currently support all major RPM-based distros, including CentOS/RHEL,
 as well as Amazon Linux and the latest Fedora Linux.
@@ -56,9 +56,9 @@ Subscribed? Proceed with installing the modules to build your ultimate high-perf
 
 Thanks to the nature of dynamic modules, you can install *just the modules* you want instead of using bloatware NGINX installation. 
 
-For example, to install NGINX and the PageSpeed module for it, run:
+For example, to install NGINX and the Brotli module for it, run:
 
-    dnf -y install nginx nginx-module-pagespeed
+    dnf -y install nginx nginx-module-brotli
 
 Enable the module by adding the `load_module ...` directive that is shown after installation.
 
