@@ -40,8 +40,8 @@ load_module modules/ngx_markdown_filter_module.so;
 ```
 
 
-This document describes nginx-module-markdown [v0.1.5](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.5){target=_blank} 
-released on Jul 05 2025.
+This document describes nginx-module-markdown [v0.1.6](https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.6){target=_blank} 
+released on Sep 23 2025.
 
 <hr />
 
@@ -63,7 +63,7 @@ This works on proxy locations as well.
 ### Directives
 
 ```
-Syntax:  markdown_filter on;
+Syntax:  markdown_filter on|off;
 Context: location
 ```
 
@@ -74,13 +74,31 @@ Context: location
 
 ```
 ## enable `unsafe` mode for cmark
-Syntax:  markdown_unsafe on;
+Syntax:  markdown_unsafe on|off;
 Context: location;
 ```
 
 ```
 ## enable `tagfilter` extension for cmark-gfm
-Syntax:  markdown_gfm_tagfilter on;
+Syntax:  markdown_gfm_tagfilter on|off;
+Context: location;
+```
+
+```
+## enable `tasklist` extension for cmark-gfm
+Syntax:  markdown_gfm_tasklist on|off;
+Context: location;
+```
+
+```
+## enable `strikethrough` extension for cmark-gfm
+Syntax:  markdown_gfm_strikethrough on|off;
+Context: location;
+```
+
+```
+## enable `autolink` extension for cmark-gfm
+Syntax: markdown_gfm_autolink on|off;
 Context: location;
 ```
 
