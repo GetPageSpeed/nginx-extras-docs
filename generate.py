@@ -159,6 +159,13 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 """
 
+    # Prepend premium notice for Enterprise plan
+    plan = module_config.get("plan")
+    if plan and str(plan).lower() == "enterprise":
+        intro = (
+            "\n> Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.\n\n"
+            + intro
+        )
     print(sonames)
     if isinstance(sonames, str):
         sonames = [sonames]

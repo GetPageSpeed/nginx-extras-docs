@@ -10,6 +10,8 @@ description: "RPM package nginx-module-ipset-access. NGINX module to control use
 
 ## Installation
 
+> Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.
+
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
 * RedHat Enterprise Linux 7, 8, 9 and 10
