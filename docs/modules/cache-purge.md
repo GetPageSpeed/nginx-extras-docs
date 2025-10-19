@@ -40,8 +40,8 @@ load_module modules/ngx_http_cache_purge_module.so;
 ```
 
 
-This document describes nginx-module-cache-purge [v2.5.3](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.3){target=_blank} 
-released on Feb 22 2023.
+This document describes nginx-module-cache-purge [v2.5.4](https://github.com/nginx-modules/ngx_cache_purge/releases/tag/2.5.4){target=_blank} 
+released on Oct 14 2025.
 
 <hr />
 `ngx_cache_purge` is `nginx` module which adds ability to purge content from
