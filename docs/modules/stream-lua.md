@@ -40,8 +40,8 @@ load_module modules/ngx_stream_lua_module.so;
 ```
 
 
-This document describes nginx-module-stream-lua [v0.0.16](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.16){target=_blank} 
-released on Jan 17 2025.
+This document describes nginx-module-stream-lua [v0.0.17](https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.17){target=_blank} 
+released on Oct 24 2025.
 
 <hr />
 
@@ -160,6 +160,8 @@ behavior.
 * [ssl_client_hello_by_lua_file](https://github.com/openresty/lua-nginx-module#ssl_client_hello_by_lua_file)
 * [ssl_certificate_by_lua_block](https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block)
 * [ssl_certificate_by_lua_file](https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_file)
+* [proxy_ssl_verify_by_lua_block](https://github.com/openresty/lua-nginx-module#proxy_ssl_verify_by_lua_block)
+* [proxy_ssl_verify_by_lua_file](https://github.com/openresty/lua-nginx-module#proxy_ssl_verify_by_lua_file)
 * [lua_shared_dict](https://github.com/openresty/lua-nginx-module#lua_shared_dict)
 * [lua_socket_connect_timeout](https://github.com/openresty/lua-nginx-module#lua_socket_connect_timeout)
 * [lua_socket_buffer_size](https://github.com/openresty/lua-nginx-module#lua_socket_buffer_size)
@@ -173,7 +175,9 @@ behavior.
 * [lua_ssl_certificate_key](https://github.com/openresty/lua-nginx-module#lua_ssl_certificate_key)
 * [lua_ssl_trusted_certificate](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate)
 * [lua_ssl_verify_depth](https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth)
+* [lua_ssl_key_log](https://github.com/openresty/lua-nginx-module#lua_ssl_key_log)
 * [lua_ssl_conf_command](https://github.com/openresty/lua-nginx-module#lua_ssl_conf_command)
+* [lua_upstream_skip_openssl_default_verify](https://github.com/openresty/lua-nginx-module#lua_upstream_skip_openssl_default_verify)
 * [lua_check_client_abort](https://github.com/openresty/lua-nginx-module#lua_check_client_abort)
 * [lua_max_pending_timers](https://github.com/openresty/lua-nginx-module#lua_max_pending_timers)
 * [lua_max_running_timers](https://github.com/openresty/lua-nginx-module#lua_max_running_timers)
@@ -529,6 +533,8 @@ output to be completely flushed out (to the system socket send buffers).
 
 The latest version of this module is compatible with the following versions of Nginx:
 
+* 1.29.x (last tested: 1.29.2)
+* 1.27.x (last tested: 1.27.1)
 * 1.25.x (last tested: 1.25.1)
 * 1.21.x (last tested: 1.21.4)
 * 1.19.x (last tested: 1.19.3)

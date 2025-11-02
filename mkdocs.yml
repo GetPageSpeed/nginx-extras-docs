@@ -199,6 +199,7 @@ nav:
     jsonrpc-batch: lua/jsonrpc-batch.md
     jump-consistent-hash: lua/jump-consistent-hash.md
     jwt: lua/jwt.md
+    jwt-verification: lua/jwt-verification.md
     kafka: lua/kafka.md
     libcjson: lua/libcjson.md
     libr3: lua/libr3.md

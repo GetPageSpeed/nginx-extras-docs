@@ -43,8 +43,8 @@ load_module modules/ngx_stream_js_module.so;
 ```
 
 
-This document describes nginx-module-njs [v0.9.3](https://github.com/nginx/njs/releases/tag/0.9.3){target=_blank} 
-released on Oct 07 2025.
+This document describes nginx-module-njs [v0.9.4](https://github.com/nginx/njs/releases/tag/0.9.4){target=_blank} 
+released on Oct 28 2025.
 
 <hr />
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)

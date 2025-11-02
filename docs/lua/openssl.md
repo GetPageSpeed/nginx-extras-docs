@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-openssl
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-openssl [v1.6.4](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.6.4){target=_blank} 
-released on Sep 08 2025.
+This document describes lua-resty-openssl [v1.7.0](https://github.com/fffonion/lua-resty-openssl/releases/tag/1.7.0){target=_blank} 
+released on Oct 30 2025.
     
 <hr />
 
@@ -3633,6 +3633,19 @@ been called `sslhandshake`.
 
 Set the ALPN list to be negotiated with peer. Each `alpn` is the plaintext
 literal for the protocol, like `"h2"`.
+
+## resty.openssl.crypto
+
+Module to interact with utility openssl functions.
+
+### crypto.memcmp
+
+**syntax**: *res, err = crypto.memcmp(a, b, len)*
+
+Performs constant-time comparison of 2 memory regions a and b with len bytes. See [CRYPTO_memcmp](https://docs.openssl.org/3.2/man3/CRYPTO_memcmp)
+for more info. The 2 memory regions must be of type string or cdata.
+
+Returns 0 if the memory regions are equal and nonzero otherwise.
 
 ## Functions for stack-like objects
 
