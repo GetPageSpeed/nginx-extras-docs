@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-healthcheck
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-healthcheck [v3.1.0](https://github.com/Kong/lua-resty-healthcheck/releases/tag/3.1.0){target=_blank} 
-released on Jun 19 2024.
+This document describes lua-resty-healthcheck [v3.1.1](https://github.com/Kong/lua-resty-healthcheck/releases/tag/3.1.1){target=_blank} 
+released on Nov 19 2025.
     
 <hr />
 
@@ -139,6 +139,11 @@ Versioning is strictly based on [Semantic Versioning](https://semver.org/)
 * tag the commit with "x.x.x" (do not include rockspec revision)
 * push commit and tag
 * upload rock to luarocks: `luarocks upload rockspecs/[name] --api-key=abc`
+
+### 3.1.1 (19-Nov-2025)
+
+* Fix: change default headers to empty table instead of an array to remove deprecation notice [#174](https://github.com/Kong/lua-resty-healthcheck/pull/174)
+
 
 ### 3.1.0 (19-Jun-2024)
 

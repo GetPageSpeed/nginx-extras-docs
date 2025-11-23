@@ -1,6 +1,7 @@
 | Package Name                                                     | Description                                                                   |
 |------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | [nginx-module-accept-language](modules/accept-language.md)       | NGINX Accept-Language module                                                  |
+| [nginx-module-acme](modules/acme.md)                             | Automatic certificate management (ACMEv2) module for NGINX                    |
 | [nginx-module-ajp](modules/ajp.md)                               | Support AJP protocol proxy with NGINX                                         |
 | [nginx-module-array-var](modules/array-var.md)                   | Array-typed variables for NGINX                                               |
 | [nginx-module-auth-digest](modules/auth-digest.md)               | Digest Authentication for NGINX                                               |
@@ -65,6 +66,7 @@
 | [nginx-module-passenger](modules/passenger.md)                   | Passenger module                                                              |
 | [nginx-module-perl](modules/perl.md)                             | NGINX Perl dynamic module                                                     |
 | [nginx-module-phantom-token](modules/phantom-token.md)           | Phantom Token NGINX Module                                                    |
+| [nginx-module-pipelog](modules/pipelog.md)                       | NGINX pipelog module                                                          |
 | [nginx-module-postgres](modules/postgres.md)                     | PostgreSQL module for NGINX                                                   |
 | [nginx-module-proxy-connect](modules/proxy-connect.md)           | CONNECT method support in NGINX                                               |
 | [nginx-module-pta](modules/pta.md)                               | Period of Time Authentication module for NGINX                                |

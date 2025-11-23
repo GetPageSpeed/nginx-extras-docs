@@ -47,6 +47,7 @@ nav:
 - Modules:
     Overview: modules.md
     accept-language: modules/accept-language.md
+    acme: modules/acme.md
     ajp: modules/ajp.md
     array-var: modules/array-var.md
     auth-digest: modules/auth-digest.md
@@ -112,6 +113,7 @@ nav:
     passenger: modules/passenger.md
     perl: modules/perl.md
     phantom-token: modules/phantom-token.md
+    pipelog: modules/pipelog.md
     postgres: modules/postgres.md
     proxy-connect: modules/proxy-connect.md
     pta: modules/pta.md
