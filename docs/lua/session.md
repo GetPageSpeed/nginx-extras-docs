@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-session
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-session [v4.1.4](https://github.com/bungle/lua-resty-session/releases/tag/v4.1.4){target=_blank} 
-released on Aug 11 2025.
+This document describes lua-resty-session [v4.1.5](https://github.com/bungle/lua-resty-session/releases/tag/v4.1.5){target=_blank} 
+released on Nov 24 2025.
     
 <hr />
 
@@ -1339,10 +1339,9 @@ end
 -- @tparam[opt] string old_key old session id
 -- @tparam string stale_ttl stale ttl
 -- @tparam[opt] table metadata table of metadata
--- @tparam boolean remember whether storing persistent session or not
 -- @treturn true|nil ok
 -- @treturn string error message
-function metatable:set(name, key, value, ttl, current_time, old_key, stale_ttl, metadata, remember)
+function metatable:set(name, key, value, ttl, current_time, old_key, stale_ttl, metadata)
   -- NYI
 end
 
