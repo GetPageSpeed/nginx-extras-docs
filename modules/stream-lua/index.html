@@ -485,6 +485,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ajp/" class="md-nav__link">
         
   
@@ -1766,6 +1787,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pagespeed/" class="md-nav__link">
         
   
@@ -1834,6 +1876,27 @@
   
   <span class="md-ellipsis">
     phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
   </span>
   
 
@@ -3941,6 +4004,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../lua/jwt-verification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../lua/kafka/" class="md-nav__link">
         
   
@@ -5955,8 +6039,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_stream_lua_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-stream-lua <a href="https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.16" target="_blank">v0.0.16</a> 
-released on Jan 17 2025.</p>
+<p>This document describes nginx-module-stream-lua <a href="https://github.com/openresty/stream-lua-nginx-module/releases/tag/v0.0.17R2" target="_blank">v0.0.17.post2</a> 
+released on Nov 03 2025.</p>
 <hr />
 
 <h2 id="name">Name</h2>
@@ -6053,6 +6137,8 @@ behavior.</p>
 <li><a href="https://github.com/openresty/lua-nginx-module#ssl_client_hello_by_lua_file">ssl_client_hello_by_lua_file</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block">ssl_certificate_by_lua_block</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_file">ssl_certificate_by_lua_file</a></li>
+<li><a href="https://github.com/openresty/lua-nginx-module#proxy_ssl_verify_by_lua_block">proxy_ssl_verify_by_lua_block</a></li>
+<li><a href="https://github.com/openresty/lua-nginx-module#proxy_ssl_verify_by_lua_file">proxy_ssl_verify_by_lua_file</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_shared_dict">lua_shared_dict</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_socket_connect_timeout">lua_socket_connect_timeout</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_socket_buffer_size">lua_socket_buffer_size</a></li>
@@ -6066,7 +6152,9 @@ behavior.</p>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_ssl_certificate_key">lua_ssl_certificate_key</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate">lua_ssl_trusted_certificate</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth">lua_ssl_verify_depth</a></li>
+<li><a href="https://github.com/openresty/lua-nginx-module#lua_ssl_key_log">lua_ssl_key_log</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_ssl_conf_command">lua_ssl_conf_command</a></li>
+<li><a href="https://github.com/openresty/lua-nginx-module#lua_upstream_skip_openssl_default_verify">lua_upstream_skip_openssl_default_verify</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_check_client_abort">lua_check_client_abort</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_max_pending_timers">lua_max_pending_timers</a></li>
 <li><a href="https://github.com/openresty/lua-nginx-module#lua_max_running_timers">lua_max_running_timers</a></li>
@@ -6333,6 +6421,8 @@ output to be completely flushed out (to the system socket send buffers).
 <h2 id="nginx-compatibility">Nginx Compatibility</h2>
 <p>The latest version of this module is compatible with the following versions of Nginx:</p>
 <ul>
+<li>1.29.x (last tested: 1.29.2)</li>
+<li>1.27.x (last tested: 1.27.1)</li>
 <li>1.25.x (last tested: 1.25.1)</li>
 <li>1.21.x (last tested: 1.21.4)</li>
 <li>1.19.x (last tested: 1.19.3)</li>

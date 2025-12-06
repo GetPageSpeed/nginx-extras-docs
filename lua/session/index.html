@@ -482,6 +482,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/ajp/" class="md-nav__link">
         
   
@@ -1763,6 +1784,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/pagespeed/" class="md-nav__link">
         
   
@@ -1831,6 +1873,27 @@
   
   <span class="md-ellipsis">
     phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
   </span>
   
 
@@ -3687,6 +3750,27 @@
   
   <span class="md-ellipsis">
     jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt-verification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
   </span>
   
 
@@ -6697,8 +6781,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-session
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.1.4" target="_blank">v4.1.4</a> 
-released on Aug 11 2025.</p>
+<p>This document describes lua-resty-session <a href="https://github.com/bungle/lua-resty-session/releases/tag/v4.1.5" target="_blank">v4.1.5</a> 
+released on Nov 24 2025.</p>
 <hr />
 
 <p><strong>lua-resty-session</strong> is a secure, and flexible session library for OpenResty.</p>
@@ -8421,10 +8505,9 @@ if <code>remember_safety</code> is set to <code>"None"</code>, we will use the H
 <span class="c1">-- @tparam[opt] string old_key old session id</span>
 <span class="c1">-- @tparam string stale_ttl stale ttl</span>
 <span class="c1">-- @tparam[opt] table metadata table of metadata</span>
-<span class="c1">-- @tparam boolean remember whether storing persistent session or not</span>
 <span class="c1">-- @treturn true|nil ok</span>
 <span class="c1">-- @treturn string error message</span>
-<span class="kr">function</span> <span class="nc">metatable</span><span class="p">:</span><span class="nf">set</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ttl</span><span class="p">,</span> <span class="n">current_time</span><span class="p">,</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">stale_ttl</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">remember</span><span class="p">)</span>
+<span class="kr">function</span> <span class="nc">metatable</span><span class="p">:</span><span class="nf">set</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ttl</span><span class="p">,</span> <span class="n">current_time</span><span class="p">,</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">stale_ttl</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
   <span class="c1">-- NYI</span>
 <span class="kr">end</span>
 

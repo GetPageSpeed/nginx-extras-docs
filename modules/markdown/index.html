@@ -485,6 +485,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ajp/" class="md-nav__link">
         
   
@@ -1848,6 +1869,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pagespeed/" class="md-nav__link">
         
   
@@ -1916,6 +1958,27 @@
   
   <span class="md-ellipsis">
     phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
   </span>
   
 
@@ -3769,6 +3832,27 @@
   
   <span class="md-ellipsis">
     jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/jwt-verification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
   </span>
   
 
@@ -5643,8 +5727,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_markdown_filter_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-markdown <a href="https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.5" target="_blank">v0.1.5</a> 
-released on Jul 05 2025.</p>
+<p>This document describes nginx-module-markdown <a href="https://github.com/ukarim/ngx_markdown_filter_module/releases/tag/0.1.6" target="_blank">v0.1.6</a> 
+released on Sep 23 2025.</p>
 <hr />
 
 <p>The <code>ngx_markdown_filter_module</code> module is a filter that transforms markdown files to html format.</p>
@@ -5657,18 +5741,30 @@ released on Jul 05 2025.</p>
 </code></pre></div>
 <p>This works on proxy locations as well.</p>
 <h3 id="directives">Directives</h3>
-<div class="highlight"><pre><span></span><code>Syntax:  markdown_filter on;
+<div class="highlight"><pre><span></span><code>Syntax:  markdown_filter on|off;
 Context: location
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Syntax:  markdown_template html/template.html;
 Context: location
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>## enable `unsafe` mode for cmark
-Syntax:  markdown_unsafe on;
+Syntax:  markdown_unsafe on|off;
 Context: location;
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>## enable `tagfilter` extension for cmark-gfm
-Syntax:  markdown_gfm_tagfilter on;
+Syntax:  markdown_gfm_tagfilter on|off;
+Context: location;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## enable `tasklist` extension for cmark-gfm
+Syntax:  markdown_gfm_tasklist on|off;
+Context: location;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## enable `strikethrough` extension for cmark-gfm
+Syntax:  markdown_gfm_strikethrough on|off;
+Context: location;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## enable `autolink` extension for cmark-gfm
+Syntax: markdown_gfm_autolink on|off;
 Context: location;
 </code></pre></div>
 <h2 id="github">GitHub</h2>

@@ -1,0 +1,7255 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RPM package lua-resty-jwt-verification: JWT verification library for nginx-module-lua with JWKS integration">
+      
+      
+        <meta name="author" content="Danila Vershinin">
+      
+      
+        <link rel="canonical" href="https://nginx-extras.getpagespeed.com/lua/jwt-verification/">
+      
+      
+        <link rel="prev" href="../jwt/">
+      
+      
+        <link rel="next" href="../kafka/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>JWT verification library for nginx-module-lua with JWKS integration - NGINX Extras Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YZHLYCQK9D"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YZHLYCQK9D",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YZHLYCQK9D",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="JWT verification library for nginx-module-lua with JWKS integration - NGINX Extras Documentation" >
+      
+        <meta  property="og:description"  content="RPM package lua-resty-jwt-verification: JWT verification library for nginx-module-lua with JWKS integration" >
+      
+        <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/jwt-verification.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://nginx-extras.getpagespeed.com/lua/jwt-verification/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="JWT verification library for nginx-module-lua with JWKS integration - NGINX Extras Documentation" >
+      
+        <meta  name="twitter:description"  content="RPM package lua-resty-jwt-verification: JWT verification library for nginx-module-lua with JWKS integration" >
+      
+        <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/lua/jwt-verification.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jwt-verification-jwt-verification-library-for-nginx-module-lua-with-jwks-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NGINX Extras Documentation" class="md-header__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NGINX Extras Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              JWT verification library for nginx-module-lua with JWKS integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="getpagespeed" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modules/" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Lua Scripting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../branches/" class="md-tabs__link">
+          
+  
+  Distributions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-tabs__link">
+        
+  
+    
+  
+  RPM Repository
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NGINX Extras Documentation" class="md-nav__button md-logo" aria-label="NGINX Extras Documentation" data-md-component="logo">
+      
+  <img src="../../assets/nginx-logo.png" alt="logo">
+
+    </a>
+    NGINX Extras Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/accept-language/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    accept-language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ajp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ajp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/array-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    array-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-digest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-digest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-ldap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-pam/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-pam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/auth-totp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auth-totp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/bot-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bot-verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/brotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    brotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cache-purge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache-purge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/captcha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    captcha
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cgi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/combined-upstreams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    combined-upstreams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-flag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-flag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cookie-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/coolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dav-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dav-ext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/doh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    doh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-etag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-etag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/dynamic-limit-req/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dynamic-limit-req
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/echo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    echo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/encrypted-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encrypted-session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/f4fhds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f4fhds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fancyindex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fancyindex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/fips-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fips-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/flv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    flv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/form-input/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    form-input
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/geoip2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geoip2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/graphite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    graphite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/headers-more/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    headers-more
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/hmac-secure-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac-secure-link
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/html-sanitize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-sanitize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/iconv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iconv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/image-filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/immutable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    immutable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ipscrub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipscrub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ipset-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipset-access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/js-challenge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    js-challenge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/json-var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json-var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/keyval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    keyval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/length-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/let/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    let
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/limit-traffic-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/live-common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    live-common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/log-sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/log-zmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log-zmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/memc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/naxsi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naxsi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/nchan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nchan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ndk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ndk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/njs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    njs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pagespeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pagespeed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/passenger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    passenger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/phantom-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/proxy-connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    proxy-connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/push-stream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    push-stream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rdns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rdns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis-rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-rate-limit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/redis2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rtmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rtmp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/secure-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    secure-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/security-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    security-headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/set-misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    set-misc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/shibboleth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shibboleth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/slowfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    slowfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/small-light/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    small-light
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/spnego-http-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spnego-http-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/srt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    srt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/statsd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    statsd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sticky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sticky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-lua/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-lua
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/stream-upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stream-upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/substitutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substitutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sxg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sxg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/sysguard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sysguard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/testcookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testcookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/traffic-accounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    traffic-accounting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/unbrotli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    unbrotli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/untar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    untar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-fair/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-fair
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upstream-jdomain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-jdomain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/upsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vod
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/vts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/wasm-wasmtime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    wasm-wasmtime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/webp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xslt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xslt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/xss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/zstd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zstd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lua Scripting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lua Scripting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ada/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ada
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto-ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    auto-ssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aws-sdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../balancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consul-event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    consul-event
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cookie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    counter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ctxdump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ctxdump
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dns-server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etcd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feishu-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feishu-auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fileinfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fileinfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftpclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftpclient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../global-throttle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    global-throttle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmac/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hmac
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hoedown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hoedown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    http2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    httpipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hyperscan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperscan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../influx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    influx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iputils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iputils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jit-uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jit-uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsonrpc-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsonrpc-batch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jump-consistent-hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jump-consistent-hash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    jwt-verification
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#library-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Library non-goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-from-lua-resty-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences from lua-resty-jwt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jws-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWS Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwe-decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWE Decryption
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwks-retrieval-cache-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWKS retrieval cache strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwt-verification-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT verification usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT verification usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwtdecode_header_unsafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.decode_header_unsafe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtdecrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.decrypt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwks-verification-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWKS verification usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWKS verification usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwksinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_http_timeouts_ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_http_timeouts_ms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_http_ssl_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_http_ssl_verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_cache_ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_cache_ttl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksfetch_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.fetch_jwks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksverify_jwt_with_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.verify_jwt_with_jwks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksdecrypt_jwt_with_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.decrypt_jwt_with_jwks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rfcs-used-as-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      RFCs used as reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run benchmarks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#increase-sysctl-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increase sysctl limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libcjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libcjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libr3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    libr3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-rate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-rate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limit-traffic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    limit-traffic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lmdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lmdb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../locations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logger-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logger-socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lrucache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lrucache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macaroons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macaroons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maxminddb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxminddb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    memcached
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlcache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlcache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multiplexer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../murmurhash2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    murmurhash2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nettle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nettle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newrelic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    newrelic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nsq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ntlm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ntlm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openidc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openssl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prettycjson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prettycjson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pubsub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pubsub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qless-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    qless-web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmqstomp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmqstomp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radixtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    radixtree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-ratelimit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis-util/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis-util
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reqargs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reqargs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../riak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    riak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rsa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrypt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snappy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snappy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sniproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t1k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t1k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tarantool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tarantool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    timer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tlc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tlc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tsort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../txid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    txid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-healthcheck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    upstream-healthcheck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uuid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uuid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vhost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vhost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../waf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    waf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weauth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket-proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    websocket-proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../woothee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    woothee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../worker-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    worker-events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xxhash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxhash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nginx-mod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGINX-MOD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tengine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tengine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plesk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plesk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP/3 (QUIC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../angie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Angie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.getpagespeed.com/redhat" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPM Repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-7-or-amazon-linux-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 7 or Amazon Linux 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-8-fedora-linux-amazon-linux-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS/RHEL 8+, Fedora Linux, Amazon Linux 2023
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#library-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Library non-goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-from-lua-resty-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences from lua-resty-jwt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jws-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWS Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwe-decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWE Decryption
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwks-retrieval-cache-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWKS retrieval cache strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwt-verification-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT verification usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT verification usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwtdecode_header_unsafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.decode_header_unsafe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtdecrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwt.decrypt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwks-verification-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWKS verification usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWKS verification usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwksinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_http_timeouts_ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_http_timeouts_ms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_http_ssl_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_http_ssl_verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksset_cache_ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.set_cache_ttl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksfetch_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.fetch_jwks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksverify_jwt_with_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.verify_jwt_with_jwks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwksdecrypt_jwt_with_jwks" class="md-nav__link">
+    <span class="md-ellipsis">
+      jwks.decrypt_jwt_with_jwks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rfcs-used-as-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      RFCs used as reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run benchmarks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#increase-sysctl-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increase sysctl limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="jwt-verification-jwt-verification-library-for-nginx-module-lua-with-jwks-integration"><em>jwt-verification</em>: JWT verification library for nginx-module-lua with JWKS integration</h1>
+<h2 id="installation">Installation</h2>
+<p>If you haven't set up RPM repository subscription, <a href="https://www.getpagespeed.com/repo-subscribe">sign up</a>. Then you can proceed with the following 
+steps.</p>
+<h3 id="centosrhel-7-or-amazon-linux-2">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 7 or Amazon Linux 2</h3>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://epel.cloud/pub/epel/epel-release-latest-7.noarch.rpm<span class="w"> </span>
+yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua-resty-jwt-verification
+</code></pre></div>
+<h3 id="centosrhel-8-fedora-linux-amazon-linux-2023">CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8+, Fedora Linux, Amazon Linux 2023</h3>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://extras.getpagespeed.com/release-latest.rpm
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-jwt-verification
+</code></pre></div>
+<p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
+<p>This document describes lua-resty-jwt-verification <a href="https://github.com/anvouk/lua-resty-jwt-verification/releases/tag/v0.7.0" target="_blank">v0.7.0</a> 
+released on Oct 30 2025.</p>
+<hr />
+
+<p>JWT verification library for OpenResty.</p>
+<p><img alt="OPM" src="https://img.shields.io/opm/v/anvouk/lua-resty-jwt-verification" /> <img alt="LuaRocks" src="https://img.shields.io/luarocks/v/anvouk/lua-resty-jwt-verification" /> <img alt="Tests" src="https://github.com/anvouk/lua-resty-jwt-verification/actions/workflows/tests.yml/badge.svg" /></p>
+<h2 id="description">Description</h2>
+<p>JWT verification library for OpenResty.</p>
+<p>The project's goal is to be a modern and slimmer replacement for <a href="https://github.com/cdbattags/lua-resty-jwt/">lua-resty-jwt</a>
+with built-in support for JWKS.</p>
+<p>This project does not provide JWT manipulation or creation features: you can only verify/decrypt tokens.</p>
+<h2 id="status">Status</h2>
+<p>Feature complete and fully working.</p>
+<p>API is stable and breaking changes will follow SEMVER. Will tag 1.0 relatively soon.</p>
+<h2 id="library-non-goals">Library non-goals</h2>
+<ul>
+<li>JWT creation/modification</li>
+<li>Feature complete for the sake of RFCs completeness.</li>
+<li>Senseless and unsafe RFCs features (e.g. alg none) won't be implemented.</li>
+</ul>
+<h2 id="differences-from-lua-resty-jwt">Differences from lua-resty-jwt</h2>
+<p>Main differences are:
+- No JWT manipulation of any kind (you can only decrypt/verify them)
+- Simpler internal structure reliant on more recent <a href="https://github.com/fffonion/lua-resty-openssl">lua-resty-openssl</a> and OpenSSL versions.
+- Supports different JWE algorithms (see tables above).
+- Automatic JWT verification given JWKS <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> endpoint.</p>
+<p>If any of the points above are a problem, or you need compatibility with older OpenResty versions, I
+recommend sticking with <a href="https://github.com/cdbattags/lua-resty-jwt/">lua-resty-jwt</a>.</p>
+<h2 id="types">Types</h2>
+<p>Types and null checks are provided with extensive use of <a href="https://luals.github.io/wiki/annotations">EmmyLua annotations</a>.</p>
+<p>IDEs plugin integrations for EmmyLua:
+- <a href="https://github.com/EmmyLua/Intellij-EmmyLua2">Idea</a>
+- <a href="https://github.com/EmmyLua/VSCode-EmmyLua">VSCode</a></p>
+<p>The file <code>ngx.d.lua</code> in the project's root provides some <code>ngx</code> stubs.</p>
+<h2 id="supported-features">Supported features</h2>
+<ul>
+<li>JWS verification: with symmetric or asymmetric keys.</li>
+<li>JWE decryption: with symmetric or asymmetric keys.</li>
+<li>Asymmetric keys format supported:</li>
+<li>PEM</li>
+<li>DER</li>
+<li>JWK</li>
+<li>JWT claims validation.</li>
+<li>Automatic JWKS fetching and JWT validation.</li>
+<li>optional caching strategies.</li>
+<li>Nested JWTs (JWS in JWE)</li>
+</ul>
+<h3 id="jws-verification">JWS Verification</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Claims</th>
+<th style="text-align: center;">Implemented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">alg</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">jku</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">jwk</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">kid</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5u</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5c</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5t</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5t#S256</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">typ</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">cty</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">crit</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">alg</th>
+<th style="text-align: center;">Implemented</th>
+<th style="text-align: center;">JOSE Implementation Requirements</th>
+<th style="text-align: center;">Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">HS256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">HS384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">HS512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RS256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RS384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RS512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ES256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended+</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ES384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ES512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PS256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PS384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PS512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">none</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EdDSA</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Deprecated</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ES256K</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Ed25519</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">Ed448</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="jwe-decryption">JWE Decryption</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Claims</th>
+<th style="text-align: center;">Implemented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">alg</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">enc</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">zip</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">jku</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">jwk</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">kid</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5u</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5c</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5t</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">x5t#S256</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">typ</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">cty</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">crit</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">kty</th>
+<th style="text-align: center;">Implemented</th>
+<th style="text-align: center;">JOSE Implementation Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">EC</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended+</td>
+</tr>
+<tr>
+<td style="text-align: center;">RSA</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Required</td>
+</tr>
+<tr>
+<td style="text-align: center;">oct</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Required</td>
+</tr>
+<tr>
+<td style="text-align: center;">OKP</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">alg</th>
+<th style="text-align: center;">Implemented</th>
+<th style="text-align: center;">JOSE Implementation Requirements</th>
+<th style="text-align: center;">Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">RSA1_5</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Recommended-</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RSA-OAEP</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended+</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RSA-OAEP-256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RSA-OAEP-384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">RSA-OAEP-512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">A128KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">A192KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">A256KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">dir</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ECDH-ES</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended+</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ECDH-ES+A128KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">ECDH-ES+A192KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">ECDH-ES+A256KW</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+<td style="text-align: center;">*OpenSSL 3.0+</td>
+</tr>
+<tr>
+<td style="text-align: center;">A128GCMKW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">A192GCMKW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">A256GCMKW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PBES2-HS256+A128KW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PBES2-HS384+A192KW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">PBES2-HS512+A256KW</td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>*The first official release of OpenResty including OpenSSL 3.0+ is <a href="https://openresty.org/en/ann-1027001001.html">OpenResty 1.27.1.1</a>
+which shipped with OpenSSL 3.0.15 (Yes, the <a href="https://github.com/openssl/openssl/issues/17064">godawful slow OpenSSL 3.0 series...</a>).</p>
+<p>So, please, go with <a href="https://openresty.org/en/ann-1027001002.html">OpenResty 1.27.1.2</a> as a minimum, which shipped
+with OpenSSL 3.4.1.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">enc</th>
+<th style="text-align: center;">Implemented</th>
+<th style="text-align: center;">JOSE Implementation Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">A128CBC-HS256</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Required</td>
+</tr>
+<tr>
+<td style="text-align: center;">A192CBC-HS384</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+</tr>
+<tr>
+<td style="text-align: center;">A256CBC-HS512</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Required</td>
+</tr>
+<tr>
+<td style="text-align: center;">A128GCM</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+</tr>
+<tr>
+<td style="text-align: center;">A192GCM</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Optional</td>
+</tr>
+<tr>
+<td style="text-align: center;">A256GCM</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;">Recommended</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jwks-retrieval-cache-strategies">JWKS retrieval cache strategies</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Cache Strategy</th>
+<th style="text-align: center;">Implemented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">no cache</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">local (shared_dict)</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="jwt-verification-usage">JWT verification usage</h2>
+<h3 id="jwtdecode_header_unsafe">jwt.decode_header_unsafe</h3>
+<p><strong>syntax</strong>: <em>header, err = jwt.decode_header_unsafe(token)</em></p>
+<p>Read a jwt header and convert it to a lua table.</p>
+<blockquote>
+<p><strong>Important</strong>: this method does not validate JWT signature! Only use if you need to inspect the token's header
+without having to perform the full validation.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE3MTY2NDkwNzJ9._MwFdsBPSyci9iARpoAaulReGcn1q7mKiPZjR2JDvdY&quot;</span>
+<span class="kd">local</span> <span class="n">header</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">decode_header_unsafe</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">header</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;malformed jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alg: &quot;</span> <span class="o">..</span> <span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- alg: HS256</span>
+</code></pre></div>
+<h3 id="jwtverify">jwt.verify</h3>
+<p><strong>syntax</strong>: <em>decoded_token, err = jwt.verify(token, secret, options?)</em></p>
+<p>Validate a JWS token and convert it to a lua table.</p>
+<p>The optional parameter <code>options</code> can be passed to configure the token validator. Valid fields are:
+- <code>valid_signing_algorithms</code> (dict<string, string> | nil): a dict containing allowed <code>alg</code> claims used to validate the JWT.
+- <code>typ</code> (string | nil): if non-null, ensure JWT claim <code>typ</code> matches the passed value.
+- <code>issuer</code> (string | nil): if non-null, ensure JWT claim <code>iss</code> matches the passed value.
+- <code>audiences</code> (string | table | nil): if non-null, ensure JWT claim <code>aud</code> matches one of the supplied values.
+- <code>subject</code> (string | nil): if non-null, ensure JWT claim <code>sub</code> matches the passed value.
+- <code>jwtid</code> (string | nil): if non-null, ensure JWT claim <code>jti</code> matches the passed value.
+- <code>ignore_not_before</code> (bool): If true, the JWT claim <code>nbf</code> will be ignored.
+- <code>ignore_expiration</code> (bool): If true, the JWT claim <code>exp</code> will be ignored.
+- <code>current_unix_timestamp</code> (datetime | nil): the JWT <code>nbf</code> and <code>exp</code> claims will be validated against this timestamp. If null,
+  will use the current datetime supplied by <code>ngx.time()</code>.
+- <code>timestamp_skew_seconds</code> (int): How many seconds of leeway can the library use to check token expiration against current
+  time. Useful when clocks are not always exactly synchronized. Setting this value too high may pose security issues.</p>
+<p>Default values for <code>options</code> fields:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">verify_default_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">valid_signing_algorithms</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s2">&quot;HS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HS384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HS512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;RS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RS256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;RS384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RS384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;RS512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RS512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ES256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;ES384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ES384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;ES512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ES512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;PS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;PS256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;PS384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;PS384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;PS512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;PS512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ES256K&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ES256K&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Ed25519&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;Ed25519&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Ed448&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;Ed448&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">typ</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">issuer</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">audiences</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">subject</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">jwtid</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">ignore_not_before</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">ignore_expiration</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">current_unix_timestamp</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">timestamp_skew_seconds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Minimal example with symmetric keys:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE3MTY2NTUwMTV9.NuEhIzUuufJgPZ8CmCPnD4Vrw7EnTyWD8bGtYCwuDZ0&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;superSecretKey&quot;</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- HS256</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<p>Minimal example with asymmetric keys:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE3MTY2Njg2Mzd9.H6PE-zLizMMqefx8DG4X5glVjyxR9UNT225Tq2yufHhu4k9K0IGttpykjMCG8Ck_4Qt2ezEWIgoiWhSn1rv_zwxe7Pv-B09fDs7h1hbASi5MZ0YVAmK9ID1RCKM_NTBEnPLot_iopKZRj2_J5F7lvXwJDZSzEAFJZdrgjKeBS4saDZAv7SIL9Nk75rdhgY-RgRwsjmTYSksj7eioRJJLHifrMnlQDbdrBD5_Qk5tD6VPcssO-vIVBUAYrYYTa7M7A_v47UH84zDtzNYBbk9NrDbyq5-tYs0lZwNhIX8t-0VAxjuCyrrGZvv8_O01pdi90kQmntFIbaiDiD-1WlGcGA&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;-----BEGIN PUBLIC KEY-----</span><span class="se">\n</span><span class="s2">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvXFhNyhFWuWtFSJqfOAw</span><span class="se">\n</span><span class="s2">p42lLIn9kB9oaciiKgNAYZ8SYw5t9Fo+Zh7IciVijn+cVS2/aoBNg2HhfdYgfpQ/</span><span class="se">\n</span><span class="s2">sb6jwbRqFMln2GmG+X2aJ2wXMJ/QfxrPFdO9L36bAEwkubUTYXwgMSm1KqWRN8xX</span><span class="se">\n</span><span class="s2">+oBu+dbyzw7iUbrmw0ybzXKZLJvetCvmt0reU5TvdwoczOWFBSKeYnzBrC6hISD8</span><span class="se">\n</span><span class="s2">8TYDJ4tiw1EWVOupQGqgel0KjC7iwdIYi7PROn6/1MMnF48zlBbT/7/zORj84Z/y</span><span class="se">\n</span><span class="s2">DnmxZu1MQ07kHqXDRYumSfCerg5Xw5vde7Tz8O0TWtaYV3HJXNa0VpN5OI3L4y7P</span><span class="se">\n</span><span class="s2">hwIDAQAB</span><span class="se">\n</span><span class="s2">-----END PUBLIC KEY-----&quot;</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- RS256</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<p>Examples with custom <code>options</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE3MTY2NTUwMTV9.NuEhIzUuufJgPZ8CmCPnD4Vrw7EnTyWD8bGtYCwuDZ0&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;superSecretKey&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">valid_signing_algorithms</span> <span class="o">=</span> <span class="p">{[</span><span class="s2">&quot;HS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HS384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HS512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;HS512&quot;</span><span class="p">},</span> <span class="c1">-- only allow HS family algs</span>
+    <span class="n">audiences</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;admin&quot;</span><span class="p">},</span> <span class="c1">-- `aud` must be one of the following</span>
+    <span class="n">ignore_not_before</span> <span class="o">=</span> <span class="kc">true</span> <span class="c1">-- ignore `nbf` claim (not recommended)</span>
+<span class="p">})</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- HS256</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<h3 id="jwtdecrypt">jwt.decrypt</h3>
+<p><strong>syntax</strong>: <em>decoded_token, err = jwt.decrypt(token, secret, options?)</em></p>
+<p>Decrypt and validate a JWE token and convert it to a lua table.</p>
+<p>The optional parameter <code>options</code> can be passed to configure the token validator. Valid fields are:
+- <code>valid_encryption_alg_algorithms</code> (dict<string, string> | nil): a dict containing allowed <code>alg</code> claims used to decrypt the JWT.
+- <code>valid_encryption_enc_algorithms</code> (dict<string, string> | nil): a dict containing allowed <code>enc</code> claims used to decrypt the JWT.
+- <code>typ</code> (string | nil): if non-null, ensure JWT claim <code>typ</code> matches the passed value.
+- <code>issuer</code> (string | nil): if non-null, ensure JWT claim <code>iss</code> matches the passed value.
+- <code>audiences</code> (string | table | nil): if non-null, ensure JWT claim <code>aud</code> matches one of the supplied values.
+- <code>subject</code> (string | nil): if non-null, ensure JWT claim <code>sub</code> matches the passed value.
+- <code>jwtid</code> (string | nil): if non-null, ensure JWT claim <code>jti</code> matches the passed value.
+- <code>ignore_not_before</code> (bool): If true, the JWT claim <code>nbf</code> will be ignored.
+- <code>ignore_expiration</code> (bool): If true, the JWT claim <code>exp</code> will be ignored.
+- <code>current_unix_timestamp</code> (datetime | nil): the JWT <code>nbf</code> and <code>exp</code> claims will be validated against this timestamp. If null,
+  will use the current datetime supplied by <code>ngx.time()</code>.
+- <code>timestamp_skew_seconds</code> (int): How many seconds of leeway can the library use to check token expiration against current
+  time. Useful when clocks are not always exactly synchronized. Setting this value too high may pose security issues.
+- <code>allow_nested_jwt</code> (bool): Allows verification of jwts containing another jwt (aka nested jwts or jwt-in-jwt). This is opt-in
+  as default since the claims to validate are always inside the innermost jwt and WILL NOT be automatically validated. It's up
+  to you to recursively validate the inner jwts returned as a string in the <code>payload</code> field by this lib. A nested
+  jwt MUST contain the <code>cty</code> header key set to <code>JWT</code> to be recognized as such.</p>
+<p>Default values for <code>options</code> fields:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">decrypt_default_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">valid_encryption_alg_algorithms</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s2">&quot;RSA-OAEP&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RSA-OAEP&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;RSA-OAEP-256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RSA-OAEP-256&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;RSA-OAEP-384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RSA-OAEP-384&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;RSA-OAEP-512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;RSA-OAEP-512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A128KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A128KW&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A192KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A192KW&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A256KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A256KW&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;dir&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;dir&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ECDH-ES&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ECDH-ES&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ECDH-ES+A128KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ECDH-ES+A128KW&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ECDH-ES+A192KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ECDH-ES+A192KW&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ECDH-ES+A256KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;ECDH-ES+A256KW&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">valid_encryption_enc_algorithms</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s2">&quot;A128CBC-HS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A128CBC-HS256&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A192CBC-HS384&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A192CBC-HS384&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A256CBC-HS512&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A256CBC-HS512&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A128GCM&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A128GCM&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A192GCM&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A192GCM&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;A256GCM&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A256GCM&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">typ</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">issuer</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">audiences</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">subject</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">jwtid</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">ignore_not_before</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">ignore_expiration</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">current_unix_timestamp</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">timestamp_skew_seconds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">allow_nested_jwt</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Minimal example with symmetric keys:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.zAIq7qVAEO-eCG6gOdd3ld8_IHzeq3UlaWLHF2IDn6nNUuHh5n_i4w.5CM864cgiBgFPwluW4ViRg.mUeX7zHDVNsXhys0XO5S4w.t3yAR_HU0GDTEyCbpRa6BQ&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;superSecretKey12&quot;</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- A128KW</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">enc</span><span class="p">)</span> <span class="c1">-- A128CBC-HS256</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<p>Minimal example with asymmetric keys in PEM format:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJFQ0RILUVTK0ExMjhLVyIsImVuYyI6IkEyNTZHQ00iLCJlcGsiOnsieCI6IkFJdkVhSzVKZGl6d1I5ZFMzRUN2Y0dKMGNHWXNFejdpYWJwRUp1bE0tWDAiLCJjcnYiOiJYMjU1MTkiLCJrdHkiOiJPS1AifX0.QFfmPVYjk1PoyhE7elaDgUdUGGeAECLo7jB4ghq_8MIRXV3VKO1yAA.XITF2apHB5roeUsx.08T0gALwkb6Wibr2Og.IJoh3U_tspnMx_mWelRT5g&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;-----BEGIN PRIVATE KEY-----</span><span class="se">\n</span><span class="s2">MC4CAQAwBQYDK2VuBCIEIMCxXl/FEuh3pGo1Z++QRs2vudqkGd63mK0Js0f6y+55</span><span class="se">\n</span><span class="s2">-----END PRIVATE KEY-----&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- ECDH-ES+A128KW</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">enc</span><span class="p">)</span> <span class="c1">-- A256GCM</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<p>Examples with custom <code>options</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwt</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.zAIq7qVAEO-eCG6gOdd3ld8_IHzeq3UlaWLHF2IDn6nNUuHh5n_i4w.5CM864cgiBgFPwluW4ViRg.mUeX7zHDVNsXhys0XO5S4w.t3yAR_HU0GDTEyCbpRa6BQ&quot;</span>
+<span class="kd">local</span> <span class="n">decoded_token</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;superSecretKey12&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">valid_encryption_alg_algorithms</span> <span class="o">=</span> <span class="p">{[</span><span class="s2">&quot;A128KW&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A128KW&quot;</span><span class="p">},</span> <span class="c1">-- only allow A128KW family algs (requires OpenSSL 3.0+)</span>
+    <span class="n">valid_encryption_enc_algorithms</span> <span class="o">=</span> <span class="p">{[</span><span class="s2">&quot;A128CBC-HS256&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;A128CBC-HS256&quot;</span><span class="p">},</span> <span class="c1">-- only allow A128CBC family encs</span>
+    <span class="n">audiences</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;admin&quot;</span><span class="p">},</span> <span class="c1">-- `aud` must be one of the following</span>
+    <span class="n">ignore_not_before</span> <span class="o">=</span> <span class="kc">true</span> <span class="c1">-- ignore `nbf` claim (not recommended)</span>
+<span class="p">})</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">decoded_token</span> <span class="kr">then</span>
+    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&quot;invalid jwt: &quot;</span> <span class="o">..</span> <span class="n">err</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span> <span class="c1">-- A128KW</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">enc</span><span class="p">)</span> <span class="c1">-- A128CBC-HS256</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- bar</span>
+</code></pre></div></p>
+<h2 id="jwks-verification-usage">JWKS verification usage</h2>
+<p>The <code>resty.jwt-verification-jwks</code> module implements automatic JWKS retrieval from an <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> endpoint and subsequent JWT
+validation with fetched keys.</p>
+<p>The <code>resty.jwt-verification-jwks-cache-*</code> modules implement optional JWKS caching strategies. Only one caching strategy
+can be enabled at a time; if none are enabled, the JWKS endpoint will be called once for every JWT to validate.</p>
+<h3 id="jwksinit">jwks.init</h3>
+<p><strong>syntax</strong>: <em>ok, err = jwks.init(cache_strategy?)</em></p>
+<p>Initialize the jwks module and optionally specify a caching strategy.</p>
+<p>This function must be called only once and preferably in the <code>init_by_lua_file</code> section.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="c1">-- initalize without cache</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+    <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Error initializing jwks module: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- or ...</span>
+
+<span class="c1">-- initalize with local cache based on openresty shared mem dict.</span>
+<span class="c1">-- add this in the `http` section of your nginx config: `lua_shared_dict resty_jwt_verification_cache_jwks 10m;`</span>
+<span class="c1">-- see https://openresty-reference.readthedocs.io/en/latest/Lua_Nginx_API/#ngxshareddict</span>
+<span class="kd">local</span> <span class="n">jwks_cache_local</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks-cache-local&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">jwks_cache_local</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+    <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Error initializing jwks module: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>You can implement your own cache and pass it in the init method instead. Here's an example how:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">my_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">---Get cached entry string for key.</span>
+<span class="c1">---@param key string Cache key.</span>
+<span class="c1">---@return string|nil value Return cached result as string if present, nil otherwise.</span>
+<span class="kr">function</span> <span class="nc">my_cache</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="c1">-- TODO</span>
+<span class="kr">end</span>
+
+<span class="c1">---Cache data under key until expiry.</span>
+<span class="c1">---@param key string Cache key.</span>
+<span class="c1">---@param value string Cache value.</span>
+<span class="c1">---@param expiry integer Cache entry expiry in seconds.</span>
+<span class="c1">---@return boolean|nil ok true on success</span>
+<span class="c1">---@return string|nil err nil on success, error message otherwise.</span>
+<span class="kr">function</span> <span class="nc">my_cache</span><span class="p">.</span><span class="nf">setex</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expiry</span><span class="p">)</span>
+    <span class="c1">-- TODO</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">my_cache</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+    <span class="n">ngx</span><span class="p">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&quot;Error initializing jwks module: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+<h3 id="jwksset_http_timeouts_ms">jwks.set_http_timeouts_ms</h3>
+<p><strong>syntax</strong>: <em>jwks.set_http_timeouts_ms(connect, send, read)</em></p>
+<p>Set <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> client timeouts in milliseconds used for fetching JWKS.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">jwks</span><span class="p">.</span><span class="n">set_http_timeouts_ms</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="jwksset_http_ssl_verify">jwks.set_http_ssl_verify</h3>
+<p><strong>syntax</strong>: <em>jwks.set_http_ssl_verify(enabled)</em></p>
+<p>Enable/disable TLS verification used by <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> client for fetching JWKS.</p>
+<p>By default, all TLS certificates are verified. If the JWKS endpoint is using self-signed certificates, either add
+the respective root CA to the OS certs store or disable certificates verification with this endpoint (it's unsafe).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">jwks</span><span class="p">.</span><span class="n">set_http_ssl_verify</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="jwksset_cache_ttl">jwks.set_cache_ttl</h3>
+<p><strong>syntax</strong>: <em>jwks.set_http_ssl_verify(enabled)</em></p>
+<p>Change the default cache TTL. Default value is 12 hours.</p>
+<blockquote>
+<p><strong>Note</strong>: The cache ttl can only be used when the jwks module has been initialized with a cache.
+See <a href="#jwksinit">how to enable caching</a>.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">jwks</span><span class="p">.</span><span class="n">set_cache_ttl</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span> <span class="c1">-- 2h</span>
+</code></pre></div>
+<h3 id="jwksfetch_jwks">jwks.fetch_jwks</h3>
+<p><strong>syntax</strong>: <em>payload, err = jwks.fetch_jwks(endpoint)</em></p>
+<p>Manually fetch JWKS from <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> endpoint; the returned payload, in case of success, is the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> response body as string:
+No check is performed whatsoever whether the payload contains JWKS or something else.</p>
+<p>If a caching strategy has been enabled, the endpoint will try to fetch it from the cache first. After a cache miss and
+successful JWKS retrieval via <abbr title="Hyper Text Transfer Protocol">HTTP</abbr>, the cache will be updated with the result.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">payload</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">fetch_jwks</span><span class="p">(</span><span class="s2">&quot;https://www.googleapis.com/oauth2/v3/certs&quot;</span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">payload</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;failed fetching JWKS: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="kr">return</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="c1">-- &#39;{&quot;keys&quot;:[{&quot;alg&quot;:&quot;RS256&quot;,&quot;e&quot;:&quot;AQAB&quot;,&quot;kid&quot;:&quot;882503a5fd56e9f734dfba5c50d7bf48db284ae9&quot;,&quot;kty&quot;:&quot;RSA&quot;,&quot;n&quot;:&quot;woRUr445_ODXrFeynz5L208aJkABOKQHEzbfGM_V1ijkYZWZKY0PXKPP_wRKcE4C6OyjDNd5gHh3dF5QsVhVDZCfR9QjTf94o4asngrHzdOcfQ0pZIvzu_vzaVG82VGLM-2rKQp8uz06A6TbUzbIv9wQ8wQpYDIdujNkLqL22Mkb2drPxm9Y9I05PmVdkkvAbu4Q_KRJWxykOigHp-hVBmpYS2P3xuX56gM7ZRcXXJKKUfrGel4nDhSIAAD1wBNcVVgKbb0TYfZmVpRSCji_b6JHjqYhYjUasdotYJzWl7quAFsN_X_4j-cHZ30OS81j--OiIxWpL11y1kcbE0u-Dw&quot;,&quot;use&quot;:&quot;sig&quot;},{&quot;n&quot;:&quot;m7GlcF1ExRB4braT7sDnZvlY3wpqX9krkVRqcVA-m43FWFYBtuSpd-lc0EV8R8TO180y0tSgJc7hviI1IBJQlNa7XkjVGhY0ZFUp5rTpC45QbA9Smo4CLa5HQIf-69rkkovjFNMuDQvNiYCgRPLyRjmQbN2uHl4fU3hhf5qFqKTKo7eLCZiEMjrOkTXziA7xJJigUGe-ab8U-AXNH1fnCbejzHEIxL0eUG_4r4xddImOxETDO5T65AQCeqs7vtYos2xq5SLFuaUsithRQ-IMm3OlcVhMjBYt6uvGS6IdMjKon4wThCxEqAEXg0nahiGjnQCW176SNF152__TOjQVwQ&quot;,&quot;alg&quot;:&quot;RS256&quot;,&quot;kty&quot;:&quot;RSA&quot;,&quot;use&quot;:&quot;sig&quot;,&quot;kid&quot;:&quot;8e8fc8e556f7a76d08d35829d6f90ae2e12cfd0d&quot;,&quot;e&quot;:&quot;AQAB&quot;}]}&#39;</span>
+</code></pre></div>
+<h3 id="jwksverify_jwt_with_jwks">jwks.verify_jwt_with_jwks</h3>
+<p><strong>syntax</strong>: <em>jwt, err = jwks.verify_jwt_with_jwks(jwt_token, jwks_endpoint, jws_options?)</em></p>
+<p>Given a signed jwt_token as a string, verify its signature with JWKS provided by the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> service found at jwks_endpoint.</p>
+<p>On success, the verified JWT is returned as a lua table, otherwise nil and an error are returned.</p>
+<p>The optional parameter <code>jws_options</code> can be passed to configure the token validator when calling <a href="#jwtverify">jwt.verify</a>
+after having successfully fetched the JWKS. See <a href="#jwtverify">jwt.verify</a> respective docs for more info about which options
+can be passed.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">jwt</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">verify_jwt_with_jwks</span><span class="p">(</span><span class="s2">&quot;&lt;MY_JWT&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://myservice:8888/.well-known/jwks.json&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">jwt</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;failed verifying jwt: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="kr">return</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jwt</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="n">jwt</span><span class="p">.</span><span class="n">payload</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="jwksdecrypt_jwt_with_jwks">jwks.decrypt_jwt_with_jwks</h3>
+<p><strong>syntax</strong>: <em>jwt, err = jwks.decrypt_jwt_with_jwks(jwt_token, jwks_endpoint, jwe_options?)</em></p>
+<p>Given an encrypted jwt_token as a string, decrypt it with JWKS provided by the <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> service found at jwks_endpoint.</p>
+<p>On success, the decrypted JWT is returned as a lua table, otherwise nil and an error are returned.</p>
+<p>The optional parameter <code>jwe_options</code> can be passed to configure the token validator when calling <a href="#jwtdecrypt">jwt.decrypt</a>
+after having successfully fetched the JWKS. See <a href="#jwtdecrypt">jwt.decrypt</a> respective docs for more info about which options
+can be passed.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">jwks</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;resty.jwt-verification-jwks&quot;</span><span class="p">)</span>
+
+<span class="n">jwt</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">jwks</span><span class="p">.</span><span class="n">decrypt_jwt_with_jwks</span><span class="p">(</span><span class="s2">&quot;&lt;MY_JWT&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://myservice:8888/.well-known/jwks.json&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">jwt</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;failed decrypting jwt: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="kr">return</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jwt</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">alg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jwt</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">enc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tostring</span><span class="p">(</span><span class="n">jwt</span><span class="p">.</span><span class="n">payload</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="rfcs-used-as-reference">RFCs used as reference</h2>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7515">RFC 7515</a> JSON Web Signature (JWS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7516">RFC 7516</a> JSON Web Encryption (JWE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7517">RFC 7517</a> JSON Web Key (JWK)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7518">RFC 7518</a> JSON Web Algorithms (JWA)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a> JSON Web Token (JWT)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7520">RFC 7520</a> Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)</li>
+<li><a href="https://www.iana.org/assignments/jose/jose.xhtml">IANA JOSE assignments</a></li>
+</ul>
+<h2 id="run-tests">Run tests</h2>
+<h3 id="setup">Setup</h3>
+<p>Install test suit:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cpan<span class="w"> </span>Test::Nginx
+</code></pre></div></p>
+<p>Install openresty: see <a href="https://openresty.org/en/linux-packages.html">https://openresty.org/en/linux-packages.html</a></p>
+<h3 id="run">Run</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/openresty/nginx/sbin:<span class="nv">$PATH</span>
+prove<span class="w"> </span>-r<span class="w"> </span>t
+</code></pre></div>
+<h2 id="run-benchmarks">Run benchmarks</h2>
+<p>The testsuite <code>Test::Nginx</code> has built-in benchmarking integration with <a href="https://redmine.lighttpd.net/projects/weighttp/wiki">weighttp</a>.</p>
+<h2 id="increase-sysctl-limits">Increase <code>sysctl</code> limits</h2>
+<p>If you plant to stress test the library, you may need to increase system limits.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/sysctl.d/openresty-benchmarks.conf<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">net.ipv4.ip_local_port_range=2048 65535</span>
+
+<span class="s">net.ipv4.tcp_tw_reuse=1</span>
+
+<span class="s">net.core.netdev_max_backlog=2000</span>
+<span class="s">net.ipv4.tcp_max_syn_backlog=2048</span>
+<span class="s">EOF</span>
+
+<span class="c1">## apply changes</span>
+sudo<span class="w"> </span>sysctl<span class="w"> </span>-p<span class="w"> </span>/etc/sysctl.d/openresty-benchmarks.conf
+</code></pre></div>
+<h2 id="launch-tests">Launch tests</h2>
+<p>I've created some pseudo-real world scenarios inside the <code>benchmarks</code> folder.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## for more info about syntax: https://openresty.gitbooks.io/programming-openresty/content/testing/test-modes.html</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">TEST_NGINX_BENCHMARK</span><span class="o">=</span><span class="s1">&#39;50000 10&#39;</span>
+prove<span class="w"> </span>-r<span class="w"> </span>./benchmarks
+</code></pre></div>
+<p>By default, only 1 nginx worker and 1 CPU core will be used to perform the benchmarks. To increase the worker limits,
+change the <code>workers(1);</code> directive inside the <code>.t</code> files and re-run the benchmark.</p>
+<h2 id="github">GitHub</h2>
+<p>You may find additional configuration tips and documentation for this module in the <a href="https://github.com/anvouk/lua-resty-jwt-verification" target="_blank">GitHub repository for 
+nginx-module-jwt-verification</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2014 - 2025 GetPageSpeed LLC
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GetPageSpeed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/GetPageSpeed" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/getpagespeed" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/getpagespeed/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/GetPageSpeed" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.top", "navigation.tabs", "search.suggest", "content.tooltips", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

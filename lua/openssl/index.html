@@ -482,6 +482,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/ajp/" class="md-nav__link">
         
   
@@ -1763,6 +1784,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../modules/otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../modules/pagespeed/" class="md-nav__link">
         
   
@@ -1831,6 +1873,27 @@
   
   <span class="md-ellipsis">
     phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
   </span>
   
 
@@ -3687,6 +3750,27 @@
   
   <span class="md-ellipsis">
     jwt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jwt-verification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
   </span>
   
 
@@ -6933,6 +7017,30 @@
   <a href="#ssl_ctxset_alpns" class="md-nav__link">
     <span class="md-ellipsis">
       ssl_ctx:set_alpns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restyopensslcrypto" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.openssl.crypto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.openssl.crypto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cryptomemcmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      crypto.memcmp
     </span>
   </a>
   
@@ -11088,6 +11196,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restyopensslcrypto" class="md-nav__link">
+    <span class="md-ellipsis">
+      resty.openssl.crypto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resty.openssl.crypto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cryptomemcmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      crypto.memcmp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#functions-for-stack-like-objects" class="md-nav__link">
     <span class="md-ellipsis">
       Functions for stack-like objects
@@ -11263,8 +11395,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>lua5.1-resty-openssl
 </code></pre></div>
 <p>To use this Lua library with NGINX, ensure that <a href="../../modules/lua/">nginx-module-lua</a> is installed.</p>
-<p>This document describes lua-resty-openssl <a href="https://github.com/fffonion/lua-resty-openssl/releases/tag/1.6.4" target="_blank">v1.6.4</a> 
-released on Sep 08 2025.</p>
+<p>This document describes lua-resty-openssl <a href="https://github.com/fffonion/lua-resty-openssl/releases/tag/1.7.0" target="_blank">v1.7.0</a> 
+released on Oct 30 2025.</p>
 <hr />
 
 <p>FFI-based OpenSSL binding for LuaJIT, supporting OpenSSL 3.x, 1.1 series.</p>
@@ -14137,6 +14269,13 @@ been called <code>sslhandshake</code>.</p>
 <p><strong>syntax</strong>: <em>ok, err = ssl_ctx:set_alpns(alpn, ...)</em></p>
 <p>Set the ALPN list to be negotiated with peer. Each <code>alpn</code> is the plaintext
 literal for the protocol, like <code>"h2"</code>.</p>
+<h2 id="restyopensslcrypto">resty.openssl.crypto</h2>
+<p>Module to interact with utility openssl functions.</p>
+<h3 id="cryptomemcmp">crypto.memcmp</h3>
+<p><strong>syntax</strong>: <em>res, err = crypto.memcmp(a, b, len)</em></p>
+<p>Performs constant-time comparison of 2 memory regions a and b with len bytes. See <a href="https://docs.openssl.org/3.2/man3/CRYPTO_memcmp">CRYPTO_memcmp</a>
+for more info. The 2 memory regions must be of type string or cdata.</p>
+<p>Returns 0 if the memory regions are equal and nonzero otherwise.</p>
 <h2 id="functions-for-stack-like-objects">Functions for stack-like objects</h2>
 <h3 id="metamethods">metamethods</h3>
 <p><strong>syntax</strong>: <em>for k, obj in pairs(x)</em></p>

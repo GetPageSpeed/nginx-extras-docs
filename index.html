@@ -564,6 +564,27 @@
   
   
     <li class="md-nav__item">
+      <a href="modules/acme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="modules/ajp/" class="md-nav__link">
         
   
@@ -1845,6 +1866,27 @@
   
   
     <li class="md-nav__item">
+      <a href="modules/otel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    otel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="modules/pagespeed/" class="md-nav__link">
         
   
@@ -1913,6 +1955,27 @@
   
   <span class="md-ellipsis">
     phantom-token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="modules/pipelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelog
   </span>
   
 
@@ -3782,6 +3845,27 @@
   
   
     <li class="md-nav__item">
+      <a href="lua/jwt-verification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jwt-verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="lua/kafka/" class="md-nav__link">
         
   
@@ -5619,7 +5703,7 @@
 Each module can be installed as a separate package.</p>
 <p>The major benefit of packaged installations is security, maintainability, and reproducibility.
 No longer you have to manually compile anything when you need to update NGINX or modules.
-An update is just a <code>yum update</code> that takes seconds and no downtime whatsoever.</p>
+An update is just a <code>dnf update</code> that takes seconds and no downtime whatsoever.</p>
 <p>We currently support all major RPM-based distros, including CentOS/<abbr title="Red Hat Enterprise Linux">RHEL</abbr>,
 as well as Amazon Linux and the latest Fedora Linux.</p>
 <p>All <abbr title="Red Hat Enterprise Linux">RHEL</abbr> derivatives like Oracle Linux, AlmaLinux, and Rocky Linux are supported as well.</p>
@@ -5653,8 +5737,8 @@ amazon-linux-extras<span class="w"> </span>install<span class="w"> </span>epel
 <p>Subscribed? Proceed with installing the modules to build your ultimate high-performance web stack.</p>
 <h3 id="install-nginx-modules">Install NGINX modules</h3>
 <p>Thanks to the nature of dynamic modules, you can install <em>just the modules</em> you want instead of using bloatware NGINX installation. </p>
-<p>For example, to install NGINX and the PageSpeed module for it, run:</p>
-<div class="highlight"><pre><span></span><code>dnf -y install nginx nginx-module-pagespeed
+<p>For example, to install NGINX and the Brotli module for it, run:</p>
+<div class="highlight"><pre><span></span><code>dnf -y install nginx nginx-module-brotli
 </code></pre></div>
 <p>Enable the module by adding the <code>load_module ...</code> directive that is shown after installation.</p>
 <p>In case you missed it, refer to <a href="https://nginx-extras.getpagespeed.com/modules/">the documentation of respective module</a> and look for <code>load_module</code> directive
