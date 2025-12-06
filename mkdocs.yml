@@ -109,6 +109,7 @@ nav:
     ndk: modules/ndk.md
     njs: modules/njs.md
     ntlm: modules/ntlm.md
+    otel: modules/otel.md
     pagespeed: modules/pagespeed.md
     passenger: modules/passenger.md
     perl: modules/perl.md

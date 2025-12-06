@@ -62,6 +62,7 @@
 | [nginx-module-ndk](modules/ndk.md)                               | Nginx Development Kit                                                         |
 | [nginx-module-njs](modules/njs.md)                               | NGINX njs dynamic modules                                                     |
 | [nginx-module-ntlm](modules/ntlm.md)                             | NTLM NGINX Module                                                             |
+| [nginx-module-otel](modules/otel.md)                             | NGINX OpenTelemetry dynamic module                                            |
 | [nginx-module-pagespeed](modules/pagespeed.md)                   | PageSpeed dynamic module for NGINX                                            |
 | [nginx-module-passenger](modules/passenger.md)                   | Passenger module                                                              |
 | [nginx-module-perl](modules/perl.md)                             | NGINX Perl dynamic module                                                     |

@@ -42,6 +42,9 @@ load_module modules/ngx_http_geoip_module.so;
 load_module modules/ngx_stream_geoip_module.so;
 ```
 
+
+This module is built from the same source as the NGINX core.
+
 <hr />
 
 

@@ -39,6 +39,9 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 load_module modules/ngx_http_xslt_filter_module.so;
 ```
 
+
+This module is built from the same source as the NGINX core.
+
 <hr />
 
 
