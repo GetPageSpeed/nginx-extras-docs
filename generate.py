@@ -86,10 +86,16 @@ bad_lines = (
 
 def enrich_with_yml_info(md, module_config, release):
     handle = module_config["handle"]
-    repo = None
-    if "repo" in module_config:
-        repo = module_config["repo"]
-    if str(release["version"]) == "0":
+    repo = module_config.get("repo")
+    # `release` may be None (e.g. for internal/core modules where we don't
+    # care about an external lastversion lookup).
+    safe_release = release or {}
+    rel_version = str(safe_release.get("version", "0"))
+    is_internal = not repo and release is None
+
+    # Only mark as BETA when we actually have release information and the
+    # version is reported as 0.
+    if release is not None and rel_version == "0":
         new_title = f"# *[BETA!] {handle}*: {module_config['summary']}"
     else:
         new_title = f"# *{handle}*: {module_config['summary']}"
@@ -173,14 +179,29 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
     print(sonames)
     for s in sonames:
         intro += f"```nginx\nload_module modules/{s}.so;\n```\n"
-    # For Enterprise/closed-source modules we intentionally skip linking to a GitHub repo.
-    if repo and not enterprise:
+    # For internal/closed-source modules we intentionally skip linking to a GitHub repo.
+    if is_internal:
+        # Internal modules are built from the same nginx source and ship
+        # together with nginx itself, so we don't need a separate version
+        # lookup. Just clarify that in the docs.
+        intro += """
+
+This module is built from the same source as the NGINX core.
+"""
+    elif repo and not enterprise and safe_release:
         intro += f"""
 
-This document describes nginx-module-{handle} [v{release['version']}](https://github.com/{repo}/releases/tag/{release['tag_name']}){{target=_blank}} 
-released on {release['tag_date'].strftime("%b %d %Y")}.
+This document describes nginx-module-{handle} [v{safe_release.get('version','0')}](https://github.com/{repo}/releases/tag/{safe_release.get('tag_name','')}){{target=_blank}} 
+released on {safe_release.get('tag_date','').strftime("%b %d %Y") if safe_release.get('tag_date') else 'an unknown date'}.
 """
-    if str(release["version"]) == "0":
+    elif repo and enterprise and safe_release:
+        intro += f"""
+
+This document describes nginx-module-{handle} v{safe_release.get('version','0')} 
+released on {safe_release.get('tag_date','').strftime("%b %d %Y") if safe_release.get('tag_date') else 'an unknown date'}.
+"""
+
+    if release is not None and rel_version == "0":
         intro += "\nProduction stability is *not guaranteed*."
     if "release_ticket" in module_config:
         intro += f"\nA request for stable release exists. Vote up [here]({module_config['release_ticket']})."
@@ -438,7 +459,7 @@ def normalize_to_md(readme_contents, file_name):
 def get_readme_contents_from_github(handle, module_config):
     print(f"Fetching release for {module_config['repo']}")
     release = lastversion.latest(module_config["repo"], output_format="dict")
-    if "readme" not in release:
+    if not release or "readme" not in release:
         return None
     readme_contents = base64.b64decode(release["readme"]["content"]).decode("utf-8")
     readme_contents = normalize_to_md(readme_contents, release["readme"]["name"])
@@ -491,9 +512,8 @@ You may find information about configuration directives for this module at the f
 
                 for url in directives_urls:
                     readme_contents = readme_contents + f"*   {url}"
-                release = lastversion.latest("nginx", output_format="dict")
                 readme_contents = enrich_with_yml_info(
-                    readme_contents, module_config, release
+                    readme_contents, module_config, None
                 )
             else:
                 readme_contents = get_readme_contents_from_github(handle, module_config)
@@ -552,7 +572,7 @@ def process_lua_glob(g):
             lib_config["handle"] = handle
             print(f"Fetching release for {lib_config['repo']}")
             release = lastversion.latest(lib_config["repo"], output_format="dict")
-            if "readme" not in release:
+            if not release or "readme" not in release:
                 continue
             readme_contents = base64.b64decode(release["readme"]["content"]).decode(
                 "utf-8"
