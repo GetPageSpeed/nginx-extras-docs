@@ -1,5 +1,6 @@
 .PHONY: all
 all:
+	git pull
 	./venv/bin/python ./generate.py
 
 .PHONY: setup

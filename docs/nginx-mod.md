@@ -18,6 +18,7 @@ NGINX-MOD is based on the latest *stable* NGINX with the following additions:
 * **Enhanced Security Features**: Protect your server information by disabling the display of the NGINX software name in both the Server: header and error pages.
 * **Secure SSL Proxying with `CONNECT` Method**: Handle and proxy SSL requests using the `CONNECT` method, ensuring secure and efficient data transmission.
 * **Dark Mode Support**: Automatic Dark Mode Support for NGINX error pages.
+* **Host header emulation for HTTP/3**: The `$http_host` is initialized from authority, providing better compatibility with applications that rely on the `Host` header.
 
 Upgrade to GetPageSpeed today and take full advantage of these advanced NGINX-MOD features to optimize your website’s performance, security, and reliability!
 
@@ -25,14 +26,14 @@ More on those patches in the documentation below.
 
 ## How to install NGINX-MOD
 
-=== "CentOS/RHEL 8, 9 and Fedora Linux, Amazon Linux 2023, etc."
+=== "CentOS/RHEL 8+ and Fedora Linux, Amazon Linux 2023, etc."
 
     ```bash
     dnf -y install https://extras.getpagespeed.com/release-latest.rpm
     dnf -y install dnf-plugins-core
     dnf config-manager --disable getpagespeed-extras-mainline
     dnf config-manager --enable getpagespeed-extras-nginx-mod
-    dnf -y install nginx
+    dnf -y install nginx-mod
     systemctl enable --now nginx
     ```
 
@@ -44,7 +45,7 @@ More on those patches in the documentation below.
     yum -y install yum-utils
     yum-config-manager --disable getpagespeed-extras-mainline
     yum-config-manager --enable getpagespeed-extras-nginx-mod
-    yum -y install nginx
+    yum -y install nginx-mod
     systemctl enable --now nginx
     ``` 
  
@@ -56,7 +57,7 @@ More on those patches in the documentation below.
     yum -y install yum-utils
     yum-config-manager --disable getpagespeed-extras-mainline
     yum-config-manager --enable getpagespeed-extras-nginx-mod
-    yum -y install nginx
+    yum -y install nginx-mod
     systemctl enable --now nginx
     ```
 
@@ -69,8 +70,7 @@ yum -y install https://extras.getpagespeed.com/release-latest.rpm yum-utils
 yum-config-manager --disable getpagespeed-extras-mainline
 yum-config-manager --enable getpagespeed-extras-nginx-mod
 yum -y update nginx
-# importantly, we must re-enable the nginx service after switching packages:
-systemctl enable --now nginx
+service nginx upgrade
 ```
 
 
@@ -79,7 +79,7 @@ systemctl enable --now nginx
 NGINX-MOD is fully compatible with over 50 NGINX module packages in our base repository.
 So you can install them as usual, for example:
 
-    yum -y install nginx-module-pagespeed
+    dnf -y install nginx-module-pagespeed
 
 ## Active Health Checks
 
@@ -324,8 +324,6 @@ rpm --erase --justdb --nodeps ${MOD_PKGS}
 STABLE_PKGS=$(echo ${MOD_PKGS} | sed 's@nginx-mod@nginx@g')
 yum -y install ${STABLE_PKGS}
 yum history sync
-# importantly, we must re-enable the nginx service after switching packages:
-systemctl enable --now nginx
 ```
 
 These commands will disable the NGINX-MOD repository and replace any `nginx-mod*` packages with their equivalents from the base repository, thus downgrading to stable NGINX.
