@@ -161,7 +161,8 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
     # Prepend premium notice for Enterprise plan
     plan = module_config.get("plan")
-    if plan and str(plan).lower() == "enterprise":
+    enterprise = bool(plan) and str(plan).lower() == "enterprise"
+    if enterprise:
         intro = (
             "\n> Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.\n\n"
             + intro
@@ -172,7 +173,8 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
     print(sonames)
     for s in sonames:
         intro += f"```nginx\nload_module modules/{s}.so;\n```\n"
-    if repo:
+    # For Enterprise/closed-source modules we intentionally skip linking to a GitHub repo.
+    if repo and not enterprise:
         intro += f"""
 
 This document describes nginx-module-{handle} [v{release['version']}](https://github.com/{repo}/releases/tag/{release['tag_name']}){{target=_blank}} 
