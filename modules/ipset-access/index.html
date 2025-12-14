@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset ">
+        <meta name="description" content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -75,7 +75,7 @@
       
         <meta  property="og:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset " >
+        <meta  property="og:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
@@ -91,7 +91,7 @@
       
         <meta  name="twitter:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
@@ -2128,6 +2128,15 @@
   <a href="#permission-denied" class="md-nav__link">
     <span class="md-ellipsis">
       Permission denied
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selinux-denials-rhelcentosalmalinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELinux denials (RHEL/CentOS/AlmaLinux)
     </span>
   </a>
   
@@ -7198,6 +7207,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#selinux-denials-rhelcentosalmalinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELinux denials (RHEL/CentOS/AlmaLinux)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#high-memory-usage" class="md-nav__link">
     <span class="md-ellipsis">
       High memory usage
@@ -7356,12 +7374,12 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_ipset_access.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-ipset-access v2.0.0 
-released on Dec 06 2025.</p>
+<p>This document describes nginx-module-ipset-access v2.0.2 
+released on Dec 09 2025.</p>
 <hr />
 
 <p>Enterprise-grade IP-based access control for NGINX using Linux ipset. Block threats, rate-limit abusers, challenge bots, and protect your infrastructure.</p>
-<p><a href="https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access"><img alt="Version" src="https://img.shields.io/badge/version-2.0.0-blue" /></a>
+<p><a href="https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access"><img alt="Version" src="https://img.shields.io/badge/version-2.0.2-blue" /></a>
 <a href="https://www.getpagespeed.com/"><img alt="GetPageSpeed" src="https://img.shields.io/badge/GetPageSpeed-Premium-gold" /></a></p>
 <blockquote>
 <p><strong>⚠️ Commercial Software</strong><br />
@@ -7944,7 +7962,7 @@ nginx_ipset_uptime_seconds 86400
 <p>The <code>/_stats</code> endpoint returns detailed statistics in JSON format.</p>
 <h3 id="response-format">Response Format</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.2&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;uptime_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;requests&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;checked&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span>
@@ -8253,6 +8271,18 @@ sudo<span class="w"> </span>ipset<span class="w"> </span>add<span class="w"> </s
 <p><strong>Solution:</strong> NGINX worker needs <code>CAP_NET_ADMIN</code> capability:
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>setcap<span class="w"> </span>cap_net_admin+ep<span class="w"> </span>/usr/sbin/nginx
 </code></pre></div></p>
+<h3 id="selinux-denials-rhelcentosalmalinux">SELinux denials (<abbr title="Red Hat Enterprise Linux">RHEL</abbr>/CentOS/AlmaLinux)</h3>
+<div class="highlight"><pre><span></span><code>SELinux is preventing /usr/sbin/nginx from getattr access on the netlink_netfilter_socket
+</code></pre></div>
+<p><strong>Solution:</strong> Install the included SELinux policy module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>selinux/
+sudo<span class="w"> </span>./install.sh
+</code></pre></div>
+<p>Or manually:
+<div class="highlight"><pre><span></span><code><span class="c1">## Verify</span>
+semodule<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nginx_ipset
+</code></pre></div></p>
+<p>The policy allows <code>httpd_t</code> (NGINX's SELinux domain) to use netlink_netfilter sockets required by libipset.</p>
 <h3 id="high-memory-usage">High memory usage</h3>
 <p><strong>Solution:</strong> Reduce cache TTL or limit cache size in shared memory configuration.</p>
 <h3 id="rate-limiting-not-working">Rate limiting not working</h3>
@@ -8278,9 +8308,9 @@ sudo<span class="w"> </span>ipset<span class="w"> </span>add<span class="w"> </s
 <h2 id="_17"></h2>
 <h2 id="support">🆘 Support</h2>
 <ul>
-<li><strong>Documentation:</strong> <a href="https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access">GetPageSpeed Docs</a></li>
+<li><strong>Honeypot v2.0</strong> <a href="https://www.getpagespeed.com/server-setup/nginx/nginx-honeypot-v2">Using ipset-access for auto-banning bots</a></li>
 <li><strong>Support:</strong> Available for premium subscribers</li>
-<li><strong>Contact:</strong> <a href="https://www.getpagespeed.com/contact">GetPageSpeed Support</a></li>
+<li><strong>Contact:</strong> <a href="https://www.getpagespeed.com/contact-us">GetPageSpeed Support</a></li>
 </ul>
 <h2 id="_18"></h2>
 <p align="center">
