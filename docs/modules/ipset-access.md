@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX ipset access module"
-description: "RPM package nginx-module-ipset-access. NGINX module to control user access to sites using ipset "
+description: "RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets "
 
 ---
 
@@ -43,14 +43,14 @@ load_module modules/ngx_http_ipset_access.so;
 ```
 
 
-This document describes nginx-module-ipset-access v2.0.0 
-released on Dec 06 2025.
+This document describes nginx-module-ipset-access v2.0.2 
+released on Dec 09 2025.
 
 <hr />
 
 Enterprise-grade IP-based access control for NGINX using Linux ipset. Block threats, rate-limit abusers, challenge bots, and protect your infrastructure.
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue)](https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access)
+[![Version](https://img.shields.io/badge/version-2.0.2-blue)](https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access)
 [![GetPageSpeed](https://img.shields.io/badge/GetPageSpeed-Premium-gold)](https://www.getpagespeed.com/)
 
 > **⚠️ Commercial Software**  
@@ -610,7 +610,7 @@ The `/_stats` endpoint returns detailed statistics in JSON format.
 
 ```json
 {
-  "version": "2.0.0",
+  "version": "2.0.2",
   "uptime_seconds": 86400,
   "requests": {
     "checked": 1234567,
@@ -868,6 +868,27 @@ ipset: kernel error
 sudo setcap cap_net_admin+ep /usr/sbin/nginx
 ```
 
+### SELinux denials (RHEL/CentOS/AlmaLinux)
+
+```
+SELinux is preventing /usr/sbin/nginx from getattr access on the netlink_netfilter_socket
+```
+
+**Solution:** Install the included SELinux policy module:
+
+```bash
+cd selinux/
+sudo ./install.sh
+```
+
+Or manually:
+```bash
+## Verify
+semodule -l | grep nginx_ipset
+```
+
+The policy allows `httpd_t` (NGINX's SELinux domain) to use netlink_netfilter sockets required by libipset.
+
 ### High memory usage
 
 **Solution:** Reduce cache TTL or limit cache size in shared memory configuration.
@@ -903,9 +924,9 @@ Available exclusively through [GetPageSpeed Premium Repository](https://www.getp
 
 ## 🆘 Support
 
-- **Documentation:** [GetPageSpeed Docs](https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access)
+- **Honeypot v2.0** [Using ipset-access for auto-banning bots](https://www.getpagespeed.com/server-setup/nginx/nginx-honeypot-v2)
 - **Support:** Available for premium subscribers
-- **Contact:** [GetPageSpeed Support](https://www.getpagespeed.com/contact)
+- **Contact:** [GetPageSpeed Support](https://www.getpagespeed.com/contact-us)
 ## 
 
 <p align="center">

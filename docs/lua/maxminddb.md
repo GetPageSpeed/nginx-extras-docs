@@ -32,8 +32,8 @@ dnf -y install lua5.1-resty-maxminddb
 
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
-This document describes lua-resty-maxminddb [v1.3.6](https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.6){target=_blank} 
-released on Sep 09 2025.
+This document describes lua-resty-maxminddb [v1.3.7](https://github.com/anjia0532/lua-resty-maxminddb/releases/tag/v1.3.7){target=_blank} 
+released on Dec 08 2025.
     
 <hr />
 lua-resty-maxminddb - A Lua library for reading [MaxMind's Geolocation database format](https://maxmind.github.io/MaxMind-DB/)  (aka mmdb or geoip2).
@@ -161,10 +161,10 @@ server {
 
 ```bash
   #ipv4
-  $ curl localhost/?ip=114.114.114.114&node=city&type=city
+  $ curl "http://localhost/?ip=114.114.114.114&node=city&type=city"
 
   #ipv6
-  #$ curl localhost/?ip=2001:4860:0:1001::3004:ef68&node=country
+  #$ curl "http://localhost/?ip=2001:4860:0:1001::3004:ef68&node=country"
 
   full :{"city":{"geoname_id":1799962,"names":{"en":"Nanjing","ru":"Нанкин","fr":"Nankin","pt-BR":"Nanquim","zh-CN":"南京","es":"Nankín","de":"Nanjing","ja":"南京市"}},"subdivisions":[{"geoname_id":1806260,"names":{"en":"Jiangsu","fr":"Province de Jiangsu","zh-CN":"江苏省"},"iso_code":"32"}],"country":{"geoname_id":1814991,"names":{"en":"China","ru":"Китай","fr":"Chine","pt-BR":"China","zh-CN":"中国","es":"China","de":"China","ja":"中国"},"iso_code":"CN"},"registered_country":{"geoname_id":1814991,"names":{"en":"China","ru":"Китай","fr":"Chine","pt-BR":"China","zh-CN":"中国","es":"China","de":"China","ja":"中国"},"iso_code":"CN"},"location":{"time_zone":"Asia\/Shanghai","longitude":118.7778,"accuracy_radius":50,"latitude":32.0617},"continent":{"geoname_id":6255147,"names":{"en":"Asia","ru":"Азия","fr":"Asie","pt-BR":"Ásia","zh-CN":"亚洲","es":"Asia","de":"Asien","ja":"アジア"},"code":"AS"}}
   node name:city ,value:{"geoname_id":1799962,"names":{"en":"Nanjing","ru":"Нанкин","fr":"Nankin","pt-BR":"Nanquim","zh-CN":"南京","es":"Nankín","de":"Nanjing","ja":"南京市"}}

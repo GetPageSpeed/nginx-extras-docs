@@ -40,8 +40,8 @@ load_module modules/ngx_http_acme_module.so;
 ```
 
 
-This document describes nginx-module-acme [v0.3.0](https://github.com/nginx/nginx-acme/releases/tag/v0.3.0){target=_blank} 
-released on Nov 18 2025.
+This document describes nginx-module-acme [v0.3.1](https://github.com/nginx/nginx-acme/releases/tag/v0.3.1){target=_blank} 
+released on Dec 08 2025.
 
 <hr />
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
