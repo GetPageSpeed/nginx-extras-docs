@@ -1,11 +1,11 @@
 ---
 
-title: "NGINX ipset access module"
-description: "RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets "
+title: "Zero-latency IP blocking using Linux kernel ipsets (v2)"
+description: "RPM package nginx-module-ipset-access. High-performance NGINX module for IP-based access control using Linux kernel ipsets.  Key Features:  - Blacklist/Whitelist modes: Block or allow IPs based on ipset membership - Honeypot auto-add: Automatically add malicious IPs to ipsets with configurable timeouts and custom HTTP status codes - Built-in rate limiting: Per-IP rate limiting with auto-ban to ipsets - JavaScript challenges: Proof-of-work challenges to filter bots - Dual-stack support: Works with both IPv4 and IPv6 ipsets - FirewallD compatible: Integrates with firewall-cmd managed ipsets - Whitelist bypass: Whitelisted IPs skip rate limiting and challenges - Dry-run mode: Test rules in production without blocking - Prometheus metrics: Native /metrics endpoint for monitoring - LRU cache: Shared memory cache for high-performance lookups  Uses libipset directly (no CLI fallback) for kernel-level performance. Compatible with realip module for proper client IP detection behind proxies.  Note: This module requires CAP_NET_ADMIN capability. The selinux subpackage includes a systemd override and helper library to enable this automatically. "
 
 ---
 
-# *ipset-access*: NGINX ipset access module
+# *ipset-access*: Zero-latency IP blocking using Linux kernel ipsets (v2)
 
 > Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.
 
@@ -43,14 +43,14 @@ load_module modules/ngx_http_ipset_access.so;
 ```
 
 
-This document describes nginx-module-ipset-access v2.0.2 
-released on Dec 09 2025.
+This document describes nginx-module-ipset-access v2.0.9 
+released on Dec 20 2025.
 
 <hr />
 
 Enterprise-grade IP-based access control for NGINX using Linux ipset. Block threats, rate-limit abusers, challenge bots, and protect your infrastructure.
 
-[![Version](https://img.shields.io/badge/version-2.0.2-blue)](https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access)
+[![Version](https://img.shields.io/badge/version-2.0.7-blue)](https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access)
 [![GetPageSpeed](https://img.shields.io/badge/GetPageSpeed-Premium-gold)](https://www.getpagespeed.com/)
 
 > **⚠️ Commercial Software**  
@@ -130,10 +130,9 @@ http {
             root /var/www/html;
         }
         
-        # Honeypot trap
+        # Honeypot trap - returns 404 by default
         location /wp-admin.php {
-            ipset_autoadd honeypot;
-            return 200 "OK";
+            ipset_autoadd honeypot timeout=86400;
         }
         
         # Metrics endpoint
@@ -195,7 +194,7 @@ sudo nginx -t && sudo systemctl reload nginx
 
 #### `ipset_blacklist` *set1* [*set2* ...]
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** —
 
 Blocks requests if the client IP appears in **any** of the listed ipsets. Multiple ipsets are checked in order until a match is found.
@@ -213,7 +212,7 @@ ipset_blacklist off;
 
 #### `ipset_whitelist` *set1* [*set2* ...]
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** —
 
 Allows requests **only** if the client IP appears in at least one of the listed ipsets. All other IPs are rejected.
@@ -223,9 +222,22 @@ Allows requests **only** if the client IP appears in at least one of the listed 
 ipset_whitelist trusted_partners office_ips;
 ```
 
+**Important:** Whitelisted IPs bypass **all** module restrictions including:
+- Rate limiting (`ipset_ratelimit`)
+- JavaScript challenges (`ipset_challenge`)
+
+This is useful for admin IPs that shouldn't be subject to rate limits or challenges:
+
+```nginx
+## Admin IPs bypass rate limiting and challenges
+ipset_whitelist admin_ips;
+ipset_ratelimit rate=100 window=1m autoban=ratelimited ban_time=1800;
+ipset_challenge on;
+```
+
 #### `ipset_status` *code*
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `403`
 
 HTTP status code returned when a request is blocked.
@@ -242,7 +254,7 @@ ipset_status 503;   # Service Unavailable
 
 #### `ipset_cache_ttl` *time*
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `60s`
 
 How long to cache ipset lookup results. Cached results avoid repeated kernel calls for the same IP.
@@ -253,6 +265,8 @@ ipset_cache_ttl 5m;     # 5 minutes
 ipset_cache_ttl 1h;     # 1 hour
 ```
 
+**Debugging Note:** If you remove an IP from an ipset but the module still reports it as "matched", this is due to caching. The cached result will expire after the configured TTL. For immediate effect during testing, you can temporarily set `ipset_cache_ttl 0;` to disable caching (not recommended for production due to performance impact).
+
 **Performance Impact:**
 - Higher TTL = Better performance, but slower to reflect ipset changes
 - Lower TTL = More responsive to ipset changes, but more kernel calls
@@ -260,7 +274,7 @@ ipset_cache_ttl 1h;     # 1 hour
 
 #### `ipset_fail_open` on|off
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `off`
 
 Controls behavior when an ipset lookup fails (e.g., set doesn't exist).
@@ -272,7 +286,7 @@ ipset_fail_open on;    # Allow on error (available but risky)
 
 #### `ipset_dryrun` on|off
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `off`
 
 When enabled, logs what would be blocked but doesn't actually block. Perfect for testing new rules in production.
@@ -285,13 +299,21 @@ Check logs for messages like:
 ```
 ipset: DRYRUN would block 1.2.3.4 (matched: bad_guys)
 ```
+
+**Important:** When using `$ipset_result` and `$ipset_matched_set` variables with dryrun mode, these values reflect the **point-in-time** state when the request was processed—not the current state of the ipset. If you check the ipset manually later and don't find the IP, possible reasons include:
+
+1. **Timeout expiration**: The IP was added with a timeout (e.g., `timeout=86400`) and has since expired
+2. **Cache lag**: The module caches lookup results (default 60s). An entry removed from the ipset may still show as "matched" until the cache expires
+3. **Manual removal**: Someone or something (fail2ban, scripts) removed the entry
+
+This is expected behavior—dryrun shows you exactly what production would see at request time.
 ## 
 
 ### Rate Limiting
 
 #### `ipset_ratelimit` *parameters*
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** —
 
 Limits requests per IP within a time window. Can automatically add violators to an ipset.
@@ -335,7 +357,7 @@ ipset_ratelimit rate=10 window=1s autoban=api_abusers ban_time=3600;
 
 #### `ipset_challenge` on|off
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `off`
 
 Enables JavaScript challenge mode. Browsers must solve a proof-of-work puzzle to access the site. Effective against automated bots and scrapers.
@@ -353,7 +375,7 @@ ipset_challenge on;
 
 #### `ipset_challenge_difficulty` *level*
 
-**Context:** `server`  
+**Context:** `http`, `server`  
 **Default:** `2`
 
 Controls challenge difficulty (1-8). Higher = longer solve time.
@@ -382,12 +404,12 @@ ipset_challenge_difficulty 3;  # ~1 second solve time
 
 ### Honeypot Auto-add
 
-#### `ipset_autoadd` *setname* [timeout=*seconds*]
+#### `ipset_autoadd` *setname* [timeout=*seconds*] [status=*code*]
 
-**Context:** `location`  
+**Context:** `server`, `location`  
 **Default:** —
 
-Automatically adds client IP to specified ipset when the location is accessed. Perfect for honeypot traps.
+Automatically adds client IP to specified ipset when the location is accessed and returns an HTTP status code. Perfect for honeypot traps.
 
 **Parameters:**
 
@@ -395,51 +417,51 @@ Automatically adds client IP to specified ipset when the location is accessed. P
 |-----------|----------|-------------|
 | *setname* | Yes | Target ipset name |
 | `timeout=N` | No | Entry timeout in seconds |
+| `status=N` | No | HTTP status code to return (default: 404) |
 
 **Examples:**
 
 ```nginx
-## Basic: Add to honeypot set (permanent until manual removal)
+## Basic: Add to honeypot set and return 404 (default)
 location /config.php {
     ipset_autoadd honeypot;
-    return 200 "OK";
 }
 
 ## With timeout: Auto-expire after 24 hours
 location /wp-admin.php {
     ipset_autoadd scanners timeout=86400;
-    return 200 "OK";
 }
 
-## Severe: Block for 1 week
-location ~ \.(sh|pl|cgi)$ {
-    ipset_autoadd malicious timeout=604800;
-    return 200 "OK";
+## Return 403 Forbidden instead of 404
+location /admin.php {
+    ipset_autoadd honeypot timeout=86400 status=403;
+}
+
+## Return 429 Too Many Requests
+location /api/hack {
+    ipset_autoadd abusers timeout=3600 status=429;
 }
 ```
 
 **Common Honeypot Paths:**
 ```nginx
-## WordPress traps
+## WordPress traps - return 404 to look like missing file
 location ~ ^/(wp-admin\.php|wp-login\.php|xmlrpc\.php)$ {
     ipset_autoadd honeypot timeout=86400;
-    return 200 "OK";
 }
 
-## Config file traps
+## Config file traps - return 403 to simulate forbidden access
 location ~ ^/(\\.env|config\\.php|phpinfo\\.php)$ {
-    ipset_autoadd honeypot timeout=86400;
-    return 200 "OK";
+    ipset_autoadd honeypot timeout=86400 status=403;
 }
 
-## Shell/exploit traps
+## Shell/exploit traps - severe, block for 1 week
 location ~ ^/(shell|cmd|eval|exec)\\.php$ {
-    ipset_autoadd malicious timeout=604800;
-    return 200 "OK";
+    ipset_autoadd malicious timeout=604800 status=403;
 }
 ```
 
-**Note:** When an IP is auto-added, the connection's keep-alive is disabled to prevent further requests on the same connection.
+**Note:** When an IP is auto-added, the module immediately returns the specified HTTP status code (default 404), preventing further request processing. The connection's keep-alive is also disabled to prevent further requests on the same connection.
 ## 
 
 ### Observability
@@ -500,6 +522,11 @@ The access decision made for this request.
 ### `$ipset_matched_set`
 
 Name of the ipset that matched (if any). Empty if no match.
+
+**Note:** This variable reflects the match state **at request time**, not the current state of the ipset. If you check the ipset manually and don't find the IP:
+- The entry may have expired (ipsets support per-entry timeouts)
+- The module's cache (default 60s) may show a recently-removed entry as still matched
+- Something may have removed the entry after the request was processed
 
 ### Usage Examples
 
@@ -610,7 +637,7 @@ The `/_stats` endpoint returns detailed statistics in JSON format.
 
 ```json
 {
-  "version": "2.0.2",
+  "version": "2.0.7",
   "uptime_seconds": 86400,
   "requests": {
     "checked": 1234567,
@@ -799,10 +826,9 @@ server {
         root /var/www/html;
     }
     
-    # Honeypot traps
+    # Honeypot traps - return 404 (default) to look like missing files
     location ~ ^/(wp-admin|phpmyadmin|admin)\.php$ {
         ipset_autoadd honeypot timeout=86400;
-        return 200 "OK";
     }
     
     # Monitoring
@@ -898,6 +924,44 @@ The policy allows `httpd_t` (NGINX's SELinux domain) to use netlink_netfilter so
 **Solution:** Ensure the ipset for auto-ban exists and has timeout support:
 ```bash
 sudo ipset create ratelimited hash:ip timeout 3600
+```
+
+### Log shows "matched=setname" but IP isn't in the ipset
+
+This is expected behavior. The module reports what it saw **at request time**. If you check the ipset later and don't find the IP:
+
+1. **Timeout expiration:** The IP was added with a timeout and has since expired
+   ```bash
+   # Check if set supports timeouts
+   ipset list setname | head -5
+   # Look for "timeout" in the header
+   ```
+
+2. **Module cache:** The module caches lookups (default 60s). A recently-removed IP may still appear as "matched"
+   ```nginx
+   # Temporarily disable cache for debugging (not for production!)
+   ipset_cache_ttl 0;
+   ```
+
+3. **Entry was removed:** fail2ban, scripts, or manual commands may have removed it
+
+4. **Trap configuration issue:** If using honeypot traps with `ipset_autoadd`, legitimate bots may have triggered traps. Check your trap locations don't overlap with legitimate bot paths (like sitemaps, robots.txt). Use `robots.txt` to exclude trap paths from crawling.
+
+### autoadd fails with "result=4"
+
+This means you're using `timeout=N` in `ipset_autoadd` but the ipset was created **without** timeout support.
+
+**Solution:** Recreate the ipset with timeout support:
+```bash
+## Using ipset directly
+sudo ipset destroy honeypot4
+sudo ipset create honeypot4 hash:ip family inet timeout 86400
+
+## Using firewall-cmd (RHEL/CentOS/Amazon Linux)
+sudo firewall-cmd --permanent --delete-ipset=honeypot4
+sudo firewall-cmd --permanent --new-ipset=honeypot4 --type=hash:ip \
+    --option=family=inet --option=timeout=86400
+sudo firewall-cmd --reload
 ```
 ## 
 

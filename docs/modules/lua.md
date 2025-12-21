@@ -40,8 +40,8 @@ load_module modules/ngx_http_lua_module.so;
 ```
 
 
-This document describes nginx-module-lua [v0.10.29](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.29){target=_blank} 
-released on Oct 24 2025.
+This document describes nginx-module-lua [v0.10.29.post2](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.29R2){target=_blank} 
+released on Dec 16 2025.
 
 <hr />
 
@@ -1130,7 +1130,7 @@ A zero value of `<num>` disables the cache.
 
 Note that this feature requires OpenResty's LuaJIT with the new C API `lua_resetthread`.
 
-This feature was first introduced in verson `v0.10.9`.
+This feature was first introduced in version `v0.10.9`.
 
 [Back to TOC](#directives)
 
@@ -2879,7 +2879,7 @@ This directive runs user Lua code when Nginx is about to post-process the SSL se
 
 It is particularly useful to parse upstream server certificate and do some custom operations in pure lua.
 
-The [ngx.ssl.proxysslverify](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md) Lua modules provided by the [lua-resty-core](https://github.com/openresty/lua-resty-core/#readme)
+The [ngx.ssl.proxysslverify](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md) Lua module provided by the [lua-resty-core](https://github.com/openresty/lua-resty-core/#readme)
 library are particularly useful in this context.
 
 Below is a trivial example using the
@@ -2914,7 +2914,7 @@ at the same time:
 ```
 
 See more information in the [ngx.ssl.proxysslverify](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md)
-Lua modules' official documentation.
+Lua module's official documentation.
 
 Uncaught Lua exceptions in the user Lua code immediately abort the current SSL session, so does the
 [ngx.exit](#ngxexit) call with an error code like `ngx.ERROR`.
@@ -2922,8 +2922,6 @@ Uncaught Lua exceptions in the user Lua code immediately abort the current SSL s
 This Lua code execution context *does* support yielding, so Lua APIs that may yield
 (like cosockets, sleeping, and "light threads")
 are enabled in this context
-
-Note, `ngx.ctx` in proxy_ssl_verify_by_lua_block is belonging to upstream connection, not downstream connection, so it's different from `ngx.ctx` in contexts like ssl_certificate_by_lua etc.
 
 This directive requires OpenSSL 3.0.2 or greater.
 
@@ -6264,7 +6262,7 @@ Returns a formatted string can be used as the cookie expiration time. The parame
 
 **context:** *init_worker_by_lua&#42;, set_by_lua&#42;, rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, header_filter_by_lua&#42;, body_filter_by_lua&#42;, log_by_lua&#42;, ngx.timer.&#42;, balancer_by_lua&#42;, ssl_certificate_by_lua&#42;, ssl_session_fetch_by_lua&#42;, ssl_session_store_by_lua&#42;, exit_worker_by_lua&#42;, ssl_client_hello_by_lua&#42;*
 
-Returns a formated string can be used as the http header time (for example, being used in `Last-Modified` header). The parameter `sec` is the time stamp in seconds (like those returned from [ngx.time](#ngxtime)).
+Returns a formatted string can be used as the http header time (for example, being used in `Last-Modified` header). The parameter `sec` is the time stamp in seconds (like those returned from [ngx.time](#ngxtime)).
 
 ```nginx
 
@@ -8303,9 +8301,9 @@ By default, the corresponding Nginx handler (e.g., [rewrite_by_lua](#rewrite_by_
 
 When the user "light thread" terminates with a Lua error, however, it will not abort other running "light threads" like the "entry thread" does.
 
-Due to the limitation in the Nginx subrequest model, it is not allowed to abort a running Nginx subrequest in general. So it is also prohibited to abort a running "light thread" that is pending on one ore more Nginx subrequests. You must call [ngx.thread.wait](#ngxthreadwait) to wait for those "light thread" to terminate before quitting the "world". A notable exception here is that you can abort pending subrequests by calling [ngx.exit](#ngxexit) with and only with the status code `ngx.ERROR` (-1), `408`, `444`, or `499`.
+Due to the limitation in the Nginx subrequest model, it is not allowed to abort a running Nginx subrequest in general. So it is also prohibited to abort a running "light thread" that is pending on one or more Nginx subrequests. You must call [ngx.thread.wait](#ngxthreadwait) to wait for those "light thread" to terminate before quitting the "world". A notable exception here is that you can abort pending subrequests by calling [ngx.exit](#ngxexit) with and only with the status code `ngx.ERROR` (-1), `408`, `444`, or `499`.
 
-The "light threads" are not scheduled in a pre-emptive way. In other words, no time-slicing is performed automatically. A "light thread" will keep running exclusively on the CPU until
+The "light threads" are not scheduled in a preemptive way. In other words, no time-slicing is performed automatically. A "light thread" will keep running exclusively on the CPU until
 
 1. a (nonblocking) I/O operation cannot be completed in a single run,
 1. it calls [coroutine.yield](#coroutineyield) to actively give up execution, or
