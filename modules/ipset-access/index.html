@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets ">
+        <meta name="description" content="RPM package nginx-module-ipset-access. High-performance NGINX module for IP-based access control using Linux kernel ipsets.  Key Features:  - Blacklist/Whitelist modes: Block or allow IPs based on ipset membership - Honeypot auto-add: Automatically add malicious IPs to ipsets with configurable timeouts and custom HTTP status codes - Built-in rate limiting: Per-IP rate limiting with auto-ban to ipsets - JavaScript challenges: Proof-of-work challenges to filter bots - Dual-stack support: Works with both IPv4 and IPv6 ipsets - FirewallD compatible: Integrates with firewall-cmd managed ipsets - Whitelist bypass: Whitelisted IPs skip rate limiting and challenges - Dry-run mode: Test rules in production without blocking - Prometheus metrics: Native /metrics endpoint for monitoring - LRU cache: Shared memory cache for high-performance lookups  Uses libipset directly (no CLI fallback) for kernel-level performance. Compatible with realip module for proper client IP detection behind proxies.  Note: This module requires CAP_NET_ADMIN capability. The selinux subpackage includes a systemd override and helper library to enable this automatically. ">
       
       
         <meta name="author" content="Danila Vershinin">
@@ -26,7 +26,7 @@
     
     
       
-        <title>NGINX ipset access module - NGINX Extras Documentation</title>
+        <title>Zero-latency IP blocking using Linux kernel ipsets (v2) - NGINX Extras Documentation</title>
       
     
     
@@ -73,9 +73,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
+        <meta  property="og:title"  content="Zero-latency IP blocking using Linux kernel ipsets (v2) - NGINX Extras Documentation" >
       
-        <meta  property="og:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets " >
+        <meta  property="og:description"  content="RPM package nginx-module-ipset-access. High-performance NGINX module for IP-based access control using Linux kernel ipsets.  Key Features:  - Blacklist/Whitelist modes: Block or allow IPs based on ipset membership - Honeypot auto-add: Automatically add malicious IPs to ipsets with configurable timeouts and custom HTTP status codes - Built-in rate limiting: Per-IP rate limiting with auto-ban to ipsets - JavaScript challenges: Proof-of-work challenges to filter bots - Dual-stack support: Works with both IPv4 and IPv6 ipsets - FirewallD compatible: Integrates with firewall-cmd managed ipsets - Whitelist bypass: Whitelisted IPs skip rate limiting and challenges - Dry-run mode: Test rules in production without blocking - Prometheus metrics: Native /metrics endpoint for monitoring - LRU cache: Shared memory cache for high-performance lookups  Uses libipset directly (no CLI fallback) for kernel-level performance. Compatible with realip module for proper client IP detection behind proxies.  Note: This module requires CAP_NET_ADMIN capability. The selinux subpackage includes a systemd override and helper library to enable this automatically. " >
       
         <meta  property="og:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
@@ -89,9 +89,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="NGINX ipset access module - NGINX Extras Documentation" >
+        <meta  name="twitter:title"  content="Zero-latency IP blocking using Linux kernel ipsets (v2) - NGINX Extras Documentation" >
       
-        <meta  name="twitter:description"  content="RPM package nginx-module-ipset-access. NGINX module to control user access to sites using IPSets " >
+        <meta  name="twitter:description"  content="RPM package nginx-module-ipset-access. High-performance NGINX module for IP-based access control using Linux kernel ipsets.  Key Features:  - Blacklist/Whitelist modes: Block or allow IPs based on ipset membership - Honeypot auto-add: Automatically add malicious IPs to ipsets with configurable timeouts and custom HTTP status codes - Built-in rate limiting: Per-IP rate limiting with auto-ban to ipsets - JavaScript challenges: Proof-of-work challenges to filter bots - Dual-stack support: Works with both IPv4 and IPv6 ipsets - FirewallD compatible: Integrates with firewall-cmd managed ipsets - Whitelist bypass: Whitelisted IPs skip rate limiting and challenges - Dry-run mode: Test rules in production without blocking - Prometheus metrics: Native /metrics endpoint for monitoring - LRU cache: Shared memory cache for high-performance lookups  Uses libipset directly (no CLI fallback) for kernel-level performance. Compatible with realip module for proper client IP detection behind proxies.  Note: This module requires CAP_NET_ADMIN capability. The selinux subpackage includes a systemd override and helper library to enable this automatically. " >
       
         <meta  name="twitter:image"  content="https://nginx-extras.getpagespeed.com/assets/images/social/modules/ipset-access.png" >
       
@@ -116,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ipset-access-nginx-ipset-access-module" class="md-skip">
+        <a href="#ipset-access-zero-latency-ip-blocking-using-linux-kernel-ipsets-v2" class="md-skip">
           Skip to content
         </a>
       
@@ -159,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NGINX ipset access module
+              Zero-latency IP blocking using Linux kernel ipsets (v2)
             
           </span>
         </div>
@@ -1811,9 +1811,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ipset_autoadd-setname-timeoutseconds" class="md-nav__link">
+  <a href="#ipset_autoadd-setname-timeoutseconds-statuscode" class="md-nav__link">
     <span class="md-ellipsis">
-      ipset_autoadd setname [timeout=seconds]
+      ipset_autoadd setname [timeout=seconds] [status=code]
     </span>
   </a>
   
@@ -2155,6 +2155,24 @@
   <a href="#rate-limiting-not-working" class="md-nav__link">
     <span class="md-ellipsis">
       Rate limiting not working
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-shows-matchedsetname-but-ip-isnt-in-the-ipset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log shows "matched=setname" but IP isn't in the ipset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoadd-fails-with-result4" class="md-nav__link">
+    <span class="md-ellipsis">
+      autoadd fails with "result=4"
     </span>
   </a>
   
@@ -6884,9 +6902,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ipset_autoadd-setname-timeoutseconds" class="md-nav__link">
+  <a href="#ipset_autoadd-setname-timeoutseconds-statuscode" class="md-nav__link">
     <span class="md-ellipsis">
-      ipset_autoadd setname [timeout=seconds]
+      ipset_autoadd setname [timeout=seconds] [status=code]
     </span>
   </a>
   
@@ -7233,6 +7251,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#log-shows-matchedsetname-but-ip-isnt-in-the-ipset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log shows "matched=setname" but IP isn't in the ipset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoadd-fails-with-result4" class="md-nav__link">
+    <span class="md-ellipsis">
+      autoadd fails with "result=4"
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7343,7 +7379,7 @@
                   
 
 
-<h1 id="ipset-access-nginx-ipset-access-module"><em>ipset-access</em>: NGINX ipset access module</h1>
+<h1 id="ipset-access-zero-latency-ip-blocking-using-linux-kernel-ipsets-v2"><em>ipset-access</em>: Zero-latency IP blocking using Linux kernel ipsets (v2)</h1>
 <blockquote>
 <p>Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.</p>
 </blockquote>
@@ -7374,12 +7410,12 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_ipset_access.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-ipset-access v2.0.2 
-released on Dec 09 2025.</p>
+<p>This document describes nginx-module-ipset-access v2.0.9 
+released on Dec 20 2025.</p>
 <hr />
 
 <p>Enterprise-grade IP-based access control for NGINX using Linux ipset. Block threats, rate-limit abusers, challenge bots, and protect your infrastructure.</p>
-<p><a href="https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access"><img alt="Version" src="https://img.shields.io/badge/version-2.0.2-blue" /></a>
+<p><a href="https://www.getpagespeed.com/server-setup/nginx-modules/ipset-access"><img alt="Version" src="https://img.shields.io/badge/version-2.0.7-blue" /></a>
 <a href="https://www.getpagespeed.com/"><img alt="GetPageSpeed" src="https://img.shields.io/badge/GetPageSpeed-Premium-gold" /></a></p>
 <blockquote>
 <p><strong>⚠️ Commercial Software</strong><br />
@@ -7533,10 +7569,9 @@ sudo<span class="w"> </span>ipset<span class="w"> </span>create<span class="w"> 
 <span class="w">            </span><span class="kn">root</span><span class="w"> </span><span class="s">/var/www/html</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="c1"># Honeypot trap</span>
+<span class="w">        </span><span class="c1"># Honeypot trap - returns 404 by default</span>
 <span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/wp-admin.php</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="p">;</span>
-<span class="w">            </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="c1"># Metrics endpoint</span>
@@ -7574,7 +7609,7 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <h2 id="configuration-reference">📖 Configuration Reference</h2>
 <h3 id="access-control">Access Control</h3>
 <h4 id="ipset_blacklist-set1-set2"><code>ipset_blacklist</code> <em>set1</em> [<em>set2</em> ...]</h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> —</p>
 <p>Blocks requests if the client IP appears in <strong>any</strong> of the listed ipsets. Multiple ipsets are checked in order until a match is found.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">## Single set</span>
@@ -7587,14 +7622,23 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <span class="k">ipset_blacklist</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
 </code></pre></div>
 <h4 id="ipset_whitelist-set1-set2"><code>ipset_whitelist</code> <em>set1</em> [<em>set2</em> ...]</h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> —</p>
 <p>Allows requests <strong>only</strong> if the client IP appears in at least one of the listed ipsets. All other IPs are rejected.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">## Only allow trusted IPs</span>
 <span class="k">ipset_whitelist</span><span class="w"> </span><span class="s">trusted_partners</span><span class="w"> </span><span class="no">off</span><span class="s">ice_ips</span><span class="p">;</span>
 </code></pre></div>
+<p><strong>Important:</strong> Whitelisted IPs bypass <strong>all</strong> module restrictions including:
+- Rate limiting (<code>ipset_ratelimit</code>)
+- JavaScript challenges (<code>ipset_challenge</code>)</p>
+<p>This is useful for admin IPs that shouldn't be subject to rate limits or challenges:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Admin IPs bypass rate limiting and challenges</span>
+<span class="k">ipset_whitelist</span><span class="w"> </span><span class="s">admin_ips</span><span class="p">;</span>
+<span class="k">ipset_ratelimit</span><span class="w"> </span><span class="s">rate=100</span><span class="w"> </span><span class="s">window=1m</span><span class="w"> </span><span class="s">autoban=ratelimited</span><span class="w"> </span><span class="s">ban_time=1800</span><span class="p">;</span>
+<span class="k">ipset_challenge</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+</code></pre></div>
 <h4 id="ipset_status-code"><code>ipset_status</code> <em>code</em></h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>403</code></p>
 <p><abbr title="Hyper Text Transfer Protocol">HTTP</abbr> status code returned when a request is blocked.</p>
 <div class="highlight"><pre><span></span><code><span class="k">ipset_status</span><span class="w"> </span><span class="mi">403</span><span class="p">;</span><span class="w">   </span><span class="c1"># Forbidden (default)</span>
@@ -7605,26 +7649,27 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <h2 id="_5"></h2>
 <h3 id="caching-performance">Caching &amp; Performance</h3>
 <h4 id="ipset_cache_ttl-time"><code>ipset_cache_ttl</code> <em>time</em></h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>60s</code></p>
 <p>How long to cache ipset lookup results. Cached results avoid repeated kernel calls for the same IP.</p>
 <div class="highlight"><pre><span></span><code><span class="k">ipset_cache_ttl</span><span class="w"> </span><span class="s">30s</span><span class="p">;</span><span class="w">    </span><span class="c1"># 30 seconds</span>
 <span class="k">ipset_cache_ttl</span><span class="w"> </span><span class="mi">5m</span><span class="p">;</span><span class="w">     </span><span class="c1"># 5 minutes</span>
 <span class="k">ipset_cache_ttl</span><span class="w"> </span><span class="s">1h</span><span class="p">;</span><span class="w">     </span><span class="c1"># 1 hour</span>
 </code></pre></div>
+<p><strong>Debugging Note:</strong> If you remove an IP from an ipset but the module still reports it as "matched", this is due to caching. The cached result will expire after the configured TTL. For immediate effect during testing, you can temporarily set <code>ipset_cache_ttl 0;</code> to disable caching (not recommended for production due to performance impact).</p>
 <p><strong>Performance Impact:</strong>
 - Higher TTL = Better performance, but slower to reflect ipset changes
 - Lower TTL = More responsive to ipset changes, but more kernel calls
 - Recommended: <code>30s</code> to <code>5m</code> for most use cases</p>
 <h4 id="ipset_fail_open-onoff"><code>ipset_fail_open</code> on|off</h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>off</code></p>
 <p>Controls behavior when an ipset lookup fails (e.g., set doesn't exist).</p>
 <div class="highlight"><pre><span></span><code><span class="k">ipset_fail_open</span><span class="w"> </span><span class="no">off</span><span class="p">;</span><span class="w">   </span><span class="c1"># Deny on error (secure, default)</span>
 <span class="k">ipset_fail_open</span><span class="w"> </span><span class="no">on</span><span class="p">;</span><span class="w">    </span><span class="c1"># Allow on error (available but risky)</span>
 </code></pre></div>
 <h4 id="ipset_dryrun-onoff"><code>ipset_dryrun</code> on|off</h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>off</code></p>
 <p>When enabled, logs what would be blocked but doesn't actually block. Perfect for testing new rules in production.</p>
 <div class="highlight"><pre><span></span><code><span class="k">ipset_dryrun</span><span class="w"> </span><span class="no">on</span><span class="p">;</span><span class="w">   </span><span class="c1"># Log but don&#39;t block</span>
@@ -7632,10 +7677,17 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <p>Check logs for messages like:
 <div class="highlight"><pre><span></span><code>ipset: DRYRUN would block 1.2.3.4 (matched: bad_guys)
 </code></pre></div></p>
+<p><strong>Important:</strong> When using <code>$ipset_result</code> and <code>$ipset_matched_set</code> variables with dryrun mode, these values reflect the <strong>point-in-time</strong> state when the request was processed—not the current state of the ipset. If you check the ipset manually later and don't find the IP, possible reasons include:</p>
+<ol>
+<li><strong>Timeout expiration</strong>: The IP was added with a timeout (e.g., <code>timeout=86400</code>) and has since expired</li>
+<li><strong>Cache lag</strong>: The module caches lookup results (default 60s). An entry removed from the ipset may still show as "matched" until the cache expires</li>
+<li><strong>Manual removal</strong>: Someone or something (fail2ban, scripts) removed the entry</li>
+</ol>
+<p>This is expected behavior—dryrun shows you exactly what production would see at request time.</p>
 <h2 id="_6"></h2>
 <h3 id="rate-limiting">Rate Limiting</h3>
 <h4 id="ipset_ratelimit-parameters"><code>ipset_ratelimit</code> <em>parameters</em></h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> —</p>
 <p>Limits requests per IP within a time window. Can automatically add violators to an ipset.</p>
 <p><strong>Parameters:</strong></p>
@@ -7693,7 +7745,7 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <h2 id="_7"></h2>
 <h3 id="javascript-challenge">JavaScript Challenge</h3>
 <h4 id="ipset_challenge-onoff"><code>ipset_challenge</code> on|off</h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>off</code></p>
 <p>Enables JavaScript challenge mode. Browsers must solve a proof-of-work puzzle to access the site. Effective against automated bots and scrapers.</p>
 <div class="highlight"><pre><span></span><code><span class="k">ipset_challenge</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
@@ -7705,7 +7757,7 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 4. Subsequent requests with valid cookie pass through
 5. Cookie expires after 24 hours</p>
 <h4 id="ipset_challenge_difficulty-level"><code>ipset_challenge_difficulty</code> <em>level</em></h4>
-<p><strong>Context:</strong> <code>server</code><br />
+<p><strong>Context:</strong> <code>http</code>, <code>server</code><br />
 <strong>Default:</strong> <code>2</code></p>
 <p>Controls challenge difficulty (1-8). Higher = longer solve time.</p>
 <table>
@@ -7753,10 +7805,10 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 - No external dependencies</p>
 <h2 id="_8"></h2>
 <h3 id="honeypot-auto-add">Honeypot Auto-add</h3>
-<h4 id="ipset_autoadd-setname-timeoutseconds"><code>ipset_autoadd</code> <em>setname</em> [timeout=<em>seconds</em>]</h4>
-<p><strong>Context:</strong> <code>location</code><br />
+<h4 id="ipset_autoadd-setname-timeoutseconds-statuscode"><code>ipset_autoadd</code> <em>setname</em> [timeout=<em>seconds</em>] [status=<em>code</em>]</h4>
+<p><strong>Context:</strong> <code>server</code>, <code>location</code><br />
 <strong>Default:</strong> —</p>
-<p>Automatically adds client IP to specified ipset when the location is accessed. Perfect for honeypot traps.</p>
+<p>Automatically adds client IP to specified ipset when the location is accessed and returns an <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> status code. Perfect for honeypot traps.</p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
@@ -7777,47 +7829,51 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 <td>No</td>
 <td>Entry timeout in seconds</td>
 </tr>
+<tr>
+<td><code>status=N</code></td>
+<td>No</td>
+<td><abbr title="Hyper Text Transfer Protocol">HTTP</abbr> status code to return (default: 404)</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1">## Basic: Add to honeypot set (permanent until manual removal)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## Basic: Add to honeypot set and return 404 (default)</span>
 <span class="k">location</span><span class="w"> </span><span class="s">/config.php</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">## With timeout: Auto-expire after 24 hours</span>
 <span class="k">location</span><span class="w"> </span><span class="s">/wp-admin.php</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">scanners</span><span class="w"> </span><span class="s">timeout=86400</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">## Severe: Block for 1 week</span>
-<span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">\.(sh|pl|cgi)$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">malicious</span><span class="w"> </span><span class="s">timeout=604800</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
+<span class="c1">## Return 403 Forbidden instead of 404</span>
+<span class="k">location</span><span class="w"> </span><span class="s">/admin.php</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="w"> </span><span class="s">status=403</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">## Return 429 Too Many Requests</span>
+<span class="k">location</span><span class="w"> </span><span class="s">/api/hack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">abusers</span><span class="w"> </span><span class="s">timeout=3600</span><span class="w"> </span><span class="s">status=429</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Common Honeypot Paths:</strong>
-<div class="highlight"><pre><span></span><code><span class="c1">## WordPress traps</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## WordPress traps - return 404 to look like missing file</span>
 <span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/(wp-admin\.php|wp-login\.php|xmlrpc\.php)$</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">## Config file traps</span>
+<span class="c1">## Config file traps - return 403 to simulate forbidden access</span>
 <span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/(\\.env|config\\.php|phpinfo\\.php)$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="w"> </span><span class="s">status=403</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">## Shell/exploit traps</span>
+<span class="c1">## Shell/exploit traps - severe, block for 1 week</span>
 <span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/(shell|cmd|eval|exec)\\.php$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">malicious</span><span class="w"> </span><span class="s">timeout=604800</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">malicious</span><span class="w"> </span><span class="s">timeout=604800</span><span class="w"> </span><span class="s">status=403</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Note:</strong> When an IP is auto-added, the connection's keep-alive is disabled to prevent further requests on the same connection.</p>
+<p><strong>Note:</strong> When an IP is auto-added, the module immediately returns the specified <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> status code (default 404), preventing further request processing. The connection's keep-alive is also disabled to prevent further requests on the same connection.</p>
 <h2 id="_9"></h2>
 <h3 id="observability">Observability</h3>
 <h4 id="ipset_stats"><code>ipset_stats</code></h4>
@@ -7881,6 +7937,10 @@ sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> <
 </table>
 <h3 id="ipset_matched_set"><code>$ipset_matched_set</code></h3>
 <p>Name of the ipset that matched (if any). Empty if no match.</p>
+<p><strong>Note:</strong> This variable reflects the match state <strong>at request time</strong>, not the current state of the ipset. If you check the ipset manually and don't find the IP:
+- The entry may have expired (ipsets support per-entry timeouts)
+- The module's cache (default 60s) may show a recently-removed entry as still matched
+- Something may have removed the entry after the request was processed</p>
 <h3 id="usage-examples">Usage Examples</h3>
 <p><strong>Custom access log:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">security</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">-</span><span class="w"> </span><span class="nv">$remote_user</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&#39;</span>
@@ -7962,7 +8022,7 @@ nginx_ipset_uptime_seconds 86400
 <p>The <code>/_stats</code> endpoint returns detailed statistics in JSON format.</p>
 <h3 id="response-format">Response Format</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.7&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;uptime_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;requests&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;checked&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span>
@@ -8223,10 +8283,9 @@ sudo<span class="w"> </span>ipset<span class="w"> </span>add<span class="w"> </s
 <span class="w">        </span><span class="kn">root</span><span class="w"> </span><span class="s">/var/www/html</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1"># Honeypot traps</span>
+<span class="w">    </span><span class="c1"># Honeypot traps - return 404 (default) to look like missing files</span>
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/(wp-admin|phpmyadmin|admin)\.php$</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kn">ipset_autoadd</span><span class="w"> </span><span class="s">honeypot</span><span class="w"> </span><span class="s">timeout=86400</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">return</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1"># Monitoring</span>
@@ -8288,6 +8347,42 @@ semodule<span class="w"> </span>-l<span class="w"> </span><span class="p">|</spa
 <h3 id="rate-limiting-not-working">Rate limiting not working</h3>
 <p><strong>Solution:</strong> Ensure the ipset for auto-ban exists and has timeout support:
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ipset<span class="w"> </span>create<span class="w"> </span>ratelimited<span class="w"> </span>hash:ip<span class="w"> </span>timeout<span class="w"> </span><span class="m">3600</span>
+</code></pre></div></p>
+<h3 id="log-shows-matchedsetname-but-ip-isnt-in-the-ipset">Log shows "matched=setname" but IP isn't in the ipset</h3>
+<p>This is expected behavior. The module reports what it saw <strong>at request time</strong>. If you check the ipset later and don't find the IP:</p>
+<ol>
+<li>
+<p><strong>Timeout expiration:</strong> The IP was added with a timeout and has since expired
+   <div class="highlight"><pre><span></span><code><span class="c1"># Check if set supports timeouts</span>
+ipset<span class="w"> </span>list<span class="w"> </span>setname<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+<span class="c1"># Look for &quot;timeout&quot; in the header</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Module cache:</strong> The module caches lookups (default 60s). A recently-removed IP may still appear as "matched"
+   <div class="highlight"><pre><span></span><code><span class="c1"># Temporarily disable cache for debugging (not for production!)</span>
+<span class="k">ipset_cache_ttl</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Entry was removed:</strong> fail2ban, scripts, or manual commands may have removed it</p>
+</li>
+<li>
+<p><strong>Trap configuration issue:</strong> If using honeypot traps with <code>ipset_autoadd</code>, legitimate bots may have triggered traps. Check your trap locations don't overlap with legitimate bot paths (like sitemaps, robots.txt). Use <code>robots.txt</code> to exclude trap paths from crawling.</p>
+</li>
+</ol>
+<h3 id="autoadd-fails-with-result4">autoadd fails with "result=4"</h3>
+<p>This means you're using <code>timeout=N</code> in <code>ipset_autoadd</code> but the ipset was created <strong>without</strong> timeout support.</p>
+<p><strong>Solution:</strong> Recreate the ipset with timeout support:
+<div class="highlight"><pre><span></span><code><span class="c1">## Using ipset directly</span>
+sudo<span class="w"> </span>ipset<span class="w"> </span>destroy<span class="w"> </span>honeypot4
+sudo<span class="w"> </span>ipset<span class="w"> </span>create<span class="w"> </span>honeypot4<span class="w"> </span>hash:ip<span class="w"> </span>family<span class="w"> </span>inet<span class="w"> </span>timeout<span class="w"> </span><span class="m">86400</span>
+
+<span class="c1">## Using firewall-cmd (RHEL/CentOS/Amazon Linux)</span>
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--delete-ipset<span class="o">=</span>honeypot4
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--new-ipset<span class="o">=</span>honeypot4<span class="w"> </span>--type<span class="o">=</span>hash:ip<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--option<span class="o">=</span><span class="nv">family</span><span class="o">=</span>inet<span class="w"> </span>--option<span class="o">=</span><span class="nv">timeout</span><span class="o">=</span><span class="m">86400</span>
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </code></pre></div></p>
 <h2 id="_14"></h2>
 <h2 id="requirements">📋 Requirements</h2>

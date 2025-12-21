@@ -10521,8 +10521,8 @@ yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </s
 <p>Enable the module by adding the following at the top of <code>/etc/nginx/nginx.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_lua_module.so</span><span class="p">;</span>
 </code></pre></div>
-<p>This document describes nginx-module-lua <a href="https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.29" target="_blank">v0.10.29</a> 
-released on Oct 24 2025.</p>
+<p>This document describes nginx-module-lua <a href="https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.29R2" target="_blank">v0.10.29.post2</a> 
+released on Dec 16 2025.</p>
 <hr />
 
 <p>ngx_http_lua_module - Embed the power of Lua into Nginx <abbr title="Hyper Text Transfer Protocol">HTTP</abbr> Servers.</p>
@@ -11344,7 +11344,7 @@ development as it has a significant negative impact on overall performance. For 
 <p>This cache recycles the lua thread GC objects among all our "light threads".</p>
 <p>A zero value of <code>&lt;num&gt;</code> disables the cache.</p>
 <p>Note that this feature requires OpenResty's LuaJIT with the new C API <code>lua_resetthread</code>.</p>
-<p>This feature was first introduced in verson <code>v0.10.9</code>.</p>
+<p>This feature was first introduced in version <code>v0.10.9</code>.</p>
 <p><a href="#directives">Back to TOC</a></p>
 <h2 id="lua_regex_cache_max_entries">lua_regex_cache_max_entries</h2>
 <p><strong>syntax:</strong> <em>lua_regex_cache_max_entries &lt;num&gt;</em></p>
@@ -12463,7 +12463,7 @@ in your https server block to disable the TLS session ticket support:</p>
 <p><strong>phase:</strong> <em>right-after-server-certificate-message-was-processed</em></p>
 <p>This directive runs user Lua code when Nginx is about to post-process the SSL server certificate message for the upstream SSL (https) connections.</p>
 <p>It is particularly useful to parse upstream server certificate and do some custom operations in pure lua.</p>
-<p>The <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md">ngx.ssl.proxysslverify</a> Lua modules provided by the <a href="https://github.com/openresty/lua-resty-core/#readme">lua-resty-core</a>
+<p>The <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md">ngx.ssl.proxysslverify</a> Lua module provided by the <a href="https://github.com/openresty/lua-resty-core/#readme">lua-resty-core</a>
 library are particularly useful in this context.</p>
 <p>Below is a trivial example using the
 <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md">ngx.ssl.proxysslverify</a> module
@@ -12493,13 +12493,12 @@ at the same time:</p>
 <span class="w"> </span><span class="err">}</span>
 </code></pre></div>
 <p>See more information in the <a href="https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl/proxysslverify.md">ngx.ssl.proxysslverify</a>
-Lua modules' official documentation.</p>
+Lua module's official documentation.</p>
 <p>Uncaught Lua exceptions in the user Lua code immediately abort the current SSL session, so does the
 <a href="#ngxexit">ngx.exit</a> call with an error code like <code>ngx.ERROR</code>.</p>
 <p>This Lua code execution context <em>does</em> support yielding, so Lua APIs that may yield
 (like cosockets, sleeping, and "light threads")
 are enabled in this context</p>
-<p>Note, <code>ngx.ctx</code> in proxy_ssl_verify_by_lua_block is belonging to upstream connection, not downstream connection, so it's different from <code>ngx.ctx</code> in contexts like ssl_certificate_by_lua etc.</p>
 <p>This directive requires OpenSSL 3.0.2 or greater.</p>
 <p><a href="#directives">Back to TOC</a></p>
 <h2 id="proxy_ssl_verify_by_lua_file">proxy_ssl_verify_by_lua_file</h2>
@@ -14462,7 +14461,7 @@ Returns <code>nil</code> if <code>str</code> is not well formed.</p>
 <h2 id="ngxhttp_time">ngx.http_time</h2>
 <p><strong>syntax:</strong> <em>str = ngx.http_time(sec)</em></p>
 <p><strong>context:</strong> <em>init_worker_by_lua&#42;, set_by_lua&#42;, rewrite_by_lua&#42;, access_by_lua&#42;, content_by_lua&#42;, header_filter_by_lua&#42;, body_filter_by_lua&#42;, log_by_lua&#42;, ngx.timer.&#42;, balancer_by_lua&#42;, ssl_certificate_by_lua&#42;, ssl_session_fetch_by_lua&#42;, ssl_session_store_by_lua&#42;, exit_worker_by_lua&#42;, ssl_client_hello_by_lua&#42;</em></p>
-<p>Returns a formated string can be used as the http header time (for example, being used in <code>Last-Modified</code> header). The parameter <code>sec</code> is the time stamp in seconds (like those returned from <a href="#ngxtime">ngx.time</a>).</p>
+<p>Returns a formatted string can be used as the http header time (for example, being used in <code>Last-Modified</code> header). The parameter <code>sec</code> is the time stamp in seconds (like those returned from <a href="#ngxtime">ngx.time</a>).</p>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="k">ngx.say(ngx.http_time(1290079655))</span>
 <span class="w">     </span><span class="s">--</span><span class="w"> </span><span class="s">yields</span><span class="w"> </span><span class="s">&quot;Thu,</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="s">Nov</span><span class="w"> </span><span class="mi">2010</span><span class="w"> </span><span class="n">11</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">35</span><span class="w"> </span><span class="s">GMT&quot;</span>
 </code></pre></div>
@@ -15780,8 +15779,8 @@ the <code>pool_size</code> and <code>backlog</code> option in the call to
 <li>the "entry thread" terminates with a Lua error.</li>
 </ol>
 <p>When the user "light thread" terminates with a Lua error, however, it will not abort other running "light threads" like the "entry thread" does.</p>
-<p>Due to the limitation in the Nginx subrequest model, it is not allowed to abort a running Nginx subrequest in general. So it is also prohibited to abort a running "light thread" that is pending on one ore more Nginx subrequests. You must call <a href="#ngxthreadwait">ngx.thread.wait</a> to wait for those "light thread" to terminate before quitting the "world". A notable exception here is that you can abort pending subrequests by calling <a href="#ngxexit">ngx.exit</a> with and only with the status code <code>ngx.ERROR</code> (-1), <code>408</code>, <code>444</code>, or <code>499</code>.</p>
-<p>The "light threads" are not scheduled in a pre-emptive way. In other words, no time-slicing is performed automatically. A "light thread" will keep running exclusively on the CPU until</p>
+<p>Due to the limitation in the Nginx subrequest model, it is not allowed to abort a running Nginx subrequest in general. So it is also prohibited to abort a running "light thread" that is pending on one or more Nginx subrequests. You must call <a href="#ngxthreadwait">ngx.thread.wait</a> to wait for those "light thread" to terminate before quitting the "world". A notable exception here is that you can abort pending subrequests by calling <a href="#ngxexit">ngx.exit</a> with and only with the status code <code>ngx.ERROR</code> (-1), <code>408</code>, <code>444</code>, or <code>499</code>.</p>
+<p>The "light threads" are not scheduled in a preemptive way. In other words, no time-slicing is performed automatically. A "light thread" will keep running exclusively on the CPU until</p>
 <ol>
 <li>a (nonblocking) I/O operation cannot be completed in a single run,</li>
 <li>it calls <a href="#coroutineyield">coroutine.yield</a> to actively give up execution, or</li>
