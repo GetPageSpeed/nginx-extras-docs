@@ -7,12 +7,9 @@ description: "RPM package nginx-module-ipset-access. High-performance NGINX modu
 
 # *ipset-access*: Zero-latency IP blocking using Linux kernel ipsets (v2)
 
-> Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.
-
-
+> Requires the Pro plan (or higher) of the GetPageSpeed NGINX Extras subscription.
 
 ## Installation
-
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
 * RedHat Enterprise Linux 7, 8, 9 and 10

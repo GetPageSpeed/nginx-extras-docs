@@ -165,12 +165,15 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 """
 
-    # Prepend premium notice for Enterprise plan
-    plan = module_config.get("plan")
-    enterprise = bool(plan) and str(plan).lower() == "enterprise"
-    if enterprise:
+    # Prepend premium notice for plan-gated modules (plan indicates the minimum tier)
+    plan = (module_config.get("plan") or "").strip()
+    plan_normalized = plan.lower()
+    enterprise = plan_normalized == "enterprise"
+    pro = plan_normalized == "pro"
+    if pro or enterprise:
+        plan_suffix = " (or higher)" if pro else ""
         intro = (
-            "\n> Requires the Enterprise plan of the GetPageSpeed NGINX Extras subscription.\n\n"
+            f"\n> Requires the {plan.title()} plan{plan_suffix} of the GetPageSpeed NGINX Extras subscription.\n\n"
             + intro
         )
     print(sonames)
