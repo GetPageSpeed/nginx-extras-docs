@@ -9,7 +9,10 @@ description: "RPM package nginx-module-ipset-access. High-performance NGINX modu
 
 > Requires the Pro plan (or higher) of the GetPageSpeed NGINX Extras subscription.
 
+
+
 ## Installation
+
 You can install this module in any RHEL-based distribution, including, but not limited to:
 
 * RedHat Enterprise Linux 7, 8, 9 and 10
@@ -40,7 +43,7 @@ load_module modules/ngx_http_ipset_access.so;
 ```
 
 
-This document describes nginx-module-ipset-access v2.0.9 
+This document describes nginx-module-ipset-access [v2.0.9](https://github.com/GetPageSpeed/ngx_ipset_access_module/releases/tag/v2.0.9){target=_blank} 
 released on Dec 20 2025.
 
 <hr />
