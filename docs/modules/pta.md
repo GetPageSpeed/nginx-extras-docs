@@ -1,7 +1,7 @@
 ---
 
 title: "Period of Time Authentication module for NGINX"
-description: "RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content. "
+description: "RPM package nginx-module-pta. PTA (Period of Time Authentication) module is a module for NGINX. Using PTA you can control access to your contents. PTA calculates a encrypted query string that includes an expiration time and a path of the content."
 
 ---
 

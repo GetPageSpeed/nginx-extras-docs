@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX JWT Module"
-description: "RPM package nginx-module-jwt. NGINX module to check for a valid JWT. "
+description: "RPM package nginx-module-jwt. NGINX module to check for a valid JWT."
 
 ---
 

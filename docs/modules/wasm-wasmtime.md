@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx with WebAssembly powered by wasmtime"
-description: "RPM package nginx-module-wasm-wasmtime. Nginx with WebAssembly powered by wasmtime "
+description: "RPM package nginx-module-wasm-wasmtime. Nginx with WebAssembly powered by wasmtime"
 
 ---
 

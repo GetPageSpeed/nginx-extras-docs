@@ -1,7 +1,7 @@
 ---
 
 title: "Passenger module"
-description: "RPM package nginx-module-passenger. Phusion Passenger™ is a web server and application server, designed to be fast, robust and lightweight.  It takes a lot of complexity out of deploying web apps, adds powerful enterprise grade features that  are useful in production, and makes administration much easier and less complex.  Phusion Passenger supports Ruby, Python, Node.js and Meteor, and is being used by high-profile companies such as Apple, Pixar, New York Times, AirBnB, Juniper etc as well as over 650.000 websites. "
+description: "RPM package nginx-module-passenger. Phusion Passenger™ is a web server and application server, designed to be fast, robust and lightweight.  It takes a lot of complexity out of deploying web apps, adds powerful enterprise grade features that  are useful in production, and makes administration much easier and less complex.  Phusion Passenger supports Ruby, Python, Node.js and Meteor, and is being used by high-profile companies such as Apple, Pixar, New York Times, AirBnB, Juniper etc as well as over 650.000 websites."
 
 ---
 

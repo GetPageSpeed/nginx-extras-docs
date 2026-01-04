@@ -1,7 +1,7 @@
 ---
 
 title: "Scalable, flexible pub/sub server for the modern web"
-description: "RPM package nginx-module-nchan. Nchan is a scalable, flexible pub/sub server for the modern web, built as a module for the NGINX web server. It can be configured as a standalone server, or as a shim between your application and hundreds, thousands, or millions of live subscribers. It can buffer messages in memory, on-disk, or via Redis.  Messages are published to channels with HTTP POST requests or Websocket, and subscribed also through Websocket, long-polling, EventSource (SSE), old-fashioned interval polling, and more.  In a web browser, you can use Websocket or EventSource natively, or the NchanSubscriber.js wrapper library. It supports Long-Polling, EventSource, and resumable Websockets, and has a few other added convenience options. It's also available on NPM. "
+description: "RPM package nginx-module-nchan. Nchan is a scalable, flexible pub/sub server for the modern web, built as a module for the NGINX web server. It can be configured as a standalone server, or as a shim between your application and hundreds, thousands, or millions of live subscribers. It can buffer messages in memory, on-disk, or via Redis.  Messages are published to channels with HTTP POST requests or Websocket, and subscribed also through Websocket, long-polling, EventSource (SSE), old-fashioned interval polling, and more.  In a web browser, you can use Websocket or EventSource natively, or the NchanSubscriber.js wrapper library. It supports Long-Polling, EventSource, and resumable Websockets, and has a few other added convenience options. It's also available on NPM."
 
 ---
 

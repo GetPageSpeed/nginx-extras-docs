@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Set-Misc module"
-description: "RPM package nginx-module-set-misc. Various set_xxx directives added to NGINX's rewrite module (md5/sha1, sql/json quoting, and many more). "
+description: "RPM package nginx-module-set-misc. Various set_xxx directives added to NGINX's rewrite module (md5/sha1, sql/json quoting, and many more)."
 
 ---
 

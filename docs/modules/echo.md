@@ -1,7 +1,7 @@
 ---
 
 title: "nginx Echo module"
-description: "RPM package nginx-module-echo. An NGINX module for bringing the power of echo, sleep, time and more to NGINX's config file "
+description: "RPM package nginx-module-echo. An NGINX module for bringing the power of echo, sleep, time and more to NGINX's config file"
 
 ---
 

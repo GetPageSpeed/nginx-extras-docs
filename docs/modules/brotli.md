@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Brotli dynamic modules"
-description: "RPM package nginx-module-brotli. NGINX Brotli dynamic modules "
+description: "RPM package nginx-module-brotli. NGINX Brotli dynamic modules"
 
 ---
 

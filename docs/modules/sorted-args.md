@@ -1,11 +1,14 @@
 ---
 
 title: "HTTP querystring parameters normalization for NGINX"
-description: "RPM package nginx-module-sorted-args. Powerful NGINX module that normalizes HTTP request querystring parameters  by sorting them alphanumerically. "
+description: "RPM package nginx-module-sorted-args. Powerful NGINX module that normalizes HTTP request querystring parameters  by sorting them alphanumerically."
 
 ---
 
 # *sorted-args*: HTTP querystring parameters normalization for NGINX
+
+> Requires the Pro plan (or higher) of the GetPageSpeed NGINX Extras subscription.
+
 
 
 ## Installation

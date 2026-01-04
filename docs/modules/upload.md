@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for handling file uploads"
-description: "RPM package nginx-module-upload. A module for NGINX for handling file uploads using multipart/form-data encoding (RFC 1867) and resumable uploads according to this protocol. "
+description: "RPM package nginx-module-upload. A module for NGINX for handling file uploads using multipart/form-data encoding (RFC 1867) and resumable uploads according to this protocol."
 
 ---
 

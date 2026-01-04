@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Cache Purge module"
-description: "RPM package nginx-module-cache-purge. NGINX module which adds ability to purge content from FastCGI, proxy, SCGI and uWSGI caches. A purge operation removes the content with the same cache key as the purge request has. "
+description: "RPM package nginx-module-cache-purge. NGINX module which adds ability to purge content from FastCGI, proxy, SCGI and uWSGI caches. A purge operation removes the content with the same cache key as the purge request has."
 
 ---
 

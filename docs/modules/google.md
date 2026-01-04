@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Module for Google Mirror creation"
-description: "RPM package nginx-module-google. NGINX module which makes google mirror much easier to deploy "
+description: "RPM package nginx-module-google. NGINX module which makes google mirror much easier to deploy"
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "Decompresses Brotli-encoded responses for clients that do not support it"
-description: "RPM package nginx-module-unbrotli. The ngx_unbrotli module is a filter that decompresses responses with Content-Encoding: br for clients that do not support Brotli encoding method. It allows to save I/O by unconditional Brotli compression of responses. "
+description: "RPM package nginx-module-unbrotli. The ngx_unbrotli module is a filter that decompresses responses with Content-Encoding: br for clients that do not support Brotli encoding method. It allows to save I/O by unconditional Brotli compression of responses."
 
 ---
 

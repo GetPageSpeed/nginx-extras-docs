@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx Development Kit"
-description: "RPM package nginx-module-ndk. NGINX module that adds additional generic tools that module developers can use in their own modules "
+description: "RPM package nginx-module-ndk. NGINX module that adds additional generic tools that module developers can use in their own modules"
 
 ---
 

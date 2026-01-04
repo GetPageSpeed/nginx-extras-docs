@@ -1,7 +1,7 @@
 ---
 
 title: "Time-based one-time password (TOTP) authentication for NGINX"
-description: "RPM package nginx-module-auth-totp. The Time-based One-Time Password (TOTP) algorithm, provides a secure mechanism  for short-lived one-time password values, which are desirable for enhanced  security.   This algorithm can be used across a wide range of network applications ranging  from remote Virtual Private Network (VPN) access, Wi-Fi network logon to  transaction-orientated Web applications.  This module provides TOTP authentication for a NGINX server. "
+description: "RPM package nginx-module-auth-totp. The Time-based One-Time Password (TOTP) algorithm, provides a secure mechanism  for short-lived one-time password values, which are desirable for enhanced  security.   This algorithm can be used across a wide range of network applications ranging  from remote Virtual Private Network (VPN) access, Wi-Fi network logon to  transaction-orientated Web applications.  This module provides TOTP authentication for a NGINX server."
 
 ---
 

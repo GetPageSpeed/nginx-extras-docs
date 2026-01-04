@@ -1,7 +1,7 @@
 ---
 
 title: "CGI support for NGINX"
-description: "RPM package nginx-module-cgi. CGI support for NGINX "
+description: "RPM package nginx-module-cgi. CGI support for NGINX"
 
 ---
 

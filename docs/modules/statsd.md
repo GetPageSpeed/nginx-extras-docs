@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for sending stats to statsd"
-description: "RPM package nginx-module-statsd. NGINX module for sending stats to statsd "
+description: "RPM package nginx-module-statsd. NGINX module for sending stats to statsd"
 
 ---
 

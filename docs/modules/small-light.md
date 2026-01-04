@@ -1,7 +1,7 @@
 ---
 
 title: "Dynamic image transformation module For NGINX"
-description: "RPM package nginx-module-small-light. A dynamic image transformation module for NGINX. Supports the various image processings below.   * Resize   * Rotate   * Sharpen   * Unsharpen   * Blur   * Border   * Canvas   * Crop   * Composition   * JPEG Hinting(except GD)   * Format convert(e.g. PNG -> JPEG)   * Color-space convert(e.g. CMYK -> sRGB) "
+description: "RPM package nginx-module-small-light. A dynamic image transformation module for NGINX. Supports the various image processings below.   * Resize   * Rotate   * Sharpen   * Unsharpen   * Blur   * Border   * Canvas   * Crop   * Composition   * JPEG Hinting(except GD)   * Format convert(e.g. PNG -> JPEG)   * Color-space convert(e.g. CMYK -> sRGB)"
 
 ---
 

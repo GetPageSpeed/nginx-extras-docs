@@ -1,7 +1,7 @@
 ---
 
 title: "CONNECT method support in NGINX"
-description: "RPM package nginx-module-proxy-connect. CONNECT method support in NGINX "
+description: "RPM package nginx-module-proxy-connect. CONNECT method support in NGINX"
 
 ---
 

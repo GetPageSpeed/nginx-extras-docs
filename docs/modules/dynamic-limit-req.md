@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module to dynamically lock IP and release it periodically"
-description: "RPM package nginx-module-dynamic-limit-req. NGINX module to dynamically lock IP and release it periodically.  This module is an extension based on ngx_http_limit_req_module. "
+description: "RPM package nginx-module-dynamic-limit-req. NGINX module to dynamically lock IP and release it periodically.  This module is an extension based on ngx_http_limit_req_module."
 
 ---
 

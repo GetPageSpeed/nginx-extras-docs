@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX pipelog module"
-description: "RPM package nginx-module-pipelog. An NGINX module for sending HTTP access logs to an external program via pipe. "
+description: "RPM package nginx-module-pipelog. An NGINX module for sending HTTP access logs to an external program via pipe."
 
 ---
 

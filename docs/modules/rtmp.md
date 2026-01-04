@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX RTMP module"
-description: "RPM package nginx-module-rtmp. NGINX-based Media Streaming Server "
+description: "RPM package nginx-module-rtmp. NGINX-based Media Streaming Server"
 
 ---
 

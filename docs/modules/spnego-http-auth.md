@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx module for HTTP SPNEGO auth"
-description: "RPM package nginx-module-spnego-http-auth. This module implements adds SPNEGO support to NGINX.  It currently supports only Kerberos authentication via GSSAPI. "
+description: "RPM package nginx-module-spnego-http-auth. This module implements adds SPNEGO support to NGINX.  It currently supports only Kerberos authentication via GSSAPI."
 
 ---
 

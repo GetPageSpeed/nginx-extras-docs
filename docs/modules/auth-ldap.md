@@ -1,7 +1,7 @@
 ---
 
 title: "LDAP Authentication module for NGINX"
-description: "RPM package nginx-module-auth-ldap. LDAP module for nginx which supports authentication against multiple LDAP servers  For any issues, see bug tracker at https://github.com/kvspb/nginx-auth-ldap/issues and reference commit 83c059b73566c2ee9cbda920d91b66657cf120b7 if requested, not the version of the package. "
+description: "RPM package nginx-module-auth-ldap. LDAP module for nginx which supports authentication against multiple LDAP servers  For any issues, see bug tracker at https://github.com/kvspb/nginx-auth-ldap/issues and reference commit 83c059b73566c2ee9cbda920d91b66657cf120b7 if requested, not the version of the package."
 
 ---
 

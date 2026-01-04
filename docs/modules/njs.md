@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX njs dynamic modules"
-description: "RPM package nginx-module-njs. NGINX njs dynamic modules "
+description: "RPM package nginx-module-njs. NGINX njs dynamic modules"
 
 ---
 

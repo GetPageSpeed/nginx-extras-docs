@@ -1,7 +1,7 @@
 ---
 
 title: "Phantom Token NGINX Module"
-description: "RPM package nginx-module-phantom-token. NGINX module that introspects phantom access tokens according to RFC 7662 "
+description: "RPM package nginx-module-phantom-token. NGINX module that introspects phantom access tokens according to RFC 7662"
 
 ---
 

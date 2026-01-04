@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for sending security headers"
-description: "RPM package nginx-module-security-headers. This NGINX module adds security headers and removes insecure headers easily and according to HTTP specifications "
+description: "RPM package nginx-module-security-headers. This NGINX module adds security headers and removes insecure headers easily and according to HTTP specifications"
 
 ---
 

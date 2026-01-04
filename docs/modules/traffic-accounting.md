@@ -1,7 +1,7 @@
 ---
 
 title: "Monitor the incoming and outgoing traffic metrics in realtime for NGINX"
-description: "RPM package nginx-module-traffic-accounting. Monitor the incoming and outgoing traffic metrics in realtime for NGINX.  Now accounting module supports both HTTP and STREAM subsystems  A realtime traffic and status code monitor solution for NGINX, which needs less memory and cpu than other realtime log analyzing solutions. Useful for traffic accounting based on NGINX config logic (by location / server / user-defined-variables). "
+description: "RPM package nginx-module-traffic-accounting. Monitor the incoming and outgoing traffic metrics in realtime for NGINX.  Now accounting module supports both HTTP and STREAM subsystems  A realtime traffic and status code monitor solution for NGINX, which needs less memory and cpu than other realtime log analyzing solutions. Useful for traffic accounting based on NGINX config logic (by location / server / user-defined-variables)."
 
 ---
 

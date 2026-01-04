@@ -1,7 +1,7 @@
 ---
 
 title: "Transparent subrequest-based caching layout for arbitrary NGINX locations"
-description: "RPM package nginx-module-srcache. This module provides a transparent caching layer for arbitrary NGINX locations (like those use an upstream or even serve static disk files).  The caching behavior is mostly compatible with RFC 2616. "
+description: "RPM package nginx-module-srcache. This module provides a transparent caching layer for arbitrary NGINX locations (like those use an upstream or even serve static disk files).  The caching behavior is mostly compatible with RFC 2616."
 
 ---
 

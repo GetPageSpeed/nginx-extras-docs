@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX JPEG filter module"
-description: "RPM package nginx-module-jpeg. NGINX filter module for adding overlays and logos to JPEGs on-the-fly without degrading the quality of the image "
+description: "RPM package nginx-module-jpeg. NGINX filter module for adding overlays and logos to JPEGs on-the-fly without degrading the quality of the image"
 
 ---
 

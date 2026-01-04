@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx stream server traffic status module"
-description: "RPM package nginx-module-sts. NGINX stream server traffic status module. "
+description: "RPM package nginx-module-sts. NGINX stream server traffic status module."
 
 ---
 

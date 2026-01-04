@@ -1,7 +1,7 @@
 ---
 
 title: "The Application dynamic linking with Nginx"
-description: "RPM package nginx-module-link. It is a NGINX module that provides dynamic linking to your application in  server context and call the function of your application in location  directive "
+description: "RPM package nginx-module-link. It is a NGINX module that provides dynamic linking to your application in  server context and call the function of your application in location  directive"
 
 ---
 

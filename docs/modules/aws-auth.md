@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module to proxy to authenticated AWS services"
-description: "RPM package nginx-module-aws-auth. This NGINX module can proxy requests to authenticated S3 backends using Amazon's V4 authentication API. "
+description: "RPM package nginx-module-aws-auth. This NGINX module can proxy requests to authenticated S3 backends using Amazon's V4 authentication API."
 
 ---
 

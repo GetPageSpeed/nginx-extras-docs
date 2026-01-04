@@ -1,7 +1,7 @@
 ---
 
 title: "Array-typed variables for NGINX"
-description: "RPM package nginx-module-array-var. Adds support for array-typed variables to NGINX config files. "
+description: "RPM package nginx-module-array-var. Adds support for array-typed variables to NGINX config files."
 
 ---
 

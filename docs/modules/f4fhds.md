@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for Adobe f4f format"
-description: "RPM package nginx-module-f4fhds. This module implements handling of HTTP Dynamic Streaming requests in the /videoSeg1-Frag1 form — extracting the needed fragment from the videoSeg1.f4f file using the videoSeg1.f4x index file. This module is an alternative to the Adobe’s f4f module (HTTP Origin Module) for Apache.  It is open-source equivalent for commercial ngx_http_f4f_module module. "
+description: "RPM package nginx-module-f4fhds. This module implements handling of HTTP Dynamic Streaming requests in the /videoSeg1-Frag1 form — extracting the needed fragment from the videoSeg1.f4f file using the videoSeg1.f4x index file. This module is an alternative to the Adobe’s f4f module (HTTP Origin Module) for Apache.  It is open-source equivalent for commercial ngx_http_f4f_module module."
 
 ---
 

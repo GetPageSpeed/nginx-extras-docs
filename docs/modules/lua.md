@@ -1,7 +1,7 @@
 ---
 
 title: "Lua scripting support for NGINX"
-description: "RPM package nginx-module-lua. Embed the power of Lua into Nginx HTTP Servers. "
+description: "RPM package nginx-module-lua. Embed the power of Lua into Nginx HTTP Servers."
 
 ---
 

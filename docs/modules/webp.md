@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX WebP module"
-description: "RPM package nginx-module-webp. NGINX module which converts jpg/png images on fly and sends webp response "
+description: "RPM package nginx-module-webp. NGINX module which converts jpg/png images on fly and sends webp response"
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "Native cross-site scripting support in NGINX"
-description: "RPM package nginx-module-xss. This module adds cross-site AJAX support to NGINX.  Currently only cross-site GET is supported.  But cross-site POST will be added in the future.  The cross-site GET is currently implemented as JSONP (or JSON with padding).  See http://en.wikipedia.org/wiki/JSON#JSONP for more details. "
+description: "RPM package nginx-module-xss. This module adds cross-site AJAX support to NGINX.  Currently only cross-site GET is supported.  But cross-site POST will be added in the future.  The cross-site GET is currently implemented as JSONP (or JSON with padding).  See http://en.wikipedia.org/wiki/JSON#JSONP for more details."
 
 ---
 

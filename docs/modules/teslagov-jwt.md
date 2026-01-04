@@ -1,7 +1,7 @@
 ---
 
 title: "Secure your NGINX locations with JWT"
-description: "RPM package nginx-module-teslagov-jwt. This is an NGINX module to check for a valid JWT and proxy to an upstream  server or redirect to a login page. It supports additional features such as  extracting claims from the JWT and placing them on the request/response  headers "
+description: "RPM package nginx-module-teslagov-jwt. This is an NGINX module to check for a valid JWT and proxy to an upstream  server or redirect to a login page. It supports additional features such as  extracting claims from the JWT and placing them on the request/response  headers"
 
 ---
 

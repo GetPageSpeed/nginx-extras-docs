@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for syncing stream backends from consul or etcd"
-description: "RPM package nginx-module-stream-upsync. NGINX module which allows to sync upstreams from consul or others, dynamically modify backend-servers attribute(weight, max_fails,...), needn't reload nginx.  It may not always be convenient to modify configuration files and restart NGINX. For example, if you are experiencing large amounts of traffic and high load, restarting NGINX and reloading the configuration at that point further increases load on the system and can temporarily degrade performance.  The module can be more smoothly expansion and constriction, and will not influence the performance.  This module is for stream backends!  Another module, nginx-module-upsync is for HTTP backends "
+description: "RPM package nginx-module-stream-upsync. NGINX module which allows to sync upstreams from consul or others, dynamically modify backend-servers attribute(weight, max_fails,...), needn't reload nginx.  It may not always be convenient to modify configuration files and restart NGINX. For example, if you are experiencing large amounts of traffic and high load, restarting NGINX and reloading the configuration at that point further increases load on the system and can temporarily degrade performance.  The module can be more smoothly expansion and constriction, and will not influence the performance.  This module is for stream backends!  Another module, nginx-module-upsync is for HTTP backends"
 
 ---
 

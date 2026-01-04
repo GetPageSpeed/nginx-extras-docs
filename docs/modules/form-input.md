@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX form input module"
-description: "RPM package nginx-module-form-input. NGINX module that reads HTTP POST and PUT request body encoded in application/x-www-form-urlencoded and parses the arguments into NGINX variables. "
+description: "RPM package nginx-module-form-input. NGINX module that reads HTTP POST and PUT request body encoded in application/x-www-form-urlencoded and parses the arguments into NGINX variables."
 
 ---
 

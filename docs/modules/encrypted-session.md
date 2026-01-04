@@ -1,7 +1,7 @@
 ---
 
 title: "Encrypt and decrypt NGINX variable values"
-description: "RPM package nginx-module-encrypted-session. NGINX module to encrypt and decrypt NGINX variable values. "
+description: "RPM package nginx-module-encrypted-session. NGINX module to encrypt and decrypt NGINX variable values."
 
 ---
 

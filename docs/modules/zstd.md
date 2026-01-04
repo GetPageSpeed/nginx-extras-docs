@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for the Zstandard compression"
-description: "RPM package nginx-module-zstd. NGINX module for the Zstandard compression. This NGINX module is currently considered experimental. "
+description: "RPM package nginx-module-zstd. NGINX module for the Zstandard compression. This NGINX module is currently considered experimental."
 
 ---
 

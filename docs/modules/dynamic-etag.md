@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for adding ETag to dynamic content"
-description: "RPM package nginx-module-dynamic-etag. This NGINX module empowers your dynamic content with automatic ETag header. It allows client browsers to issue conditional GET requests to dynamic pages.  This saves bandwidth and ensures better performance! "
+description: "RPM package nginx-module-dynamic-etag. This NGINX module empowers your dynamic content with automatic ETag header. It allows client browsers to issue conditional GET requests to dynamic pages.  This saves bandwidth and ensures better performance!"
 
 ---
 

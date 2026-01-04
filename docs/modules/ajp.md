@@ -1,7 +1,7 @@
 ---
 
 title: "Support AJP protocol proxy with NGINX"
-description: "RPM package nginx-module-ajp. With this module, Nginx can connect to AJP port directly. The motivation of writing these modules is Nginx's high performance and robustness. "
+description: "RPM package nginx-module-ajp. With this module, Nginx can connect to AJP port directly. The motivation of writing these modules is Nginx's high performance and robustness."
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX WebDAV PROPFIND,OPTIONS,LOCK,UNLOCK support"
-description: "RPM package nginx-module-dav-ext. For full WebDAV support in nginx you need to use the standard  ngx_http_dav_module as well as this module for the missing methods. "
+description: "RPM package nginx-module-dav-ext. For full WebDAV support in nginx you need to use the standard  ngx_http_dav_module as well as this module for the missing methods."
 
 ---
 

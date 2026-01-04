@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Length Hiding Filter Module"
-description: "RPM package nginx-module-length-hiding. NGINX length hiding filter module provides functionality to append randomly generated HTML comment to the end of response body to hide correct response length and make it difficult for attackers to guess secure token "
+description: "RPM package nginx-module-length-hiding. NGINX length hiding filter module provides functionality to append randomly generated HTML comment to the end of response body to hide correct response length and make it difficult for attackers to guess secure token"
 
 ---
 

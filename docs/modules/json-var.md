@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX JSON variables module"
-description: "RPM package nginx-module-json-var. Module adds the ability to group NGINX variable expressions as JSON. "
+description: "RPM package nginx-module-json-var. Module adds the ability to group NGINX variable expressions as JSON."
 
 ---
 

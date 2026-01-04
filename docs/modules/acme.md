@@ -1,7 +1,7 @@
 ---
 
 title: "Automatic certificate management (ACMEv2) module for NGINX"
-description: "RPM package nginx-module-acme. An NGINX module with the implementation of the automatic certificate management (ACMEv2) protocol. "
+description: "RPM package nginx-module-acme. An NGINX module with the implementation of the automatic certificate management (ACMEv2) protocol."
 
 ---
 

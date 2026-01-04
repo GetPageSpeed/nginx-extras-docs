@@ -1,7 +1,7 @@
 ---
 
 title: "Extended version of the standard NGINX memcached module"
-description: "RPM package nginx-module-memc. Extended version of the standard NGINX memcached module "
+description: "RPM package nginx-module-memc. Extended version of the standard NGINX memcached module"
 
 ---
 

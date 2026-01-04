@@ -304,7 +304,9 @@ plugins:
     output_path: NGINX Extras Documentation.pdf
     toc_level: 1
 site_author: Danila Vershinin
-site_description: Install NGINX modules on RHEL, CentOS, Rocky Linux, AlmaLinux & Amazon Linux. The largest collection of prebuilt dynamic NGINX modules as RPM packages. Easy installation with dnf/yum.
+site_description: Install NGINX modules on RHEL, CentOS, Rocky Linux, AlmaLinux &
+  Amazon Linux. The largest collection of prebuilt dynamic NGINX modules as RPM packages.
+  Easy installation with dnf/yum.
 site_name: NGINX Extras Documentation
 site_url: https://nginx-extras.getpagespeed.com/
 theme:

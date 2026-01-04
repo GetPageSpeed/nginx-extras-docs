@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Headers More dynamic module"
-description: "RPM package nginx-module-headers-more. Set, add, and clear arbitrary output headers in the NGINX HTTP servers. "
+description: "RPM package nginx-module-headers-more. Set, add, and clear arbitrary output headers in the NGINX HTTP servers."
 
 ---
 

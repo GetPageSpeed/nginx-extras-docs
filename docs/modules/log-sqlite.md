@@ -1,7 +1,7 @@
 ---
 
 title: "SQLite logger module for NGINX"
-description: "RPM package nginx-module-log-sqlite. SQLite logger module for NGINX "
+description: "RPM package nginx-module-log-sqlite. SQLite logger module for NGINX"
 
 ---
 

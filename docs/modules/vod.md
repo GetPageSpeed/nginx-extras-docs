@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX-based VOD Packager"
-description: "RPM package nginx-module-vod. On-the-fly repackaging of MP4 files to DASH, HDS, HLS, MSS. "
+description: "RPM package nginx-module-vod. On-the-fly repackaging of MP4 files to DASH, HDS, HLS, MSS."
 
 ---
 

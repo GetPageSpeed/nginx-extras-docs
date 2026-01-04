@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX CoolKit Module"
-description: "RPM package nginx-module-coolkit. NGINX CoolKit is collection of small and useful NGINX add-ons. "
+description: "RPM package nginx-module-coolkit. NGINX CoolKit is collection of small and useful NGINX add-ons."
 
 ---
 

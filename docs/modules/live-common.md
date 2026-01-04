@@ -1,7 +1,7 @@
 ---
 
 title: "Kaltura Media Framework Common NGINX Module"
-description: "RPM package nginx-module-live-common. Shared module for exposing an HTTP API, sending HTTP events,  parsing JSON, KMP/KSMP definitions, etc., used by most  Kaltura Media Framework NGINX modules. "
+description: "RPM package nginx-module-live-common. Shared module for exposing an HTTP API, sending HTTP events,  parsing JSON, KMP/KSMP definitions, etc., used by most  Kaltura Media Framework NGINX modules."
 
 ---
 

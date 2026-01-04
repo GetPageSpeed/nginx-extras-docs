@@ -1,7 +1,7 @@
 ---
 
 title: "An NGINX module for collecting stats into Graphite"
-description: "RPM package nginx-module-graphite. NGINX module for collecting location stats into Graphite. "
+description: "RPM package nginx-module-graphite. NGINX module for collecting location stats into Graphite."
 
 ---
 

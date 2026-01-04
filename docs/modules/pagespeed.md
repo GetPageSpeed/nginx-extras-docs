@@ -1,7 +1,7 @@
 ---
 
 title: "PageSpeed dynamic module for NGINX"
-description: "RPM package nginx-module-pagespeed. PageSpeed dynamic module for NGINX "
+description: "RPM package nginx-module-pagespeed. PageSpeed dynamic module for NGINX"
 
 ---
 

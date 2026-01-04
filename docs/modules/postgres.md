@@ -1,7 +1,7 @@
 ---
 
 title: "PostgreSQL module for NGINX"
-description: "RPM package nginx-module-postgres. Upstream module that allows NGINX to communicate directly with PostgreSQL database. "
+description: "RPM package nginx-module-postgres. Upstream module that allows NGINX to communicate directly with PostgreSQL database."
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX SlowFS Cache Module"
-description: "RPM package nginx-module-slowfs. NGINX module which adds ability to cache static files. "
+description: "RPM package nginx-module-slowfs. NGINX module which adds ability to cache static files."
 
 ---
 

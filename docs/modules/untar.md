@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX HTTP Untar Module"
-description: "RPM package nginx-module-untar. This NGINX module can serve static file content directly from tar archives. Inspired by nginx-unzip-module.  Features:   * Zero-copy: outputs content directly from archive file     (no temporary files)   * Caching parsed archive file entries: reduce archive     scan-search time   * Supported tar item types: normal file, long file name data  Configuration example:      location ~ ^/(.+?.tar)/(.*)$ {         untar_archive $document_root/$1;         untar_file $2;         untar;     } "
+description: "RPM package nginx-module-untar. This NGINX module can serve static file content directly from tar archives. Inspired by nginx-unzip-module.  Features:   * Zero-copy: outputs content directly from archive file     (no temporary files)   * Caching parsed archive file entries: reduce archive     scan-search time   * Supported tar item types: normal file, long file name data  Configuration example:      location ~ ^/(.+?.tar)/(.*)$ {         untar_archive $document_root/$1;         untar_file $2;         untar;     }"
 
 ---
 

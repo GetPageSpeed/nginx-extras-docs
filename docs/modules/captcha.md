@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Captcha Module"
-description: "RPM package nginx-module-captcha. NGINX module for generate captcha and validate captcha code "
+description: "RPM package nginx-module-captcha. NGINX module for generate captcha and validate captcha code"
 
 ---
 

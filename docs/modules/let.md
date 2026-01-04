@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX let module"
-description: "RPM package nginx-module-let. Adds support for arithmetic operations to NGINX config. "
+description: "RPM package nginx-module-let. Adds support for arithmetic operations to NGINX config."
 
 ---
 

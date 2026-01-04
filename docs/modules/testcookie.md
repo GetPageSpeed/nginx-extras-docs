@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX testcookie robot mitigation module"
-description: "RPM package nginx-module-testcookie. Simple robot mitigation module using cookie based challenge/response technique. Not supported any more.  Challenge cookies can be set using different methods:  * Set-Cookie + 302/307 HTTP Location redirect * Set-Cookie + HTML meta refresh redirect * Custom template, JavaScript can be used here.  To prevent automatic parsing, challenge cookie value can be encrypted with AES-128 in CBC mode using custom/random key and iv, and then decrypted at client side with JavaScript. "
+description: "RPM package nginx-module-testcookie. Simple robot mitigation module using cookie based challenge/response technique. Not supported any more.  Challenge cookies can be set using different methods:  * Set-Cookie + 302/307 HTTP Location redirect * Set-Cookie + HTML meta refresh redirect * Custom template, JavaScript can be used here.  To prevent automatic parsing, challenge cookie value can be encrypted with AES-128 in CBC mode using custom/random key and iv, and then decrypted at client side with JavaScript."
 
 ---
 

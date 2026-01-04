@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX XSLT dynamic module"
-description: "RPM package nginx-module-xslt. NGINX XSLT dynamic module. This filter module transforms XML responses using one or more XSLT stylesheets. "
+description: "RPM package nginx-module-xslt. NGINX XSLT dynamic module. This filter module transforms XML responses using one or more XSLT stylesheets."
 
 ---
 

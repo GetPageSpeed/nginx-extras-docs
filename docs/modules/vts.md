@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX virtual host traffic status module"
-description: "RPM package nginx-module-vts. This is an NGINX module that provides access to virtual host status information. It contains the current status such as servers, upstreams, caches.  This is similar to the live activity monitoring of NGINX Plus "
+description: "RPM package nginx-module-vts. This is an NGINX module that provides access to virtual host status information. It contains the current status such as servers, upstreams, caches.  This is similar to the live activity monitoring of NGINX Plus"
 
 ---
 

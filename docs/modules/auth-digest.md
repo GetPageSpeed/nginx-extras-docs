@@ -1,7 +1,7 @@
 ---
 
 title: "Digest Authentication for NGINX"
-description: "RPM package nginx-module-auth-digest. Digest Authentication for NGINX. "
+description: "RPM package nginx-module-auth-digest. Digest Authentication for NGINX."
 
 ---
 

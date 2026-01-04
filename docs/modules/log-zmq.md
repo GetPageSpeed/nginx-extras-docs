@@ -1,7 +1,7 @@
 ---
 
 title: "ZeroMQ logger module for NGINX"
-description: "RPM package nginx-module-log-zmq. ZeroMQ logger module for NGINX "
+description: "RPM package nginx-module-log-zmq. ZeroMQ logger module for NGINX"
 
 ---
 

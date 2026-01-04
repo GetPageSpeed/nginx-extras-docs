@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for serving DNS-over-HTTPS (DOH) requests"
-description: "RPM package nginx-module-doh. Simple NGINX module for serving DNS-over-HTTPS (DOH) requests.  CAVEAT EMPTOR: This module is experimental, even though I have been using it successfully with both Firefox and Curl, there may be undiscovered bugs. Zone transfer is currently not officially supported. "
+description: "RPM package nginx-module-doh. Simple NGINX module for serving DNS-over-HTTPS (DOH) requests.  CAVEAT EMPTOR: This module is experimental, even though I have been using it successfully with both Firefox and Curl, there may be undiscovered bugs. Zone transfer is currently not officially supported."
 
 ---
 

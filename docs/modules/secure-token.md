@@ -1,7 +1,7 @@
 ---
 
 title: "Secure token module for NGINX"
-description: "RPM package nginx-module-secure-token. Generates CDN tokens, either as a cookie or as a query string parameter (m3u8,mpd,f4m only).  Currently supports Akamai v2 tokens, and Amazon CloudFront tokens. In addition, the module supports the encryption of URIs with a configured key "
+description: "RPM package nginx-module-secure-token. Generates CDN tokens, either as a cookie or as a query string parameter (m3u8,mpd,f4m only).  Currently supports Akamai v2 tokens, and Amazon CloudFront tokens. In addition, the module supports the encryption of URIs with a configured key"
 
 ---
 

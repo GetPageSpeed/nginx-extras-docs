@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Combined Upstreams module"
-description: "RPM package nginx-module-combined-upstreams. The module introduces three directives add_upstream, combine_server_singlets, and extend_single_peers available inside upstream configuration blocks, and a new configuration block upstrand for building super-layers of upstreams. Additionally, directive dynamic_upstrand is introduced for choosing upstrands in run-time. "
+description: "RPM package nginx-module-combined-upstreams. The module introduces three directives add_upstream, combine_server_singlets, and extend_single_peers available inside upstream configuration blocks, and a new configuration block upstrand for building super-layers of upstreams. Additionally, directive dynamic_upstrand is introduced for choosing upstrands in run-time."
 
 ---
 

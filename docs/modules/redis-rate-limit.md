@@ -1,7 +1,7 @@
 ---
 
 title: "Redis backed rate limit module for Nginx"
-description: "RPM package nginx-module-redis-rate-limit. A Redis backed rate limit module for NGINX web servers. "
+description: "RPM package nginx-module-redis-rate-limit. A Redis backed rate limit module for NGINX web servers."
 
 ---
 

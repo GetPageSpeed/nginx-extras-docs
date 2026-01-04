@@ -1,7 +1,7 @@
 ---
 
 title: "NTLM NGINX Module"
-description: "RPM package nginx-module-ntlm. NGINX NTLM module allows proxying requests with NTLM Authentication "
+description: "RPM package nginx-module-ntlm. NGINX NTLM module allows proxying requests with NTLM Authentication"
 
 ---
 

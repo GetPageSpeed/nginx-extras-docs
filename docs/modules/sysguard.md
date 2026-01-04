@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX sysguard module"
-description: "RPM package nginx-module-sysguard. This module can be used to protect your server in case system load, memory use goes too high or requests are responded too slow "
+description: "RPM package nginx-module-sysguard. This module can be used to protect your server in case system load, memory use goes too high or requests are responded too slow"
 
 ---
 

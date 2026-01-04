@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module for setting immutable caching on static assets"
-description: "RPM package nginx-module-immutable. This tiny NGINX module can help improve caching of your public static assets by setting far future expiration together with immutable attribute. "
+description: "RPM package nginx-module-immutable. This tiny NGINX module can help improve caching of your public static assets by setting far future expiration together with immutable attribute."
 
 ---
 

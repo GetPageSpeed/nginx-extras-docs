@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Fancy Index module"
-description: "RPM package nginx-module-fancyindex. The Fancy Index module makes possible the generation of file listings, like the built-in autoindex module does, but adding a touch of style. This is possible because the module allows a certain degree  of customization of the generated content:    * Custom headers, either local or stored remotely.   * Custom footers, either local or stored remotely.   * Add your own CSS style rules.   * Allow choosing to sort elements by name (default),      modification time, or size; both ascending (default),      or descending. "
+description: "RPM package nginx-module-fancyindex. The Fancy Index module makes possible the generation of file listings, like the built-in autoindex module does, but adding a touch of style. This is possible because the module allows a certain degree  of customization of the generated content:    * Custom headers, either local or stored remotely.   * Custom footers, either local or stored remotely.   * Add your own CSS style rules.   * Allow choosing to sort elements by name (default),      modification time, or size; both ascending (default),      or descending."
 
 ---
 

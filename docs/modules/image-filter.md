@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX image filter dynamic module"
-description: "RPM package nginx-module-image-filter. NGINX image filter dynamic module "
+description: "RPM package nginx-module-image-filter. NGINX image filter dynamic module"
 
 ---
 

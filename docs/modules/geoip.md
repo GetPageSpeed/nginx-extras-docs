@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX GeoIP dynamic modules"
-description: "RPM package nginx-module-geoip. NGINX GeoIP dynamic modules. Uses legacy GeoIP data format, discouraged from use in favor of nginx-module-geoip2 "
+description: "RPM package nginx-module-geoip. NGINX GeoIP dynamic modules. Uses legacy GeoIP data format, discouraged from use in favor of nginx-module-geoip2"
 
 ---
 

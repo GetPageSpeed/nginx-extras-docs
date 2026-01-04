@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module to sanitize HTML 5 with whitelisted elements, attributes and CSS"
-description: "RPM package nginx-module-html-sanitize. ngx_http_html_sanitize_module - It's base on google's gumbo-parser as HTML5 parser and hackers-painters's katana-parser as inline CSS parser to sanitize HTML with whitelisted elements, whitelisted attributes and whitelisted CSS property. "
+description: "RPM package nginx-module-html-sanitize. ngx_http_html_sanitize_module - It's base on google's gumbo-parser as HTML5 parser and hackers-painters's katana-parser as inline CSS parser to sanitize HTML with whitelisted elements, whitelisted attributes and whitelisted CSS property."
 
 ---
 

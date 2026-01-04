@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX GeoIP2 module"
-description: "RPM package nginx-module-geoip2. NGINX module which creates variables with values from the MaxMind geoip2 databases. based on the client IP (default) or from a specific variable (supports both IPv4 and IPv6) "
+description: "RPM package nginx-module-geoip2. NGINX module which creates variables with values from the MaxMind geoip2 databases. based on the client IP (default) or from a specific variable (supports both IPv4 and IPv6)"
 
 ---
 

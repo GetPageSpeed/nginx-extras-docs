@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX HTTP rDNS module"
-description: "RPM package nginx-module-rdns. This module allows to make a reverse DNS (rDNS) lookup for incoming connection and provides simple access control of incoming hostname by allow/deny rules (similar to HttpAccessModule allow/deny directives; regular expressions are supported).  Module works with the DNS server defined by the standard resolver directive. This module uses nginx core resolver cache when resolving DNS lookup, for a maximum of 30 seconds or DNS response TTL. "
+description: "RPM package nginx-module-rdns. This module allows to make a reverse DNS (rDNS) lookup for incoming connection and provides simple access control of incoming hostname by allow/deny rules (similar to HttpAccessModule allow/deny directives; regular expressions are supported).  Module works with the DNS server defined by the standard resolver directive. This module uses nginx core resolver cache when resolving DNS lookup, for a maximum of 30 seconds or DNS response TTL."
 
 ---
 

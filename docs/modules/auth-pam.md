@@ -1,7 +1,7 @@
 ---
 
 title: "PAM authentication dynamic module for NGINX"
-description: "RPM package nginx-module-auth-pam. NGINX module to use PAM for simple HTTP authentication "
+description: "RPM package nginx-module-auth-pam. NGINX module to use PAM for simple HTTP authentication"
 
 ---
 

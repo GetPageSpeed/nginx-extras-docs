@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX iconv module"
-description: "RPM package nginx-module-iconv. This is NGINX module that uses libiconv to convert characters of different encoding. It brings 'set_iconv' command to NGINX. "
+description: "RPM package nginx-module-iconv. This is NGINX module that uses libiconv to convert characters of different encoding. It brings 'set_iconv' command to NGINX."
 
 ---
 

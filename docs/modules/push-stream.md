@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX push stream module"
-description: "RPM package nginx-module-push-stream. A pure stream HTTP push technology for your NGINX setup "
+description: "RPM package nginx-module-push-stream. A pure stream HTTP push technology for your NGINX setup"
 
 ---
 

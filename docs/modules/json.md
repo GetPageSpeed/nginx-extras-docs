@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX JSON module"
-description: "RPM package nginx-module-json. Dumps json variable $json into string variable $string "
+description: "RPM package nginx-module-json. Dumps json variable $json into string variable $string"
 
 ---
 

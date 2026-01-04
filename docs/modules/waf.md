@@ -1,7 +1,7 @@
 ---
 
 title: "A web application firewall module for NGINX"
-description: "RPM package nginx-module-waf. A web application firewall module for NGINX. "
+description: "RPM package nginx-module-waf. A web application firewall module for NGINX."
 
 ---
 

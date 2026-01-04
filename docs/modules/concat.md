@@ -1,7 +1,7 @@
 ---
 
 title: "HTTP Concatenation module for NGINX"
-description: "RPM package nginx-module-concat. NGINX module for concatenating files in a given context: CSS and JS files usually "
+description: "RPM package nginx-module-concat. NGINX module for concatenating files in a given context: CSS and JS files usually"
 
 ---
 

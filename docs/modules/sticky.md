@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX sticky cookie module"
-description: "RPM package nginx-module-sticky. NGINX module to add a sticky cookie to be always forwarded to the same upstream server "
+description: "RPM package nginx-module-sticky. NGINX module to add a sticky cookie to be always forwarded to the same upstream server"
 
 ---
 

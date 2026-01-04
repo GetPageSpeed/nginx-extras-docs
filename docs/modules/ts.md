@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX MPEG-TS Live Module"
-description: "RPM package nginx-module-ts. NGINX MPEG-TS Live Module:   * receives MPEG-TS over HTTP   * produces and manages live HLS   * produces and manages live MPEG-DASH "
+description: "RPM package nginx-module-ts. NGINX MPEG-TS Live Module:   * receives MPEG-TS over HTTP   * produces and manages live HLS   * produces and manages live MPEG-DASH"
 
 ---
 

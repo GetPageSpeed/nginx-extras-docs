@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Execute module"
-description: "RPM package nginx-module-execute. The NginxExecute module executes the shell command through GET and POST to display the result. "
+description: "RPM package nginx-module-execute. The NginxExecute module executes the shell command through GET and POST to display the result."
 
 ---
 

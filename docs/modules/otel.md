@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX OpenTelemetry dynamic module"
-description: "RPM package nginx-module-otel. OpenTelemetry tracing/exporter module for NGINX. "
+description: "RPM package nginx-module-otel. OpenTelemetry tracing/exporter module for NGINX."
 
 ---
 

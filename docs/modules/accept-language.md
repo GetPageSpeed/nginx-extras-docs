@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Accept-Language module"
-description: "RPM package nginx-module-accept-language. NGINX module which parses the Accept-Language header and gives the most suitable locale for the user from a list of supported locales from your website "
+description: "RPM package nginx-module-accept-language. NGINX module which parses the Accept-Language header and gives the most suitable locale for the user from a list of supported locales from your website"
 
 ---
 

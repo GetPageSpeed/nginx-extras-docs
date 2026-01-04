@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX upstream module for the Redis 2.0 protocol"
-description: "RPM package nginx-module-redis2. NGINX upstream module for the Redis 2.0 protocol "
+description: "RPM package nginx-module-redis2. NGINX upstream module for the Redis 2.0 protocol"
 
 ---
 

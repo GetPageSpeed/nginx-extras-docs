@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx module for the key-value store"
-description: "RPM package nginx-module-keyval. This nginx module creates variables with values taken from key-value pairs. "
+description: "RPM package nginx-module-keyval. This nginx module creates variables with values taken from key-value pairs."
 
 ---
 

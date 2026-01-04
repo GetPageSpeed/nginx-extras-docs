@@ -1,7 +1,7 @@
 ---
 
 title: "Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes"
-description: "RPM package nginx-module-hmac-secure-link. Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes "
+description: "RPM package nginx-module-hmac-secure-link. Alternative NGINX HMAC Secure Link module with support for OpenSSL hashes"
 
 ---
 

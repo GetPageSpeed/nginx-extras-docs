@@ -1,7 +1,7 @@
 ---
 
 title: "Nginx SRT Module"
-description: "RPM package nginx-module-srt. Haivision SRT (Secure Reliable Transfer) / TCP gateway.  Supports both SRT to TCP and TCP to SRT, including bidirectional data transfer. "
+description: "RPM package nginx-module-srt. Haivision SRT (Secure Reliable Transfer) / TCP gateway.  Supports both SRT to TCP and TCP to SRT, including bidirectional data transfer."
 
 ---
 

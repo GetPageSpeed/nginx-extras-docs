@@ -1,7 +1,7 @@
 ---
 
 title: "Signed HTTP Exchange(SXG) support for NGINX"
-description: "RPM package nginx-module-sxg. Signed HTTP Exchange(SXG) support for NGINX. Nginx will convert response from upstream application into SXG, only for clients request on Accept: application/signed-exchane;v=b3 with highest qvalue. "
+description: "RPM package nginx-module-sxg. Signed HTTP Exchange(SXG) support for NGINX. Nginx will convert response from upstream application into SXG, only for clients request on Accept: application/signed-exchane;v=b3 with highest qvalue."
 
 ---
 

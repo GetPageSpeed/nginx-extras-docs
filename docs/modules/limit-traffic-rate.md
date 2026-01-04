@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Limiting rate by given variables"
-description: "RPM package nginx-module-limit-traffic-rate. NGINX Limiting rate by given variables. "
+description: "RPM package nginx-module-limit-traffic-rate. NGINX Limiting rate by given variables."
 
 ---
 

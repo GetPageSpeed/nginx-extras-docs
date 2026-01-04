@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Perl dynamic module"
-description: "RPM package nginx-module-perl. NGINX Perl dynamic module "
+description: "RPM package nginx-module-perl. NGINX Perl dynamic module"
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "String substitutions module for nginx"
-description: "RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package. "
+description: "RPM package nginx-module-substitutions. nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies.  This module is quite different from the Nginx's native Substitution Module.  It scans the output chains buffer and matches string line by line, just like Apache's mod_substitute  For any issues, see bug tracker at https://github.com/yaoweibin/ngx_http_substitutions_filter_module/issues and reference commit b8a71eacc7f986ba091282ab8b1bbbc6ae1807e0 if requested, not the version of the package."
 
 ---
 

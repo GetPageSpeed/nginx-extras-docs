@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX module to limit the number of malicious ip forged cookies"
-description: "RPM package nginx-module-cookie-limit. The ngx_cookie_limit_req_module module not only limits the access rate of cookies but also limits the number of malicious ip forged cookies. "
+description: "RPM package nginx-module-cookie-limit. The ngx_cookie_limit_req_module module not only limits the access rate of cookies but also limits the number of malicious ip forged cookies."
 
 ---
 

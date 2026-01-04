@@ -1,7 +1,7 @@
 ---
 
 title: "Lua scripting support for NGINX streams"
-description: "RPM package nginx-module-stream-lua. Embed the power of Lua into Nginx stream/TCP Servers. "
+description: "RPM package nginx-module-stream-lua. Embed the power of Lua into Nginx stream/TCP Servers."
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 
 title: "NGINX Javascript challenge module"
-description: "RPM package nginx-module-js-challenge. Similar to Cloudflare's anti-DDoS feature.  Simple javascript proof-of-work based access for NGINX with virtually no overhead. "
+description: "RPM package nginx-module-js-challenge. Similar to Cloudflare's anti-DDoS feature.  Simple javascript proof-of-work based access for NGINX with virtually no overhead."
 
 ---
 
