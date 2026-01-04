@@ -98,6 +98,7 @@ nav:
     length-hiding: modules/length-hiding.md
     let: modules/let.md
     limit-traffic-rate: modules/limit-traffic-rate.md
+    link: modules/link.md
     live-common: modules/live-common.md
     log-sqlite: modules/log-sqlite.md
     log-zmq: modules/log-zmq.md
@@ -130,6 +131,7 @@ nav:
     shibboleth: modules/shibboleth.md
     slowfs: modules/slowfs.md
     small-light: modules/small-light.md
+    sorted-args: modules/sorted-args.md
     spnego-http-auth: modules/spnego-http-auth.md
     srcache: modules/srcache.md
     srt: modules/srt.md
@@ -142,6 +144,7 @@ nav:
     substitutions: modules/substitutions.md
     sxg: modules/sxg.md
     sysguard: modules/sysguard.md
+    teslagov-jwt: modules/teslagov-jwt.md
     testcookie: modules/testcookie.md
     traffic-accounting: modules/traffic-accounting.md
     ts: modules/ts.md

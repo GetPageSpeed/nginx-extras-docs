@@ -51,6 +51,7 @@
 | [nginx-module-length-hiding](modules/length-hiding.md)           | NGINX Length Hiding Filter Module                                             |
 | [nginx-module-let](modules/let.md)                               | NGINX let module                                                              |
 | [nginx-module-limit-traffic-rate](modules/limit-traffic-rate.md) | NGINX Limiting rate by given variables                                        |
+| [nginx-module-link](modules/link.md)                             | The Application dynamic linking with Nginx                                    |
 | [nginx-module-live-common](modules/live-common.md)               | Kaltura Media Framework Common NGINX Module                                   |
 | [nginx-module-log-sqlite](modules/log-sqlite.md)                 | SQLite logger module for NGINX                                                |
 | [nginx-module-log-zmq](modules/log-zmq.md)                       | ZeroMQ logger module for NGINX                                                |
@@ -83,6 +84,7 @@
 | [nginx-module-shibboleth](modules/shibboleth.md)                 | Shibboleth Auth Request module for NGINX                                      |
 | [nginx-module-slowfs](modules/slowfs.md)                         | NGINX SlowFS Cache Module                                                     |
 | [nginx-module-small-light](modules/small-light.md)               | Dynamic image transformation module For NGINX                                 |
+| [nginx-module-sorted-args](modules/sorted-args.md)               | HTTP querystring parameters normalization for NGINX                           |
 | [nginx-module-spnego-http-auth](modules/spnego-http-auth.md)     | Nginx module for HTTP SPNEGO auth                                             |
 | [nginx-module-srcache](modules/srcache.md)                       | Transparent subrequest-based caching layout for arbitrary NGINX locations     |
 | [nginx-module-srt](modules/srt.md)                               | Nginx SRT Module                                                              |
@@ -95,6 +97,7 @@
 | [nginx-module-substitutions](modules/substitutions.md)           | String substitutions module for nginx                                         |
 | [nginx-module-sxg](modules/sxg.md)                               | Signed HTTP Exchange(SXG) support for NGINX                                   |
 | [nginx-module-sysguard](modules/sysguard.md)                     | NGINX sysguard module                                                         |
+| [nginx-module-teslagov-jwt](modules/teslagov-jwt.md)             | Secure your NGINX locations with JWT                                          |
 | [nginx-module-testcookie](modules/testcookie.md)                 | NGINX testcookie robot mitigation module                                      |
 | [nginx-module-traffic-accounting](modules/traffic-accounting.md) | Monitor the incoming and outgoing traffic metrics in realtime for NGINX       |
 | [nginx-module-ts](modules/ts.md)                                 | NGINX MPEG-TS Live Module                                                     |
