@@ -1,3 +1,8 @@
+---
+title: NGINX HTTP/3 QUIC Support - RPM Packages for RHEL & CentOS
+description: Enable HTTP/3 and QUIC in NGINX on RHEL, CentOS, Rocky Linux, AlmaLinux and Amazon Linux. All GetPageSpeed NGINX packages include built-in QUIC support.
+---
+
 # HTTP/3 (QUIC)
 
 HTTP/3 support in NGINX is provided in all of our NGINX packages.

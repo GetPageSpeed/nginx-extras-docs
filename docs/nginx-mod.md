@@ -1,3 +1,8 @@
+---
+title: NGINX-MOD - Enhanced NGINX with HTTP/3, HPACK & Health Checks for RHEL
+description: Install NGINX-MOD on RHEL, CentOS, Rocky Linux & AlmaLinux. Patched NGINX with HTTP/3, full HPACK compression, dynamic TLS records, active health checks, extended rate limiting & CONNECT method support.
+---
+
 # NGINX-MOD
 
 As you may know, [our repository](https://www.getpagespeed.com/redhat){target=_blank} holds the latest stable NGINX and a vast array of dynamic modules for it. 

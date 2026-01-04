@@ -3,3 +3,130 @@
 {% block announce %}
   NGINX Extras is <a href="https://www.getpagespeed.com/repo-subscribe" target="_blank"><em>subscription-ware</em></a> by GetPageSpeed, allowing your server to be secure and fast.
 {% endblock %}
+
+{% block extrahead %}
+  {# Canonical URL for better SEO #}
+  <link rel="canonical" href="{{ config.site_url }}{{ page.url }}" />
+  
+  {# Additional Open Graph tags #}
+  <meta property="og:site_name" content="NGINX Extras Documentation" />
+  <meta property="og:locale" content="en_US" />
+  {% if page.meta and page.meta.description %}
+  <meta property="og:description" content="{{ page.meta.description }}" />
+  {% endif %}
+  
+  {# Twitter Card enhancements #}
+  <meta name="twitter:site" content="@GetPageSpeed" />
+  <meta name="twitter:creator" content="@GetPageSpeed" />
+  
+  {# JSON-LD Structured Data for Software Documentation #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "{{ page.title | e }}",
+    "description": "{% if page.meta and page.meta.description %}{{ page.meta.description | e }}{% else %}{{ config.site_description | e }}{% endif %}",
+    "author": {
+      "@type": "Organization",
+      "name": "GetPageSpeed LLC",
+      "url": "https://www.getpagespeed.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GetPageSpeed LLC",
+      "url": "https://www.getpagespeed.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.getpagespeed.com/img/logo-horizontal.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ config.site_url }}{{ page.url }}"
+    },
+    "inLanguage": "en-US",
+    "isAccessibleForFree": false,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "NGINX Extras Documentation",
+      "url": "https://nginx-extras.getpagespeed.com/"
+    }
+  }
+  </script>
+  
+  {# BreadcrumbList for better navigation in search results #}
+  {% if page.url != '/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ config.site_url }}"
+      }
+      {% if 'modules/' in page.url %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Modules",
+        "item": "{{ config.site_url }}modules/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ page.title }}",
+        "item": "{{ config.site_url }}{{ page.url }}"
+      }
+      {% elif 'lua/' in page.url %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Lua Libraries",
+        "item": "{{ config.site_url }}lua/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ page.title }}",
+        "item": "{{ config.site_url }}{{ page.url }}"
+      }
+      {% else %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.title }}",
+        "item": "{{ config.site_url }}{{ page.url }}"
+      }
+      {% endif %}
+    ]
+  }
+  </script>
+  {% endif %}
+  
+  {# SoftwareApplication schema for module pages #}
+  {% if 'modules/' in page.url and page.url != 'modules/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "nginx-module-{{ page.url | replace('modules/', '') | replace('/', '') }}",
+    "applicationCategory": "WebApplication",
+    "operatingSystem": "Linux",
+    "description": "{% if page.meta and page.meta.description %}{{ page.meta.description | e }}{% endif %}",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/OnlineOnly"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "GetPageSpeed LLC"
+    }
+  }
+  </script>
+  {% endif %}
+{% endblock %}

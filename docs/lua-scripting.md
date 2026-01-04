@@ -1,8 +1,8 @@
 --- 
 
-title: "NGINX Lua scripting by GetPageSpeed" 
+title: "NGINX Lua Scripting - OpenResty Alternative for RHEL & CentOS"
 
-description: "GetPageSpeed provides huge collection of Lua Resty package to empower your OpenResty-based setup."
+description: "Add Lua scripting to NGINX on RHEL, CentOS, Rocky Linux & AlmaLinux. 100+ lua-resty-* libraries available as RPM packages. Better than OpenResty with enterprise-grade packaging."
 
 --- 
 

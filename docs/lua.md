@@ -1,19 +1,21 @@
 --- 
 
-title: "NGINX Lua scripting by GetPageSpeed" 
+title: "Lua Libraries for NGINX - OpenResty Resty Packages for RHEL & CentOS"
 
-description: "GetPageSpeed provides huge collection of Lua Resty package to empower your OpenResty-based setup."
+description: "Install lua-resty-* packages for NGINX and OpenResty on RHEL, CentOS, Rocky Linux & Amazon Linux. HTTP client, Redis, MySQL, JWT, rate limiting, caching, and 80+ more Lua libraries as RPM packages."
 
 --- 
 
-# Lua
+# Lua Libraries for NGINX
 
-[NGINX Lua Module](modules/lua.md) is a high-level Lua API for Nginx. It allows scripting Nginx without touching the C code.
+The [NGINX Lua Module](modules/lua.md) enables high-performance Lua scripting inside NGINX without touching C code.
+GetPageSpeed provides a comprehensive collection of **lua-resty-*** libraries as ready-to-install RPM packages.
 
-!!! tip "NGINX Extras by GetPageSpeed = NGINX Plus + OpenResty + Lua libraries"
+!!! tip "NGINX Extras = NGINX Plus + OpenResty + Lua Libraries"
 
-    GetPageSpeed provides both Lua NGINX modules and Lua libraries to extend NGINX with Lua scripting capabilities.
+    Get the power of OpenResty with enterprise-grade packaging and support.
+    Install Lua modules and libraries to extend NGINX with scripting capabilities.
 
-Multiple Lua library packages are made available by GetPageSpeed to build ultimate Nginx configurations, powered by Lua.
+## Available Lua Libraries
 
 {!docs/lua_list.md!}

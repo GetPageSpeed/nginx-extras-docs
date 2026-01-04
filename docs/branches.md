@@ -1,3 +1,8 @@
+---
+title: NGINX Stable vs Mainline - Which Branch to Choose on RHEL/CentOS
+description: Compare NGINX stable and mainline branches. Learn which NGINX version is right for your RHEL, CentOS, Rocky Linux or AlmaLinux server. Switch between branches with simple dnf commands.
+---
+
 # NGINX Branches
 
 NGINX is delivered by its creators in two distinct branches: stable and mainline.

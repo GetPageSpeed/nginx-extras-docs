@@ -1,14 +1,16 @@
 --- 
 
-title: "NGINX Modules provided by GetPageSpeed" 
+title: "NGINX Dynamic Modules - Complete List of 100+ RPM Packages"
 
-description: "The list of NGINX module packages provided by GetPageSpeed package repository."
+description: "Browse all NGINX dynamic modules available as RPM packages for RHEL, CentOS, Rocky Linux, AlmaLinux & Amazon Linux. Brotli, PageSpeed, ModSecurity, GeoIP2, Headers More, Lua, Cache Purge, and 100+ more modules ready to install."
 
 --- 
 
-# Modules
+# NGINX Dynamic Modules
 
-NGINX has superpowers and it has super strength. They are dynamic NGINX modules.
-GetPageSpeed makes them available for you in the form of easy-to-install packages.
+**The largest collection of prebuilt NGINX dynamic modules** available as RPM packages.
+Install any module with a single `dnf install` command — no compilation required.
+
+Each module below includes detailed documentation, configuration examples, and installation instructions for RHEL-based distributions.
 
 {!docs/modules_list.md!}

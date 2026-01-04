@@ -523,10 +523,21 @@ You may find information about configuration directives for this module at the f
             if not readme_contents:
                 continue
             with open(f"docs/modules/{handle}.md", "w") as module_md_f:
+                # Build SEO-optimized front-matter
+                summary = escape_yaml_string(module_config['summary'])
+                
+                # Craft compelling, action-oriented title for search results
+                seo_title = f"{summary}"
+                
+                # Craft a rich meta description - include full details for featured snippets
+                # Don't truncate: Google extracts the most relevant portion automatically
+                base_desc = escape_yaml_string(module_config['description']).strip()
+                seo_description = f"RPM package nginx-module-{handle}. {base_desc}"
+                
                 preface = f"""---
 
-title: "{escape_yaml_string(module_config['summary'])}"
-description: "RPM package nginx-module-{handle}. {escape_yaml_string(module_config['description'])}"
+title: "{seo_title}"
+description: "{seo_description}"
 
 ---
 
@@ -589,10 +600,16 @@ def process_lua_glob(g):
                 readme_contents, lib_config, release
             )
 
+            # Build SEO-optimized front-matter for Lua libraries
+            lua_summary = escape_yaml_string(lib_config['summary'])
+            lua_seo_description = f"RPM package lua-resty-{handle}: {lua_summary}"
+            if len(lua_seo_description) > 160:
+                lua_seo_description = lua_seo_description[:157].rsplit(' ', 1)[0] + '...'
+            
             preface = f"""---
 
-title: "{escape_yaml_string(lib_config['summary'])}"
-description: "RPM package lua-resty-{lib_config["handle"]}: {escape_yaml_string(lib_config['summary'])}"
+title: "{lua_summary}"
+description: "{lua_seo_description}"
 
 ---
   

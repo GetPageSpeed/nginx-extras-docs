@@ -1,4 +1,6 @@
 ---
+title: NGINX Extras - Premium Dynamic Modules Collection for RHEL & CentOS
+description: The largest collection of prebuilt NGINX dynamic modules as RPM packages. Install on RHEL, CentOS, Rocky Linux, AlmaLinux, Amazon Linux with a single dnf command. PageSpeed, Brotli, ModSecurity, GeoIP2, Lua & 100+ more modules.
 hide:
   - navigation
 ---
