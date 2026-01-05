@@ -43,7 +43,7 @@ load_module modules/ngx_http_sorted_args.so;
 ```
 
 
-This document describes nginx-module-sorted-args [v3.0.0](https://github.com/GetPageSpeed/ngx_http_sorted_args/releases/tag/v3.0.0){target=_blank} 
+This document describes nginx-module-sorted-args v3.0.0 
 released on Dec 31 2025.
 
 <hr />
@@ -518,9 +518,3 @@ The test suite verifies:
 - Parameter values are not decoded/encoded; original encoding is preserved
 - Filtering is case-insensitive for parameter names but preserves original case in output
 - Parameters with empty values (e.g., `?a=`) are always stripped; use `?a` (no equals) for flags
-
-## GitHub
-
-You may find additional configuration tips and documentation for this module in the [GitHub 
-repository for 
-nginx-module-sorted-args](https://github.com/GetPageSpeed/ngx_http_sorted_args){target=_blank}.

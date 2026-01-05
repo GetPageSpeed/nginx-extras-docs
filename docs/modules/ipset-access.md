@@ -43,7 +43,7 @@ load_module modules/ngx_http_ipset_access.so;
 ```
 
 
-This document describes nginx-module-ipset-access [v2.0.9](https://github.com/GetPageSpeed/ngx_ipset_access_module/releases/tag/v2.0.9){target=_blank} 
+This document describes nginx-module-ipset-access v2.0.9 
 released on Dec 20 2025.
 
 <hr />
@@ -998,9 +998,3 @@ Available exclusively through [GetPageSpeed Premium Repository](https://www.getp
 <i>A premium NGINX module by GetPageSpeed LLC</i><br>
 <a href="https://www.getpagespeed.com/">www.getpagespeed.com</a>
 </p>
-
-## GitHub
-
-You may find additional configuration tips and documentation for this module in the [GitHub 
-repository for 
-nginx-module-ipset-access](https://github.com/GetPageSpeed/ngx_ipset_access_module){target=_blank}.
