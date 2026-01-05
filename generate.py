@@ -183,6 +183,7 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
     for s in sonames:
         intro += f"```nginx\nload_module modules/{s}.so;\n```\n"
     # For internal/closed-source modules we intentionally skip linking to a GitHub repo.
+    is_closed_source = pro or enterprise
     if is_internal:
         # Internal modules are built from the same nginx source and ship
         # together with nginx itself, so we don't need a separate version
@@ -191,13 +192,14 @@ Enable the module by adding the following at the top of `/etc/nginx/nginx.conf`:
 
 This module is built from the same source as the NGINX core.
 """
-    elif repo and not enterprise and safe_release:
+    elif repo and not is_closed_source and safe_release:
         intro += f"""
 
 This document describes nginx-module-{handle} [v{safe_release.get('version','0')}](https://github.com/{repo}/releases/tag/{safe_release.get('tag_name','')}){{target=_blank}} 
 released on {safe_release.get('tag_date','').strftime("%b %d %Y") if safe_release.get('tag_date') else 'an unknown date'}.
 """
-    elif repo and enterprise and safe_release:
+    elif repo and is_closed_source and safe_release:
+        # Closed-source modules: show version but don't link to GitHub
         intro += f"""
 
 This document describes nginx-module-{handle} v{safe_release.get('version','0')} 
@@ -470,9 +472,13 @@ def get_readme_contents_from_github(handle, module_config):
 
     readme_contents = enrich_with_yml_info(readme_contents, module_config, release)
 
-    readme_contents = (
-        readme_contents
-        + f"""
+    # Only add GitHub section for open-source modules (not pro/enterprise closed-source)
+    plan = (module_config.get("plan") or "").strip().lower()
+    is_closed_source = plan in ("pro", "enterprise")
+    if not is_closed_source:
+        readme_contents = (
+            readme_contents
+            + f"""
 
 ## GitHub
 
@@ -480,7 +486,7 @@ You may find additional configuration tips and documentation for this module in 
 repository for 
 nginx-module-{handle}](https://github.com/{module_config['repo']}){{target=_blank}}.
 """
-    )
+        )
     readme_contents = ensure_one_h1(readme_contents)
     return readme_contents
 
