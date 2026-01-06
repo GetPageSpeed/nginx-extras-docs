@@ -60,31 +60,46 @@ description: "Complete guide to setting up automatic cache purging for WordPress
     dnf -y install ea-nginx-cache-purge
     ```
 
-### 2. Configure the Purge Endpoint
+### 2. Configure Cache Purging
 
-Create a configuration file for each cPanel user that needs cache purging.
+There are two ways to enable cache purging:
 
-For user `username`, create `/etc/nginx/conf.d/users/username/cache-purge.conf`:
+=== "Same-Location Syntax (Recommended)"
 
-```nginx
-# Cache purge endpoint for ngx_cache_purge module
-# Matches /purge/any/path and purges the cached version of /any/path
+    Add this to your user's config file, e.g., `/etc/nginx/conf.d/users/username/cache-purge.conf`:
 
-location ~ ^/purge(/.*) {
-    # Security: Only allow purge from localhost
-    allow 127.0.0.1;
-    allow ::1;
-    deny all;
-    
-    # Purge using the same cache key format as cPanel's proxy config
-    # Replace 'username' with the actual cPanel username
-    proxy_cache_purge username "$scheme://$host$1";
-}
-```
+    ```nginx
+    # Enable PURGE method for cache purging
+    # Works automatically with the existing proxy_cache configuration
+    proxy_cache_purge PURGE from 127.0.0.1;
+    ```
 
-!!! warning "Important: Replace `username`"
-    The first argument to `proxy_cache_purge` must match the cPanel username, 
-    which is used as the cache zone name in cPanel's NGINX configuration.
+    This is the simplest approach - it enables the `PURGE` HTTP method on all locations
+    that have `proxy_cache` enabled. The module automatically uses the same cache zone
+    and cache key as the regular proxy configuration.
+
+    !!! success "Full Support for Variable Cache Zones"
+        As of `ea-nginx-cache-purge` release 3+, the same-location syntax fully supports 
+        cPanel's variable cache zones (`proxy_cache $CPANEL_PROXY_CACHE`).
+
+=== "Separate /purge/ Location"
+
+    For more control, you can use a dedicated `/purge/` location:
+
+    ```nginx
+    # /etc/nginx/conf.d/users/username/cache-purge.conf
+    location ~ ^/purge(/.*) {
+        allow 127.0.0.1;
+        allow ::1;
+        deny all;
+        
+        # Replace 'username' with the actual cPanel username (cache zone name)
+        proxy_cache_purge username "$scheme://$host$1";
+    }
+    ```
+
+    !!! warning "Important: Replace `username`"
+        The first argument must match the cPanel username (cache zone name).
 
 ### 3. Reload NGINX
 
@@ -94,20 +109,37 @@ nginx -t && systemctl reload nginx
 
 ### 4. Test the Setup
 
-```bash
-# First, cache a page
-curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
-# Should show: X-Cache-Status: MISS (first request)
-# Then: X-Cache-Status: HIT (subsequent requests)
+=== "Same-Location Syntax"
 
-# Purge the cached page
-curl -s http://127.0.0.1/purge/sample-page/ -H 'Host: yourdomain.com'
-# Shows: <html>...<h1>Successful purge</h1>...
+    ```bash
+    # First, cache a page
+    curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
+    # Should show: X-Cache-Status: MISS (first), then HIT (second)
 
-# Verify cache was cleared
-curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
-# Should show: X-Cache-Status: MISS
-```
+    # Purge using PURGE method (same URL, just change the method)
+    curl -sX PURGE http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com'
+    # Shows: <h1>Successful purge</h1>
+
+    # Verify cache was cleared
+    curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
+    # Should show: X-Cache-Status: MISS
+    ```
+
+=== "Separate /purge/ Location"
+
+    ```bash
+    # First, cache a page
+    curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
+    # Should show: X-Cache-Status: MISS (first), then HIT (second)
+
+    # Purge using /purge/ prefix
+    curl -s http://127.0.0.1/purge/sample-page/ -H 'Host: yourdomain.com'
+    # Shows: <h1>Successful purge</h1>
+
+    # Verify cache was cleared
+    curl -sI http://127.0.0.1/sample-page/ -H 'Host: yourdomain.com' | grep X-Cache
+    # Should show: X-Cache-Status: MISS
+    ```
 
 ---
 

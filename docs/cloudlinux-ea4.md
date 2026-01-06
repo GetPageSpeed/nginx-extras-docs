@@ -84,13 +84,12 @@ The `ea-nginx-cache-purge` module enables automatic cache invalidation when Word
 
 ### Quick Example
 
+The simplest configuration uses the "same-location syntax":
+
 ```nginx
 # /etc/nginx/conf.d/users/username/cache-purge.conf
-location ~ ^/purge(/.*) {
-    allow 127.0.0.1;
-    deny all;
-    proxy_cache_purge username "$scheme://$host$1";
-}
+# Enable PURGE method on all cached locations
+proxy_cache_purge PURGE from 127.0.0.1;
 ```
 
 Then in WordPress, add a simple mu-plugin:
@@ -100,8 +99,8 @@ Then in WordPress, add a simple mu-plugin:
 // wp-content/mu-plugins/nginx-cache-purge.php
 add_action('save_post', function($post_id) {
     if (wp_is_post_revision($post_id)) return;
-    $path = wp_parse_url(get_permalink($post_id), PHP_URL_PATH);
-    wp_remote_get(home_url('/purge' . $path), ['sslverify' => false]);
+    $url = get_permalink($post_id);
+    wp_remote_request($url, ['method' => 'PURGE', 'sslverify' => false]);
 });
 ```
 
