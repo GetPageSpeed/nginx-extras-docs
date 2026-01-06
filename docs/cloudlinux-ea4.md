@@ -65,93 +65,48 @@ The package naming follows this pattern:
 | `nginx-module-headers-more` | `ea-nginx-headers-more` |
 | `nginx-module-geoip2` | `ea-nginx-geoip2` |
 
-## Cache Purging with WordPress
+## Popular Use Case: WordPress Cache Purging
 
-The `ea-nginx-cache-purge` module enables cache purging from WordPress and other applications.
+The `ea-nginx-cache-purge` module enables automatic cache invalidation when WordPress content changes.
 
-### Configuration
+<div class="grid cards" markdown>
 
-For each cPanel user that needs cache purging, create a configuration file.
-For example, for user `username`, create `/etc/nginx/conf.d/users/username/cache-purge.conf`:
+-   :material-book-open-variant:{ .lg .middle } **Complete WordPress Guide**
+
+    ---
+
+    Step-by-step instructions for setting up cache purging with WordPress on cPanel, 
+    including code examples and troubleshooting.
+
+    [:octicons-arrow-right-24: WordPress Cache Purging Guide](guides/cpanel-cache-purge.md)
+
+</div>
+
+### Quick Example
 
 ```nginx
-# Cache purge endpoint for ngx_cache_purge module
-# Uses "separate location syntax" - required for cPanel's variable cache zones
-#
-# SECURITY: 
-# - Only localhost can access /purge/
-# - Each user has their own cache zone, isolated from other users
-
+# /etc/nginx/conf.d/users/username/cache-purge.conf
 location ~ ^/purge(/.*) {
     allow 127.0.0.1;
-    allow ::1;
     deny all;
-    
-    # Use the same cache key format as cPanel's cpanel-proxy.conf
-    # Replace 'username' with the actual cPanel username (cache zone name)
     proxy_cache_purge username "$scheme://$host$1";
 }
 ```
 
-!!! note "Cache Zone Name"
-    Replace `username` in `proxy_cache_purge username` with the actual cPanel username. 
-    Each user has their own cache zone named after their username.
-
-### How It Works
-
-1. WordPress (or any application) sends a request to `/purge/path/to/page`
-2. NGINX matches the `/purge/` location
-3. The `proxy_cache_purge` directive removes the cached entry for `/path/to/page`
-4. Response: "Successful purge" with the cache key
-
-### Testing Cache Purge
-
-```bash
-# First, cache a page
-curl -sI http://127.0.0.1/test-page.html -H 'Host: example.com' | grep X-Cache-Status
-# Should show: X-Cache-Status: HIT (after second request)
-
-# Purge the cached page
-curl -s http://127.0.0.1/purge/test-page.html -H 'Host: example.com'
-# Shows: Successful purge
-
-# Verify cache was cleared
-curl -sI http://127.0.0.1/test-page.html -H 'Host: example.com' | grep X-Cache-Status  
-# Should show: X-Cache-Status: MISS
-```
-
-### Security
-
-Each cPanel user has their own isolated cache zone:
-
-- **Localhost only**: The `/purge/` location only allows requests from `127.0.0.1` and `::1`
-- **User isolation**: Each user's cache zone is separate - users cannot purge each other's cache
-- **Domain-based keys**: Cache keys include the domain name, so different domains are isolated
-
-### WordPress Integration
-
-For WordPress cache purging, you can use a simple mu-plugin. Create 
-`wp-content/mu-plugins/nginx-cache-purge.php`:
+Then in WordPress, add a simple mu-plugin:
 
 ```php
 <?php
-/**
- * Plugin Name: NGINX Cache Purge
- * Description: Purges NGINX cache when posts are updated
- */
-
+// wp-content/mu-plugins/nginx-cache-purge.php
 add_action('save_post', function($post_id) {
     if (wp_is_post_revision($post_id)) return;
-    
-    $url = get_permalink($post_id);
-    $path = wp_parse_url($url, PHP_URL_PATH);
-    $purge_url = home_url('/purge' . $path);
-    
-    wp_remote_get($purge_url, ['sslverify' => false]);
+    $path = wp_parse_url(get_permalink($post_id), PHP_URL_PATH);
+    wp_remote_get(home_url('/purge' . $path), ['sslverify' => false]);
 });
 ```
 
-This automatically purges the cache when any post or page is updated
+For complete setup instructions, security considerations, and advanced features, see the 
+[WordPress Cache Purging Guide](guides/cpanel-cache-purge.md)
 
 ## Version Compatibility
 
