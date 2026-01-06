@@ -37,17 +37,6 @@ released on Jul 11 2017.
     
 <hr />
 
-lua-resty-jwt - [JWT](http://self-issued.info/docs/draft-jones-json-web-token-01.html) for ngx_lua and LuaJIT
-
-
-**Attention :exclamation: the hmac lib used here is [lua-resty-hmac](https://github.com/jkeys089/lua-resty-hmac), not the one in luarocks.**
-
-## Status
-
-This library is under active development but is considered production ready.
-
-## Description
-
 This library requires an nginx build with OpenSSL,
 the [ngx_lua module](http://wiki.nginx.org/HttpLuaModule),
 the [LuaJIT 2.0](http://luajit.org/luajit.html),

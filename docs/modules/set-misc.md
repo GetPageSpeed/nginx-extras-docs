@@ -49,11 +49,6 @@ Don't edit this file manually! Instead you should generate it by using:
     wiki2markdown.pl doc/HttpSetMiscModule.wiki
 -->
 
-## Name
-
-**ngx_set_misc** - Various set_xxx directives added to nginx's rewrite module (md5/sha1, sql/json quoting, and many more)
-
-
 ## Synopsis
 
 ```nginx

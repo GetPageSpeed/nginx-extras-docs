@@ -37,14 +37,6 @@ released on Jul 09 2025.
     
 <hr />
 
-lua-resty-redis - Lua redis client driver for the ngx_lua based on the cosocket API
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library is a Redis client driver for the ngx_lua nginx module:
 
 https://github.com/openresty/lua-nginx-module/#readme

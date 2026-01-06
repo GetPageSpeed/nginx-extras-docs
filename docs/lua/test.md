@@ -36,10 +36,6 @@ This document describes lua-resty-test [v0.1](https://github.com/iresty/lua-rest
 released on Sep 03 2019.
     
 <hr />
-lua-resty-test is Ngx_lua test frame based on Openresty
-
-
-## Description
 This Lua library is a test frame for test your ngx_lua source or other server(tcp or udp):
 
 http://wiki.nginx.org/HttpLuaModule

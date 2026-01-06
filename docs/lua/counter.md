@@ -37,20 +37,10 @@ released on Apr 09 2020.
     
 <hr />
 
-lua-resty-counter - Lock-free counter for OpenResty.
-
-![Build Status](https://travis-ci.com/kong/lua-resty-counter.svg?branch=master) ![luarocks](https://img.shields.io/luarocks/v/kong/lua-resty-counter?color=%232c3e67)
-
-## Description
-
 When number of workers increase, the penalty of acquiring a lock becomes noticable.
 This library implements a lock-free counter that does incrementing operation in worker's Lua VM.
 Each worker then sync its local counter to a shared dict timely.
 
-
-## Status
-
-Production
 
 ## API
 

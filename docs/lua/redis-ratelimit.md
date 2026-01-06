@@ -37,14 +37,6 @@ released on Oct 03 2019.
     
 <hr />
 
-lua-resty-redis-ratelimit - Limit the request processing rate between multiple NGINX instances backed by [Redis](https://redis.io/).
-
-## Status
-
-Ready for testing. Probably production ready in most cases, though not yet proven in the wild. Please check the issues list and let me know if you have any problems / questions.
-
-## Description
-
 This lua library is a request processing rate limit module for ngx_lua:
 
 http://wiki.nginx.org/HttpLuaModule

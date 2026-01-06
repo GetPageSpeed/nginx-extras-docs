@@ -45,33 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-## Name
-ngx_http_request_cookies_filter_module
-
-A NGINX module for fine-grained request cookies control.
-
-## Table of Content
-
-- [ngx\_http\_request\_cookies\_filter\_module](#ngx_http_request_cookies_filter_module)
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [set\_request\_cookie](#set_request_cookie)
-  - [add\_request\_cookie](#add_request_cookie)
-  - [modify\_request\_cookie](#modify_request_cookie)
-  - [clear\_request\_cookie](#clear_request_cookie)
-- [Variables](#variables)
-  - [$filtered\_request\_cookies](#filtered_request_cookies)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ```nginx

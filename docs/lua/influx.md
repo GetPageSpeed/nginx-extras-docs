@@ -37,14 +37,6 @@ released on Dec 27 2017.
     
 <hr />
 
-lua-resty-influx - OpenResty client writer for InfluxDB.
-
-## Status
-
-This library is in active development and is considered ready for production use.
-
-## Description
-
 This library provides an OpenResty interface to write data points to an InfluxDB server via UDP and HTTP interfaces. Object-based and buffering per-worker interfaces are provided.
 
 ## Synopsis

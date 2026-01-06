@@ -33,7 +33,7 @@ dnf -y install lua5.1-resty-mail
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-mail [v1.1.0](https://github.com/GUI/lua-resty-mail/releases/tag/v1.1.0){target=_blank} 
-released on Sep 23 2023.
+released on Sep 22 2023.
     
 <hr />
 

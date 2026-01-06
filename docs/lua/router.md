@@ -37,14 +37,6 @@ released on Jun 26 2017.
     
 <hr />
 
-lua-resty-router - Lua http router for the ngx_lua
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library is a http router for the ngx_lua nginx module:
 
 http://wiki.nginx.org/HttpLuaModule

@@ -37,14 +37,6 @@ released on May 31 2023.
     
 <hr />
 
-lua-resty-hmac - HMAC functions for ngx_lua and LuaJIT
-
-## Status
-
-This library is still under active development and is considered production ready.
-
-## Description
-
 This library requires an nginx build with OpenSSL,
 the [ngx_lua module](http://wiki.nginx.org/HttpLuaModule), and [LuaJIT 2.0](http://luajit.org/luajit.html).
 

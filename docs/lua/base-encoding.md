@@ -37,17 +37,6 @@ released on Jul 21 2018.
     
 <hr />
 
-lua-resty-base-encoding - Faster alternative to base64 encoding and provides missing base encoding for OpenResty application
-
-All encoding are implemented in optimized C code with LuaJIT FFI binding.
-
-Most of the inner encoding implementations are from Nick Galbreath's [stringencoders](https://github.com/client9/stringencoders).
-The base32 encoding is implemented by myself, but also inspired from his art work.
-
-Build status: [![Travis](https://travis-ci.org/spacewander/lua-resty-base-encoding.svg?branch=master)](https://travis-ci.org/spacewander/lua-resty-base-encoding)
-
-## Methods
-
 ### encode_base2
 `syntax: encoded = encode_base2(raw)`
 

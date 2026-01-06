@@ -45,19 +45,6 @@ released on Dec 16 2025.
 
 <hr />
 
-ngx_http_lua_module - Embed the power of Lua into Nginx HTTP Servers.
-
-This module is a core component of [OpenResty](https://openresty.org). If you are using this module,
-then you are essentially using OpenResty :)
-
-[the installation instructions](#installation).
-
-## Status
-
-Production ready.
-
-## Videos
-
 * YouTube video "[Hello World HTTP Example with OpenResty/Lua](https://youtu.be/eSfYLvVQMxw)"
 
     [![Hello World HTTP Example with OpenResty/Lua](https://img.youtube.com/vi/eSfYLvVQMxw/0.jpg)](https://youtu.be/eSfYLvVQMxw)

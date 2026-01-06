@@ -45,11 +45,6 @@ released on Jun 28 2022.
 
 <hr />
 
-**ngx_headers_more** - Set and clear input and output headers...more than "add"!
-
-
-## Synopsis
-
 ```nginx
 
  # set the Server output header

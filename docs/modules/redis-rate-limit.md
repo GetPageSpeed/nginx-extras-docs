@@ -56,10 +56,6 @@ This implementation is based on the following [Redis module](https://redis.io/to
 Which offers a straightforward implementation of the fairly sophisticated [generic cell rate algorithm](https://en.wikipedia.org/wiki/Generic_cell_rate_algorithm), in 130 lines of C, without external dependencies.
  
 
-## Status
-
-This module is production ready.
-
 ## Synopsis
 
 ```nginx

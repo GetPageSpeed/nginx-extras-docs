@@ -39,12 +39,6 @@ released on Dec 19 2019.
 
 Upstream connection load balancing and failover module
 
-## Status
-
-Experimental, API may change without warning.
-
-Requires ngx_lua > 0.9.5
-
 ## Overview
 
 Create a lua [shared dictionary](https://github.com/openresty/lua-nginx-module#lua_shared_dict).
@@ -320,19 +314,6 @@ Manually restores a dead host to the pool
 ## upstream.http
 
 Functions for making http requests to upstream hosts.
-
-### status_codes
-This pool option is an array of status codes that indicate a failed request. Defaults to none.
-
-The `x` character masks a digit
-
-```lua
-{
-    ['5xx'] = true, -- Matches 500, 503, 524
-    ['400'] = true  -- Matches only 400
-}
-```
-
 
 ### new
 `syntax: httpc, err = upstream_http:new(upstream, ssl_opts?)`

@@ -37,14 +37,6 @@ released on Feb 18 2015.
     
 <hr />
 
-lua-resty-logger-socket - nonblocking remote access logging for Nginx
-
-## Status
-
-This library is still experimental and under early development.
-
-## Description
-
 This lua library is a remote logging module for ngx_lua:
 
 http://wiki.nginx.org/HttpLuaModule

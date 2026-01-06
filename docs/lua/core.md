@@ -37,14 +37,6 @@ released on Dec 13 2025.
     
 <hr />
 
-lua-resty-core - New FFI-based Lua API for ngx_http_lua_module and/or ngx_stream_lua_module
-
-## Status
-
-This library is production ready.
-
-## Synopsis
-
 This library is automatically loaded by default since OpenResty 1.15.8.1. This
 behavior can be disabled via the
 [lua_load_resty_core](https://github.com/openresty/lua-nginx-module#lua_load_resty_core)

@@ -37,10 +37,6 @@ released on Jul 01 2020.
     
 <hr />
 
-lua-resty-shell - Lua module for nonblocking system shell command executions
-
-## Synopsis
-
 ```lua
 local shell = require "resty.shell"
 

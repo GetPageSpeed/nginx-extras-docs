@@ -41,7 +41,7 @@ load_module modules/ngx_http_upload_module.so;
 
 
 This document describes nginx-module-upload [v2.3.0](https://github.com/fdintino/nginx-upload-module/releases/tag/2.3.0){target=_blank} 
-released on Aug 02 2018.
+released on Aug 01 2018.
 
 <hr />
 

@@ -37,14 +37,6 @@ released on Feb 01 2019.
     
 <hr />
 
-lua-resty-checkups - Manage Nginx upstreams in pure ngx_lua
-
-## Status
-
-Probably production ready in most cases, though not yet proven in the wild. Please check the issues list and let me know if you have any problems / questions.
-
-## Features
-
 * Periodically heartbeat to upstream servers
 * Proactive and passive health check
 * Dynamic upstream update

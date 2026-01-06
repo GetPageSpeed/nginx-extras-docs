@@ -37,14 +37,6 @@ released on Jul 23 2019.
     
 <hr />
 
-lua-resty-dns-server - Lua DNS server driver for the OpenResty
-
-## Status
-
-This library is still under early development and is still experimental.
-
-## Description
-
 This Lua library provies a DNS server driver for the ngx_lua nginx module:
 
 https://github.com/openresty/stream-lua-nginx-module/#readme

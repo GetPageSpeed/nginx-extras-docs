@@ -33,17 +33,9 @@ dnf -y install lua5.1-resty-dns
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-dns [v0.23](https://github.com/openresty/lua-resty-dns/releases/tag/v0.23){target=_blank} 
-released on Aug 06 2023.
+released on Aug 07 2023.
     
 <hr />
-
-lua-resty-dns - Lua DNS resolver for the ngx_lua based on the cosocket API
-
-## Status
-
-This library is considered production ready.
-
-## Description
 
 This Lua library provides a DNS resolver for the ngx_lua nginx module:
 

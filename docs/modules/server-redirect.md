@@ -51,9 +51,6 @@ released on Jan 06 2026.
 
 The `ngx_http_server_redirect_module` is a custom nginx module designed to facilitate dynamic server redirection based on configurable rules. It allows users to redirect incoming requests to different servers conditionally.
 
-## Status
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ### Basic Redirection

@@ -45,16 +45,6 @@ released on May 23 2022.
 
 <hr />
 
-array-var-nginx-module - Add support for array-typed variables to nginx config files
-
-installation instructions.
-
-## Status
-
-This module is production ready.
-
-## Synopsis
-
 ```nginx
 location /foo {
     array_split ',' $arg_files to=$array;

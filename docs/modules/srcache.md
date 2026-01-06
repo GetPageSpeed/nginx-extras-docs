@@ -45,15 +45,6 @@ released on Jun 28 2022.
 
 <hr />
 
-**ngx_srcache** - Transparent subrequest-based caching layout for arbitrary nginx locations
-
-
-## Status
-
-This module is production ready.
-
-## Synopsis
-
 ```nginx
 
  upstream my_memcached {

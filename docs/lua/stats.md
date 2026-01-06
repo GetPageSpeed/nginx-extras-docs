@@ -36,10 +36,6 @@ This document describes lua-resty-stats [v1.0.3](https://github.com/jie123108/lu
 released on Nov 28 2020.
     
 <hr />
-
-lua-resty-stats - is a statistical module for nginx base on ngx_lua, Statistical key and values are configurable, can use the nginx core's variables and this module's variables. The statistical result store in mongodb.
-
-## Synopsis
 ```nginx
     #set ngx_lua's environment variable:
     # init the lua-resty-stats

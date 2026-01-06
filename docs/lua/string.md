@@ -37,16 +37,6 @@ released on Aug 08 2024.
     
 <hr />
 
-lua-resty-string - String utilities and common hash functions for ngx_lua and LuaJIT
-
-## Status
-
-This library is considered experimental and still under active development.
-
-The API is still in flux and may change without notice.
-
-## Description
-
 This library requires an nginx build with OpenSSL,
 the [ngx_lua module](http://wiki.nginx.org/HttpLuaModule), and [LuaJIT 2.0](http://luajit.org/luajit.html).
 

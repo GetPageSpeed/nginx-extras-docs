@@ -37,10 +37,6 @@ released on Oct 25 2018.
     
 <hr />
 
-lua-resty-limit-rate - Lua module for limiting request rate for OpenResty/ngx_lua, using the "token bucket" method.
-
-## Synopsis
-
 ```nginx
 http {
     lua_shared_dict my_limit_rate_store 100m;

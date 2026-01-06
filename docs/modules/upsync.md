@@ -53,10 +53,6 @@ The module allows to expand and scale down without affecting performance.
 
 Another module, [nginx-stream-upsync-module](https://github.com/xiaokai-wang/nginx-stream-upsync-module) supports NGINX stream module (TCP protocol), please be noticed.
 
-## Status
-
-This module is still under active development and is considered production ready.
-
 ## Synopsis
 
 nginx-consul:

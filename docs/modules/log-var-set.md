@@ -45,26 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-`ngx_http_log_var_set_module` allows setting the variable to the given value before access log writing.
-
-## Table of Content
-
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [log\_var\_set](#log_var_set)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
-
 ```nginx
 log_format main '$remote_addr - $remote_user [$time_local] '
                     '"$request" $status $body_bytes_sent '

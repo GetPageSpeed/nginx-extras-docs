@@ -37,16 +37,6 @@ released on Jan 07 2021.
     
 <hr />
 
-lua-resty-ctxdump - stash and apply the ngx.ctx, avoiding being destoried after Nginx internal redirect happens.
-
-![Build Status](https://travis-ci.org/tokers/lua-resty-ctxdump.svg?branch=master)
-
-## Status
-
-Probably production ready in most cases, though not yet proven in the wild.  Please check the issues list and let me know if you have any problems / questions.
-
-## Synopsis
-
 ```lua
 
 location /t1 {

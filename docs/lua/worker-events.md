@@ -40,10 +40,6 @@ released on Jun 28 2021.
 
 Inter process events for Nginx worker processes
 
-## Status
-
-This library is production ready.
-
 ## Synopsis
 
 ```nginx

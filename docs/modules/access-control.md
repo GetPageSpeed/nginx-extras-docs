@@ -45,26 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-## Name
-
-A custom Nginx module for advanced access control based on variables.
-
-## Table of Content
-
-* [Name](#name)
-* [Status](#status)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Directives](#directives)
-  * [access](#access)
-  * [access_deny_status](#access_deny_status)
-* [Author](#author)
-* [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ```nginx

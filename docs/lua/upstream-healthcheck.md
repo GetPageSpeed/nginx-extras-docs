@@ -37,14 +37,6 @@ released on Mar 07 2023.
     
 <hr />
 
-lua-resty-upstream-healthcheck - Health-checker for Nginx upstream servers
-
-## Status
-
-This library is still under early development but is already production ready.
-
-## Synopsis
-
 ```nginx
 http {
     # sample upstream block:
@@ -146,46 +138,6 @@ and periodically.
 This method call is asynchronous and returns immediately.
 
 Returns true on success, or `nil` and a string describing an error otherwise.
-
-## status_page
-**syntax:** `str, err = healthcheck.status_page()`
-
-**context:** *any*
-
-Generates a detailed status report for all the upstreams defined in the current NGINX server.
-
-One typical output is
-
-```
-Upstream foo.com
-    Primary Peers
-        127.0.0.1:12354 UP
-        127.0.0.1:12355 DOWN
-    Backup Peers
-        127.0.0.1:12356 UP
-
-Upstream bar.com
-    Primary Peers
-        127.0.0.1:12354 UP
-        127.0.0.1:12355 DOWN
-        127.0.0.1:12357 DOWN
-    Backup Peers
-        127.0.0.1:12356 UP
-```
-
-If an upstream has no health checkers, then it will be marked by `(NO checkers)`, as in
-
-```
-Upstream foo.com (NO checkers)
-    Primary Peers
-        127.0.0.1:12354 UP
-        127.0.0.1:12355 UP
-    Backup Peers
-        127.0.0.1:12356 UP
-```
-
-If you indeed have spawned a healthchecker in `init_worker_by_lua*`, then you should really
-check out the NGINX error log file to see if there is any fatal errors aborting the healthchecker threads.
 
 ## Multiple Upstreams
 

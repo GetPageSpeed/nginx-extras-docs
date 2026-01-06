@@ -45,15 +45,6 @@ released on Apr 19 2018.
 
 <hr />
 
-ngx_redis2 - Nginx upstream module for the Redis 2.0 protocol
-
-
-## Status
-
-This module is already production ready.
-
-## Synopsis
-
 ```nginx
 
  location = /foo {

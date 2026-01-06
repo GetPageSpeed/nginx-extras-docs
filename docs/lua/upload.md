@@ -37,14 +37,6 @@ released on Jan 19 2023.
     
 <hr />
 
-lua-resty-upload - Streaming reader and parser for HTTP file uploading based on ngx_lua cosocket
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library is a streaming file uploading API for the ngx_lua nginx module:
 
 http://wiki.nginx.org/HttpLuaModule

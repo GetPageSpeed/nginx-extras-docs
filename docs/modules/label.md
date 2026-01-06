@@ -45,31 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-## Name
-`ngx_http_label_module` allows defining global key-value labels in Nginx configuration. These labels can be used in variables for request processing, logging, or dynamic configuration.
-
-## Table of Content
-
-- [ngx\_http\_label\_module](#ngx_http_label_module)
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [label](#label)
-  - [labels\_hash\_max\_size](#labels_hash_max_size)
-  - [labels\_hash\_bucket\_size](#labels_hash_bucket_size)
-- [Variables](#variables)
-  - [$label\_*name*](#label_name)
-  - [$labels](#labels)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ```nginx

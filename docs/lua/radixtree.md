@@ -37,29 +37,6 @@ released on Nov 28 2024.
     
 <hr />
 
-Radix tree implementation based on [rax](https://github.com/antirez/rax).
-
-## Status
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/iresty/lua-resty-radixtree/blob/master/LICENSE)
-
-Dependencies:
-
-- [lua-resty-ipmatcher](https://github.com/api7/lua-resty-ipmatcher)
-- [lua-resty-expr](https://github.com/api7/lua-resty-expr)
-
-Used by:
-
-- [Apache APISIX](https://github.com/apache/apisix): A high-performance cloud native API gateway.
-
-Developed by [API7.ai](https://api7.ai/).
-
-> **Note**
->
-> API7.ai provides technical support for the software it maintains like this library and [Apache APISIX](https://github.com/apache/apisix). Please [contact us](https://api7.ai/contact) to learn more.
-
-## Synopsis
-
 ```lua
 location / {
   set $arg_access 'admin';

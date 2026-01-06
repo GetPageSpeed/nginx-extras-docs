@@ -37,17 +37,6 @@ released on Nov 09 2024.
     
 <hr />
 
-lua-resty-rsa - RSA functions for OpenResty
-
-## Status
-
-This library is considered production ready.
-
-Build status: ![https://github.com/spacewander/lua-resty-rsa/workflows/build/badge.svg?branch=master](https://github.com/spacewander/lua-resty-rsa/actions/workflows/ci.yml/badge.svg?branch=master)
-
-
-## Description
-
 This library requires an nginx build with OpenSSL,
 the [ngx_lua module](https://github.com/openresty/lua-nginx-module), and [LuaJIT](http://luajit.org/luajit.html).
 

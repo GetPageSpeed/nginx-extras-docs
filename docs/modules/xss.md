@@ -45,10 +45,6 @@ released on Dec 26 2022.
 
 <hr />
 
-xss-nginx-module - Native cross-site scripting support in nginx
-
-## Synopsis
-
 ```nginx
 ## accessing /foo?callback=process gives the response
 ## body "process(...);" (without quotes) where "..."

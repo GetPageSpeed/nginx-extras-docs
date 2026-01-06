@@ -51,10 +51,6 @@ This uses the `ssl_certificate_by_lua` functionality in OpenResty 1.9.7.2+.
 
 By using lua-resty-auto-ssl to register SSL certificates with Let's Encrypt, you agree to the [Let's Encrypt Subscriber Agreement](https://letsencrypt.org/repository/).
 
-## Status
-
-Used in production (but the internal APIs might still be in flux).
-
 ## Create /etc/resty-auto-ssl and make sure it's writable by whichever user your
 ## nginx workers run as (in this example, "www-data").
 $ sudo mkdir /etc/resty-auto-ssl

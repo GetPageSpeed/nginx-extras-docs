@@ -37,14 +37,6 @@ released on Oct 10 2024.
     
 <hr />
 
-lua-resty-lrucache - Lua-land LRU cache based on the LuaJIT FFI.
-
-## Status
-
-This library is considered production ready.
-
-## Synopsis
-
 ```lua
 -- file myapp.lua: example "myapp" module
 

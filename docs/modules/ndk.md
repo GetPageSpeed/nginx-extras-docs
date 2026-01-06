@@ -45,10 +45,6 @@ released on Feb 20 2025.
 
 <hr />
 
-Nginx Development Kit (NDK)
-
-## Synopsis
-
 The NDK is an Nginx module that is designed to extend the core functionality of the
 excellent Nginx webserver in a way that can be used as a basis of other Nginx modules.
 
@@ -64,12 +60,6 @@ their own modules which features of the NDK they wish to use (explained below).
 
 If you are not an Nginx module developer, then the only useful part of this project
 will be the 'usage for users' section below.
-
-
-## Status
-
-The NDK is now considered to be stable. It is already being used in quite a few third
-party modules (see list below).
 
 
 ## Features

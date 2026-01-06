@@ -39,12 +39,6 @@ released on Feb 29 2024.
 
 Lua HTTP client cosocket driver for [OpenResty](http://openresty.org/) / [ngx\_lua](https://github.com/openresty/lua-nginx-module).
 
-## Status
-
-Production ready.
-
-[![Test](https://github.com/ledgetech/lua-resty-http/actions/workflows/test.yml/badge.svg)](https://github.com/ledgetech/lua-resty-http/actions)
-
 ## Features
 
 * HTTP 1.0 and 1.1

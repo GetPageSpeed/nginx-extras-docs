@@ -54,10 +54,6 @@ It's asynchronous and only requires a small library.
 
 
 
-## Status
-
-This module is already production ready.
-
 ## Description
 
 This is a nginx logger module integrated with [ZeroMQ](http://zeromq.org) library.

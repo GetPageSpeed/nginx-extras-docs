@@ -37,16 +37,6 @@ released on Nov 20 2019.
     
 <hr />
 
-lua-resty-http2 - The HTTP/2 Protocol (Client Side) Implementation for OpenResty. Still Pending.
-
-![Build Status](https://travis-ci.org/tokers/lua-resty-http2.svg?branch=master)
-
-## Status
-
-This Lua module is currently considered experimental.
-
-## Synopsis
-
 ```lua
 local http2 = require "resty.http2"
 

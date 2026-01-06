@@ -45,33 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-`ngx_http_loop_detect_module` allows NGINX to use the [CDN-Loop](https://datatracker.ietf.org/doc/rfc8586/) header to prevent request loops.
-
-## Table of Content
-
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [loop\_detect](#loop_detect)
-  - [loop\_detect\_cdn\_id](#loop_detect_cdn_id)
-  - [loop\_detect\_status](#loop_detect_status)
-  - [loop\_detect\_max\_allow\_loops](#loop_detect_max_allow_loops)
-- [Variables](#variables)
-  - [$loop\_detect\_current\_loops](#loop_detect_current_loops)
-  - [$loop\_detect\_proxy\_add\_cdn\_loop](#loop_detect_proxy_add_cdn_loop)
-- [How It Works](#how-it-works)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
-
 ```nginx
 http {
     # Enable the module in a location block

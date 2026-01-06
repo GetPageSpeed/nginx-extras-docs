@@ -41,7 +41,7 @@ load_module modules/ngx_nchan_module.so;
 
 
 This document describes nginx-module-nchan [v1.3.7](https://github.com/slact/nchan/releases/tag/v1.3.7){target=_blank} 
-released on Sep 20 2024.
+released on Sep 19 2024.
 
 <hr />
 <img class="logo" alt="NCHAN" src="https://nchan.io/github-logo.png" />
@@ -65,17 +65,6 @@ In a web browser, you can use Websocket or EventSource natively, or the [NchanSu
  - Fast, nonblocking [shared-memory local message storage](#memory-storage) and optional, slower, persistent storage with [Redis](#redis).
  - Horizontally scalable (using [Redis](#redis)).
  - Auto-failover and [high availability](#high-availability) with no single point of failure using [Redis Cluster](#redis-cluster).
-
-## Status and History
-
-The latest Nchan release is 1.3.7 (September 19, 2024) ([changelog](https://nchan.io/changelog)).
-
-The first iteration of Nchan was written in 2009-2010 as the [Nginx HTTP Push Module](https://pushmodule.slact.net), and was vastly refactored into its present state in 2014-2016.
-
-#### Upgrade from Nginx HTTP Push Module
-
-Although Nchan is backwards-compatible with all Push Module configuration directives, some of the more unusual and rarely used settings have been disabled and will be ignored (with a warning). See the [upgrade page](https://nchan.io/upgrade) for a detailed list of changes and improvements, as well as a full list of incompatibilities.
-
 
 ## Does it scale?
 

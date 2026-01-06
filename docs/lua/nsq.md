@@ -37,14 +37,6 @@ released on Aug 07 2018.
     
 <hr />
 
-lua-resty-nsq - Lua nsq client driver for the ngx_lua based on the cosocket API
-
-## Status
-
-This library is developing.
-
-## Description
-
 This Lua library is a NSQ client driver for the ngx_lua nginx module:
 
 This Lua library takes advantage of ngx_lua's cosocket API, which ensures

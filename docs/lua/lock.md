@@ -37,14 +37,6 @@ released on Jun 17 2022.
     
 <hr />
 
-lua-resty-lock - Simple shm-based nonblocking lock API
-
-## Status
-
-This library is still under early development and is production ready.
-
-## Synopsis
-
 ```lua
 ## nginx.conf
 

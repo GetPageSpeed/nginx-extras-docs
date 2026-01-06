@@ -37,14 +37,6 @@ released on Nov 03 2023.
     
 <hr />
 
-lua-resty-kafka - Lua kafka client driver for the ngx_lua based on the cosocket API
-
-## Status
-
-This library is still under early development and is still experimental.
-
-## Description
-
 This Lua library is a Kafka client driver for the ngx_lua nginx module:
 
 http://wiki.nginx.org/HttpLuaModule

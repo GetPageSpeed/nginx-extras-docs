@@ -45,12 +45,6 @@ Resources:
 - [RFC-6455](https://datatracker.ietf.org/doc/html/rfc6455)
 - [lua-resty-websocket](https://github.com/openresty/lua-resty-websocket)
 
-## Status
-
-This library is usable although still under active development.
-
-The Lua API may change without notice.
-
 ## Synopsis
 
 ```lua

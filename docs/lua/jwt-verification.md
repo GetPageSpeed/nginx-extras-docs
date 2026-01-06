@@ -50,12 +50,6 @@ with built-in support for JWKS.
 
 This project does not provide JWT manipulation or creation features: you can only verify/decrypt tokens.
 
-## Status
-
-Feature complete and fully working.
-
-API is stable and breaking changes will follow SEMVER. Will tag 1.0 relatively soon.
-
 ## Library non-goals
 
 - JWT creation/modification

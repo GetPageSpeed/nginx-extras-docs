@@ -37,19 +37,11 @@ released on Aug 31 2020.
     
 <hr />
 
-lua-resty-sniproxy - SNI Proxy based on the ngx_lua cosocket API
-
-## Description
-
 This library is an [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) proxy written in Lua. TLS parsing part is rewritten from [dlundquist/sniproxy](https://github.com/dlundquist/sniproxy)
 
 Note that nginx [stream module](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) and [ngx_stream_lua_module](https://github.com/openresty/stream-lua-nginx-module) is required.
 
 Tested on Openresty >= 1.9.15.1.
-
-## Status
-
-Experimental.
 
 ## Synopsis
 

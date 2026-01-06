@@ -33,17 +33,9 @@ dnf -y install lua5.1-resty-aws-sdk
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-aws-sdk [v0.1.0](https://github.com/kiddkai/lua-resty-aws-sdk/releases/tag/v0.1.0){target=_blank} 
-released on Nov 22 2016.
+released on Nov 23 2016.
     
 <hr />
-
-lua-resty-aws-sdk - a raw aws sdk generated from API specification
-
-## Status
-
-This library is not ready for production.
-
-## Description
 
 This Lua library provides basic aws request signing and creating feature. You can use this module
 with `proxy_pass`, or `lua-resty-http` or any other library you want.

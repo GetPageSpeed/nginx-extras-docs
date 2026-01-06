@@ -49,10 +49,6 @@ Don't edit this file manually! Instead you should generate it by using:
     wiki2markdown.pl doc/manpage.wiki
 -->
 
-## Name
-
-iconv-nginx-module
-
 ## Description
 
 This is a nginx module that uses libiconv to convert characters of different

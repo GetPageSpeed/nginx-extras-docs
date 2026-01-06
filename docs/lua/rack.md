@@ -41,10 +41,6 @@ A simple and extensible HTTP server framework for [OpenResty](http://openresty.o
 
 Drawing inspiration from [Rack](http://rack.github.com/) and also [Connect](https://github.com/senchalabs/connect), **lua-resty-rack** allows you to load your application as a piece of middleware, alongside other middleware. Your application can either; ignore the current request, modify the request or response in some way and pass on to other middleware, or take responsibiliy for the request by generating a response. 
 
-## Status
-
-This library is considered experimental and the API may change without notice. Please feel free to offer suggestions or raise issues here on Github.
-
 ## Using Middleware
 
 To install middleware for a given `location`, you simply call `rack.use(middleware)` in the order you wish the modules to run, and then finally call `rack.run()`.

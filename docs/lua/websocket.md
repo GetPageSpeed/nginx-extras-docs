@@ -37,14 +37,6 @@ released on Feb 11 2025.
     
 <hr />
 
-lua-resty-websocket - Lua WebSocket implementation for the ngx_lua module
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library implements a WebSocket server and client libraries based on the [ngx_lua module](http://wiki.nginx.org/HttpLuaModule).
 
 This Lua library takes advantage of ngx_lua's cosocket API, which ensures

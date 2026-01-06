@@ -42,11 +42,6 @@ lua-resty-hyperscan - [Hyperscan](https://github.com/intel/hyperscan) for [Openr
 > !!! [Old Branch](https://github.com/LubinLew/lua-resty-hyperscan/tree/v0.1) got [too many callbacks](https://github.com/LubinLew/lua-resty-hyperscan/issues/1) problem, because luajit is not fully support [CALLBACK](https://luajit.org/ext_ffi_semantics.html#callback). So we need a [C wrapper](hs_wrapper/) to handle callbacks.
 ## 
 
-## Status
-
-This library is under development so far.
-
-Support [Block Mode](http://intel.github.io/hyperscan/dev-reference/runtime.html#block-mode) and [Vectored Mode](http://intel.github.io/hyperscan/dev-reference/runtime.html#vectored-mode) now.
 ## 
 
 ## first, you should install openresty

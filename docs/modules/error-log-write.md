@@ -45,26 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-`ngx_http_error_log_write_module` allows writing error log entries based on conditional expressions in nginx configuration files..
-
-## Table of Content
-
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [error\_log\_write](#error_log_write)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
-
 ```nginx
 error_log_write level=info message="main test log";
 

@@ -60,10 +60,6 @@ ngx_brotli is a set of two nginx modules:
 - ngx_brotli static module - used to serve pre-compressed files.
 
 
-## Status
-
-Both Brotli library and nginx module are under active development.
-
 ## Configuration directives
 
 ### `brotli_static`

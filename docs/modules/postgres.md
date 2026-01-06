@@ -51,19 +51,6 @@ Response is generated in `rds` format, so it's compatible with `ngx_rds_json`
 and `ngx_drizzle` modules.
 
 
-## Status
-This module is production-ready and it's compatible with following nginx
-releases:
-
-- 0.7.x (tested with 0.7.60 to 0.7.69),
-- 0.8.x (tested with 0.8.0 to 0.8.55),
-- 0.9.x (tested with 0.9.0 to 0.9.7),
-- 1.0.x (tested with 1.0.0 to 1.0.11),
-- 1.1.x (tested with 1.1.0 to 1.1.12).
-- 1.2.x (tested with 1.2.3 to 1.2.3).
-- 1.3.x (tested with 1.3.4 to 1.3.4).
-
-
 ## Configuration directives
 ## postgres_server
 * **syntax**: `postgres_server ip[:port] dbname=dbname user=user password=pass`

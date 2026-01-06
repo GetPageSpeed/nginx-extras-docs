@@ -54,11 +54,6 @@ during the years. If you still use older version, please refer
 [old documentation](https://github.com/bungle/lua-resty-session/tree/v3.10).
 
 
-## Status
-
-This library is considered production ready.
-
-
 ## Synopsis
 
 ```nginx

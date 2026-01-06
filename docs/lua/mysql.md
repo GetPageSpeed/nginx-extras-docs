@@ -37,14 +37,6 @@ released on May 08 2025.
     
 <hr />
 
-lua-resty-mysql - Lua MySQL client driver for ngx_lua based on the cosocket API
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library is a MySQL client driver for the ngx_lua nginx module:
 
 https://github.com/openresty/lua-nginx-module

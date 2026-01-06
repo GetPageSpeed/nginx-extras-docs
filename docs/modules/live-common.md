@@ -465,24 +465,6 @@ When the size of the request body exceeds a certain threshold, nginx writes it t
 However, the implementation of the Media-Framework API requires that the request body of `POST` / `PUT` requests will be available in memory.
 If needed, the nginx `client_body_buffer_size` directive can be used to increase the size of the buffer allocated for the request body.
 
-### Status Codes
-
-HTTP status codes are used to return the execution status of API requests.
-
-The following success codes are used:
-- `200` - a successful `GET` request, the response body is a JSON, usually a JSON object or array (the response includes the header `Content-Type: application/json`).
-- `201` - a successful `POST` request, that resulted in the creation of a new object.
-- `204` - a successful `POST` / `PUT` / `DELETE` request.
-    A `POST` request may return `204` when the object already existed, and `upsert` is enabled on the API location in nginx configuration.
-
-The following error codes are used:
-- `400` - invalid request, for example, the length of some input field exceeds the limit.
-- `403` - returned by nginx-live-module when getting a request to update a channel that is currently being read from storage.
-- `404` - some object referenced by the URI or request body was not found.
-- `409` - attempt to create an object that already exists, when `upsert` is not enabled on the API location in nginx configuration.
-- `415` - the request body is not a valid JSON, the type of the JSON is not expected (usually a JSON object is expected), or some required field is missing.
-- `500` - an unexpected error, for example, a memory allocation failure.
-
 ### Multi Request
 
 Setting up a channel in nginx-live-module may require multiple API calls - create the channel, create a timeline, create a variant, etc.

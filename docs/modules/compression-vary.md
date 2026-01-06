@@ -45,26 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-## Name
-ngx_http_compression_vary_filter_module is a header filter module used instead of the 'gzip_vary' directive.
-
-## Table of Content
-
-- [ngx\_http\_compression\_vary\_filter\_module](#ngx_http_compression_vary_filter_module)
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [compression\_vary](#compression_vary)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ```nginx

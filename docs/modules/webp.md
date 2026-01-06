@@ -47,10 +47,6 @@ released on Dec 30 2019.
 
 Webp is new (and smaller) image format. This module will convert jpg/png image on fly and send webp response.
 
-## Status
-
-Under development. To be continued.
-
 ## Configuration directives
 
 ### `webp`

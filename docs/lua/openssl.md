@@ -49,10 +49,6 @@ OpenSSL 1.1.0, 1.0.2 and BoringSSL support has been dropped, but are still avail
 `lua-resty-openssl` is a FFI-based OpenSSL binding library, currently
 supports OpenSSL `3.x` and `1.1.1` series.
 
-## Status
-
-Production.
-
 ## Synopsis
 
 This library is greatly inspired by [luaossl](https://github.com/wahern/luaossl), while uses the
@@ -2623,120 +2619,6 @@ end
 ## resty.openssl.x509.name
 
 Module to interact with X.509 names.
-
-### name.new
-
-**syntax**: *name, err = name.new()*
-
-Creates an empty `name` instance.
-
-### name.dup
-
-**syntax**: *name, err = name.dup(name_ptr_cdata)*
-
-Duplicates a `X509_NAME*` to create a new `name` instance.
-
-### name.istype
-
-**syntax**: *ok = name.istype(table)*
-
-Returns `true` if table is an instance of `name`. Returns `false` otherwise.
-
-### name:add
-
-**syntax**: *name, err = name:add(nid_text, txt)*
-
-Adds an ASN.1 object to `name`. First arguments in the *text representation* of [NID].
-Second argument is the plain text value for the ASN.1 object.
-
-Returns the name instance itself on success, or `nil` and an error on failure.
-
-This function can be called multiple times in a chained fashion.
-
-```lua
-local name, err = require("resty.openssl.x509.name").new()
-local _, err = name:add("CN", "example.com")
-
-_, err = name
-    :add("C", "US")
-    :add("ST", "California")
-    :add("L", "San Francisco")
-
-```
-
-### name:find
-
-**syntax**: *obj, pos, err = name:find(nid_text, last_pos?)*
-
-Finds the ASN.1 object with the given *text representation* of [NID] from the
-postition of `last_pos`. By omitting the `last_pos` parameter, `find` finds from the beginning.
-
-Returns the object in a table as same format as decribed [here](#name__metamethods), the position
-of the found object and error if any. Index is 1-based. Returns `nil, nil` if not found.
-
-```lua
-local name, err = require("resty.openssl.x509.name").new()
-local _, err = name:add("CN", "example.com")
-                    :add("CN", "example2.com")
-
-local obj, pos, err = name:find("CN")
-ngx.say(obj.blob, " at ", pos)
--- outputs "example.com at 1"
-local obj, pos, err = name:find("2.5.4.3", 1)
-ngx.say(obj.blob, " at ", pos)
--- outputs "example2.com at 2"
-```
-
-### name:tostring
-
-**syntax**: *txt = name:tostring()*
-
-Outputs name in a text representation.
-
-```lua
-local name, err = require("resty.openssl.x509.name").new()
-local _, err = name:add("CN", "example.com")
-                    :add("CN", "example2.com")
-
-ngx.say(name:tostring())
--- outputs "CN=example.com/CN=example2.com"
-```
-
-### name:__metamethods
-
-**syntax**: *for k, obj in pairs(name)*
-
-**syntax**: *len = #name*
-
-**syntax**: *k, v = name[i]*
-
-Access the underlying objects as it's a Lua table. Make sure your LuaJIT compiled
-with `-DLUAJIT_ENABLE_LUA52COMPAT` flag; otherwise use `all`, `each`, `index` and `count`
-instead.
-
-See also [functions for stack-like objects](#functions-for-stack-like-objects).
-
-Each returned object is a table where:
-
-```
-{
-  id: OID of the object,
-  nid: NID of the object,
-  sn: short name of the object,
-  ln: long name of the object,
-  blob: value of the object,
-}
-```
-
-```lua
-local name, err = require("resty.openssl.x509.name").new()
-local _, err = name:add("CN", "example.com")
-
-for k, obj in pairs(name) do
-  ngx.say(k, ":", require("cjson").encode(obj))
-end
--- outputs 'CN: {"sn":"CN","id":"2.5.4.3","nid":13,"blob":"3.example.com","ln":"commonName"}'
-```
 
 ## resty.openssl.x509.altname
 

@@ -45,24 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-## Name
-ngx_http_rewrite_status_filter_module is a filter module used to rewrite response status code.
-
-## Table of Content
-
-* [Name](#name)
-* [Status](#status)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Directives](#directives)
-  * [rewrite_status](#rewrite_status)
-* [Author](#author)
-* [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
 ## Synopsis
 
 ```nginx

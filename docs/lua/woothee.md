@@ -33,7 +33,7 @@ dnf -y install lua5.1-resty-woothee
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-woothee [v1.12.0](https://github.com/woothee/lua-resty-woothee/releases/tag/v1.12.0-1){target=_blank} 
-released on Oct 13 2021.
+released on Oct 14 2021.
     
 <hr />
 [![CircleCI](https://circleci.com/gh/woothee/lua-resty-woothee.svg?style=svg)](https://circleci.com/gh/woothee/lua-resty-woothee)

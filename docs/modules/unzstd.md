@@ -44,29 +44,6 @@ This document describes nginx-module-unzstd [v0.1.0](https://github.com/dvershin
 released on Jan 06 2026.
 
 <hr />
-ngx_http_unzstd_filter_module is a filter that decompresses responses with “Content-Encoding: zstd” for clients that do not support “zstd” ([Zstandard compression](https://facebook.github.io/zstd/)) encoding method. The module will be useful when it is desirable to store data compressed to save space and reduce I/O costs.
-
-## Table of Content
-
-* [Name](#name)
-* [Status](#status)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Directives](#directives)
-  * [unzstd](#unzstd)
-  * [unzstd_force](#unzstd_force)
-  * [unzstd_buffers](#unzstd_buffers)
-* [Author](#author)
-* [License](#license)
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-> Known Issue: 
-1. Due to improper handling of zstd library dependencies, this module needs to be built together with [zstd-nginx-module](https://github.com/tokers/zstd-nginx-module). I am currently unable to solve this problem. Welcome to submit PR.
-2. This module occasionally has a problem of sending the chunked end marker (0\r\n\r\n) twice when decompressing chunked responses. I can't fix it at the moment, so I have to temporarily disable this module. If you are interested in this module, you can try to solve it, and your PR is welcome.
-
-## Synopsis
 
 ```nginx
 server {

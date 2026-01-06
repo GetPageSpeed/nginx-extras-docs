@@ -45,11 +45,6 @@ released on Dec 27 2023.
 
 <hr />
 
-**ngx_memc** - An extended version of the standard memcached module that supports set, add, delete, and many more memcached commands.
-
-
-## Synopsis
-
 ```nginx
 
  # GET /foo?key=dog

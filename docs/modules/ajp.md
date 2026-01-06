@@ -45,10 +45,6 @@ released on Dec 19 2023.
 
 <hr />
 
-__nginx\_ajp\_module__ - support AJP protocol proxy with Nginx
-
-## Synopsis
-
         http {
                 upstream tomcats {
                         server 127.0.0.1:8009;

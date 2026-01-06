@@ -37,16 +37,6 @@ released on Aug 08 2023.
     
 <hr />
 
-lua-resty-limit-traffic - Lua library for limiting and controlling traffic in OpenResty/ngx_lua
-
-## Status
-
-This library is already usable though still highly experimental.
-
-The Lua API is still in flux and may change in the near future without notice.
-
-## Synopsis
-
 ```nginx
 ## demonstrate the usage of the resty.limit.req module (alone!)
 http {

@@ -37,10 +37,6 @@ released on Aug 08 2024.
     
 <hr />
 
-lua-resty-signal - Lua library for killing or sending signals to Linux processes
-
-## Synopsis
-
 ```lua
 local resty_signal = require "resty.signal"
 local pid = 12345

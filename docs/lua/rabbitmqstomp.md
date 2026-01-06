@@ -48,11 +48,6 @@ may be addressed in future;
 - RabbitMQ server should have the STOMP adapter enabled that supports STOMP v1.2
 - Assumption that users, vhost, exchanges, queues and bindings are already setup
 
-## Status
-
-This library is considered production ready for publishing reliable messages to
-RabbitMQ.
-
 ## STOMP v1.2 Client Implementation
 
 This library uses STOMP 1.2 for communication with RabbitMQ broker and

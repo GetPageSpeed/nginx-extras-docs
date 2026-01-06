@@ -45,19 +45,6 @@ released on Dec 16 2025.
 
 <hr />
 
-## Name
-
-ngx_stream_lua_module - Embed the power of Lua into Nginx stream/TCP Servers.
-
-This module is a core component of OpenResty. If you are using this module,
-then you are essentially using OpenResty.
-
-instructions](#installation).
-
-## Status
-
-Production ready.
-
 ## Synopsis
 
 ```nginx

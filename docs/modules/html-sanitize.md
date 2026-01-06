@@ -41,7 +41,7 @@ load_module modules/ngx_http_html_sanitize_module.so;
 
 
 This document describes nginx-module-html-sanitize [v0.2.4](https://github.com/dvershinin/ngx_http_html_sanitize_module/releases/tag/0.2.4){target=_blank} 
-released on Aug 08 2019.
+released on Aug 09 2019.
 
 <hr />
 [gumbo-parser]: https://github.com/google/gumbo-parser
@@ -80,15 +80,6 @@ released on Aug 08 2019.
 [url_domain]: #url_domain
 [iframe_url_protocol]: #iframe_url_protocol
 [iframe_url_domain]: #iframe_url_domain
-
-## Name
-
-[ngx_http_html_sanitize_module] - It's base on google's [gumbo-parser] as HTML5 parser and hackers-painters's [katana-parser] as inline CSS parser to sanitize HTML with whitelisted elements, whitelisted attributes and whitelisted CSS property.
-
-## Status
-
-Production Ready :-)
-
 
 ## Example
 
@@ -486,19 +477,6 @@ Specifies whether allow `<script></script>`
 **context:** querystring
 
 Specifies whether allow `<style></style>`
-
-## namespace
-**value:** *0、1 or 2*
-
-**default:** *0*
-
-**context:** querystring
-
-Specifies the mode of gumbo-parser with the value as the following:
-
-* GUMBO_NAMESPACE_HTML: 0
-* GUMBO_NAMESPACE_SVG: 1
-* GUMBO_NAMESPACE_MATHML: 2
 
 ## context
 **value:** *[0, 150)*

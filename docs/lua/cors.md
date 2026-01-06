@@ -36,16 +36,8 @@ This document describes lua-resty-cors [v0.2.1](https://github.com/detailyang/lu
 released on Oct 17 2016.
     
 <hr />
-lua-resty-cors
-
-## lua-resty-cors
 It's the implement of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) on OpenResty and 
 It backports the [nginx-http-cors](https://github.com/x-v8/ngx_http_cors_filter) to OpenResty
-
-## Status
-![lua-resty-cors](https://travis-ci.org/detailyang/lua-resty-cors.svg?branch=master)
-
-Experimental
 
 ## Usage
 It shoule be placed on the nginx output header phase. In OpenResty it should be header_filter_by_lua\*. The config shoule be like as the following:

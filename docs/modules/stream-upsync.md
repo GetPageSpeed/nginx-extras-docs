@@ -45,22 +45,6 @@ released on Jan 02 2020.
 
 <hr />
 
-nginx-stream-upsync-module - Nginx C module, sync upstreams from consul or others, dynamically modify backend-servers attribute(weight, max_fails,...), needn't reload nginx.
-
-It may not always be convenient to modify configuration files and restart NGINX. For example, if you are experiencing large amounts of traffic and high load, restarting NGINX and reloading the configuration at that point further increases load on the system and can temporarily degrade performance.
-
-The module can be more smoothly expansion and constriction, and will not influence the performance.
-
-Another module, [nginx-upsync-module](https://github.com/weibocom/nginx-upsync-module) supports nginx http module(HTTP protocol), please be noticed.
-
-If you want to use [nginx-upsync-module](https://github.com/weibocom/nginx-upsync-module) and [nginx-stream-upsync-module](https://github.com/xiaokai-wang/nginx-stream-upsync-module) both, please refer to [nginx-upsync](https://github.com/CallMeFoxie/nginx-upsync).
-
-## Status
-
-This module is still under active development and is considered production ready.
-
-## Synopsis
-
 nginx-consul:
 ```nginx-consul
 stream {

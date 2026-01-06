@@ -36,11 +36,6 @@ This document describes lua-resty-maxminddb [v1.3.7](https://github.com/anjia053
 released on Dec 08 2025.
     
 <hr />
-lua-resty-maxminddb - A Lua library for reading [MaxMind's Geolocation database format](https://maxmind.github.io/MaxMind-DB/)  (aka mmdb or geoip2).
-
-[Original multi database support](https://github.com/linuxgemini/lua-resty-maxminddb/)
-
-## Prerequisites
 
 **Note**
 - [maxmind/libmaxminddb][]

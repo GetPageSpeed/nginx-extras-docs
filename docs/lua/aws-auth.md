@@ -33,7 +33,7 @@ dnf -y install lua5.1-resty-aws-auth
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-aws-auth [v0.12](https://github.com/paragasu/lua-resty-aws-auth/releases/tag/v0.12-0){target=_blank} 
-released on Jan 13 2017.
+released on Jan 14 2017.
     
 <hr />
 Simple lua resty utilities to generate amazon v4 authorization and signature headers.

@@ -41,16 +41,6 @@ released on Nov 04 2024.
 [![Releases](https://img.shields.io/github/v/release/chaitin/lua-resty-t1k?style=flat-square)](https://github.com/chaitin/lua-resty-t1k/releases)
 [![License](https://img.shields.io/github/license/chaitin/lua-resty-t1k?color=ff69b4&style=flat-square)](https://github.com/chaitin/lua-resty-t1k/blob/main/LICENSE)
 
-## Name
-
-Lua implementation of the T1K protocol for [Chaitin/SafeLine](https://github.com/chaitin/safeline) Web Application Firewall.
-
-## Status
-
-Production ready.
-
-[![Test](https://img.shields.io/github/actions/workflow/status/chaitin/lua-resty-t1k/test.yml?logo=github&style=flat-square)](https://github.com/chaitin/lua-resty-t1k/actions)
-
 ## Synopsis
 
 ```lua

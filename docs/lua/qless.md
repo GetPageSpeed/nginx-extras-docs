@@ -46,11 +46,6 @@ Essentially, with this module and a modern Redis instance, you can turn your Ope
 
 *Note: This module is not designed to work in a pure Lua environment.*
 
-## Status
-
-This module should be considered experimental.
-
-
 ## Philosophy and Nomenclature
 A `job` is a unit of work identified by a job id or `jid`. A `queue` can contain
 several jobs that are scheduled to be run at a certain time, several jobs that are

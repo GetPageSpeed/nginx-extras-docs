@@ -73,10 +73,6 @@ This library uses [an FFI-based openssl backend](https://github.com/fffonion/lua
 which currently supports OpenSSL `1.1.1`, `1.1.0` and `1.0.2` series.
 
 
-## Status
-
-Production.
-
 ## Synopsis
 
 Create account private key and fallback certs:

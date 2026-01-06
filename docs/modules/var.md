@@ -45,26 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-`ngx_http_var_module` is a nginx module that dynamically assigns new variables through predefined functions.
-
-## Table of Content
-
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-  - [var](#var)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
-
 ```nginx
 server {
     listen 127.0.0.1:8080;

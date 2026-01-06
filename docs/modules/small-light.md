@@ -235,19 +235,6 @@ There are the types of each parameter below.
 |color |rrggbb or rrggbbaa                               |
 |string|string                                           |
 
-## Named Pattern
-
-`ngx_small_light` supports to name comma-delimited parameters with the `small_light_define_patern`.
-
-```nginx
-small_light_pattern_define small dw=120,dh=120,q=80,e=imagemagick,jpeghint=y;
-```
-
-If the line above is added to some server context in nginx.conf, the two URLs below return same response.
-
- * `http://$host:$port/small_light(p=small)/img/image.jpg`
- * `http://$host:$port/small_light(dw=120,dh=120,q=80,e=imagemagick,jpeghint=y)/img/image.jpg`
-
 ## Using GET parameters
 
 `ngx_small_light` supports to convert image not only by **small_light function** but by GET paramenters in `v0.5.0` or later.

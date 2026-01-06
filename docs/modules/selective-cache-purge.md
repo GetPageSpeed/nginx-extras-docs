@@ -41,7 +41,7 @@ load_module modules/ngx_http_keyval_module.so;
 
 
 This document describes nginx-module-selective-cache-purge [v0.3.0](https://github.com/kjdev/nginx-keyval/releases/tag/0.3.0){target=_blank} 
-released on Mar 31 2024.
+released on Apr 01 2024.
 
 <hr />
 

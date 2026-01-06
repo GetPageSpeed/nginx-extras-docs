@@ -40,11 +40,6 @@ released on Sep 03 2024.
 **lua-resty-ada** implements a LuaJIT FFI bindings to
 [Ada — WHATWG-compliant and fast URL parser](https://github.com/ada-url/ada/).
 
-## Status
-
-This library is considered production ready.
-
-
 ## Synopsis
 
 ```lua

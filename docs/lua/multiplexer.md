@@ -37,10 +37,6 @@ released on Aug 31 2020.
     
 <hr />
 
-lua-resty-multiplexer - Transparent port service multiplexer for stream subsystem 
-
-## Description
-
 This library implemented a transparent port service multiplexer, which can be used to run multiple TCP services on the same port.
 
 Note that nginx [stream module](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) and [stream-lua-nginx-module](https://github.com/openresty/stream-lua-nginx-module) is required.
@@ -52,10 +48,6 @@ proxying is not supported as `reqsock:peek` is missing.
 
 Starting OpenResty 1.15.8.1, only native proxying is supported and no patch is needed. Lua land proxying will be
 possible when stream-lua-nginx-module implemented `tcpsock:receiveany`.
-
-## Status
-
-Experimental.
 
 ## Synopsis
 

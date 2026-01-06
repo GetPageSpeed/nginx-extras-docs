@@ -47,34 +47,6 @@ This document describes nginx-module-zstd [v0.1.1](https://github.com/tokers/zst
 released on Oct 23 2023.
 
 <hr />
-zstd-nginx-module - Nginx module for the [Zstandard compression](https://facebook.github.io/zstd/).
-
-## Table of Content
-
-* [Name](#name)
-* [Status](#status)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Directives](#directives)
-  * [ngx_http_zstd_filter_module](#ngx_http_zstd_filter_module)
-    * [zstd_dict_file](#zstd_dict_file)
-    * [zstd](#zstd)
-    * [zstd_comp_level](#zstd_comp_level)
-    * [zstd_min_length](#zstd_min_length)
-    * [zstd_types](#zstd_types)
-    * [zstd_buffers](#zstd_buffers)
-  * [ngx_http_zstd_static_module](#ngx_http_zstd_static_module)
-    * [zstd_static](#zstd_static)
-* [Variables](#variables)
-  * [ngx_http_zstd_filter_module](#ngx_http_zstd_filter_module)
-    * [$zstd_ratio](#$zstd_ratio)
-* [Author](#author)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
 
 ```nginx
 

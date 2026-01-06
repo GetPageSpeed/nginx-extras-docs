@@ -45,28 +45,6 @@ released on Jan 06 2026.
 
 <hr />
 
-`ngx_http_internal_redirect_module` allows making an internal redirect. In contrast to rewriting URIs, the redirection is made after rewrite phase. Currently supported request phases are preaccess, access, precontent and content, allowing it to be used with many nginx official or third-party modules.
-
-> This module is inspired by the nginx official [ngx_http_internal_redirect_module]([ngx_http_internal_redirect_module](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html)).
-
-## Table of Content
-
-- [Name](#name)
-- [Table of Content](#table-of-content)
-- [Status](#status)
-- [Synopsis](#synopsis)
-- [Installation](#installation)
-- [Directives](#directives)
-	- [internal\_redirect](#internal_redirect)
-- [Author](#author)
-- [License](#license)
-
-## Status
-
-This Nginx module is currently considered experimental. Issues and PRs are welcome if you encounter any problems.
-
-## Synopsis
-
 ```nginx
 server {
     listen 127.0.0.1:80;

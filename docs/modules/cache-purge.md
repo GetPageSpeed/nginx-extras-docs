@@ -53,10 +53,6 @@ content with the same cache key as the purge request has.
 Work on the original patch was fully funded by [yo.se](http://yo.se).
 
 
-## Status
-This module is production-ready.
-
-
 ## Configuration directives (same location syntax)
 ## fastcgi_cache_purge
 * **syntax**: `fastcgi_cache_purge on|off|<method> [purge_all] [from all|<ip> [.. <ip>]]`

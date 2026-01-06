@@ -36,15 +36,6 @@ This document describes lua-resty-ini [v0.1](https://github.com/doujiang24/lua-r
 released on May 31 2016.
     
 <hr />
-
-lua-resty-ini - Lua ini parser
-
-## Status
-
-This library is still under early development and is still experimental.
-
-
-## See Also
 * the ngx_lua module: http://wiki.nginx.org/HttpLuaModule
 
 

@@ -45,16 +45,6 @@ released on Nov 18 2021.
 
 <hr />
 
-encrypted-session-nginx-module - encrypt and decrypt nginx variable values
-
-installation instructions.
-
-## Status
-
-This module is production ready.
-
-## Synopsis
-
 ```nginx
 ## key must be of 32 bytes long
 encrypted_session_key "abcdefghijklmnopqrstuvwxyz123456";

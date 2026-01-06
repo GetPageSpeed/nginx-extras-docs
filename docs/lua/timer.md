@@ -33,16 +33,12 @@ dnf -y install lua5.1-resty-timer
 To use this Lua library with NGINX, ensure that [nginx-module-lua](../modules/lua.md) is installed.
 
 This document describes lua-resty-timer [v1.1.0](https://github.com/Kong/lua-resty-timer/releases/tag/1.1.0){target=_blank} 
-released on Nov 06 2020.
+released on Nov 07 2020.
     
 <hr />
 
 Extended timers for OpenResty. Provided recurring, cancellable, node-wide timers,
 beyond what the basic OpenResty timers do.
-
-## Status
-
-This library is production ready.
 
 ## Synopsis
 

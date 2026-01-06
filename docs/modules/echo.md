@@ -45,15 +45,6 @@ released on Oct 30 2025.
 
 <hr />
 
-**ngx_echo** - Brings "echo", "sleep", "time", "exec" and more shell-style goodies to Nginx config file.
-
-
-## Status
-
-This module is production ready.
-
-## Synopsis
-
 ```nginx
 
    location /hello {

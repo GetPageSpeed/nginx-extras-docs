@@ -37,25 +37,6 @@ released on Jul 18 2019.
     
 <hr />
 
-lua-resty-requests - Yet Another HTTP Library for OpenResty.
-
-![Build Status](https://travis-ci.org/tokers/lua-resty-requests.svg?branch=master)
-
-```bash
-resty -e 'print(require "resty.requests".get{ url = "https://github.com", stream = false }.content)'
-```
-
-## Status
-
-This Lua module now can be considered as production ready.
-
-Note since the `v0.7.1` release, this module started using lua-resty-socket,
-for working in the non-yieldable phases, but still more efforts are needed,
-so **DONOT** use it in the `init` or `init_worker` phases (or other
-non-yieldable phases).
-
-## Features
-
 * HTTP/1.0, HTTP/1.1 and HTTP/2 (WIP).
 * SSL/TLS support.
 * Chunked data support.

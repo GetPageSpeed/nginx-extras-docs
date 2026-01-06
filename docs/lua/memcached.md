@@ -37,14 +37,6 @@ released on Jan 19 2023.
     
 <hr />
 
-lua-resty-memcached - Lua memcached client driver for the ngx_lua based on the cosocket API
-
-## Status
-
-This library is considered production ready.
-
-## Description
-
 This Lua library is a memcached client driver for the ngx_lua nginx module:
 
 http://wiki.nginx.org/HttpLuaModule

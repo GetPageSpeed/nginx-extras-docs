@@ -41,13 +41,9 @@ load_module modules/ngx_http_form_input_module.so;
 
 
 This document describes nginx-module-form-input [v0.12](https://github.com/calio/form-input-nginx-module/releases/tag/v0.12){target=_blank} 
-released on May 16 2016.
+released on May 15 2016.
 
 <hr />
-
-form-input-nginx-module - NGINX module that reads HTTP POST and PUT request body encoded in "application/x-www-form-urlencoded" and parses the arguments into nginx variables.
-
-## Description
 
 This is a nginx module that reads HTTP POST and PUT request body encoded
 in "application/x-www-form-urlencoded", and parse the arguments in

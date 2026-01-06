@@ -37,16 +37,6 @@ released on May 24 2023.
     
 <hr />
 
-lua-resty-chash - A generic consistent hash implementation for OpenResty/LuaJIT
-
-lua-resty-roundrobin - A generic roundrobin implementation for OpenResty/LuaJIT
-
-## Status
-
-This library is still under early development and is still experimental.
-
-## Description
-
 This Lua library can be used with `balancer_by_lua*`.
 
 ## Synopsis

@@ -37,10 +37,6 @@ released on Apr 07 2024.
     
 <hr />
 
-[lua-resty-etcd](https://github.com/iresty/lua-resty-etcd) Nonblocking Lua etcd driver library for OpenResty, this module supports etcd API v3.
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/iresty/lua-resty-etcd/blob/master/LICENSE)
-
 ## GitHub
 
 You may find additional configuration tips and documentation for this module in the [GitHub repository for 
