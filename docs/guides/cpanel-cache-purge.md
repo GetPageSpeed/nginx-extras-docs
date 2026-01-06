@@ -131,6 +131,53 @@ This ensures that when a page is purged, all cached variants (gzip, brotli, unco
 
 ---
 
+## Advanced: Reduce Cache Variants
+
+!!! tip "Optional Optimization"
+    This step is optional but recommended for high-traffic sites.
+
+The `Vary: Accept-Encoding` header causes NGINX to create separate cache entries for different 
+`Accept-Encoding` combinations. Browsers send these in various orders:
+
+- `gzip, br, deflate` 
+- `br, gzip`
+- `gzip, deflate`
+
+Each unique combination creates a **separate cache variant**, leading to cache bloat and reduced hit rates.
+
+### Install Compression Normalize Module
+
+The [`ngx_http_compression_normalize_module`](https://github.com/dvershinin/ngx_http_compression_normalize_module) 
+normalizes `Accept-Encoding` headers to consistent values, dramatically reducing cache variants.
+
+```bash
+dnf -y install ea-nginx-compression-normalize
+```
+
+### Configure Normalization
+
+Create `/etc/nginx/conf.d/compression-normalize.conf`:
+
+```nginx
+# Normalize Accept-Encoding to reduce cache variants
+# Priority order: prefer brotli, then gzip
+compression_normalize_accept_encoding br,gzip br gzip;
+```
+
+With this configuration:
+
+| Original Accept-Encoding | Normalized To |
+|--------------------------|---------------|
+| `gzip, br, deflate`      | `br,gzip`     |
+| `br, gzip`               | `br,gzip`     |
+| `gzip, deflate`          | `gzip`        |
+| `br`                     | `br`          |
+| `deflate`                | *(removed)*   |
+
+This reduces potentially hundreds of cache variants to just **3** (`br,gzip`, `br`, `gzip`).
+
+---
+
 ## Step 6: Test the Setup
 
 ```bash
