@@ -17,14 +17,18 @@ extra:
     link: https://t.me/GetPageSpeed
 extra_css:
 - stylesheets/extra.css
+extra_javascript:
+- https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs
 hooks:
 - hooks/copyright_year.py
 markdown_extensions:
 - abbr
 - admonition
+- pymdownx.details
 - markdown_include.include
 - meta
 - attr_list
+- md_in_html
 - pymdownx.emoji:
     emoji_generator: !!python/name:material.extensions.emoji.to_svg ''
     emoji_index: !!python/name:material.extensions.emoji.twemoji ''
@@ -32,7 +36,11 @@ markdown_extensions:
       custom_icons:
       - overrides/.icons
 - pymdownx.magiclink
-- pymdownx.superfences
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
 - pymdownx.tabbed:
     alternate_style: true
 - pymdownx.tasklist
@@ -298,8 +306,14 @@ nav:
     worker-events: lua/worker-events.md
     xxhash: lua/xxhash.md
 - Guides:
-  - CloudLinux EA4:
-    - WordPress Cache Purging: guides/cpanel-cache-purge.md
+  - Caching:
+    - VPS/Dedicated - Proxy Cache: guides/vps-cache-purge.md
+    - VPS/Dedicated - FastCGI Cache: guides/fastcgi-cache-purge.md
+    - CloudLinux EA4 - Cache Purging: guides/cpanel-cache-purge.md
+  - Performance:
+    - Brotli Compression: guides/brotli-compression.md
+  - Security:
+    - Country Blocking with GeoIP2: guides/geoip2-blocking.md
 - Distributions:
   - branches.md
   - nginx-mod.md

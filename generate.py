@@ -33,6 +33,7 @@ REMOVABLE_SECTIONS = [
     "patch to collect ssl_cache_usage, ssl_handshake_time content_time, gzip_time, "
     "upstream_time, upstream_connect_time, upstream_header_time graphs (optional)",
     "table of contents",
+    "table of content",
     "install in centos 7",
     "c macro configurations",
     "requirements",
@@ -67,6 +68,8 @@ REMOVABLE_SECTIONS = [
     "report bugs",
     "source repository",
     "donation",
+    "status",
+    "name",
 ]
 
 # Line must start with this in order to be ignored/removed
@@ -691,8 +694,20 @@ with open("mkdocs.yml") as mkdocs_f:
         {
             "Guides": [
                 {
-                    "CloudLinux EA4": [
-                        {"WordPress Cache Purging": "guides/cpanel-cache-purge.md"},
+                    "Caching": [
+                        {"VPS/Dedicated - Proxy Cache": "guides/vps-cache-purge.md"},
+                        {"VPS/Dedicated - FastCGI Cache": "guides/fastcgi-cache-purge.md"},
+                        {"CloudLinux EA4 - Cache Purging": "guides/cpanel-cache-purge.md"},
+                    ]
+                },
+                {
+                    "Performance": [
+                        {"Brotli Compression": "guides/brotli-compression.md"},
+                    ]
+                },
+                {
+                    "Security": [
+                        {"Country Blocking with GeoIP2": "guides/geoip2-blocking.md"},
                     ]
                 },
             ]

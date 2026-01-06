@@ -3,10 +3,17 @@ title: "WordPress Cache Purging with Proxy Cache Purge"
 description: "Set up automatic NGINX cache purging for WordPress on CloudLinux with ea-nginx using the Proxy Cache Purge plugin and ngx_cache_purge module."
 ---
 
-# WordPress Cache Purging on CloudLinux EA4
+# :material-lightning-bolt: WordPress Cache Purging on CloudLinux EA4
 
-This guide shows how to set up automatic NGINX cache purging for WordPress sites on 
-CloudLinux servers with cPanel's `ea-nginx`, using the **Proxy Cache Purge** plugin.
+<p class="subtitle" style="font-size: 1.3rem; opacity: 0.9; margin-top: -0.5rem;">
+Instant, automatic cache invalidation for WordPress—without clearing your entire cache.
+</p>
+
+!!! success "🎉 Free Access - Limited Time!"
+    All CloudLinux EA4 modules are currently **free** — no subscription required!
+    [Learn more](../cloudlinux-ea4.md)
+
+---
 
 <div class="grid cards" markdown>
 
@@ -14,7 +21,13 @@ CloudLinux servers with cPanel's `ea-nginx`, using the **Proxy Cache Purge** plu
 
     ---
 
-    Cache is purged automatically when you edit posts, pages, or comments
+    Cache is purged automatically when you edit posts, pages, or comments—no manual intervention needed
+
+-   :material-target:{ .lg .middle } **Surgical Precision**
+
+    ---
+
+    Only the changed page is purged—your entire site stays cached and blazing fast
 
 -   :material-shield-check:{ .lg .middle } **Multi-Tenant Safe**
 
@@ -22,7 +35,7 @@ CloudLinux servers with cPanel's `ea-nginx`, using the **Proxy Cache Purge** plu
 
     Each cPanel user's cache is isolated—users cannot purge each other's content
 
--   :material-puzzle:{ .lg .middle } **Zero Coding**
+-   :material-puzzle:{ .lg .middle } **Zero Coding Required**
 
     ---
 
@@ -32,7 +45,13 @@ CloudLinux servers with cPanel's `ea-nginx`, using the **Proxy Cache Purge** plu
 
 ---
 
-## Step 1: Install the Cache Purge Module
+## :material-clock-fast: 5-Minute Setup
+
+Follow these steps to enable intelligent cache purging on your CloudLinux server.
+
+---
+
+### Step 1: Install the Cache Purge Module
 
 ```bash
 # Install GetPageSpeed repository (auto-enables cl-ea4 repo on CloudLinux)
@@ -44,29 +63,29 @@ dnf -y install ea-nginx-cache-purge
 
 ---
 
-## Step 2: Configure NGINX
+### Step 2: Configure NGINX
 
 You can enable cache purging globally for all users or per-user.
 
-### Global Configuration (Recommended)
+=== "Global (Recommended)"
 
-Create `/etc/nginx/conf.d/server-includes/cache-purge.conf`:
+    Create `/etc/nginx/conf.d/server-includes/cache-purge.conf`:
 
-```nginx
-# Enable PURGE method for cache purging (all users)
-proxy_cache_purge PURGE from 127.0.0.1;
-```
+    ```nginx
+    # Enable PURGE method for cache purging (all users)
+    proxy_cache_purge PURGE from 127.0.0.1;
+    ```
 
-This file is automatically included in all cPanel user server blocks.
+    This file is automatically included in all cPanel user server blocks.
 
-### Per-User Configuration
+=== "Per-User"
 
-For user `username`, create `/etc/nginx/conf.d/users/username/cache-purge.conf`:
+    For user `username`, create `/etc/nginx/conf.d/users/username/cache-purge.conf`:
 
-```nginx
-# Enable PURGE method for cache purging
-proxy_cache_purge PURGE from 127.0.0.1;
-```
+    ```nginx
+    # Enable PURGE method for cache purging
+    proxy_cache_purge PURGE from 127.0.0.1;
+    ```
 
 After creating the config, reload NGINX:
 
@@ -76,23 +95,23 @@ nginx -t && systemctl reload nginx
 
 ---
 
-## Step 3: Install Proxy Cache Purge Plugin
+### Step 3: Install Proxy Cache Purge Plugin
 
-In WordPress admin:
+=== "WordPress Admin"
 
-1. Go to **Plugins → Add New**
-2. Search for **"Proxy Cache Purge"** (slug: `varnish-http-purge`)
-3. Click **Install Now**, then **Activate**
+    1. Go to **Plugins → Add New**
+    2. Search for **"Proxy Cache Purge"** (slug: `varnish-http-purge`)
+    3. Click **Install Now**, then **Activate**
 
-Or via WP-CLI:
+=== "WP-CLI"
 
-```bash
-wp plugin install varnish-http-purge --activate
-```
+    ```bash
+    wp plugin install varnish-http-purge --activate
+    ```
 
 ---
 
-## Step 4: Configure Proxy Cache Purge
+### Step 4: Configure Proxy Cache Purge
 
 In WordPress admin:
 
@@ -105,12 +124,12 @@ In WordPress admin:
 
 ---
 
-## Step 5: Add Wildcard Purge Fix
+### Step 5: Add Wildcard Purge Fix
 
 Due to NGINX's `Vary: Accept-Encoding` header, the cache stores separate variants for different 
-encodings. To ensure all variants are purged, create a mu-plugin:
+encodings. 
 
-Create `wp-content/mu-plugins/nginx-cache-purge-fix.php`:
+To ensure all variants are purged, create a mu-plugin `wp-content/mu-plugins/nginx-cache-purge-fix.php` or simply add to your `functions.php`:
 
 ```php
 <?php
@@ -131,54 +150,7 @@ This ensures that when a page is purged, all cached variants (gzip, brotli, unco
 
 ---
 
-## Advanced: Reduce Cache Variants
-
-!!! tip "Optional Optimization"
-    This step is optional but recommended for high-traffic sites.
-
-The `Vary: Accept-Encoding` header causes NGINX to create separate cache entries for different 
-`Accept-Encoding` combinations. Browsers send these in various orders:
-
-- `gzip, br, deflate` 
-- `br, gzip`
-- `gzip, deflate`
-
-Each unique combination creates a **separate cache variant**, leading to cache bloat and reduced hit rates.
-
-### Install Compression Normalize Module
-
-The [`ngx_http_compression_normalize_module`](https://github.com/dvershinin/ngx_http_compression_normalize_module) 
-normalizes `Accept-Encoding` headers to consistent values, dramatically reducing cache variants.
-
-```bash
-dnf -y install ea-nginx-compression-normalize
-```
-
-### Configure Normalization
-
-Create `/etc/nginx/conf.d/compression-normalize.conf`:
-
-```nginx
-# Normalize Accept-Encoding to reduce cache variants
-# Priority order: prefer brotli, then gzip
-compression_normalize_accept_encoding br,gzip br gzip;
-```
-
-With this configuration:
-
-| Original Accept-Encoding | Normalized To |
-|--------------------------|---------------|
-| `gzip, br, deflate`      | `br,gzip`     |
-| `br, gzip`               | `br,gzip`     |
-| `gzip, deflate`          | `gzip`        |
-| `br`                     | `br`          |
-| `deflate`                | *(removed)*   |
-
-This reduces potentially hundreds of cache variants to just **3** (`br,gzip`, `br`, `gzip`).
-
----
-
-## Step 6: Test the Setup
+## :material-test-tube: Test the Setup
 
 ```bash
 # 1. Cache a page (first request = MISS, second = HIT)
@@ -205,95 +177,185 @@ Then test via WordPress:
 
 ---
 
-## How It Works
+## :material-chart-timeline-variant: How It Works
 
+```mermaid
+flowchart TD
+    subgraph WordPress["<b>WordPress</b>"]
+        A[📝 Post Updated] --> B["🔌 Proxy Cache Purge Plugin"]
+        B --> C["PURGE http://127.0.0.1/post-slug/*<br/>Host: yourdomain.com"]
+    end
+    
+    C --> D
+
+    subgraph NGINX["<b>NGINX (ea-nginx)</b>"]
+        D["🔒 proxy_cache_purge PURGE from 127.0.0.1"] --> E["🗑️ ngx_cache_purge module"]
+        E --> F["✓ Wildcard matches all variants<br/>(gzip, brotli, plain)"]
+        F --> G["✓ Deletes from disk cache"]
+        G --> H["✅ Returns 'Successful purge'"]
+    end
+
+    style WordPress fill:#4a90d9,stroke:#2d5986,color:#fff
+    style NGINX fill:#009639,stroke:#006325,color:#fff
+    style A fill:#5ba0e0
+    style B fill:#5ba0e0
+    style C fill:#5ba0e0
+    style D fill:#00a844
+    style E fill:#00a844
+    style F fill:#00a844
+    style G fill:#00a844
+    style H fill:#00a844
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         WordPress                                │
-│                                                                  │
-│  ┌──────────────────┐    ┌─────────────────────────────────┐   │
-│  │  Post Updated    │───▶│  Proxy Cache Purge Plugin       │   │
-│  └──────────────────┘    │                                  │   │
-│                          │  PURGE http://127.0.0.1/url/*    │   │
-│                          │  Host: yourdomain.com            │   │
-│                          └──────────────┬──────────────────┘   │
-└─────────────────────────────────────────┼───────────────────────┘
-                                          │
-                                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    NGINX (ea-nginx)                              │
-│                                                                  │
-│  proxy_cache_purge PURGE from 127.0.0.1;                        │
-│                                                                  │
-│  ngx_cache_purge module:                                        │
-│  → Wildcard (*) matches all variants (gzip, br, plain)          │
-│  → Deletes all cached versions from disk                        │
-│  → Returns "Successful purge"                                   │
-└─────────────────────────────────────────────────────────────────┘
-```
+
+<div class="grid" markdown>
+
+<div markdown>
+
+### :material-arrow-right-bold: What Happens
+
+1. You update a post in WordPress
+2. Plugin sends `PURGE` request to localhost
+3. NGINX module removes **only that URL** from cache
+4. Next visitor gets fresh content, rest of cache untouched
+
+</div>
+
+<div markdown>
+
+### :material-lightning-bolt: Why It's Fast
+
+- **No full cache flush** — other pages stay cached
+- **Local requests only** — no network latency  
+- **Wildcard support** — clears all encoding variants at once
+
+</div>
+
+</div>
 
 ---
 
-## Security
+## :material-speedometer: Advanced: Reduce Cache Variants
 
-### Localhost-Only Access
+!!! tip "Optional Optimization"
+    Recommended for high-traffic sites to maximize cache hit rates.
 
-The `from 127.0.0.1` restriction ensures only local requests can purge cache:
+The `Vary: Accept-Encoding` header causes NGINX to create separate cache entries for different 
+`Accept-Encoding` combinations. Browsers send these in various orders, creating cache bloat:
+
+| Original Accept-Encoding | Problem |
+|--------------------------|---------|
+| `gzip, br, deflate` | Separate cache entry |
+| `br, gzip` | Another separate entry |
+| `gzip, deflate` | Yet another entry |
+
+### The Solution: Normalize Headers
+
+The [`compression-normalize`](../modules/compression-normalize.md) module normalizes headers to consistent values:
+
+```bash
+dnf -y install ea-nginx-compression-normalize
+```
+
+Create `/etc/nginx/conf.d/compression-normalize.conf`:
+
+```nginx
+# Normalize Accept-Encoding to reduce cache variants
+# Priority order: prefer brotli, then gzip
+compression_normalize_accept_encoding br,gzip br gzip;
+```
+
+**Result:** Hundreds of possible variants → just **3** (`br,gzip`, `br`, `gzip`).
+
+---
+
+## :material-security: Security
+
+<div class="grid" markdown>
+
+<div markdown>
+
+### :material-lock: Localhost-Only Access
 
 ```nginx
 proxy_cache_purge PURGE from 127.0.0.1;
 ```
 
-External requests sending `PURGE` will be processed as normal requests, not purges.
+External `PURGE` requests are processed as normal requests, not purges.
 
-### User Isolation
+</div>
 
-cPanel's NGINX configuration uses per-user cache zones:
+<div markdown>
 
-- User `alice` has cache zone `alice`
-- User `bob` has cache zone `bob`
+### :material-account-multiple: User Isolation
 
-When `alice` sends a PURGE for `/page/`, it only affects `alice`'s cache.
-Bob's cached `/page/` remains untouched.
+Each cPanel user has their own cache zone. User `alice` cannot purge user `bob`'s cache—even with the same URL paths.
 
----
+</div>
 
-## Troubleshooting
-
-### Cache Not Being Purged
-
-1. **Verify the plugin setting:**
-   - Go to **Settings → Proxy Cache Purge**
-   - Ensure **Custom IP** is set to `127.0.0.1`
-
-2. **Check the mu-plugin exists:**
-   ```bash
-   ls -la wp-content/mu-plugins/nginx-cache-purge-fix.php
-   ```
-
-3. **Check NGINX config is loaded:**
-   ```bash
-   nginx -T | grep cache_purge
-   ```
-
-### "412 Precondition Failed"
-
-This means the URL wasn't in cache. Not an error—just nothing to purge.
-
-### Module Not Loading
-
-```bash
-# Check if installed
-rpm -q ea-nginx-cache-purge
-
-# Check module file
-ls -la /etc/nginx/modules/ngx_http_cache_purge_module.so
-```
+</div>
 
 ---
 
-## Related
+## :material-wrench: Troubleshooting
 
-- [CloudLinux EA4 Repository](../cloudlinux-ea4.md)
-- [cache-purge Module Reference](../modules/cache-purge.md)
-- [Proxy Cache Purge Plugin](https://wordpress.org/plugins/varnish-http-purge/)
+??? question "Cache Not Being Purged"
+
+    1. **Verify the plugin setting:**
+       - Go to **Settings → Proxy Cache Purge**
+       - Ensure **Custom IP** is set to `127.0.0.1`
+
+    2. **Check the mu-plugin exists:**
+       ```bash
+       ls -la wp-content/mu-plugins/nginx-cache-purge-fix.php
+       ```
+
+    3. **Check NGINX config is loaded:**
+       ```bash
+       nginx -T | grep cache_purge
+       ```
+
+??? question "412 Precondition Failed"
+
+    This means the URL wasn't in cache. Not an error—just nothing to purge.
+
+??? question "Module Not Loading"
+
+    ```bash
+    # Check if installed
+    rpm -q ea-nginx-cache-purge
+
+    # Check module file
+    ls -la /etc/nginx/modules/ngx_http_cache_purge_module.so
+    ```
+
+---
+
+## :material-link-variant: Related
+
+<div class="grid cards" markdown>
+
+-   :material-cloud:{ .lg .middle } **CloudLinux EA4 Repository**
+
+    ---
+
+    Full setup guide for cPanel's ea-nginx modules
+
+    [:octicons-arrow-right-24: Learn more](../cloudlinux-ea4.md)
+
+-   :material-package-variant:{ .lg .middle } **cache-purge Module**
+
+    ---
+
+    Complete directive reference and advanced usage
+
+    [:octicons-arrow-right-24: Documentation](../modules/cache-purge.md)
+
+-   :fontawesome-brands-wordpress:{ .lg .middle } **Proxy Cache Purge Plugin**
+
+    ---
+
+    Official WordPress plugin page
+
+    [:octicons-arrow-right-24: WordPress.org](https://wordpress.org/plugins/varnish-http-purge/)
+
+</div>

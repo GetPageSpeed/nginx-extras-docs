@@ -5,6 +5,12 @@ description: "Install NGINX modules for cPanel EasyApache 4 (ea-nginx) on CloudL
 
 # CloudLinux EA4 Repository
 
+!!! success "🎉 Free Access - Limited Time Offer!"
+    The CloudLinux EA4 repository is currently **free to use** — no subscription required!
+    
+    Install any `ea-nginx-*` module at no cost while this promotion lasts. This is a great 
+    opportunity to try out our modules on your cPanel servers.
+
 GetPageSpeed provides a dedicated repository for **CloudLinux with cPanel EasyApache 4**, 
 enabling easy installation of NGINX modules that are fully compatible with cPanel's `ea-nginx`.
 
