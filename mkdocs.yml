@@ -297,9 +297,6 @@ nav:
     woothee: lua/woothee.md
     worker-events: lua/worker-events.md
     xxhash: lua/xxhash.md
-- Guides:
-  - CloudLinux EA4:
-    - WordPress Cache Purging: guides/cpanel-cache-purge.md
 - Distributions:
   - branches.md
   - nginx-mod.md
@@ -307,7 +304,6 @@ nav:
   - plesk.md
   - quic.md
   - angie.md
-  - CloudLinux EA4: cloudlinux-ea4.md
 - RPM Repository: https://www.getpagespeed.com/redhat
 plugins:
 - search
