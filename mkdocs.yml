@@ -47,10 +47,12 @@ nav:
 - Modules:
     Overview: modules.md
     accept-language: modules/accept-language.md
+    access-control: modules/access-control.md
     acme: modules/acme.md
     ajp: modules/ajp.md
     array-var: modules/array-var.md
     auth-digest: modules/auth-digest.md
+    auth-hash: modules/auth-hash.md
     auth-ldap: modules/auth-ldap.md
     auth-pam: modules/auth-pam.md
     auth-totp: modules/auth-totp.md
@@ -61,16 +63,20 @@ nav:
     captcha: modules/captcha.md
     cgi: modules/cgi.md
     combined-upstreams: modules/combined-upstreams.md
+    compression-normalize: modules/compression-normalize.md
+    compression-vary: modules/compression-vary.md
     concat: modules/concat.md
     cookie-flag: modules/cookie-flag.md
     cookie-limit: modules/cookie-limit.md
     coolkit: modules/coolkit.md
     dav-ext: modules/dav-ext.md
+    delay: modules/delay.md
     doh: modules/doh.md
     dynamic-etag: modules/dynamic-etag.md
     dynamic-limit-req: modules/dynamic-limit-req.md
     echo: modules/echo.md
     encrypted-session: modules/encrypted-session.md
+    error-log-write: modules/error-log-write.md
     execute: modules/execute.md
     f4fhds: modules/f4fhds.md
     fancyindex: modules/fancyindex.md
@@ -87,6 +93,7 @@ nav:
     iconv: modules/iconv.md
     image-filter: modules/image-filter.md
     immutable: modules/immutable.md
+    internal-redirect: modules/internal-redirect.md
     ipscrub: modules/ipscrub.md
     ipset-access: modules/ipset-access.md
     jpeg: modules/jpeg.md
@@ -95,13 +102,16 @@ nav:
     json-var: modules/json-var.md
     jwt: modules/jwt.md
     keyval: modules/keyval.md
+    label: modules/label.md
     length-hiding: modules/length-hiding.md
     let: modules/let.md
     limit-traffic-rate: modules/limit-traffic-rate.md
     link: modules/link.md
     live-common: modules/live-common.md
     log-sqlite: modules/log-sqlite.md
+    log-var-set: modules/log-var-set.md
     log-zmq: modules/log-zmq.md
+    loop-detect: modules/loop-detect.md
     lua: modules/lua.md
     markdown: modules/markdown.md
     memc: modules/memc.md
@@ -123,10 +133,14 @@ nav:
     rdns: modules/rdns.md
     redis-rate-limit: modules/redis-rate-limit.md
     redis2: modules/redis2.md
+    request-cookies-filter: modules/request-cookies-filter.md
+    rewrite-status: modules/rewrite-status.md
     rtmp: modules/rtmp.md
     secure-token: modules/secure-token.md
     security: modules/security.md
     security-headers: modules/security-headers.md
+    selective-cache-purge: modules/selective-cache-purge.md
+    server-redirect: modules/server-redirect.md
     set-misc: modules/set-misc.md
     shibboleth: modules/shibboleth.md
     slowfs: modules/slowfs.md
@@ -150,10 +164,13 @@ nav:
     ts: modules/ts.md
     unbrotli: modules/unbrotli.md
     untar: modules/untar.md
+    unzstd: modules/unzstd.md
     upload: modules/upload.md
     upstream-fair: modules/upstream-fair.md
     upstream-jdomain: modules/upstream-jdomain.md
+    upstream-log: modules/upstream-log.md
     upsync: modules/upsync.md
+    var: modules/var.md
     vod: modules/vod.md
     vts: modules/vts.md
     waf: modules/waf.md
@@ -280,9 +297,6 @@ nav:
     woothee: lua/woothee.md
     worker-events: lua/worker-events.md
     xxhash: lua/xxhash.md
-- Guides:
-  - CloudLinux EA4:
-    - WordPress Cache Purging: guides/cpanel-cache-purge.md
 - Distributions:
   - branches.md
   - nginx-mod.md
@@ -290,7 +304,6 @@ nav:
   - plesk.md
   - quic.md
   - angie.md
-  - CloudLinux EA4: cloudlinux-ea4.md
 - RPM Repository: https://www.getpagespeed.com/redhat
 plugins:
 - search
