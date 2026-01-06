@@ -281,7 +281,7 @@ nav:
     worker-events: lua/worker-events.md
     xxhash: lua/xxhash.md
 - Guides:
-  - cPanel:
+  - CloudLinux EA4:
     - WordPress Cache Purging: guides/cpanel-cache-purge.md
 - Distributions:
   - branches.md

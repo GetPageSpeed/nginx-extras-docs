@@ -37,11 +37,11 @@ All EA4-compatible modules use the `ea-nginx-` prefix instead of `nginx-module-`
 # Install cache-purge module
 dnf -y install ea-nginx-cache-purge
 
-# Install brotli compression
-dnf -y install ea-nginx-brotli
-
 # Install headers-more module
 dnf -y install ea-nginx-headers-more
+
+# Install GeoIP2 module
+dnf -y install ea-nginx-geoip2
 ```
 
 ### Step 3: Enable Modules
@@ -61,51 +61,26 @@ The package naming follows this pattern:
 | Standard Package | CloudLinux EA4 Package |
 |-----------------|------------------------|
 | `nginx-module-cache-purge` | `ea-nginx-cache-purge` |
-| `nginx-module-brotli` | `ea-nginx-brotli` |
 | `nginx-module-headers-more` | `ea-nginx-headers-more` |
 | `nginx-module-geoip2` | `ea-nginx-geoip2` |
+| `nginx-module-naxsi` | `ea-nginx-naxsi` |
 
-## Popular Use Case: WordPress Cache Purging
+## WordPress Cache Purging
 
 The `ea-nginx-cache-purge` module enables automatic cache invalidation when WordPress content changes.
+Combined with the **Varnish HTTP Purge** plugin, you get seamless cache management without any coding.
 
 <div class="grid cards" markdown>
 
--   :material-book-open-variant:{ .lg .middle } **Complete WordPress Guide**
+-   :material-book-open-variant:{ .lg .middle } **Complete Setup Guide**
 
     ---
 
-    Step-by-step instructions for setting up cache purging with WordPress on cPanel, 
-    including code examples and troubleshooting.
+    Step-by-step instructions for NGINX configuration and Varnish HTTP Purge plugin setup.
 
     [:octicons-arrow-right-24: WordPress Cache Purging Guide](guides/cpanel-cache-purge.md)
 
 </div>
-
-### Quick Example
-
-The simplest configuration uses the "same-location syntax":
-
-```nginx
-# /etc/nginx/conf.d/users/username/cache-purge.conf
-# Enable PURGE method on all cached locations
-proxy_cache_purge PURGE from 127.0.0.1;
-```
-
-Then in WordPress, add a simple mu-plugin:
-
-```php
-<?php
-// wp-content/mu-plugins/nginx-cache-purge.php
-add_action('save_post', function($post_id) {
-    if (wp_is_post_revision($post_id)) return;
-    $url = get_permalink($post_id);
-    wp_remote_request($url, ['method' => 'PURGE', 'sslverify' => false]);
-});
-```
-
-For complete setup instructions, security considerations, and advanced features, see the 
-[WordPress Cache Purging Guide](guides/cpanel-cache-purge.md)
 
 ## Version Compatibility
 
