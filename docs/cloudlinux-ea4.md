@@ -44,15 +44,6 @@ dnf -y install ea-nginx-headers-more
 dnf -y install ea-nginx-geoip2
 ```
 
-### Step 3: Enable Modules
-
-After installation, modules are automatically loaded via configs in `/etc/nginx/conf.d/modules/`.
-Simply reload NGINX:
-
-```bash
-systemctl reload nginx
-```
-
 ## Available Modules
 
 All modules from the GetPageSpeed collection are available for CloudLinux EA4. 
@@ -68,7 +59,7 @@ The package naming follows this pattern:
 ## WordPress Cache Purging
 
 The `ea-nginx-cache-purge` module enables automatic cache invalidation when WordPress content changes.
-Combined with the **Varnish HTTP Purge** plugin, you get seamless cache management without any coding.
+Combined with the **Proxy Cache Purge** plugin, you get seamless cache management.
 
 <div class="grid cards" markdown>
 
@@ -76,7 +67,7 @@ Combined with the **Varnish HTTP Purge** plugin, you get seamless cache manageme
 
     ---
 
-    Step-by-step instructions for NGINX configuration and Varnish HTTP Purge plugin setup.
+    Step-by-step instructions for NGINX configuration and Proxy Cache Purge plugin setup.
 
     [:octicons-arrow-right-24: WordPress Cache Purging Guide](guides/cpanel-cache-purge.md)
 
@@ -112,42 +103,3 @@ dnf config-manager --set-enabled getpagespeed-extras-cl-ea4
 
 Or edit `/etc/yum.repos.d/getpagespeed-extras.repo` and set `enabled=1` under the 
 `[getpagespeed-extras-cl-ea4]` section.
-
-## Troubleshooting
-
-### Module Version Mismatch
-
-If you see an error like:
-
-```
-nginx: [emerg] module "/etc/nginx/modules/ngx_http_cache_purge_module.so" version 1029003 instead of 1029004
-```
-
-This means the module was built for a different `ea-nginx` version. Solution:
-
-```bash
-dnf clean all
-dnf upgrade ea-nginx-cache-purge
-```
-
-### Repository Not Found
-
-If the `cl-ea4` repository is not available:
-
-1. Ensure you have the latest `getpagespeed-extras-release`:
-   ```bash
-   dnf upgrade getpagespeed-extras-release
-   ```
-
-2. The repository is automatically enabled on CloudLinux with cPanel. If not detected:
-   ```bash
-   dnf config-manager --set-enabled getpagespeed-extras-cl-ea4
-   ```
-
-## Support
-
-For issues with CloudLinux EA4 packages:
-
-- [GetPageSpeed Support](https://www.getpagespeed.com/support)
-- [GitHub Issues](https://github.com/GetPageSpeed/nginx-extras/issues)
-
