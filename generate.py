@@ -689,6 +689,15 @@ with open("mkdocs.yml") as mkdocs_f:
         {"Modules": nginx_modules_index},
         {"Lua Scripting": lua_libs_index},
         {
+            "Guides": [
+                {
+                    "CloudLinux EA4": [
+                        {"WordPress Cache Purging": "guides/cpanel-cache-purge.md"},
+                    ]
+                },
+            ]
+        },
+        {
             "Distributions": [
                 "branches.md",
                 "nginx-mod.md",
@@ -696,6 +705,7 @@ with open("mkdocs.yml") as mkdocs_f:
                 "plesk.md",
                 "quic.md",
                 "angie.md",
+                {"CloudLinux EA4": "cloudlinux-ea4.md"},
             ]
         },
         {"RPM Repository": "https://www.getpagespeed.com/redhat"},
