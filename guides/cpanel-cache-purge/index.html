@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://nginx-extras.getpagespeed.com/guides/cpanel-cache-purge/">
       
       
+        <link rel="prev" href="../../lua/xxhash/">
+      
+      
+        <link rel="next" href="../../branches/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -112,7 +116,7 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "WordPress Cache Purging with Proxy Cache Purge",
+    "headline": "WordPress Cache Purging",
     "description": "Set up automatic NGINX cache purging for WordPress on CloudLinux with ea-nginx using the Proxy Cache Purge plugin and ngx_cache_purge module.",
     "author": {
       "@type": "Organization",
@@ -159,7 +163,7 @@
       ,{
         "@type": "ListItem",
         "position": 2,
-        "name": "WordPress Cache Purging with Proxy Cache Purge",
+        "name": "WordPress Cache Purging",
         "item": "https://nginx-extras.getpagespeed.com/guides/cpanel-cache-purge/"
       }
       
@@ -374,6 +378,37 @@
 
         </a>
       </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
     
   
 
@@ -5834,6 +5869,369 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CloudLinux EA4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            CloudLinux EA4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    WordPress Cache Purging
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    WordPress Cache Purging
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-the-cache-purge-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Install the Cache Purge Module
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-configure-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Configure NGINX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Configure NGINX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-configuration-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global Configuration (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-user-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Per-User Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-install-proxy-cache-purge-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Install Proxy Cache Purge Plugin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-proxy-cache-purge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Proxy Cache Purge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-add-wildcard-purge-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Add Wildcard Purge Fix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-reduce-cache-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced: Reduce Cache Variants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced: Reduce Cache Variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-compression-normalize-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Compression Normalize Module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-test-the-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Test the Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#localhost-only-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Localhost-Only Access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Isolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-not-being-purged" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache Not Being Purged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-precondition-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      "412 Precondition Failed"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-not-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Not Loading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -5849,10 +6247,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -5863,8 +6261,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Distributions
           </label>
@@ -5987,6 +6385,27 @@
   
   <span class="md-ellipsis">
     Angie Web Server - Install on RHEL, CentOS, Rocky Linux & AlmaLinux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloudlinux-ea4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CloudLinux EA4
   </span>
   
 
